@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/applications/pom.xml" />
+        <option value="$PROJECT_DIR$/business/pom.xml" />
+        <option value="$PROJECT_DIR$/business/storm-computing/pom.xml" />
+        <option value="$PROJECT_DIR$/common/pom.xml" />
+        <option value="$PROJECT_DIR$/consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/dependencies/pom.xml" />
+        <option value="$PROJECT_DIR$/kits/pom.xml" />
+        <option value="$PROJECT_DIR$/parent/pom.xml" />
+        <option value="$PROJECT_DIR$/producer/pom.xml" />
+        <option value="$PROJECT_DIR$/tests/console/pom.xml" />
+        <option value="$PROJECT_DIR$/tests/pom.xml" />
+        <option value="$PROJECT_DIR$/tests/storm-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/tests/storm-old/pom.xml" />
+        <option value="$PROJECT_DIR$/tests/storm/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+    <option name="myConnectionType" value="NONE" />
+  </component>
+</project>
