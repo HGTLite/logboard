@@ -23,8 +23,8 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="console" />
+        <module name="dependencies" />
         <module name="log-consumer" />
-        <module name="project" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -32,7 +32,7 @@
       <module name="collector" target="1.8" />
       <module name="common" target="1.8" />
       <module name="console" target="1.8" />
-      <module name="dependencies" target="1.8" />
+      <module name="dependencies" target="1.5" />
       <module name="hbase-io" target="1.8" />
       <module name="kits" target="1.8" />
       <module name="log-consumer" target="1.8" />
