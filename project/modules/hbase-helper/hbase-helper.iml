@@ -10,6 +10,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="tools" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.6.7" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.6.7" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.6.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hbase:hbase-client:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hbase:hbase-annotations:1.1.2" level="project" />
     <orderEntry type="module-library">

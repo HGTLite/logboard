@@ -27,6 +27,7 @@
         <module name="general-console" />
         <module name="general-web" />
         <module name="hbase-helper" />
+        <module name="hbase112" />
         <module name="hello-logger" />
         <module name="ilogger" />
         <module name="kafka-general-consumer" />
@@ -50,6 +51,7 @@
       <module name="general-web" target="1.8" />
       <module name="hbase-helper" target="1.8" />
       <module name="hbase-io" target="1.8" />
+      <module name="hbase112" target="1.8" />
       <module name="hello-logger" target="1.8" />
       <module name="ilogger" target="1.8" />
       <module name="kafka-general-consumer" target="1.8" />

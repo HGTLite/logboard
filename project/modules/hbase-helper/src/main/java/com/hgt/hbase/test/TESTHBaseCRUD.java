@@ -1,7 +1,7 @@
 package com.hgt.hbase.test;
 
-import io.yaooo.logging.common.HBaseOperations;
-import io.yaooo.logging.common.QueryFromHBase;
+import com.hgt.hbase.common.HBaseOperations;
+import com.hgt.hbase.common.QueryFromHBase;
 
 /******************************************************************************
  * Created by  Yao  on  2016/7/14
@@ -18,42 +18,45 @@ public class TESTHBaseCRUD {
         HBaseOperations hBaseOperations = new HBaseOperations();
         QueryFromHBase queryFromHBase = new QueryFromHBase();
 
+        String tableTitle="logboard-test";
 
-        //测试添加行数据
+       ////测试添加行数据
 //        String[] key = {"name", "", "code"};
 //        String[] value = {"name-003", "第3行的无名列", "20160718"};
-//        hBaseOperations.insertRow("table0715", "rowkey003", "usr", key, value);
+//        hBaseOperations.insertRow(tableTitle, "rk003", "details", key, value);
 
 
-        //测试删除表
+        ////测试删除表
 //        hBaseOperations.deleteTable("table3");
 
 //测试删除列族名
 //        String[] cfNames = {"co1", "co2"};
-//        hBaseOperations.deleteColumnFamilies("table0715", cfNames);
+//        hBaseOperations.deleteColumnFamilies("tableTitle", cfNames);
 
         //测试根据行键删除行
 //        String[] rowkeys = {"rowkey002", "rowkey003"};
-//        hBaseOperations.deleteRowsByRowkeys("table0715", rowkeys);
+//        hBaseOperations.deleteRowsByRowkeys(tableTitle, rowkeys);
 
 
         //测试建表
-//        hBaseOperations.createTable("table0720", "usr");
+//        hBaseOperations.createTable(tableTitle, "sourceinfo");
 
         //测试添加列族名
 //                String[] cfNames = {"co1", "co2"};
-//                hBaseOperations.addNewColumnFamilies("table0715", cfNames);
+//                String[] cfNames = {"loginfo"};
+//                hBaseOperations.addNewColumnFamilies(tableTitle, cfNames);
 
 
         //测试显示列族
-//        hBaseOperations.showColumnFamilies("table0720");
+//        hBaseOperations.showColumnFamilies(tableTitle);
 
         //测试显示所有记录
-                queryFromHBase.queryAll("table0715");
+//                queryFromHBase.queryAll(tableTitle);
+
         //测试根据行键查询
-//        queryFromHBase.queryByRowkey("table0715", "rowkey001");
+//        queryFromHBase.queryByRowkey(tableTitle, "rowkey001");
         //测试根据列值进行严格匹配查询
-//        queryFromHBase.queryByColumnValue("table0715","usr","name","name-003");
+//        queryFromHBase.queryByColumnValue(tableTitle,"usr","name","name-003");
 
     }
 

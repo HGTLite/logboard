@@ -18,6 +18,7 @@
         <module>kafka-general-producer</module>
         <module>kafka-general-consumer</module>
         <module>hello-logger</module>
+        <module>hbase112</module>
     </modules>
 
     <properties>

@@ -1,6 +1,6 @@
 package com.hgt.hbase.common;
 
-import io.yaooo.logging.config.HBaseConfig;
+import com.hgt.hbase.config.HBaseConfig;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
@@ -59,7 +59,13 @@ public class QueryFromHBase {
         }
     }
 
-    //        根据列值进行严格查询
+    /**
+     * 根据列值进行严格查询     *
+     * @param strTableName
+     * @param strCF
+     * @param strQualifier
+     * @param strValue
+     */
     public void queryByColumnValue(String strTableName, String strCF, String strQualifier, String strValue) {
         TableName tableName = TableName.valueOf(strTableName);
 
@@ -87,7 +93,13 @@ public class QueryFromHBase {
 
     }
 
-    //根据值在多个列进行查询
+    /**
+     * 根据值对多个列进行查询
+     * @param strTableName
+     * @param strCFs
+     * @param strQualifers
+     * @param strValues
+     */
     public void queryByMultiColumns(String strTableName, String[] strCFs, String[] strQualifers, String[] strValues) {
         TableName tableName = TableName.valueOf(strTableName);
 
@@ -113,7 +125,7 @@ public class QueryFromHBase {
                     System.out.print("行键是: " + new String(CellUtil.cloneRow(rowKV)) + " ");
                     System.out.print("列族名: " + new String(CellUtil.cloneFamily(rowKV)) + " ");
                     System.out.print("列名是:  " + new String(CellUtil.cloneQualifier(rowKV)) + " ");
-                    System.out.print("列值是: " + new String(CellUtil.cloneValue(rowKV)) + " ");
+                    System.out.print("列值为: " + new String(CellUtil.cloneValue(rowKV)) + " ");
                     System.out.println("时间戳: " + rowKV.getTimestamp() + " ");
                 }
             }
@@ -139,17 +151,13 @@ public class QueryFromHBase {
             //TO-DO:表为空时要提示
             for (Result result : rs) {
                 for (Cell rowKV : result.rawCells()) {
-                    System.out.print("行键是: " + new String(CellUtil.cloneRow(rowKV)) + " ");
+                    System.out.print("行键为: " + new String(CellUtil.cloneRow(rowKV)) + " ");
                     System.out.print("列族名: " + new String(CellUtil.cloneFamily(rowKV)) + " ");
                     System.out.print("列名是:  " + new String(CellUtil.cloneQualifier(rowKV)) + " ");
                     System.out.print("列值是: " + new String(CellUtil.cloneValue(rowKV)) + " ");
                     System.out.println("时间戳: " + rowKV.getTimestamp() + " ");
                 }
 
-                //以下是读取hbase一行信息的备用方法，部分接口已deprecated
-                // for (KeyValue keyValue : r.raw()) {
-                // System.out.println("列是：" + new String(keyValue.getFamilyArray())
-                //  + "   值: " + new String(keyValue.getValueArray()));
             }
         } catch (IOException e) {
             e.printStackTrace();

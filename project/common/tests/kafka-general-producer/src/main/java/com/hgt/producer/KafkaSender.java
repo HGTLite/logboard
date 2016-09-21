@@ -43,7 +43,7 @@ public class KafkaSender {
 
     public void runProducer() {
         try {
-            for (int i = 10; i < 20; i++) {
+            for (int i = 20; i < 30; i++) {
 
                 String key = "MessageKey is " + Integer.toString(i);
                 String value = "MessageVal is " + Integer.toString(i);

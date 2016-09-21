@@ -1,7 +1,7 @@
 package com.hgt.hbase.common;
 
-import io.yaooo.logging.config.HBaseConfig;
-import io.yaooo.logging.utils.StringHelper;
+import com.hgt.hbase.config.HBaseConfig;
+import com.hgt.utils.StringHelper;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
@@ -197,7 +197,9 @@ public class HBaseOperations {
             for (String cf : columnFamilyNames) {
                 HColumnDescriptor columnDescriptor = new HColumnDescriptor(cf);
                 //设置数据保存的版本个数
-                columnDescriptor.setVersions(minV, maxV);
+//                columnDescriptor.setVersions(minV, maxV);
+                columnDescriptor.setMinVersions(minV);
+                columnDescriptor.setMaxVersions(maxV);
                 tableDescriptor.addFamily(columnDescriptor);
             }
 
