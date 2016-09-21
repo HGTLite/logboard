@@ -11,14 +11,17 @@
     <packaging>pom</packaging>
 
     <name>tests</name>
-    <url>http://maven.apache.org</url>
+
     <modules>
         <module>general-console</module>
         <module>general-web</module>
+        <module>kafka-general-producer</module>
+        <module>kafka-general-consumer</module>
+        <module>hello-logger</module>
     </modules>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
     </properties>
 
     <dependencies>

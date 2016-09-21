@@ -1,0 +1,104 @@
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+
+.stats_count_number {
+    font-size: 2rem;
+}
+
+.stats_count_desc {
+    font-size: 1rem;
+}
+
+.stats_bundle {
+    margin-top: 10%;
+}
+
+._display_table {
+    display: table;
+}
+
+._display_table_cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.screen-page {
+    height: 648px;;
+}
+
+.h_line {
+
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 3px;
+
+}
+
+/* divider_rs */
+.divider_white1 {
+    height: 10px;
+}
+
+.divider_white2 {
+    height: 20px;
+}
+
+.divider_white3 {
+    height: 30px;
+}
+
+.divider_white4 {
+    height: 40px;
+}
+
+.divider_white6 {
+    height: 60px;
+}
+
+.divider_white8 {
+    height: 80px;
+}
+
+.divider_white9 {
+    height: 90px;
+}
+
+.divider_white10 {
+    height: 100px;
+}
+
+.divider_white20 {
+    height: 200px;
+}
+
+.divider_white22 {
+    height: 220px;
+}
+
+.divider_white25 {
+    height: 250px;
+}
+
+._divider_stripe {
+    height: 200px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+._text_align_center {
+    text-align: center;
+}
+
+._text_align_right {
+    text-align: right;
+}
+
+._text_align_left {
+    text-align: left;
+}
+
+._margin2_auto {
+    margin-left: auto;
+    margin-right: auto;
+}

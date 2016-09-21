@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../res/scripts/js/d3-3.5.17.js"></script>
+    <style type="text/css">
+        #wheel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+        }
+    </style>
+</head>
+<body>
+<div id="wheel"></div>
+<script type="text/javascript">
+    var arc, data, padding, steps, r=400/2, pi = Math.PI;
+    padding = 2 * r / 200;
+    arc = d3.svg.arc().innerRadius(r-40).outerRadius(r).startAngle(function(d) {
+        return d.startAngle;
+    }).endAngle(function(d) {
+        return d.endAngle;
+    });
+    steps = 2;
+    data = d3.range(180).map(function(d, i) {
+        i *= steps;
+        return {
+            startAngle: i * (pi / 180),
+            endAngle: (i + 2) * (pi / 180),
+            fill: d3.hsl(i, 1, .5).toString()
+        };
+    });
+    d3.select("#wheel").insert('svg', 'svg').attr("id", "icon").append('g').attr("transform", "translate(" + r + "," + r + ") rotate(90) scale(-1,1)").selectAll('path').data(data).enter().append('path').attr("d", arc).attr("stroke-width", 1).attr("stroke", function(d) {
+        return d.fill;
+    }).attr("fill", function(d) {
+        return d.fill;
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>d3 tutorials</title>
+
+    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+    <script src="../../../res/scripts/js/d3-4.1.1.js"></script>
+    <style>
+
+        .chart div {
+            font: 10px sans-serif;
+            background-color: steelblue;
+            text-align: right;
+            padding: 3px;
+            margin: 1px;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+<h3>练习表格selection</h3>
+<table>
+    <thead>
+    <tr>
+        <td> A</td>
+        <td> B</td>
+        <td> C</td>
+        <td> D</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td> 110</td>
+        <td> 1</td>
+        <td> a2</td>
+        <td> 3</td>
+    </tr>
+    <tr>
+        <td> 114</td>
+        <td> a5</td>
+        <td> 6b</td>
+        <td> 7</td>
+    </tr>
+    <tr>
+        <td> 118</td>
+        <td> 9</td>
+        <td> 10f</td>
+        <td> 11</td>
+    </tr>
+    <tr>
+        <td> 112</td>
+        <td> 13</td>
+        <td> c14</td>
+        <td> 15</td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    var td = d3.selectAll("tbody tr").selectAll("td");
+    td.style("color", function(d, i) { return i ? null : "red"; });
+
+//    var matrix = [
+//        [0, 1, 2, 3],
+//        [4, 5, 6, 7],
+//        [8, 9, 10, 11],
+//        [12, 13, 14, 15],
+//    ];
+//    var td = d3.selectAll("tbody tr")
+//            .data(matrix)
+//            .selectAll("td")
+//            .data(function(d, i) { return matrix[i]; });
+
+</script>
+</body>
+</html>

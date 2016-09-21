@@ -9,7 +9,6 @@
     <artifactId>general-web</artifactId>
     <packaging>war</packaging>
     <name>general-web Maven Webapp</name>
-    <url>http://maven.apache.org</url>
     <dependencies>
         <!--<dependency>-->
             <!--<groupId>junit</groupId>-->
