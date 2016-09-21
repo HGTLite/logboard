@@ -14,11 +14,11 @@ logboard
 　　　　　　　　　　　|----------examples  
 　　　　　　　　　　　|----------tests  
 　　　　　　　　　　　　　　　　　|----------general-console  
-　　　　　　　　　　　　　　　　　|----------general-web
-　　　　　　　　　　　　　　　　　|----------tools  
+　　　　　　　　　　　　　　　　　|----------general-web  
+　　　　　　　　　　　|----------tools  
 　　　　　|----------dependencies    
 　　　　　|----------modules    
-　　　　　　　　　　　|----------basic-logger   
+　　　　　　　　　　　|----------ilogger   
 　　　　　　　　　　　|----------starter       
 　　　　　　　　　　　|----------streaming   
 　　　　　　　　　　　|----------notification   
