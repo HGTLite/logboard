@@ -35,6 +35,7 @@
         <module name="log-consumer" />
         <module name="logboard-base" />
         <module name="notification" />
+        <module name="redis-helper" />
         <module name="starter" />
         <module name="streaming" />
         <module name="tools" />
@@ -67,6 +68,7 @@
       <module name="notification" target="1.8" />
       <module name="parent" target="1.8" />
       <module name="project" target="1.8" />
+      <module name="redis-helper" target="1.8" />
       <module name="starter" target="1.8" />
       <module name="streaming" target="1.8" />
       <module name="tests" target="1.8" />

@@ -19,6 +19,7 @@
         <module>notification</module>
         <module>hbase-helper</module>
         <module>logboard-base</module>
+        <module>redis-helper</module>
     </modules>
 
     <dependencyManagement>

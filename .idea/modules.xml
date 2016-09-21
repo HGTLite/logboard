@@ -20,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/project/modules/modules.iml" filepath="$PROJECT_DIR$/project/modules/modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/notification/notification.iml" filepath="$PROJECT_DIR$/project/modules/notification/notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/project.iml" filepath="$PROJECT_DIR$/project/project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/redis-helper/redis-helper.iml" filepath="$PROJECT_DIR$/project/modules/redis-helper/redis-helper.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/starter/starter.iml" filepath="$PROJECT_DIR$/project/modules/starter/starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/streaming/streaming.iml" filepath="$PROJECT_DIR$/project/modules/streaming/streaming.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/tests.iml" filepath="$PROJECT_DIR$/project/common/tests/tests.iml" />
