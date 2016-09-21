@@ -23,8 +23,17 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="console" />
-        <module name="dependencies" />
+        <module name="examples" />
+        <module name="general-console" />
+        <module name="general-web" />
+        <module name="hbase-helper" />
+        <module name="ilogger" />
         <module name="log-consumer" />
+        <module name="logboard-base" />
+        <module name="notification" />
+        <module name="starter" />
+        <module name="streaming" />
+        <module name="tools" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -32,17 +41,28 @@
       <module name="collector" target="1.8" />
       <module name="common" target="1.8" />
       <module name="console" target="1.8" />
-      <module name="dependencies" target="1.5" />
+      <module name="dependencies" target="1.8" />
+      <module name="examples" target="1.8" />
+      <module name="general-console" target="1.8" />
+      <module name="general-web" target="1.8" />
+      <module name="hbase-helper" target="1.8" />
       <module name="hbase-io" target="1.8" />
+      <module name="ilogger" target="1.8" />
       <module name="kits" target="1.8" />
       <module name="log-consumer" target="1.8" />
       <module name="logboard" target="1.5" />
+      <module name="logboard-base" target="1.8" />
       <module name="logs-producer" target="1.8" />
       <module name="logs-storm" target="1.8" />
+      <module name="modules" target="1.8" />
       <module name="msg-middleware" target="1.5" />
+      <module name="notification" target="1.8" />
       <module name="parent" target="1.8" />
-      <module name="project" target="1.5" />
+      <module name="project" target="1.8" />
+      <module name="starter" target="1.8" />
+      <module name="streaming" target="1.8" />
       <module name="tests" target="1.8" />
+      <module name="tools" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

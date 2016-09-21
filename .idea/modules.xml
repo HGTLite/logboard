@@ -2,10 +2,25 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/project/common/common.iml" filepath="$PROJECT_DIR$/project/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/dependencies/dependencies.iml" filepath="$PROJECT_DIR$/project/dependencies/dependencies.iml" />
       <module fileurl="file://$PROJECT_DIR$/docs/docs.iml" filepath="$PROJECT_DIR$/docs/docs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/examples/examples.iml" filepath="$PROJECT_DIR$/project/common/examples/examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" filepath="$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-web/general-web.iml" filepath="$PROJECT_DIR$/project/common/tests/general-web/general-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/hbase-helper/hbase-helper.iml" filepath="$PROJECT_DIR$/project/modules/hbase-helper/hbase-helper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/ilogger/ilogger.iml" filepath="$PROJECT_DIR$/project/modules/ilogger/ilogger.iml" />
       <module fileurl="file://$PROJECT_DIR$/logboard.iml" filepath="$PROJECT_DIR$/logboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/logboard-base/logboard-base.iml" filepath="$PROJECT_DIR$/project/modules/logboard-base/logboard-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/logboard-views/logboard-views.iml" filepath="$PROJECT_DIR$/project/modules/logboard-views/logboard-views.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/modules.iml" filepath="$PROJECT_DIR$/project/modules/modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/notification/notification.iml" filepath="$PROJECT_DIR$/project/modules/notification/notification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/logboard-views/portal/portal.iml" filepath="$PROJECT_DIR$/project/modules/logboard-views/portal/portal.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/project.iml" filepath="$PROJECT_DIR$/project/project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/starter/starter.iml" filepath="$PROJECT_DIR$/project/modules/starter/starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/streaming/streaming.iml" filepath="$PROJECT_DIR$/project/modules/streaming/streaming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tests/tests.iml" filepath="$PROJECT_DIR$/project/common/tests/tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tools/tools.iml" filepath="$PROJECT_DIR$/project/common/tools/tools.iml" />
     </modules>
   </component>
 </project>
