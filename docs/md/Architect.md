@@ -28,7 +28,7 @@
 　　日志处理模块是整个系统最重要的部分，负责日志系统主要的业务逻辑，包括原始日志的过滤，日志数据的CRUD，以及日志查询、统计分析、数据挖掘等。  
 　　日志可视化模块用来展示日志的统计结果，采用的是MVC框架，是日志服务系统对外的直接入口。  
 
-![系统架构图](../../resources/images/logboard-architecture.png)  
+   ![系统架构图](../../resources/images/logboard-architecture.png)  
 
 ## 日志收集模块  
 日志采集模块的目标是收集各个子系统（主要在Windows平台）产生的日志，方便后续的存储与分析。
@@ -49,7 +49,7 @@
 |:--------------------|:---------------------|
 | LA_ID               |自增ID                 |
 | LA_NAME             |子系统名                |
-| LA_CODE             |子系统编号              |
+| LA_CODE             |子系统编号，默认6位      |
 | LA_IP               |子系统服务器IP列表       |
 | LA_PLATFORM         |子系统操作系统或框架环境  |
 | LA_DESCRIPTION      |子系统描述              |
@@ -96,12 +96,12 @@
 |Fields               |      DESC            |
 |:--------------------|:---------------------|
 | LR_APP_MODULE       |应用模块               |
-| LR_LOG_THREAD       |线程                   |
+| LR_APP_THREAD       |线程                   |
 | LR_LOG_LOCATION     |文件位置               |
 | LR_LOG_EXP          |异常信息               |
-| LR_LOG_INPUT        |用户输入，或输入参数     |
-| LR_LOG_OUTPUT       |输出信息               |
-| LR_LOG_COMMENTS     |程序员注释             |
+| LR_INPUTS           |用户输入，或输入参数     |
+| LR_OUTPUTS          |输出信息               |
+| LR_CODER_COMMENTS   |程序员注释             |
 | LR_LOG_TOPIC        |日志主题               |
 
 #### 日志收集方法
