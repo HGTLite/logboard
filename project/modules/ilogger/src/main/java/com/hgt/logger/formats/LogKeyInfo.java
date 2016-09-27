@@ -33,28 +33,36 @@ public class LogKeyInfo {
         this.logOptions = new HashMap<>();
     }
 
-    //指定所有属性的构造函数
-    public LogKeyInfo(String strAppcode, String type, String strLogMsg, HashMap<String, String> options) {
-        this.appCode = strAppcode;
-        this.logType = LogType.valueOf(type.toUpperCase());
-        this.logMsg = strLogMsg;
-        this.logOptions = options;
+    //指定日志所在应用程序的AppCode
+    public LogKeyInfo(String StrAppCode) {
+        this.appCode = StrAppCode;
+        this.logType = GENERAL;
+        this.logMsg = "LOG-AT-" + this.getClass().getName();
+        this.logOptions = new HashMap<>();
     }
 
     //指定日志类别的构造函数，输入值参考LogType枚举
-    public LogKeyInfo(String type) {
-        this.appCode = "000000";
+    public LogKeyInfo(String StrAppCode, String type) {
+        this.appCode = StrAppCode;
         this.logType = LogType.valueOf(type.toUpperCase());
         this.logMsg = "LOG-AT-" + this.getClass().getName();
         this.logOptions = new HashMap<>();
     }
 
     //指定日志类别和内容的构造函数，输入值参考LogType枚举
-    public LogKeyInfo(String type, String strLogMsg) {
-        this.appCode = "000000";
+    public LogKeyInfo(String StrAppCode, String type, String strLogMsg) {
+        this.appCode = StrAppCode;
         this.logType = LogType.valueOf(type.toUpperCase());
         this.logMsg = strLogMsg;
         this.logOptions = new HashMap<>();
+    }
+
+    //指定所有属性的构造函数
+    public LogKeyInfo(String strAppcode, String type, String strLogMsg, HashMap<String, String> options) {
+        this.appCode = strAppcode;
+        this.logType = LogType.valueOf(type.toUpperCase());
+        this.logMsg = strLogMsg;
+        this.logOptions = options;
     }
 
     public String getAppCode() {

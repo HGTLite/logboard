@@ -5,83 +5,80 @@ import com.hgt.utils.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-
 /******************************************************************************
  * Created by  Yao  on  2016/7/4
- * README:日志打印工具类
+ * README:基本日志打印工具类
+ * 只支持设置AppCode, LogType, LogMsg
+ * 不支持设置可选字段
  * ============================================================================
- * CHANGELOG：
+ * CHANGELOG：160927重构
  ******************************************************************************/
 @SuppressWarnings("unused")
-public class BasicLogger {
+public class BasicLogger implements ILogger {
 
     //日志必需内容
-    private LogKeyInfo logKeyInfo;
-    //日志可选内容
-    private HashMap<String,String> logOptions;
+    protected LogKeyInfo logKeyInfo;
     //实际日志打印对象
-    private Logger logger;
-
-
+    protected Logger logger;
     //javabean转json对象
-    private JsonHelper jsonHelper;
+    protected JsonHelper jsonHelper;
 
     //产生GENERAL型日志
-    public BasicLogger(Class c) {
-        logKeyInfo = new LogKeyInfo("General");
+    public BasicLogger(Class c, String strAppCode) {
+        logKeyInfo = new LogKeyInfo(strAppCode, "General");
+        logKeyInfo.setLogOptions(null);
         jsonHelper = new JsonHelper();
         logger = LoggerFactory.getLogger(c);
     }
 
     //指定日志类别，输入值参考LogTags枚举
-    public BasicLogger(Class c, String type) {
-        logKeyInfo = new LogKeyInfo(type);
+    public BasicLogger(Class c, String strAppCode, String type) {
+        logKeyInfo = new LogKeyInfo(strAppCode, type);
+        logKeyInfo.setLogOptions(null);
         jsonHelper = new JsonHelper();
         logger = LoggerFactory.getLogger(c);
     }
 
     //指定日志类别和日志内容
-    public BasicLogger(Class c, String type, String msg) {
-        logKeyInfo = new LogKeyInfo(type, msg);
+    public BasicLogger(Class c, String strAppCode, String type, String msg) {
+        logKeyInfo = new LogKeyInfo(strAppCode, type, msg);
+        logKeyInfo.setLogOptions(null);
         jsonHelper = new JsonHelper();
         logger = LoggerFactory.getLogger(c);
     }
 
-    //指定所有日志内容
-//    BasicLogger(Class c, String intAppcode, String strUserId, String strUserIp, String strType, String m, String strCommentsField) {
-//        logKeyInfo = new LogKeyInfo(intAppcode, strUserId, strUserIp, strType, m, strCommentsField);
-//        jsonHelper = new JsonHelper();
-//        logger = LoggerFactory.getLogger(c);
-//    }
 
-
-    public HashMap<String, String> getLogOptions() {
-        return logOptions;
+    @Override
+    public void d(String strD) {
+        logKeyInfo.setLogMsg(strD);
+        if (LEVEL <= DEBUG) {
+            logger.debug(jsonHelper.convertBean2Json(logKeyInfo));
+        }
     }
 
-    public void setLogOptions(HashMap<String, String> logOptions) {
-        this.logOptions = logOptions;
+    @Override
+    public void i(String strI) {
+        logKeyInfo.setLogMsg(strI);
+        if (LEVEL <= INFO) {
+            logger.info(jsonHelper.convertBean2Json(logKeyInfo));
+        }
     }
 
-    public void debug(String strP) {
-        logKeyInfo.setLogMsg(strP);
-        logger.debug(jsonHelper.javaBean2JsonString(logKeyInfo));
+    @Override
+    public void w(String strW) {
+        logKeyInfo.setLogMsg(strW);
+        if (LEVEL <= WARN) {
+            logger.warn(jsonHelper.convertBean2Json(logKeyInfo));
+        }
     }
 
-    public void info(String strP) {
-        logKeyInfo.setLogMsg(strP);
-        logger.info(jsonHelper.javaBean2JsonString(logKeyInfo));
+    @Override
+    public void e(String strE, Exception e) {
+        logKeyInfo.setLogMsg(strE);
+        if (LEVEL <= ERROR) {
+            logger.error(jsonHelper.convertBean2Json(logKeyInfo), e);
+        }
     }
 
-    public void warn(String strP) {
-        logKeyInfo.setLogMsg(strP);
-        logger.warn(jsonHelper.javaBean2JsonString(logKeyInfo));
-    }
-
-    public void error(String strP, Exception e1) {
-        logKeyInfo.setLogMsg(strP + "=====e====" + e1.toString());
-        logger.error(jsonHelper.javaBean2JsonString(logKeyInfo), e1);
-    }
 
 }

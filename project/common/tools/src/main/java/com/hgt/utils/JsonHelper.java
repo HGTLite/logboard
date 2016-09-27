@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonHelper {
 
 ///Bean转json格式的字符串
-    public  String javaBean2JsonString(Object o, String strP) {
+    public  String convertBean2Json(Object o, String strP) {
         String str = strP;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -24,8 +24,8 @@ public class JsonHelper {
     }
 
 
-    public  String javaBean2JsonString(Object o) {
-        return this.javaBean2JsonString(o, "");
+    public  String convertBean2Json(Object o) {
+        return this.convertBean2Json(o, "");
     }
 
 }
