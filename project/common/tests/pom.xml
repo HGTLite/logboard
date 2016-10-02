@@ -19,6 +19,7 @@
         <module>kafka-general-consumer</module>
         <module>hello-logger</module>
         <module>hbase112</module>
+        <module>geoip</module>
     </modules>
 
     <properties>

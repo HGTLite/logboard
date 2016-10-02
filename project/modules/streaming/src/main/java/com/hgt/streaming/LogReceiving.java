@@ -19,29 +19,20 @@ import org.apache.spark.streaming.api.java.JavaPairReceiverInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka.KafkaUtils;
 
-/******************************************************************************
- * Created by  Yao  on  2016/9/21
- * README: 
- * ============================================================================
- * CHANGELOG：
- ******************************************************************************/
 public class LogReceiving {
 
     public static void main(String[] args) {
 
-        //设置匹配模式，以空格分隔
-        final Pattern SPACE = Pattern.compile(" ");
-        //接收数据的地址和端口
         String zkQuorum = "192.168.99.111:2181,192.168.99.112:2181,192.168.99.113:2181,192.168.99.114:2181";
         //话题所在的组
         String group = "test1";
         //话题名称以“，”分隔
-//        String topics = "top1,top2";
         String topics = "topic-hello";
         //每个话题的分片数
         int numThreads = 2;
-        SparkConf sparkConf = new SparkConf().setAppName("StreamingHello").setMaster("local[2]");
-        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(10000));
+        SparkConf sparkConf = new SparkConf().setAppName("StreamingHLogger").setMaster("local[2]");
+        //5s批处理
+        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(5000));
 //        jssc.checkpoint("checkpoint"); //设置检查点
         //存放话题跟分片的映射关系
         Map<String, Integer> topicmap = new HashMap<>();
@@ -50,17 +41,23 @@ public class LogReceiving {
         for (int i = 0; i < n; i++) {
             topicmap.put(topicsArr[i], numThreads);
         }
+
         //从Kafka中获取数据转换成RDD
         JavaPairReceiverInputDStream<String, String> lines = KafkaUtils.createStream(jssc, zkQuorum, group, topicmap);
-        //从话题中过滤所需数据
+
+        //从主题中获取所需数据
         JavaDStream<String> words = lines.flatMap(new FlatMapFunction<Tuple2<String, String>, String>() {
+            //设置匹配模式，以空格分隔
+            Pattern SPACE = Pattern.compile(",");
 
             @Override
             public Iterable<String> call(Tuple2<String, String> arg0)
                     throws Exception {
                 return Lists.newArrayList(SPACE.split(arg0._2));
             }
+
         });
+
         //对其中的单词进行统计
         JavaPairDStream<String, Integer> wordCounts = words.mapToPair(
                 new PairFunction<String, String, Integer>() {
@@ -78,34 +75,33 @@ public class LogReceiving {
         //打印结果
         wordCounts.print();
 
-        wordCounts
-                .foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
+        wordCounts.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
+
+            @Override
+            public Void call(JavaPairRDD<String, Integer> values, Time time)
+                    throws Exception {
+
+                values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
 
                     @Override
-                    public Void call(JavaPairRDD<String, Integer> values, Time time)
-                            throws Exception {
+                    public void call(Tuple2<String, Integer> tuple) throws Exception {
 
-                        values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
+                        System.out.println("Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
 
-                            @Override
-                            public void call(Tuple2<String, Integer> tuple) throws Exception {
+                        String[] key = {"wordInfo", "wordCount"};
+                        String[] value = {tuple._1(), tuple._2().toString()};
 
-                                System.out.println("Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
+                        String tableName = "logboard-test";
+                        HBaseOperations hBaseOperations = new HBaseOperations();
+                        String rk = new RowkeyFactory().create3Numbers();
+                        hBaseOperations.insertRow(tableName, rk, "loginfo", key, value);
 
-                                String[] key = {"wordInfo", "wordCount"};
-                                String[] value = {tuple._1(),tuple._2().toString()};
-
-                                String tableName="logboard-test";
-                                HBaseOperations hBaseOperations = new HBaseOperations();
-                                String rk = new RowkeyFactory().create3Numbers();
-                                hBaseOperations.insertRow(tableName, rk, "loginfo", key, value);
-
-                            }
-                        });
-
-                        return null;
                     }
                 });
+
+                return null;
+            }
+        });
 
 
 //        wordCounts.dstream().saveAsTextFiles("hdfs://master:9000/testFile/", "spark");

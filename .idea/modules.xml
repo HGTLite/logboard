@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/project/common/examples/examples.iml" filepath="$PROJECT_DIR$/project/common/examples/examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" filepath="$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-web/general-web.iml" filepath="$PROJECT_DIR$/project/common/tests/general-web/general-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tests/geoip/geoip.iml" filepath="$PROJECT_DIR$/project/common/tests/geoip/geoip.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/hbase-helper/hbase-helper.iml" filepath="$PROJECT_DIR$/project/modules/hbase-helper/hbase-helper.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/hbase112/hbase112.iml" filepath="$PROJECT_DIR$/project/common/tests/hbase112/hbase112.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/hello-logger/hello-logger.iml" filepath="$PROJECT_DIR$/project/common/tests/hello-logger/hello-logger.iml" />

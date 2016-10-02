@@ -18,7 +18,7 @@ public class KafkaReceiver {
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put("bootstrap.servers", "192.168.99.111:6667,192.168.99.112:6667,192.168.99.113:6667,192.168.99.114:6667");
-        props.put("group.id", "test20");
+        props.put("group.id", "test");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
         props.put("session.timeout.ms", "30000");

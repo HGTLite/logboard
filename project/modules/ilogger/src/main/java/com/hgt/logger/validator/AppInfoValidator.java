@@ -2,19 +2,19 @@ package com.hgt.logger.validator;
 
 /******************************************************************************
  * Created by  Yao  on  2016/9/26
- * README:AppCode信息验证
- *
+ * README: 验证AppCode信息
+ *         暂时只验证AppCode长度，作为示例
  * ============================================================================
  * CHANGELOG：
  ******************************************************************************/
-public class AppInfoValidator {
+public  class AppInfoValidator {
 
     /**
      * 验证应用代码
      * @param strCode
      * @return
      */
-    public boolean isAppCodeValid(String strCode) {
+    public static boolean isAppCodeValid(String strCode) {
 
         boolean ret = false;
         if (strCode.length() == 6) {

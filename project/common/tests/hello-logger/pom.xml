@@ -48,7 +48,6 @@
             <artifactId>spring-boot-starter-log4j</artifactId>
         </dependency>
 
-
         <!--<dependency>-->
         <!--<groupId>junit</groupId>-->
         <!--<artifactId>junit</artifactId>-->
@@ -64,7 +63,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
                 <configuration>
-                    <mainClass>App</mainClass>
+                    <mainClass>com.hgt.App</mainClass>
                     <layout>ZIP</layout>
                 </configuration>
                 <executions>

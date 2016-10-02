@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  ******************************************************************************/
 public class TESTRegularExpression {
     private static final String REGEX = "\\bcat\\b";
-    private static final String INPUT = "cat1 cat cat cat cattie cat";
+    private static final String INPUT = "cat1  cat catcat catccatat cattie cat";
 
     public static void main(String args[]) {
         Pattern p = Pattern.compile(REGEX);
@@ -23,6 +23,7 @@ public class TESTRegularExpression {
             System.out.println("Match number is " + count);
             System.out.println("start(): " + m.start());
             System.out.println("end(): " + m.end());
+            System.out.println("end(): " + m.group());
         }
     }
 }

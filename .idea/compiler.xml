@@ -26,6 +26,7 @@
         <module name="examples" />
         <module name="general-console" />
         <module name="general-web" />
+        <module name="geoip" />
         <module name="hbase-helper" />
         <module name="hbase112" />
         <module name="hello-logger" />
@@ -50,6 +51,7 @@
       <module name="examples" target="1.8" />
       <module name="general-console" target="1.8" />
       <module name="general-web" target="1.8" />
+      <module name="geoip" target="1.8" />
       <module name="hbase-helper" target="1.8" />
       <module name="hbase-io" target="1.8" />
       <module name="hbase112" target="1.8" />
