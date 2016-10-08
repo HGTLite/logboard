@@ -6,3 +6,6 @@
 - 192.168.99.113  c113.hgt.com  root 111111  
 - 192.168.99.114  c114.hgt.com  root 111111  
 
+- 测试所用kafka topic为：topic-hello，返回值查看在192.168.99.112:8011/a
+
+- hbase的表 logrecords logstats

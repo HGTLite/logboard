@@ -38,7 +38,7 @@ public class HBaseOperations {
      * @param strQualifier    列名
      * @param strValue        值名
      */
-    public void insertRow(String strTableName, String strRowkey, String strColumnFamily, String[] strQualifier, String[] strValue) {
+    public void insertRow(String strTableName, String strRowkey, String strColumnFamily, List<String> strQualifier, List<String> strValue) {
 
 //        System.out.println("=====开始插入数据到"+strTableName+"=====");
         try {
@@ -52,12 +52,12 @@ public class HBaseOperations {
             //put.addColumn(strColumnFamily.getBytes(), strQualifier.getBytes(), strValue.getBytes());
 
             //一次添加一行数据，多个kv
-            for (int i = 0; i < strQualifier.length; i++) {
+            for (int i = 0; i < strQualifier.size(); i++) {
                 //列名为空的单独处理
-                if (strQualifier[i] == null || strQualifier[i].isEmpty()) {
-                    put.addColumn(strColumnFamily.getBytes(), "".getBytes(), strValue[i].getBytes());
+                if (strQualifier.get(i) == null || strQualifier.get(i).isEmpty()) {
+                    put.addColumn(strColumnFamily.getBytes(), "".getBytes(), strValue.get(i).getBytes());
                 } else {
-                    put.addColumn(strColumnFamily.getBytes(), strQualifier[i].getBytes(), strValue[i].getBytes());
+                    put.addColumn(strColumnFamily.getBytes(), strQualifier.get(i).getBytes(), strValue.get(i).getBytes());
                 }
             }
             table.put(put);

@@ -1,6 +1,8 @@
 package com.hgt.streaming;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -30,10 +32,10 @@ public class LogReceiving {
         String topics = "topic-hello";
         //每个话题的分片数
         int numThreads = 2;
-        SparkConf sparkConf = new SparkConf().setAppName("StreamingHLogger").setMaster("local[2]");
-        //5s批处理
+        SparkConf sparkConf = new SparkConf().setAppName("HelloStreaming").setMaster("local[4]");
+        //每5s进行批处理
         JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(5000));
-//        jssc.checkpoint("checkpoint"); //设置检查点
+
         //存放话题跟分片的映射关系
         Map<String, Integer> topicmap = new HashMap<>();
         String[] topicsArr = topics.split(",");
@@ -45,25 +47,44 @@ public class LogReceiving {
         //从Kafka中获取数据转换成RDD
         JavaPairReceiverInputDStream<String, String> lines = KafkaUtils.createStream(jssc, zkQuorum, group, topicmap);
 
-        //从主题中获取所需数据
-        JavaDStream<String> words = lines.flatMap(new FlatMapFunction<Tuple2<String, String>, String>() {
-            //设置匹配模式，以空格分隔
-            Pattern SPACE = Pattern.compile(",");
-
+        //从topic中获取所需数据
+        JavaDStream<String> logItems = lines.flatMap(new FlatMapFunction<Tuple2<String, String>, String>() {
             @Override
             public Iterable<String> call(Tuple2<String, String> arg0)
                     throws Exception {
-                return Lists.newArrayList(SPACE.split(arg0._2));
+                return Lists.newArrayList(arg0._2);
             }
-
         });
 
+        //提取重点日志，过滤次要日志
+        JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
+            @Override
+            public Boolean call(String s) throws Exception {
+                HashMap<String,String> logMap= new HashMap<>();
+                logMap.put("logLevel",s.substring(1,6).trim());
+                logMap.put("logTime",s.substring(7,26).trim());
+                logMap.put("codeClass",s.substring(7,26).trim());
+
+                logMap.put("codeFile",s.substring(7,26).trim());
+                logMap.put("lineNumber",s.substring(7,26).trim());
+
+//                logMap.put("appCode",s.substring(7,26).trim());
+//                logMap.put("logType",s.substring(7,26).trim());
+//                logMap.put("logMsg",s.substring(7,26).trim());
+
+
+
+                return s.isEmpty() ? false : true;
+            }
+        });
+
+
         //对其中的单词进行统计
-        JavaPairDStream<String, Integer> wordCounts = words.mapToPair(
+        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
                 new PairFunction<String, String, Integer>() {
                     @Override
                     public Tuple2<String, Integer> call(String s) {
-                        return new Tuple2<String, Integer>(s, 1);
+                        return new Tuple2<>(s, 1);
                     }
                 }).reduceByKey(new Function2<Integer, Integer, Integer>() {
             @Override
@@ -72,8 +93,6 @@ public class LogReceiving {
             }
         });
 
-        //打印结果
-        wordCounts.print();
 
         wordCounts.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
 
@@ -88,23 +107,19 @@ public class LogReceiving {
 
                         System.out.println("Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
 
-                        String[] key = {"wordInfo", "wordCount"};
-                        String[] value = {tuple._1(), tuple._2().toString()};
+                        List<String> key = Arrays.asList("wordInfo", "wordCount");
+                        List<String> value = Arrays.asList(tuple._1(), tuple._2().toString());
 
                         String tableName = "logboard-test";
                         HBaseOperations hBaseOperations = new HBaseOperations();
                         String rk = new RowkeyFactory().create3Numbers();
                         hBaseOperations.insertRow(tableName, rk, "loginfo", key, value);
-
                     }
                 });
 
                 return null;
             }
         });
-
-
-//        wordCounts.dstream().saveAsTextFiles("hdfs://master:9000/testFile/", "spark");
 
         jssc.start();
         jssc.awaitTermination();

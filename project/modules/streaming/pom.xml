@@ -22,6 +22,7 @@
             <artifactId>hbase-helper</artifactId>
             <version>0.0.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-kafka_2.10</artifactId>
