@@ -29,16 +29,13 @@ public class LogOptionsChecker implements ValidLogI {
         return flag;
     }
 
-    public boolean isLogTopicValid(String s) {
 
-        return false;
-    }
 
 
     @Override
     public boolean isLogValid() {
         boolean ret = false;
-        if (isLogIPValid(logInfoMap.get("logIP"))) {
+        if (isLogIPValid(logInfoMap.get("USER_IP"))) {
             ret = true;
         }
         return ret;

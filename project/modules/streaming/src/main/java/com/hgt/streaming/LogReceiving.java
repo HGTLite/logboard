@@ -1,11 +1,10 @@
 package com.hgt.streaming;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
+import com.hgt.filter.LogKeyChecker;
+import com.hgt.filter.LogOptionsChecker;
 import com.hgt.hbase.common.HBaseOperations;
 import com.hgt.hbase.keys.RowkeyFactory;
 import scala.Tuple2;
@@ -34,7 +33,7 @@ public class LogReceiving {
         int numThreads = 2;
         SparkConf sparkConf = new SparkConf().setAppName("HelloStreaming").setMaster("local[4]");
         //每5s进行批处理
-        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(5000));
+        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(1000));
 
         //存放话题跟分片的映射关系
         Map<String, Integer> topicmap = new HashMap<>();
@@ -56,31 +55,85 @@ public class LogReceiving {
             }
         });
 
-        //提取重点日志，过滤次要日志
+        //过滤次要日志，存储有效日志
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
-                HashMap<String,String> logMap= new HashMap<>();
-                logMap.put("logLevel",s.substring(1,6).trim());
-                logMap.put("logTime",s.substring(7,26).trim());
-                logMap.put("codeClass",s.substring(7,26).trim());
 
-                logMap.put("codeFile",s.substring(7,26).trim());
-                logMap.put("lineNumber",s.substring(7,26).trim());
+                HashMap<String, String> logMap = new LinkedHashMap<>();
+                logMap.put("logLevel", s.substring(1, 6).trim());
+                logMap.put("logTime", s.substring(7, 30).trim());
+                logMap.put("codeClass", s.substring(31, 71).trim());
+                logMap.put("codeFile", s.substring(72, 92).trim());
+                logMap.put("lineNumber", s.substring(93, 96).trim());
 
-//                logMap.put("appCode",s.substring(7,26).trim());
-//                logMap.put("logType",s.substring(7,26).trim());
-//                logMap.put("logMsg",s.substring(7,26).trim());
+                String logsRight = s.substring(100, s.length() - 2);
+                String[] manualLogs = logsRight.split(",");
+                int ml = manualLogs.length;
+
+                String[][] m = new String[ml][2];
+                //将3个固定的appCode、logType、logMsg加入map
+                for (int i = 0; i < 3; i++) {
+
+                    m[i] = manualLogs[i].split(":");
+                    String k = m[i][0].replace("\"", "");
+                    String v = m[i][1].replace("\"", "");
 
 
+                    logMap.put(k, v);
 
-                return s.isEmpty() ? false : true;
+                }
+
+                //将不固定的logOptions加入map
+                if (manualLogs[3].substring(13).contains(":")) {
+
+                    for (int j = 3; j < ml; j++) {
+
+                        m[j] = manualLogs[j].split(":");
+
+                        if (j == 3) {
+                            //去掉第4个键值对的"logOptions:"
+                            String k1 = m[j][1].substring(1).replace("\"", "");
+                            String v1 = m[j][2].replace("\"", "");
+                            logMap.put(k1, v1);
+
+                        } else if (j == ml - 1) {
+                            //去掉最后一个键值对后面的"}"
+                            String k1 = m[j][0].replace("\"", "");
+                            String v1 = m[j][1].substring(0, m[j][1].length() - 1).replace("\"", "");
+                            logMap.put(k1, v1);
+
+                        } else {
+                            //普通键值对直接加入map
+                            String k1 = m[j][0].replace("\"", "");
+                            String v1 = m[j][1].replace("\"", "");
+                            logMap.put(k1, v1);
+
+                        }
+                    }
+                }
+
+//                return new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid() ? true : false;
+                if (new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid()) {
+                    List<String> keys = new ArrayList<String>(logMap.keySet());
+                    List<String> vals = new ArrayList<String>(logMap.values());
+                    String tableName = "logs";
+                    HBaseOperations hBaseOperations = new HBaseOperations();
+                    String rk = RowkeyFactory.build16(logMap.get("logType"), logMap.get("logTime"));
+                    //TO-DO：分成2个列族存储
+                    hBaseOperations.insertRow(tableName, rk, "loginfo", keys, vals);
+
+                    return true;
+                } else {
+                    return false;
+                }
             }
         });
 
 
         //对其中的单词进行统计
         JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
+
                 new PairFunction<String, String, Integer>() {
                     @Override
                     public Tuple2<String, Integer> call(String s) {
@@ -92,7 +145,6 @@ public class LogReceiving {
                 return i1 + i2;
             }
         });
-
 
         wordCounts.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
 
@@ -107,13 +159,13 @@ public class LogReceiving {
 
                         System.out.println("Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
 
-                        List<String> key = Arrays.asList("wordInfo", "wordCount");
-                        List<String> value = Arrays.asList(tuple._1(), tuple._2().toString());
-
-                        String tableName = "logboard-test";
-                        HBaseOperations hBaseOperations = new HBaseOperations();
-                        String rk = new RowkeyFactory().create3Numbers();
-                        hBaseOperations.insertRow(tableName, rk, "loginfo", key, value);
+//                        List<String> key = Arrays.asList("wordInfo", "wordCount");
+//                        List<String> value = Arrays.asList(tuple._1(), tuple._2().toString());
+//
+//                        String tableName = "logboard-test";
+//                        HBaseOperations hBaseOperations = new HBaseOperations();
+//                        String rk = new RowkeyFactory().create3Numbers();
+//                        hBaseOperations.insertRow(tableName, rk, "loginfo", key, value);
                     }
                 });
 
