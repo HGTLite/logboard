@@ -20,6 +20,7 @@
         <module>hello-logger</module>
         <module>hbase112</module>
         <module>geoip</module>
+        <module>es-query</module>
     </modules>
 
     <properties>
