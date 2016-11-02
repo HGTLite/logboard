@@ -2,11 +2,13 @@ package com.hgt.es.common;
 
 import com.hgt.es.config.ESConfig;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.AdminClient;
 import org.elasticsearch.client.ClusterAdminClient;
 import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.health.ClusterIndexHealth;
+import org.elasticsearch.search.SearchHit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +24,14 @@ public class QueryFromES {
 
     public String hostList = "";
     public TransportClient client = null;
+    IndicesAdminClient indicesAdminClient = null;
+
 
     public QueryFromES(ESConfig esConfig) {
         this.client = esConfig.createESClient();
+
+        AdminClient adminClient = client.admin();
+        this.indicesAdminClient = adminClient.indices();
     }
 
     public QueryFromES(String strClusterName, String strHost) {
@@ -51,10 +58,34 @@ public class QueryFromES {
         return indices;
     }
 
+    /**
+     * 简单查询某一类型的文档
+     *
+     * @param strIndex
+     * @param strType
+     */
     public void queryAllByType(String strIndex, String strType) {
+
+        SearchResponse sr = client.prepareSearch(strIndex)
+                .setTypes(strType)
+                .execute()
+                .actionGet();
+
+        SearchHit[] hits = sr.getHits().getHits();
+
+        for (SearchHit hit : hits) {
+
+            String sourceAsString = hit.getSourceAsString();
+            if (sourceAsString != null) {
+
+                System.out.println(sourceAsString);
+            }
+        }
+
 
     }
 
+    ///TO-DO:查询某个字段
     public void queryAllByField(String strIndex, String strType, String strField) {
 
     }

@@ -71,28 +71,28 @@ public class LogReceiving {
             @Override
             public Boolean call(String s) throws Exception {
 
-                //region ES配置
-                Settings settings = Settings.builder()
-                        .put("cluster.name", "es-log")
-                        .put("client.transport.sniff", true)
-                        .build();
-                TransportClient client = null;
-                try {
-                    client = new PreBuiltTransportClient(settings)
-                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.240"), 9300))
-                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.241"), 9300))
-                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.243"), 9300));
-
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
-
-                AdminClient adminClient = client.admin();
-                //endregion
-
-                IndexResponse response = client.prepareIndex("hgt-logs", "loginfo")
-                .setSource(s)
-                .get();
+//                //region ES配置
+//                Settings settings = Settings.builder()
+//                        .put("cluster.name", "es-log")
+//                        .put("client.transport.sniff", true)
+//                        .build();
+//                TransportClient client = null;
+//                try {
+//                    client = new PreBuiltTransportClient(settings)
+//                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.240"), 9300))
+//                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.241"), 9300))
+//                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.243"), 9300));
+//
+//                } catch (UnknownHostException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                AdminClient adminClient = client.admin();
+//                //endregion
+//
+//                IndexResponse response = client.prepareIndex("hgt-logs", "loginfo")
+//                .setSource(s)
+//                .get();
 
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
@@ -106,7 +106,7 @@ public class LogReceiving {
                 int ml = manualLogs.length;
 
                 String[][] m = new String[ml][2];
-                //将3个固定的appCode、logType、logMsg加入map
+                //将3个固定的appCode, logType, logMsg加入map
                 for (int i = 0; i < 3; i++) {
 
                     m[i] = manualLogs[i].split(":");

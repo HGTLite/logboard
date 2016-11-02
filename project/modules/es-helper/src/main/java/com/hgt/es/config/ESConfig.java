@@ -48,11 +48,11 @@ public class ESConfig {
         TransportClient client = null;
         client = new PreBuiltTransportClient(settings);
 
-        List<HashMap<String, String>> hostList = StringHelper.getIPListFromString(hostString);
+        List<HashMap<String, String>> hostList = StringHelper.getListFromString(hostString);
 
         try {
             for (HashMap<String, String> ipAndPorts : hostList) {
-                client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(ipAndPorts.get("ip")), Integer.parseInt(ipAndPorts.get("port"))));
+                client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(ipAndPorts.get("kk")), Integer.parseInt(ipAndPorts.get("vv"))));
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
