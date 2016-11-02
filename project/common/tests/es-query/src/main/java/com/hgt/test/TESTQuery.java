@@ -56,6 +56,7 @@ public class TESTQuery {
 //
 //        ClusterHealthResponse healths = clusterAdminClient.prepareHealth().get();
 //        String clusterName = healths.getClusterName();
+
 //        int numberOfDataNodes = healths.getNumberOfDataNodes();
 //        int numberOfNodes = healths.getNumberOfNodes();
 //        System.out.println("clusterName-" + clusterName + " ;  numberOfDataNodes-" + numberOfDataNodes + " ;  numberOfNodes-" + numberOfNodes);
@@ -141,9 +142,7 @@ public class TESTQuery {
         for (SearchHit hit : scrollResp.getHits().getHits()) {
             System.out.println(hit.field("_id"));
         }
-
         client.close();
-
     }
 
 }

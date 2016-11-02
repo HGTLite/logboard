@@ -36,6 +36,7 @@ public class QueryFromHBase {
      * @param strRowkey
      */
     public void queryByRowkey(String strTableName, String strRowkey) {
+
         TableName tableName = TableName.valueOf(strTableName);
 
         try {
@@ -61,6 +62,7 @@ public class QueryFromHBase {
 
     /**
      * 根据列值进行严格查询     *
+     *
      * @param strTableName
      * @param strCF
      * @param strQualifier
@@ -95,6 +97,7 @@ public class QueryFromHBase {
 
     /**
      * 根据值对多个列进行查询
+     *
      * @param strTableName
      * @param strCFs
      * @param strQualifers

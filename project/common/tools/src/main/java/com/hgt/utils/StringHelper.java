@@ -37,24 +37,26 @@ public class StringHelper {
     }
 
     /**
-     * 将字符串转换成IP列表方便取用
-     * 例："192.168.100.240:2181,192.168.100.241:2181"转换成List<HashMap<ip,port>>
-     * @param strIP
+     * 将长字符串转换成元素为HashMap<String,String>的List
+     * 例：将字符串转换成IP列表方便取用, "192.168.100.240:2181,192.168.100.241:2181"转换成List<HashMap<ip,port>>
+     *
+     * @param strLong
      * @return
      */
-    public static List<HashMap<String,String>> getIPListFromString(String strIP){
-        List<HashMap<String,String>> ipList=new ArrayList<HashMap<String,String>>();
+    public static List<HashMap<String, String>> getListFromString(String strLong) {
 
-        String[] ipArr=strIP.split(",");
-        for (int i=0;i<ipArr.length;i++){
-            HashMap<String,String> singleIp =new HashMap<>();
-            String[] ipAndPort = ipArr[i].split(":");
-            singleIp.put("ip",ipAndPort[0]);
-            singleIp.put("port",ipAndPort[1]);
-            ipList.add(singleIp);
+        List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+
+        String[] listArr = strLong.split(",");
+        for (int i = 0; i < listArr.length; i++) {
+            HashMap<String, String> m = new HashMap<>();
+            String[] kAndV = listArr[i].split(":");
+            m.put("kk", kAndV[0]);
+            m.put("vv", kAndV[1]);
+            list.add(m);
         }
 
-        return ipList;
+        return list;
     }
 
 }
