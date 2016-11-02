@@ -18,7 +18,7 @@ public class TESTHBaseCRUD {
         HBaseOperations hBaseOperations = new HBaseOperations();
         QueryFromHBase queryFromHBase = new QueryFromHBase();
 
-        String tableTitle="logboard-test";
+        String tableTitle="hgt-logs";
 
        ////测试添加行数据
 //        String[] key = {"name", "", "code"};
@@ -48,7 +48,7 @@ public class TESTHBaseCRUD {
 
 
         //测试显示列族
-//        hBaseOperations.showColumnFamilies(tableTitle);
+        hBaseOperations.showColumnFamilies(tableTitle);
 
         //测试显示所有记录
 //                queryFromHBase.queryAll(tableTitle);

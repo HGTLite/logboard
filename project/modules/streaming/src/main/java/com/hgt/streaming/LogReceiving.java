@@ -1,5 +1,7 @@
 package com.hgt.streaming;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -7,6 +9,12 @@ import com.hgt.filter.LogKeyChecker;
 import com.hgt.filter.LogOptionsChecker;
 import com.hgt.hbase.common.HBaseOperations;
 import com.hgt.hbase.keys.RowkeyFactory;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.AdminClient;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import scala.Tuple2;
 import com.google.common.collect.Lists;
 
@@ -24,7 +32,8 @@ public class LogReceiving {
 
     public static void main(String[] args) {
 
-        String zkQuorum = "192.168.99.111:2181,192.168.99.112:2181,192.168.99.113:2181,192.168.99.114:2181";
+//        String zkQuorum = "192.168.99.111:2181,192.168.99.112:2181,192.168.99.113:2181,192.168.99.114:2181";
+        String zkQuorum = "192.168.100.241:2181,192.168.100.242:2181,192.168.100.243:2181";
         //话题所在的组
         String group = "test1";
         //话题名称以“，”分隔
@@ -33,7 +42,7 @@ public class LogReceiving {
         int numThreads = 2;
         SparkConf sparkConf = new SparkConf().setAppName("HelloStreaming").setMaster("local[4]");
         //每5s进行批处理
-        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(1000));
+        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(5000));
 
         //存放话题跟分片的映射关系
         Map<String, Integer> topicmap = new HashMap<>();
@@ -42,6 +51,8 @@ public class LogReceiving {
         for (int i = 0; i < n; i++) {
             topicmap.put(topicsArr[i], numThreads);
         }
+
+
 
         //从Kafka中获取数据转换成RDD
         JavaPairReceiverInputDStream<String, String> lines = KafkaUtils.createStream(jssc, zkQuorum, group, topicmap);
@@ -59,6 +70,29 @@ public class LogReceiving {
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
+
+                //region ES配置
+                Settings settings = Settings.builder()
+                        .put("cluster.name", "es-log")
+                        .put("client.transport.sniff", true)
+                        .build();
+                TransportClient client = null;
+                try {
+                    client = new PreBuiltTransportClient(settings)
+                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.240"), 9300))
+                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.241"), 9300))
+                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.243"), 9300));
+
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+
+                AdminClient adminClient = client.admin();
+                //endregion
+
+                IndexResponse response = client.prepareIndex("hgt-logs", "loginfo")
+                .setSource(s)
+                .get();
 
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
@@ -117,7 +151,7 @@ public class LogReceiving {
                 if (new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid()) {
                     List<String> keys = new ArrayList<String>(logMap.keySet());
                     List<String> vals = new ArrayList<String>(logMap.values());
-                    String tableName = "logs";
+                    String tableName = "hgt-logs";
                     HBaseOperations hBaseOperations = new HBaseOperations();
                     String rk = RowkeyFactory.build16(logMap.get("logType"), logMap.get("logTime"));
                     //TO-DO：分成2个列族存储

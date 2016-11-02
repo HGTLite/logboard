@@ -36,6 +36,7 @@ public class TESTQuery {
                 .put("client.transport.sniff", true)
                 .build();
         TransportClient client = null;
+
         try {
             client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.240"), 9300))
@@ -92,16 +93,16 @@ public class TESTQuery {
 //                .get();
 
 
-//        indicesAdminClient.preparePutMapping("twitter")
-//                .setType("user")
-//                .setSource("{\n" +
-//                        "  \"properties\": {\n" +
-//                        "    \"name\": {\n" +
-//                        "      \"type\": \"string\"\n" +
-//                        "    }\n" +
-//                        "  }\n" +
-//                        "}")
-//                .get();
+        indicesAdminClient.preparePutMapping("hgt-logs")
+                .setType("loginfo")
+                .setSource("{\n" +
+                        "  \"appCode\": {\n" +
+                        "    \"logType\": {\n" +
+                        "      \"logOptions\": \"string\"\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}")
+                .get();
 
 
         //数据索引并搜索

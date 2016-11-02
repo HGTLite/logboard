@@ -23,5 +23,6 @@
             <artifactId>hbase-client</artifactId>
             <version>${hbase.version}</version>
         </dependency>
+
     </dependencies>
 </project>

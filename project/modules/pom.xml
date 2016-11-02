@@ -20,6 +20,7 @@
         <module>hbase-helper</module>
         <module>logboard-base</module>
         <module>redis-helper</module>
+        <module>es-helper</module>
     </modules>
 
     <dependencyManagement>

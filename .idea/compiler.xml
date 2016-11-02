@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="console" />
+        <module name="es-helper" />
         <module name="es-query" />
         <module name="examples" />
         <module name="general-console" />
@@ -49,6 +50,7 @@
       <module name="common" target="1.8" />
       <module name="console" target="1.8" />
       <module name="dependencies" target="1.8" />
+      <module name="es-helper" target="1.8" />
       <module name="es-query" target="1.8" />
       <module name="examples" target="1.8" />
       <module name="general-console" target="1.8" />

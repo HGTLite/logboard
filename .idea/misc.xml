@@ -20,21 +20,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/applications/pom.xml" />
-        <option value="$PROJECT_DIR$/business/pom.xml" />
-        <option value="$PROJECT_DIR$/business/storm-computing/pom.xml" />
-        <option value="$PROJECT_DIR$/common/pom.xml" />
-        <option value="$PROJECT_DIR$/consumer/pom.xml" />
-        <option value="$PROJECT_DIR$/dependencies/pom.xml" />
-        <option value="$PROJECT_DIR$/kits/pom.xml" />
-        <option value="$PROJECT_DIR$/parent/pom.xml" />
-        <option value="$PROJECT_DIR$/producer/pom.xml" />
         <option value="$PROJECT_DIR$/project/common/tests/general-web/pom.xml" />
-        <option value="$PROJECT_DIR$/tests/console/pom.xml" />
-        <option value="$PROJECT_DIR$/tests/pom.xml" />
-        <option value="$PROJECT_DIR$/tests/storm-demo/pom.xml" />
-        <option value="$PROJECT_DIR$/tests/storm-old/pom.xml" />
-        <option value="$PROJECT_DIR$/tests/storm/pom.xml" />
       </set>
     </option>
   </component>

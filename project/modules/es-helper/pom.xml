@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>streaming</artifactId>
+    <artifactId>es-helper</artifactId>
     <packaging>jar</packaging>
 
-    <name>streaming</name>
+    <name>es-helper</name>
 
     <properties>
         <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
@@ -19,19 +19,8 @@
     <dependencies>
         <dependency>
             <groupId>com.hgt</groupId>
-            <artifactId>hbase-helper</artifactId>
+            <artifactId>tools</artifactId>
             <version>0.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka_2.10</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${google.guava.vesion}</version>
         </dependency>
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
@@ -61,11 +50,6 @@
             <artifactId>log4j-core</artifactId>
             <version>2.6.2</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>junit</groupId>-->
-        <!--<artifactId>junit</artifactId>-->
-        <!--<version>3.8.1</version>-->
-        <!--<scope>test</scope>-->
-        <!--</dependency>-->
+
     </dependencies>
 </project>
