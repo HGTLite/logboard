@@ -15,13 +15,13 @@ public class TESTESCRUD {
 
     public static void main(String[] args) {
 
-        ESConfig esConfig = new ESConfig("es-log", "192.168.100.240:9300,192.168.100.240:9300,192.168.100.240:9300");
+        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.40:9300,192.168.99.41:9300,192.168.99.42:9300");
         QueryFromES queryFromES = new QueryFromES(esConfig);
-//        ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
+        ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
 
-//        System.out.println(queryFromES.queryIndices());
 
-//        esAdminOperations.addIndex("test-log");
+        esAdminOperations.addIndex("test-log");
+        System.out.println(queryFromES.queryIndices());
 
 //        esAdminOperations.deleteIndex("test-index");
         String typeDesc = "{\n" +
@@ -60,8 +60,9 @@ public class TESTESCRUD {
 //        esAdminOperations.close();
 
 
-        queryFromES.queryAllByType("test-log","logmeta1");
+//        queryFromES.queryAllByType("test-log","logmeta1");
         queryFromES.close();
+        esAdminOperations.close();
 
     }
 
