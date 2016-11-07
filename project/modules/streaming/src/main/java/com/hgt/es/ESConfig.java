@@ -1,4 +1,4 @@
-package com.hgt.es.config;
+package com.hgt.es;
 
 import com.hgt.utils.StringHelper;
 import org.elasticsearch.client.transport.TransportClient;

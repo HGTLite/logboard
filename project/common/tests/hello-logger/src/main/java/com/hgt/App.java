@@ -31,7 +31,7 @@ public class App {
                 StandardLogger log = (StandardLogger) logger.logType(LogType.LOGIN);
                 log.options(LogOptions.USER_ID, "user001").options(LogOptions.USER_IP, getRandomIp());
                 if (ii % 5 == 0) {
-                    log.i("delay 5 seconds 首次延迟5s执行, and excute every 4 seconds 每次间隔4s执行");
+                    log.i("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行");
                     ii++;
                 } else {
                     log.w("这是第 " + ii + " 条消息！！！");

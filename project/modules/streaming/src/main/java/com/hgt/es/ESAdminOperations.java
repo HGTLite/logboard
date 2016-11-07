@@ -1,6 +1,5 @@
-package com.hgt.es.common;
+package com.hgt.es;
 
-import com.hgt.es.config.ESConfig;
 import com.hgt.utils.DateHelper;
 import com.hgt.utils.StringHelper;
 import org.elasticsearch.action.index.IndexResponse;
@@ -10,7 +9,8 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * INTRO: ES与创建与管理相关的操作，如创建index, type, document

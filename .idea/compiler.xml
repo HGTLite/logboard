@@ -33,6 +33,7 @@
         <module name="hbase112" />
         <module name="hello-logger" />
         <module name="ilogger" />
+        <module name="java-bean" />
         <module name="kafka-general-consumer" />
         <module name="kafka-general-producer" />
         <module name="log-consumer" />
@@ -61,6 +62,7 @@
       <module name="hbase112" target="1.8" />
       <module name="hello-logger" target="1.8" />
       <module name="ilogger" target="1.8" />
+      <module name="java-bean" target="1.8" />
       <module name="kafka-general-consumer" target="1.8" />
       <module name="kafka-general-producer" target="1.8" />
       <module name="kits" target="1.8" />

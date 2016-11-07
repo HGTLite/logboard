@@ -18,7 +18,7 @@ public abstract class ILogger {
     protected int NOTHING = 6;
 
     /**
-     * 设置日志当前打印级别
+     * 设置日志当前打印级别，可作为日志开关
      */
     protected int LEVEL = VERBOSE;
 

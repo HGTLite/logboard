@@ -21,6 +21,7 @@
         <module>hbase112</module>
         <module>geoip</module>
         <module>es-query</module>
+        <module>java-bean</module>
     </modules>
 
     <properties>

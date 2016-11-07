@@ -5,10 +5,16 @@ import java.net.UnknownHostException;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import com.hgt.converter.MapJsonConverter;
+import com.hgt.es.ESAdminOperations;
+import com.hgt.es.ESConfig;
 import com.hgt.filter.LogKeyChecker;
 import com.hgt.filter.LogOptionsChecker;
 import com.hgt.hbase.common.HBaseOperations;
 import com.hgt.hbase.keys.RowkeyFactory;
+import com.hgt.obj.CloneUtils;
+import com.hgt.test.ManualLogBean;
+import com.hgt.utils.BeanMapConverter;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.AdminClient;
 import org.elasticsearch.client.transport.TransportClient;
@@ -33,7 +39,7 @@ public class LogReceiving {
     public static void main(String[] args) {
 
 //        String zkQuorum = "192.168.99.111:2181,192.168.99.112:2181,192.168.99.113:2181,192.168.99.114:2181";
-        String zkQuorum = "192.168.100.241:2181,192.168.100.242:2181,192.168.100.243:2181";
+        String zkQuorum = "192.168.199.41:2181,192.168.99.42:2181,192.168.99.43:2181";
         //话题所在的组
         String group = "test1";
         //话题名称以“，”分隔
@@ -53,7 +59,6 @@ public class LogReceiving {
         }
 
 
-
         //从Kafka中获取数据转换成RDD
         JavaPairReceiverInputDStream<String, String> lines = KafkaUtils.createStream(jssc, zkQuorum, group, topicmap);
 
@@ -66,33 +71,20 @@ public class LogReceiving {
             }
         });
 
+
+        //region ES配置
+        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.40:9300,192.168.99.41:9300");
+        ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
+
+
+        //endregion
+
         //过滤次要日志，存储有效日志
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
+                System.out.println(s);
 
-//                //region ES配置
-//                Settings settings = Settings.builder()
-//                        .put("cluster.name", "es-log")
-//                        .put("client.transport.sniff", true)
-//                        .build();
-//                TransportClient client = null;
-//                try {
-//                    client = new PreBuiltTransportClient(settings)
-//                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.240"), 9300))
-//                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.241"), 9300))
-//                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.100.243"), 9300));
-//
-//                } catch (UnknownHostException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                AdminClient adminClient = client.admin();
-//                //endregion
-//
-//                IndexResponse response = client.prepareIndex("hgt-logs", "loginfo")
-//                .setSource(s)
-//                .get();
 
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
@@ -101,6 +93,7 @@ public class LogReceiving {
                 logMap.put("codeFile", s.substring(72, 92).trim());
                 logMap.put("lineNumber", s.substring(93, 96).trim());
 
+                ///===BUG===日志内容不能含有逗号等
                 String logsRight = s.substring(100, s.length() - 2);
                 String[] manualLogs = logsRight.split(",");
                 int ml = manualLogs.length;
@@ -113,10 +106,42 @@ public class LogReceiving {
                     String k = m[i][0].replace("\"", "");
                     String v = m[i][1].replace("\"", "");
 
-
                     logMap.put(k, v);
 
                 }
+
+
+                //region 将日志索引进es集群
+                HashMap<String, String> esLogMap = new LinkedHashMap<>();
+                esLogMap = CloneUtils.clone(logMap);
+                //将剩余部分strLogOptions加入esLogMap
+                String strLogOptions = "";
+                if (manualLogs[3].substring(13).contains(":")) {
+                    for (int k = 3; k < ml; k++) {
+                        strLogOptions = strLogOptions + manualLogs[k] + ",";
+                    }
+                } else {
+                    strLogOptions = manualLogs[3];
+                }
+
+                strLogOptions = strLogOptions.substring(0, strLogOptions.length() - 1);
+                String ko = strLogOptions.split(":")[0].replace("\"", "");
+                String vo = strLogOptions.substring(strLogOptions.split(":")[0].length());
+                esLogMap.put(ko, vo);
+
+                String eslogString = MapJsonConverter.simpleMapToJsonStr(esLogMap);
+//                String logOne = "{" +
+//                        "\"contents\":  \"   {USER_ID : user001 , USER_IP:210.37.140.90} \" " +
+//                        "}";
+                String logOne = "{" +
+                        "\"contents\": " + eslogString +
+                        "}";
+
+                esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+
+
+                //endregion
+
 
                 //将不固定的logOptions加入map
                 if (manualLogs[3].substring(13).contains(":")) {
@@ -145,13 +170,15 @@ public class LogReceiving {
 
                         }
                     }
+
                 }
+
 
 //                return new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid() ? true : false;
                 if (new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid()) {
                     List<String> keys = new ArrayList<String>(logMap.keySet());
                     List<String> vals = new ArrayList<String>(logMap.values());
-                    String tableName = "hgt-logs";
+                    String tableName = "test-log";
                     HBaseOperations hBaseOperations = new HBaseOperations();
                     String rk = RowkeyFactory.build16(logMap.get("logType"), logMap.get("logTime"));
                     //TO-DO：分成2个列族存储

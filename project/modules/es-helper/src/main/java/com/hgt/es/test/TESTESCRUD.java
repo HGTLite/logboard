@@ -15,15 +15,15 @@ public class TESTESCRUD {
 
     public static void main(String[] args) {
 
-        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.40:9300,192.168.99.41:9300,192.168.99.42:9300");
+        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.40:9300,192.168.99.41:9300");
         QueryFromES queryFromES = new QueryFromES(esConfig);
         ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
 
 
-        esAdminOperations.addIndex("test-log");
+//        esAdminOperations.addIndex("test-index");
         System.out.println(queryFromES.queryIndices());
 
-//        esAdminOperations.deleteIndex("test-index");
+//        esAdminOperations.deleteIndex("one-index");
         String typeDesc = "{\n" +
                 "  \"properties\": {\n" +
                 "    \"appCode\": {\n" +
@@ -41,23 +41,32 @@ public class TESTESCRUD {
                 "  }\n" +
                 "}";
 
-//        esAdminOperations.addType("test-log","logmeta1", typeDesc);
+        String oneTypeDesc = "{\n" +
+                "  \"properties\": {\n" +
+                "    \"contents\": {\n" +
+                "      \"type\": \"string\"\n" +
+                "    }\n " +
+                "  }\n" +
+                "}";
+
+//        esAdminOperations.addType("one-index","one-type", oneTypeDesc);
 
         //可用的测试数据
-        String d = "{\"appCode\":\"hello1\"," +
+        String log = "{\"appCode\":\"hello1\"," +
                 "\"logType\":\"LOGIN\"," +
                 "\"logMsg\":\"这是第 1 条消息！！！\"," +
                 "\"logOptions\":  \"   {USER_ID : user001 , USER_IP:210.37.140.90} \" " +
                 "}";
 
+        String logOne = "{" +
+                "\"contents\":  \"   {USER_ID : user001 , USER_IP:210.37.140.90} \" " +
+                "}";
 
 //        String d = "{\"appCode\":\"hello1\"," +
 //                "\"logType\":\"LOGIN\"," +
 //                "\"logMsg\":\"这是第 1 条消息！！！\"," +
-//                "\"logOptions\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.37.140.90\"}}";
-//        esAdminOperations.indexingDataByPureJson("test-log", "logmeta1", d);
-
-//        esAdminOperations.close();
+//                "\"logOptions\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.37.140.90\"}}"; //comma报错
+        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
 
 
 //        queryFromES.queryAllByType("test-log","logmeta1");

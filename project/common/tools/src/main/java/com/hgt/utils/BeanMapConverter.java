@@ -27,7 +27,7 @@ public class BeanMapConverter {
      * @throws InvocationTargetException 如果调用属性的 setter 方法失败
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
-    public static Map ConvertBean2Map(Object bean)
+    public static Map convertBean2Map(Object bean)
             throws IntrospectionException, IllegalAccessException, InvocationTargetException {
         Class type = bean.getClass();
         Map returnMap = new HashMap();
@@ -62,7 +62,7 @@ public class BeanMapConverter {
      * @throws InvocationTargetException 如果调用属性的 setter 方法失败
      */
     @SuppressWarnings("rawtypes")
-    public static Object ConvertMap2Bean(Class type, Map map)
+    public static Object convertMap2Bean(Class type, Map map)
             throws IntrospectionException, IllegalAccessException, InstantiationException, InvocationTargetException {
         // 获取类属性
         BeanInfo beanInfo = Introspector.getBeanInfo(type);

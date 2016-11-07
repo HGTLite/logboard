@@ -1,6 +1,5 @@
-package com.hgt.es.common;
+package com.hgt.es;
 
-import com.hgt.es.config.ESConfig;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.AdminClient;
