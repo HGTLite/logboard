@@ -21,6 +21,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/project/common/tests/general-web/pom.xml" />
+        <option value="$PROJECT_DIR$/project/modules/log2es-pipeline/pom.xml" />
       </set>
     </option>
   </component>

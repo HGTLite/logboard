@@ -18,15 +18,15 @@
 
     <dependencies>
         <!--<dependency>-->
-            <!--<groupId>com.hgt</groupId>-->
-            <!--<artifactId>es-helper</artifactId>-->
-            <!--<version>0.0.1</version>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.elasticsearch</groupId>-->
-                    <!--<artifactId>elasticsearch</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
+        <!--<groupId>com.hgt</groupId>-->
+        <!--<artifactId>es-helper</artifactId>-->
+        <!--<version>0.0.1</version>-->
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<groupId>org.elasticsearch</groupId>-->
+        <!--<artifactId>elasticsearch</artifactId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.elasticsearch</groupId>
@@ -47,6 +47,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -68,7 +69,16 @@
             <artifactId>transport</artifactId>
             <version>5.0.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.10.6.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-buffer</artifactId>
+            <version>4.1.5.Final</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -91,7 +101,7 @@
             <artifactId>spark-streaming-kafka_2.10</artifactId>
             <version>1.6.2</version>
         </dependency>
-        <dependency>S
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${google.guava.vesion}</version>

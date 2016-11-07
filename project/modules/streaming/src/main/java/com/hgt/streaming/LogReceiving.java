@@ -46,7 +46,7 @@ public class LogReceiving {
         String topics = "topic-hello";
         //每个话题的分片数
         int numThreads = 2;
-        SparkConf sparkConf = new SparkConf().setAppName("HelloStreaming").setMaster("local[4]");
+        SparkConf sparkConf = new SparkConf().setAppName("HelloStreaming").setMaster("local[3]");
         //每5s进行批处理
         JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(5000));
 
@@ -72,13 +72,6 @@ public class LogReceiving {
         });
 
 
-        //region ES配置
-        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.40:9300,192.168.99.41:9300");
-        ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
-
-
-        //endregion
-
         //过滤次要日志，存储有效日志
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
@@ -93,7 +86,7 @@ public class LogReceiving {
                 logMap.put("codeFile", s.substring(72, 92).trim());
                 logMap.put("lineNumber", s.substring(93, 96).trim());
 
-                ///===BUG===日志内容不能含有逗号等
+                ///!!!!!BUG 日志内容不能含有逗号等
                 String logsRight = s.substring(100, s.length() - 2);
                 String[] manualLogs = logsRight.split(",");
                 int ml = manualLogs.length;
@@ -137,7 +130,10 @@ public class LogReceiving {
                         "\"contents\": " + eslogString +
                         "}";
 
-                esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+                //region ES配置
+//                ESConfig esConfig = new ESConfig("es-yao", "192.168.99.40:9300,192.168.99.41:9300");
+//                ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
+//                esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
 
 
                 //endregion

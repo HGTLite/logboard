@@ -21,6 +21,7 @@
         <module>logboard-base</module>
         <module>redis-helper</module>
         <module>es-helper</module>
+        <module>pipeline-log2es</module>
     </modules>
 
     <dependencyManagement>
