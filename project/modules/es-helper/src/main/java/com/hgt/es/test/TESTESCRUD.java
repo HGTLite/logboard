@@ -15,15 +15,15 @@ public class TESTESCRUD {
 
     public static void main(String[] args) {
 
-        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.41:9300,192.168.99.42:9300");
+        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.140:9300,192.168.99.141:9300");
         QueryFromES queryFromES = new QueryFromES(esConfig);
         ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
 
 
-//        esAdminOperations.addIndex("test-index");
+//        esAdminOperations.addIndex("one-index");
 //        System.out.println(queryFromES.queryIndices());
 
-        esAdminOperations.deleteIndex("test-log");
+//        esAdminOperations.deleteIndex("test-log");
         String typeDesc = "{\n" +
                 "  \"properties\": {\n" +
                 "    \"appCode\": {\n" +
@@ -66,10 +66,10 @@ public class TESTESCRUD {
 //                "\"logType\":\"LOGIN\"," +
 //                "\"logMsg\":\"这是第 1 条消息！！！\"," +
 //                "\"logOptions\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.37.140.90\"}}"; //comma报错
-//        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
 
 
-//        queryFromES.queryAllByType("test-log","logmeta1");
+        queryFromES.queryAllByType("one-index","one-type");
         queryFromES.close();
         esAdminOperations.close();
 

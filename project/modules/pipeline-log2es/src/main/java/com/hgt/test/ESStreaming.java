@@ -16,15 +16,6 @@ import org.apache.spark.streaming.api.java.*;
 import org.apache.spark.streaming.kafka.KafkaUtils;
 import org.apache.spark.streaming.Durations;
 
-/**
- * Consumes messages from one or more topics in Kafka and does wordcount.
- * Usage: JavaDirectKafkaWordCount <brokers> <topics>
- * <brokers> is a list of one or more Kafka brokers
- * <topics> is a list of one or more kafka topics to consume from
- * <p>
- * Example:
- * $ bin/run-example streaming.JavaDirectKafkaWordCount broker1-host:port,broker2-host:port topic1,topic2
- */
 
 public final class ESStreaming {
     private static final Pattern SPACE = Pattern.compile(" ");
@@ -32,7 +23,7 @@ public final class ESStreaming {
     public static void main(String[] args) {
 
 
-        String brokers = "192.168.99.41:6667,192.168.99.42:6667,192.168.99.43:6667";
+        String brokers = "192.168.99.141:6667,192.168.99.142:6667,192.168.99.143:6667";
         String topics = "topic-hello";
 
         // Create context with a 2 seconds batch interval
