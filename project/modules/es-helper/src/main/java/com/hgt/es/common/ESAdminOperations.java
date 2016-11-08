@@ -81,7 +81,7 @@ public class ESAdminOperations implements Serializable {
         String typeKV = "";
 
         for (HashMap<String, String> t : tlist) {
-            typeKV += t.get("kk") + ":{\"type\":" + t.get("vv") + "},";
+            typeKV +="\""+ t.get("kk") + "\":{\"type\":\"" + t.get("vv") + "\"},";
         }
         typeKV = typeKV.substring(0, typeKV.length() - 1);
 

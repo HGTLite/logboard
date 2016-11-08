@@ -4,13 +4,6 @@ import com.hgt.es.common.ESAdminOperations;
 import com.hgt.es.common.QueryFromES;
 import com.hgt.es.config.ESConfig;
 
-/**
- * INTRO:
- * <p>
- * Created by root on 11/2/16.
- * ============================================================================
- * CHANGELOG:
- */
 public class TESTESCRUD {
 
     public static void main(String[] args) {
@@ -19,8 +12,7 @@ public class TESTESCRUD {
         QueryFromES queryFromES = new QueryFromES(esConfig);
         ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
 
-
-//        esAdminOperations.addIndex("one-index");
+//        esAdminOperations.addIndex("test-log");
 //        System.out.println(queryFromES.queryIndices());
 
 //        esAdminOperations.deleteIndex("test-log");
@@ -49,7 +41,13 @@ public class TESTESCRUD {
                 "  }\n" +
                 "}";
 
-//        esAdminOperations.addType("one-index","one-type", oneTypeDesc);
+//        esAdminOperations.addType("test-log","log-type", oneTypeDesc);
+
+
+        String typeList = "logLevel:text,logTime:text,codeClass:text,codeFile:text,lineNumber:text,appCode:text,logType:text,logMsg:text,logOptions:text";
+
+
+        esAdminOperations.addType("test-log,log9type", typeList);
 
         //可用的测试数据
         String log = "{\"appCode\":\"hello1\"," +
@@ -66,10 +64,15 @@ public class TESTESCRUD {
 //                "\"logType\":\"LOGIN\"," +
 //                "\"logMsg\":\"这是第 1 条消息！！！\"," +
 //                "\"logOptions\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.37.140.90\"}}"; //comma报错
-        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+
+//        String logText="{\"logLevel\":\"WARN\",\"logTime\":\"2016-11-08 16:21:01,306\",\"codeClass\":\"com.hgt.App\",\"codeFile\":\"BasicLogger.java\",\"lineNumber\":\"163\",\"appCode\":\"hello1\",\"logType\":\"LOGIN\",\"logMsg\":\"这是第 788 条消息！！！\",\"logOptions\":\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.41.247.199\"}\"}";
+//        String logText = "{\"logLevel\":\"WARN\",\"logTime\":\"2016-11-08 16:21:01,306\",\"codeClass\":\"com.hgt.App\",\"codeFile\":\"BasicLogger.java\",\"lineNumber\":\"163\",\"appCode\":\"hello1\",\"logType\":\"LOGIN\",\"logMsg\":\"这是第 788 条消息！！！\",\"logOptions\":\"{USER_ID: user001 }\"}";
+
+//        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+//        esAdminOperations.indexingDataByPureJson("test-log", "log9type", logText);
 
 
-        queryFromES.queryAllByType("one-index","one-type");
+//        queryFromES.queryAllByType("one-index", "one-type");
         queryFromES.close();
         esAdminOperations.close();
 

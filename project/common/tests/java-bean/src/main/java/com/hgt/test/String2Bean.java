@@ -20,16 +20,16 @@ public class String2Bean {
         ObjectMapper mapper = new ObjectMapper();
 
         String strBean2Str = "";
-        try {
-            strBean2Str = mapper.writeValueAsString(sampleBean);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
 
-        System.out.println("转换后的json字符串是：" + strBean2Str);
+//        try {
+//            strBean2Str = mapper.writeValueAsString(sampleBean);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println("转换后的json字符串是：" + strBean2Str);
 
-//        strBean2Str={"appCode":"hello1","logType":"LOGIN","logMsg":"delay 5 seconds 首次延迟5s执行, and excute every 4 seconds 每次间隔4s执行","logOptions":{"USER_ID":"user001","USER_IP":"123.232.179.105"};
-
+        strBean2Str = "{\"appCode\":\"hello1\",\"logType\":\"LOGIN\",\"logMsg\":\"delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行\",\"logOptions\":\"    {\"USER_ID\":\"user001\",\"USER_IP\":\"123.232.179.105\"}    \"";
 
         ManualLogBean reconstructedBean = null;
         try {

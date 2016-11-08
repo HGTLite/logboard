@@ -1,26 +1,15 @@
 package com.hgt.streaming;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.*;
-import java.util.regex.Pattern;
-
 import com.hgt.converter.MapJsonConverter;
-import com.hgt.es.ESAdminOperations;
-import com.hgt.es.ESConfig;
+
+import com.hgt.es.common.ESAdminOperations;
+import com.hgt.es.config.ESConfig;
 import com.hgt.filter.LogKeyChecker;
 import com.hgt.filter.LogOptionsChecker;
 import com.hgt.hbase.common.HBaseOperations;
 import com.hgt.hbase.keys.RowkeyFactory;
 import com.hgt.obj.CloneUtils;
-import com.hgt.test.ManualLogBean;
-import com.hgt.utils.BeanMapConverter;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.client.AdminClient;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
+
 import scala.Tuple2;
 import com.google.common.collect.Lists;
 
@@ -33,6 +22,8 @@ import org.apache.spark.streaming.api.java.JavaPairDStream;
 import org.apache.spark.streaming.api.java.JavaPairReceiverInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka.KafkaUtils;
+
+import java.util.*;
 
 public class LogReceiving {
 
@@ -75,8 +66,8 @@ public class LogReceiving {
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
-                System.out.println(s);
 
+                System.out.println(s);
 
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
@@ -117,20 +108,18 @@ public class LogReceiving {
 
                 strLogOptions = strLogOptions.substring(0, strLogOptions.length() - 1);
                 String ko = strLogOptions.split(":")[0].replace("\"", "");
-                String vo = strLogOptions.substring(strLogOptions.split(":")[0].length());
+                String vo = strLogOptions.substring(strLogOptions.split(":")[0].length()+1);
                 esLogMap.put(ko, vo);
 
                 String eslogString = MapJsonConverter.simpleMapToJsonStr(esLogMap);
 
-                eslogString = eslogString.replace("{", " - ").replace("}", " - ").replace("\"", " ");
-
-//                String logOne = "{" +
-//                        "\"contents\": " + eslogString +
-//                        "}";
+//                eslogString = eslogString.replace("{", " - ").replace("}", " - ").replace("\"", " ");
+                eslogString = eslogString.replace("\"", " ");
 
                 String logOne = "{" +
                         "\"contents\":  \" " + eslogString + " \" " +
                         "}";
+
 
                 //region ES配置
                 ESConfig esConfig = new ESConfig("es-yao", "192.168.99.140:9300,192.168.99.141:9300");
