@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>modules</artifactId>
@@ -14,48 +15,85 @@
 
     <properties>
         <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+        <spark.version>1.6.0</spark.version>
+        <scala.version>2.10</scala.version>
+        <jackson.version>2.6.7</jackson.version>
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-        <!--<groupId>com.hgt</groupId>-->
-        <!--<artifactId>es-helper</artifactId>-->
-        <!--<version>0.0.1</version>-->
-        <!--<exclusions>-->
-        <!--<exclusion>-->
-        <!--<groupId>org.elasticsearch</groupId>-->
-        <!--<artifactId>elasticsearch</artifactId>-->
-        <!--</exclusion>-->
-        <!--</exclusions>-->
-        <!--</dependency>-->
+        <!--ES依赖-->
         <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>5.0.0</version>
+            <groupId>com.hgt</groupId>
+            <artifactId>es-helper</artifactId>
+            <version>0.0.1</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-databind</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>org.elasticsearch</groupId>
+                    <artifactId>elasticsearch</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+
+        <!--spark依赖-->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.10.4</version>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.apache.spark</groupId>-->
+        <!--<artifactId>spark-core_${scala.version}</artifactId>-->
+        <!--<version>${spark.version}</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_${scala.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka_${scala.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google.guava.vesion}</version>
+        </dependency>
+
+        <!-- JACKSON SCALA -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-scala_${scala.version}</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
+            <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
@@ -64,87 +102,32 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>transport</artifactId>
-            <version>5.0.0</version>
-        </dependency>
+
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty</artifactId>
             <version>3.10.6.Final</version>
         </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-buffer</artifactId>
-            <version>4.1.5.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.6.2</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>io.netty</groupId>-->
+        <!--<artifactId>netty-buffer</artifactId>-->
+        <!--<version>4.1.5.Final</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.6.2</version>
-        </dependency>
+        <!--HBase依赖-->
         <dependency>
             <groupId>com.hgt</groupId>
             <artifactId>hbase-helper</artifactId>
             <version>0.0.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka_2.10</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${google.guava.vesion}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.6.7</version>
-        </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.elasticsearch.client</groupId>-->
-        <!--<artifactId>transport</artifactId>-->
-        <!--<version>5.0.0</version>-->
-        <!--<exclusions>-->
-        <!--<exclusion>-->
-        <!--<groupId>org.elasticsearch</groupId>-->
-        <!--<artifactId>elasticsearch</artifactId>-->
-        <!--</exclusion>-->
-        <!--</exclusions>-->
-        <!--</dependency>-->
 
         <!--<dependency>-->
-        <!--<groupId>org.elasticsearch</groupId>-->
-        <!--<artifactId>elasticsearch</artifactId>-->
-        <!--<version>5.0.0</version>-->
+            <!--<groupId>com.google.guava</groupId>-->
+            <!--<artifactId>guava</artifactId>-->
+            <!--<version>${google.guava.vesion}</version>-->
         <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.6.2</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.6.2</version>
-        </dependency>
-        <!--<dependency>-->
-        <!--<groupId>junit</groupId>-->
-        <!--<artifactId>junit</artifactId>-->
-        <!--<version>3.8.1</version>-->
-        <!--<scope>test</scope>-->
-        <!--</dependency>-->
     </dependencies>
 </project>

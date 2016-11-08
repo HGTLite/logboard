@@ -38,8 +38,8 @@ public class HBaseOperations {
      * @param strQualifier    列名
      * @param strValue        值名
      */
+    //TO-DO: HBase RegionServer 挂掉异常处理
     public void insertRow(String strTableName, String strRowkey, String strColumnFamily, List<String> strQualifier, List<String> strValue) {
-
 //        System.out.println("=====开始插入数据到"+strTableName+"=====");
         try {
             Connection connection = ConnectionFactory.createConnection(configuration);

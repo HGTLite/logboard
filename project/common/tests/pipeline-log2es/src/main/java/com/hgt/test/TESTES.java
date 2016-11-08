@@ -10,7 +10,7 @@ import com.hgt.es.config.ESConfig;
 public class TESTES {
     public static void main(String[] args) {
 
-        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.41:9300,192.168.99.42:9300");
+        ESConfig esConfig = new ESConfig("es-yao", "192.168.99.140:9300,192.168.99.141:9300");
         QueryFromES queryFromES = new QueryFromES(esConfig);
         ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
 
@@ -33,17 +33,17 @@ public class TESTES {
 
         //可用的测试数据
         String logOne = "{" +
-                "\"contents\":  \"   {USER_ID : user001 , USER_IP:210.37.140.90} \" " +
+                "\"contents\":  \"   NEW ip address: {USER_ID : user001 , USER_IP:210.37.140.90} \" " +
                 "}";
 
 //        String d = "{\"appCode\":\"hello1\"," +
 //                "\"logType\":\"LOGIN\"," +
 //                "\"logMsg\":\"这是第 1 条消息！！！\"," +
 //                "\"logOptions\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.37.140.90\"}}"; //comma报错
-//        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
 
 
-//        queryFromES.queryAllByType("one-index","one-type");
+        queryFromES.queryAllByType("one-index","one-type");
         //
         queryFromES.close();
         esAdminOperations.close();

@@ -38,8 +38,7 @@ public class LogReceiving {
 
     public static void main(String[] args) {
 
-//        String zkQuorum = "192.168.99.111:2181,192.168.99.112:2181,192.168.99.113:2181,192.168.99.114:2181";
-        String zkQuorum = "192.168.199.41:2181,192.168.99.42:2181,192.168.99.43:2181";
+        String zkQuorum = "192.168.99.141:2181,192.168.99.142:2181,192.168.99.143:2181";
         //话题所在的组
         String group = "test1";
         //话题名称以“，”分隔
@@ -103,7 +102,6 @@ public class LogReceiving {
 
                 }
 
-
                 //region 将日志索引进es集群
                 HashMap<String, String> esLogMap = new LinkedHashMap<>();
                 esLogMap = CloneUtils.clone(logMap);
@@ -123,19 +121,22 @@ public class LogReceiving {
                 esLogMap.put(ko, vo);
 
                 String eslogString = MapJsonConverter.simpleMapToJsonStr(esLogMap);
+
+                eslogString = eslogString.replace("{", " - ").replace("}", " - ").replace("\"", " ");
+
 //                String logOne = "{" +
-//                        "\"contents\":  \"   {USER_ID : user001 , USER_IP:210.37.140.90} \" " +
+//                        "\"contents\": " + eslogString +
 //                        "}";
+
                 String logOne = "{" +
-                        "\"contents\": " + eslogString +
+                        "\"contents\":  \" " + eslogString + " \" " +
                         "}";
 
                 //region ES配置
-//                ESConfig esConfig = new ESConfig("es-yao", "192.168.99.40:9300,192.168.99.41:9300");
-//                ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
-//                esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
-
-
+                ESConfig esConfig = new ESConfig("es-yao", "192.168.99.140:9300,192.168.99.141:9300");
+                ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
+                esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+                esAdminOperations.close();
                 //endregion
 
 
@@ -174,7 +175,7 @@ public class LogReceiving {
                 if (new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid()) {
                     List<String> keys = new ArrayList<String>(logMap.keySet());
                     List<String> vals = new ArrayList<String>(logMap.values());
-                    String tableName = "test-log";
+                    String tableName = "one-log";
                     HBaseOperations hBaseOperations = new HBaseOperations();
                     String rk = RowkeyFactory.build16(logMap.get("logType"), logMap.get("logTime"));
                     //TO-DO：分成2个列族存储
