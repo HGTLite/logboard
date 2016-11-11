@@ -2,6 +2,43 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
 }
 
+._no_border {
+    border: none;
+}
+
+.exp_card {
+    width: 25%;
+    /*height:250px;*/
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.exp_contents_padding {
+    padding: 0.7rem;
+}
+
+.exp_item_padding {
+    padding: 0.4rem;
+}
+._float_left{
+    float: left;
+}
+._float_right{
+    float: right;
+}
+
+.exp_card_title_size {
+    font-size: 1rem;
+}
+
+.exp_card_text_size {
+    font-size: 0.9rem;
+}
+
+.exp_card_item_size {
+    font-size: 0.7rem;
+}
+
 .stats_count_number {
     font-size: 2rem;
 }
@@ -28,9 +65,17 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 }
 
 .top-icon {
-    height: 120px;
+    height: 80px;
     vertical-align: middle;
     border: 0;
+}
+
+._to_top30 {
+    margin-top: 6%;
+}
+
+.margin-top3 {
+    margin-top: 3%;
 }
 
 .h_line {
@@ -41,11 +86,22 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 
 }
 
-._width40{
-    width:40%;
+._width15 {
+    width: 15%;
 }
 
-.letter_spacing4{
+._width30 {
+    width: 30%;
+}
+._width40 {
+    width: 40%;
+}
+
+._width75 {
+    width: 75%;
+}
+
+.letter_spacing4 {
     letter-spacing: 4px;
 }
 
@@ -53,10 +109,14 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
+._height100 {
+    height: 100%;
+}
 
-._white_border{
+._white_border {
     border-color: #ffffff;
 }
+
 /* divider_rs */
 .divider_white1 {
     height: 10px;
@@ -97,6 +157,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 .divider_white16 {
     height: 160px;
 }
+
 .divider_white20 {
     height: 200px;
 }
@@ -145,3 +206,12 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     background-size: cover;
 }
 
+/*.footer {*/
+/*position: absolute;*/
+/*bottom: 0;*/
+/*width: 100%;*/
+/*!* Set the fixed height of the footer here *!*/
+/*height: 60px;*/
+/*line-height: 60px; !* Vertically center the text there *!*/
+/*background-color: #f5f5f5;*/
+/*}*/
