@@ -27,6 +27,12 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     height: 648px;;
 }
 
+.top-icon {
+    height: 120px;
+    vertical-align: middle;
+    border: 0;
+}
+
 .h_line {
 
     height: 1px;
@@ -35,10 +41,22 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 
 }
 
+._width40{
+    width:40%;
+}
+
+.letter_spacing4{
+    letter-spacing: 4px;
+}
+
 ._width100 {
     width: 100%;
 }
 
+
+._white_border{
+    border-color: #ffffff;
+}
 /* divider_rs */
 .divider_white1 {
     height: 10px;
@@ -72,6 +90,13 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     height: 100px;
 }
 
+.divider_white12 {
+    height: 120px;
+}
+
+.divider_white16 {
+    height: 160px;
+}
 .divider_white20 {
     height: 200px;
 }
@@ -82,6 +107,14 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 
 .divider_white25 {
     height: 250px;
+}
+
+.divider_white40 {
+    height: 400px;
+}
+
+.divider_white48 {
+    height: 480px;
 }
 
 ._divider_stripe {
@@ -108,7 +141,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 }
 
 .bg_blue_svg {
-    background:  #14a7df url(../../images/bkgd-light-blue.svg) no-repeat center center;
+    background: #14a7df url(../../images/bkgd-light-blue.svg) no-repeat center center;
     background-size: cover;
 }
 
