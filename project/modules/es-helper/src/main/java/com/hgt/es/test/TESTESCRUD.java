@@ -44,10 +44,8 @@ public class TESTESCRUD {
 //        esAdminOperations.addType("test-log","log-type", oneTypeDesc);
 
 
-        String typeList = "logLevel:text,logTime:text,codeClass:text,codeFile:text,lineNumber:text,appCode:text,logType:text,logMsg:text,logOptions:text";
-
-
-        esAdminOperations.addType("test-log,log9type", typeList);
+        String typeList = "logLevel:text,logTime:date,codeClass:text,codeFile:text,lineNumber:integer,appCode:text,logType:text,logMsg:text,logOptions:text";
+//        esAdminOperations.addType("test-log,log9type", typeList);
 
         //可用的测试数据
         String log = "{\"appCode\":\"hello1\"," +
@@ -66,11 +64,12 @@ public class TESTESCRUD {
 //                "\"logOptions\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.37.140.90\"}}"; //comma报错
 
 //        String logText="{\"logLevel\":\"WARN\",\"logTime\":\"2016-11-08 16:21:01,306\",\"codeClass\":\"com.hgt.App\",\"codeFile\":\"BasicLogger.java\",\"lineNumber\":\"163\",\"appCode\":\"hello1\",\"logType\":\"LOGIN\",\"logMsg\":\"这是第 788 条消息！！！\",\"logOptions\":\":{\"USER_ID\":\"user001\",\"USER_IP\":\"210.41.247.199\"}\"}";
-//        String logText = "{\"logLevel\":\"WARN\",\"logTime\":\"2016-11-08 16:21:01,306\",\"codeClass\":\"com.hgt.App\",\"codeFile\":\"BasicLogger.java\",\"lineNumber\":\"163\",\"appCode\":\"hello1\",\"logType\":\"LOGIN\",\"logMsg\":\"这是第 788 条消息！！！\",\"logOptions\":\"{USER_ID: user001 }\"}";
+        String logText = "{\"logLevel\":\"WARN\",\"logTime\":\"2016-11-08 16:21:01,306\",\"codeClass\":\"com.hgt.App\",\"codeFile\":\"BasicLogger.java\",\"lineNumber\":\"163\",\"appCode\":\"hello1\",\"logType\":\"LOGIN\",\"logMsg\":\"这是第 788 条消息！！！\",\"logOptions\":\"{USER_ID: user001 }\"}";
 
 //        esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
 //        esAdminOperations.indexingDataByPureJson("test-log", "log9type", logText);
 
+//        esAdminOperations.deleteType("test-log", "log9type");
 
 //        queryFromES.queryAllByType("one-index", "one-type");
         queryFromES.close();

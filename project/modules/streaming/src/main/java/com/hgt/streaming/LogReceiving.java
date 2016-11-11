@@ -32,7 +32,7 @@ public class LogReceiving {
         String zkQuorum = "192.168.99.141:2181,192.168.99.142:2181,192.168.99.143:2181";
         //话题所在的组
         String group = "test1";
-        //话题名称以“，”分隔
+        //话题名称以","分隔
         String topics = "topic-hello";
         //每个话题的分片数
         int numThreads = 2;
@@ -96,6 +96,9 @@ public class LogReceiving {
                 //region 将日志索引进es集群
                 HashMap<String, String> esLogMap = new LinkedHashMap<>();
                 esLogMap = CloneUtils.clone(logMap);
+                String thisTime = esLogMap.get("logTime");
+                String formattedTime = thisTime.replace(" ","T").replace(",",".")+"Z";
+                esLogMap.put("logTime",formattedTime);
                 //将剩余部分strLogOptions加入esLogMap
                 String strLogOptions = "";
                 if (manualLogs[3].substring(13).contains(":")) {
@@ -108,13 +111,13 @@ public class LogReceiving {
 
                 strLogOptions = strLogOptions.substring(0, strLogOptions.length() - 1);
                 String ko = strLogOptions.split(":")[0].replace("\"", "");
-                String vo = strLogOptions.substring(strLogOptions.split(":")[0].length()+1);
+                String vo = strLogOptions.substring(strLogOptions.split(":")[0].length()+1).replace("\"", "");
                 esLogMap.put(ko, vo);
 
                 String eslogString = MapJsonConverter.simpleMapToJsonStr(esLogMap);
 
 //                eslogString = eslogString.replace("{", " - ").replace("}", " - ").replace("\"", " ");
-                eslogString = eslogString.replace("\"", " ");
+//                eslogString = eslogString.replace("\"", " ");
 
                 String logOne = "{" +
                         "\"contents\":  \" " + eslogString + " \" " +
@@ -124,8 +127,10 @@ public class LogReceiving {
                 //region ES配置
                 ESConfig esConfig = new ESConfig("es-yao", "192.168.99.140:9300,192.168.99.141:9300");
                 ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
-                esAdminOperations.indexingDataByPureJson("one-index", "one-type", logOne);
+                esAdminOperations.indexingDataByMap("test-log", "log9type", esLogMap);
                 esAdminOperations.close();
+
+
                 //endregion
 
 

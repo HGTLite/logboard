@@ -3,8 +3,10 @@ package com.hgt.es.common;
 import com.hgt.es.config.ESConfig;
 import com.hgt.utils.DateHelper;
 import com.hgt.utils.StringHelper;
+import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.AdminClient;
+import org.elasticsearch.client.ClusterAdminClient;
 import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -81,7 +83,7 @@ public class ESAdminOperations implements Serializable {
         String typeKV = "";
 
         for (HashMap<String, String> t : tlist) {
-            typeKV +="\""+ t.get("kk") + "\":{\"type\":\"" + t.get("vv") + "\"},";
+            typeKV += "\"" + t.get("kk") + "\":{\"type\":\"" + t.get("vv") + "\"},";
         }
         typeKV = typeKV.substring(0, typeKV.length() - 1);
 
@@ -97,23 +99,64 @@ public class ESAdminOperations implements Serializable {
     }
 
     /**
-     * 通过纯JSON与type匹配的方式建立索引，数据来源格式必须固定
+     * 通过纯JSON与type匹配的方式建立索引，数据源格式必须固定
      *
      * @param strIndexName
-     * @param strTypename
+     * @param strTypeName
      * @param strDataJson
      */
-    public void indexingDataByPureJson(String strIndexName, String strTypename, String strDataJson) {
+    public void indexingDataByPureJson(String strIndexName, String strTypeName, String strDataJson) {
 
         String dataId = DateHelper.getSimpleDate().replace(" ", "").replace("-", "").replace(":", "");
-        IndexResponse response = client.prepareIndex(strIndexName, strTypename, dataId)
+        IndexResponse response = client.prepareIndex(strIndexName, strTypeName, dataId)
                 .setSource(strDataJson)
                 .get();
+    }
+
+    /**
+     * 通过HashMap与type匹配的方式建立索引
+     *
+     * @param strIndexName
+     * @param strTypeName
+     * @param mData
+     */
+    public void indexingDataByMap(String strIndexName, String strTypeName, HashMap<String, String> mData) {
+        Map<String, String> json = new HashMap<String, String>();
+        json = mData;
+        String dataId = DateHelper.getSimpleDate().replace(" ", "").replace("-", "").replace(":", "");
+        IndexResponse response = client.prepareIndex(strIndexName, strTypeName, dataId)
+                .setSource(json)
+                .get();
+
     }
 
 
     public void deleteIndex(String strIndexName) {
         indicesAdminClient.prepareDelete(strIndexName).get();
+    }
+
+    public void deleteType(String strIndexName, String strTypeName) {
+        AdminClient adminClient = client.admin();
+        ClusterAdminClient clusterAdminClient = adminClient.cluster();
+        ClusterHealthResponse healths = clusterAdminClient.prepareHealth().get();
+        List<String> indices=(ArrayList)healths.getIndices().values();
+        if (indices.contains(strIndexName)) {
+            // TODO: 11/8/16 空索引直接保留  
+            ///删除已有索引，再建立同名索引
+            indicesAdminClient
+                    .prepareDelete(strIndexName).get();
+
+            indicesAdminClient
+                    .prepareCreate(strIndexName)
+                    .setSettings(Settings.builder())
+                    .get();
+        } else {
+            ///新建索引
+            indicesAdminClient
+                    .prepareCreate(strIndexName)
+                    .setSettings(Settings.builder())
+                    .get();
+        }
     }
 
     ///TO-DO:直接对HashMap类型的数据建立索引
