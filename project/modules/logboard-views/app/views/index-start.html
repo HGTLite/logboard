@@ -64,21 +64,21 @@
 <div id="logsTop" class="container-fluid screen-page ">
     <!--3大快速入口-->
     <div class="row _text_align_center divider_white40 bg_blue_svg ">
-        <div class="col-sm-4 ">
+        <div class="col-sm-4 " onclick="window.open('logs-search.html')">
             <div style="margin-top: 25%">
                 <img class="top-icon" src="../images/top-search.svg" alt="日志搜索">
                 <div class="row divider_white3 "></div>
                 <button class="btn color_white_100  transparent_bg _white_border _width40 letter_spacing4">日志搜索</button>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-sm-4 " onclick="window.open('logs-stats.html')">
             <div style="margin-top: 25%">
                 <img class="top-icon" src="../images/top-monitor.svg" alt="日志监控">
                 <div class="row divider_white3 "></div>
                 <button class="btn color_white_100  transparent_bg _white_border _width40 letter_spacing4">日志监控</button>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-sm-4 " onclick="window.open('logs-stats.html')">
             <div style="margin-top: 25%">
                 <img class="top-icon" src="../images/top-stats.svg" alt="日志统计">
                 <div class="row divider_white3 "></div>
@@ -112,12 +112,15 @@
             </div>
         </div>
     </div>
+    <div class="divider_white1 ">
+        <a name="aLogsOverview"></a>
+    </div>
 </div>
 <!--/首屏简介模块-->
 
 <!--系统概览模块-->
+
 <div id="logsOverview" class="container-fluid screen-page  ">
-    <a name="aLogsOverview"></a>
     <div class="row  _height100 _text_align_center margin-top3 ">
         <!--日志饼状图-->
         <div class="col-sm-3 ">
@@ -138,13 +141,14 @@
                     <span class="h4">日志实时处理量变化曲线</span>
                 </div>
                 <div class="col-sm-5 _text_align_right">
-<span class="align_right ">
-<a id="a1" href="javascript:void(0)" class="btn btn-info _width15">1小时</a>
-<a id="a2" href="javascript:void(0)" class="btn text-muted _width15">24小时</a>
-<a id="a3" href="javascript:void(0)" class="btn text-muted _width15">昨天</a>
-<a id="a4" href="javascript:void(0)" class="btn text-muted _width15">7天</a>
-<a id="a5" href="javascript:void(0)" class="btn text-muted _width15">本月</a>
-</span></div>
+                    <span class="align_right ">
+                    <a id="a1" href="javascript:void(0)" class="btn btn-info _width15">1小时</a>
+                    <a id="a2" href="javascript:void(0)" class="btn text-muted _width15">24小时</a>
+                    <a id="a3" href="javascript:void(0)" class="btn text-muted _width15">昨天</a>
+                    <a id="a4" href="javascript:void(0)" class="btn text-muted _width15">7天</a>
+                    <a id="a5" href="javascript:void(0)" class="btn text-muted _width15">本月</a>
+                    </span>
+                </div>
             </div>
             <div class="divider_white2"></div>
             <div id="logsGeneralCurve" class="row bg_white_pure">
@@ -154,6 +158,9 @@
             </div>
         </div>
     </div>
+    <div class="row  _height100 ">
+        <a name="aLogsException"></a>
+    </div>
 
 </div>
 <!--/系统概览模块-->
@@ -161,7 +168,7 @@
 
 <!--异常监控模块-->
 <div id="logsException" class="container-fluid screen-page bg_gray_barely ">
-    <a name="aLogsException"></a>
+    <!--<a name="aLogsException"></a>-->
     <div class="row divider_white3"></div>
     <!--曲线图标题部分-->
     <div id="expLogsHeader" class="row divider_white4 ">
@@ -196,10 +203,67 @@
 
         <div class="col-sm-10  ">
 
-            <div class="row " >
+            <div class="row ">
 
-                <div class="col-sm-4 _width100">
-                    <div id="expCard01" class="card exp_card  ">
+                <div class="col-sm-4 ">
+                    <div id="expCard01" class="card exp_card _width100 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="tag tag-danger tag-pill float-xs-right exp_card_item_size">严重</span>
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4 ">
+                    <div id="expCard02" class="card exp_card _width100 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="tag tag-warning tag-pill float-xs-right exp_card_item_size">警告</span>
+
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4 ">
+                    <div id="expCard03" class="card exp_card  _width100 ">
                         <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
                         <div class="card-block exp_item_padding ">
                             <h4 class="card-title exp_card_title_size">app1二维地图</h4>
@@ -224,70 +288,9 @@
                             <!--<span class="_text_align_right ">严重</span>-->
                         </div>
                     </div>
-                </div>
-
-
-                <div class="col-sm-4 _width30">
-                    <div id="expCard02" class="card exp_card  ">
-                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
-                        <div class="card-block exp_item_padding ">
-                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
-                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
-                                java.lang.InterruptedException at java.util.concurrent.locks...
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush exp_card_item_size ">
-                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
-                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
-                        </ul>
-                        <div class="card-block exp_contents_padding ">
-                            <div class="_float_left">
-                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
-
-                            </div>
-                            <div class="_float_right">
-                                <span class="tag tag-warning tag-pill float-xs-right exp_card_item_size">严重</span>
-
-                            </div>
-
-                            <!--<span class="_text_align_right ">严重</span>-->
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="col-sm-4 _width30">
-                    <div id="expCard03" class="card exp_card  ">
-                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
-                        <div class="card-block exp_item_padding ">
-                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
-                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
-                                java.lang.InterruptedException at java.util.concurrent.locks...
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush exp_card_item_size ">
-                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
-                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
-                        </ul>
-                        <div class="card-block exp_contents_padding ">
-                            <div class="_float_left">
-                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
-
-                            </div>
-                            <div class="_float_right">
-                                <span class="tag tag-danger tag-pill float-xs-right exp_card_item_size">严重</span>
-
-                            </div>
-
-                            <!--<span class="_text_align_right ">严重</span>-->
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
-
 
         </div>
 
@@ -300,7 +303,7 @@
 
 
 <!--日志统计模块-->
-<div id="logsStats" class="container-fluid  screen-page bg_gray_shallow _text_align_center">
+<div id="logsStats" class="container-fluid  screen-page bg_white_pure _text_align_center">
     <a name="aLogsStats"></a>
     <div class="row divider_white3"></div>
     <h2>日志统计</h2>
@@ -311,62 +314,63 @@
 <!--/日志统计模块-->
 
 <!--用户挖掘模块-->
-<div id="logsBehavior" class="container-fluid screen-page">
+<div id="logsBehavior" class="container-fluid screen-page bg_gray_shallow">
     <a name="aLogsBehavior"></a>
     <div class="row divider_white3"></div>
     <div class="row ">
 
-        <div class="col-sm-2">
-            <h3>热搜排行</h3>
+        <div class="col-sm-3">
 
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="label label-default label-pill pull-right">14</span>
-                    Cras justo odio
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-default label-pill pull-right">2</span>
-                    Dapibus ac facilisis in
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-default label-pill pull-right">1</span>
-                    Morbi leo risus
-                </li>
-            </ul>
 
-        </div>
-        <div class="col-sm-2">
-            <h3>访问排行</h3>
+            <div class="card text-xs-center">
+                <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills float-xs-left">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">热搜排行</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">访问排行</a>
+                        </li>
 
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="label label-default label-pill pull-right">14</span>
-                    Cras justo odio
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-default label-pill pull-right">2</span>
-                    Dapibus ac facilisis in
-                </li>
-                <li class="list-group-item">
-                    <span class="label label-default label-pill pull-right">1</span>
-                    Morbi leo risus
-                </li>
-            </ul>
+                    </ul>
+                </div>
+                <div class="card-block  ">
+                    <ul class="list-group list-group-flush _no_border  _text_align_left ">
+                        <li class="list-group-item _no_border search_top_padding ">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
+                    </ul>
+                    <div class="card-block _text_align_left search_top_padding">
+                        <a href="#" class="card-link">查看更多</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="co-sm-8 _text_align_center">
+
+        <div class="co-sm-9 _text_align_center">
             <h2>访客IP分布图</h2>
             <div id="vmap"></div>
-
         </div>
     </div>
+
+    <!--访客IP分布图-->
+
+</div>
 
 </div>
 <!--/用户挖掘模块-->
 
 <!--末尾页脚-->
 
-<div id="lastFooter" class="container-fluid _divider_stripe bg_gray_shallow">
+<div id="lastFooter" class="container-fluid _divider_stripe bg_gray_barely">
     <a name="about"></a>
     <div class="row divider_white4"></div>
     <div class="row _text_align_center">

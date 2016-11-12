@@ -20,10 +20,12 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 .exp_item_padding {
     padding: 0.4rem;
 }
-._float_left{
+
+._float_left {
     float: left;
 }
-._float_right{
+
+._float_right {
     float: right;
 }
 
@@ -70,6 +72,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     border: 0;
 }
 
+.search_top_padding{
+    padding: 0.5rem;
+}
+
 ._to_top30 {
     margin-top: 6%;
 }
@@ -86,6 +92,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 
 }
 
+.letter_spacing4 {
+    letter-spacing: 4px;
+}
+
 ._width15 {
     width: 15%;
 }
@@ -93,16 +103,17 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 ._width30 {
     width: 30%;
 }
+
 ._width40 {
     width: 40%;
 }
 
-._width75 {
-    width: 75%;
+._width60 {
+    width: 60%;
 }
 
-.letter_spacing4 {
-    letter-spacing: 4px;
+._width75 {
+    width: 75%;
 }
 
 ._width100 {
