@@ -1,3 +1,5 @@
+
+// 图表绘制
 (function () {
     createHourlyLogsCurve();
     createExpLogsCurve();
