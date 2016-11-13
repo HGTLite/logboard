@@ -8,11 +8,12 @@
     <meta name="keywords" content="logs, big data">
     <meta name="author" content="yaoooo and Bootstrap contributors">
     <title>logboard 日志应用系统</title>
-    <!--<link rel="stylesheet" href="../res/styles/css/bootstrap-4.0.0a3.css"/>-->
     <link rel="stylesheet" href="../res/styles/css/bootstrap-3.3.7.css"/>
     <!--<link rel="stylesheet" href="../res/styles/css/leaflet-1.0.0rc3.css"/>-->
     <link rel="stylesheet" href="../res/fonts/css/font-awesome.css">
     <link rel="stylesheet" href="../res/styles/general.css"/>
+    <link rel="stylesheet" href="../res/styles/layout.css"/>
+    <link rel="stylesheet" href="../res/styles/bscard.css"/>
     <link rel="stylesheet" href="../res/styles/colors.css"/>
     <link rel="stylesheet" href="../res/styles/svg.css"/>
 </head>
@@ -20,42 +21,30 @@
 <body>
 
 <!-- Fixed navbar 顶部导航栏-->
-<div class="pos-f-t">
-    <div class="collapse" id="navbar-header">
-        <div class="container bg-inverse p-1">
-            <h3>Collapsed content</h3>
-            <p>Toggleable via the navbar brand.</p>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">LogBoard 日志公告牌</a>
         </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#aLogsOverview">日志概览</a></li>
+                <li><a href="#aLogsException">异常监控</a></li>
+                <li><a href="#aLogsStats">日志统计</a></li>
+                <li><a href="#aLogsBehavior">日志挖掘</a></li>
+                <li><a href="#about">关于</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
+</nav>
 
-    <nav class="navbar navbar-light navbar-static-top bg_white_pure ">
-        <div class="container">
-            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse"
-                    data-target="#exCollapsingNavbar2" aria-expanded="false" aria-controls="exCollapsingNavbar2"
-                    aria-label="Toggle navigation"></button>
-            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-                <a class="navbar-brand" href="#">LogBoard 日志公告牌 </a>
-                <ul class="nav navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#aLogsOverview">日志概览 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#aLogsException">异常监控</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#aLogsStats">日志统计</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#aLogsBehavior">日志挖掘</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">关于</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
 
 <!--顶部导航栏高度站位符-->
 <div class="divider_white6  "></div>
@@ -173,12 +162,12 @@
     <div class="row divider_white3"></div>
     <!--曲线图标题部分-->
     <div id="expLogsHeader" class="row divider_white4 ">
-        <div class="col-sm-4 _text_align_center">
+        <div class="col-sm-3 _text_align_center">
         </div>
         <div class="col-sm-4 _text_align_center">
             <span class="h3">异常日志监控</span>
         </div>
-        <div class="col-sm-4 _text_align_right">
+        <div class="col-sm-5 _text_align_center">
     <span class="align_right ">
     <a id="a01" href="javascript:void(0)" class="btn btn-info">近1小时</a>
     <a id="a02" href="javascript:void(0)" class="btn text-muted ">24小时</a>
@@ -207,7 +196,7 @@
             <div class="row ">
 
                 <div class="col-sm-4 ">
-                    <div id="expCard01" class="card exp_card _width100 ">
+                    <div id="expCard01" class="card exp_card _width80 ">
                         <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
                         <div class="card-block exp_item_padding ">
                             <h4 class="card-title exp_card_title_size">app1二维地图</h4>
@@ -225,7 +214,7 @@
 
                             </div>
                             <div class="_float_right">
-                                <span class="tag tag-danger tag-pill float-xs-right exp_card_item_size">严重</span>
+                                <span class="label label-danger label-pill float-xs-right exp_card_item_size">严重</span>
                             </div>
 
                             <!--<span class="_text_align_right ">严重</span>-->
@@ -235,10 +224,10 @@
 
 
                 <div class="col-sm-4 ">
-                    <div id="expCard02" class="card exp_card _width100 ">
+                    <div id="expCard02" class="card exp_card _width80 ">
                         <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
                         <div class="card-block exp_item_padding ">
-                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
+                            <h4 class="card-title exp_card_title_size">app2二维地图</h4>
                             <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
                                 java.lang.InterruptedException at java.util.concurrent.locks...
                             </p>
@@ -253,7 +242,7 @@
 
                             </div>
                             <div class="_float_right">
-                                <span class="tag tag-warning tag-pill float-xs-right exp_card_item_size">警告</span>
+                                <span class="label label-warning label-pill float-xs-right exp_card_item_size">警告</span>
 
                             </div>
 
@@ -264,10 +253,10 @@
 
 
                 <div class="col-sm-4 ">
-                    <div id="expCard03" class="card exp_card  _width100 ">
+                    <div id="expCard03" class="card exp_card  _width80 ">
                         <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
                         <div class="card-block exp_item_padding ">
-                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
+                            <h4 class="card-title exp_card_title_size">app3二维地图</h4>
                             <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
                                 java.lang.InterruptedException at java.util.concurrent.locks...
                             </p>
@@ -282,7 +271,7 @@
 
                             </div>
                             <div class="_float_right">
-                                <span class="tag tag-danger tag-pill float-xs-right exp_card_item_size">严重</span>
+                                <span class="label label-danger label-pill float-xs-right exp_card_item_size">严重</span>
 
                             </div>
 

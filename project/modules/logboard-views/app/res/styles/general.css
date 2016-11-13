@@ -7,10 +7,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 }
 
 .exp_card {
-    width: 25%;
+    width: 20%;
     /*height:250px;*/
-    margin-left: 3%;
-    margin-right: 3%;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 
 .exp_contents_padding {
@@ -115,7 +115,9 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 ._width75 {
     width: 75%;
 }
-
+._width80 {
+    width: 80%;
+}
 ._width100 {
     width: 100%;
 }

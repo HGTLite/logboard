@@ -246,37 +246,37 @@ function createExpStatsPie() {
  */
 function createLogsTagsForce(){
 
-    let margin = {top: 100, right: 100, bottom: 100, left: 100};
+    var margin = {top: 100, right: 100, bottom: 100, left: 100};
 
-    let width = 960,
+    var width = 960,
         height = 500,
         padding = 1.5, // separation between same-color circles
         clusterPadding = 6, // separation between different-color circles
         maxRadius = 12;
 
-    let n = 200, // total number of nodes
+    var n = 200, // total number of nodes
         m = 10, // number of distinct clusters
         z = d3.scaleOrdinal(d3.schemeCategory20),
         clusters = new Array(m);
 
-    // let svg = d3.select('body')
+    // var svg = d3.select('body')
     //     .append('svg')
     //     .attr('height', height)
     //     .attr('width', width)
     //     .append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
-    let svg = d3.select('#svgLogsForce')
+    var svg = d3.select('#svgLogsForce')
         .append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
-    let nodes = d3.range(200).map(() => {
-            let i = Math.floor(Math.random() * m),
+    var nodes = d3.range(200).map(() => {
+            var i = Math.floor(Math.random() * m),
             radius = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius,
         d = {cluster: i, r: radius};
     if (!clusters[i] || (radius > clusters[i].r)) clusters[i] = d;
     return d;
 });
 
-    let circles = svg.append('g')
+    var circles = svg.append('g')
             .datum(nodes)
             .selectAll('.circle')
             .data(d => d)
@@ -286,7 +286,7 @@ function createLogsTagsForce(){
 .attr('stroke', 'black')
         .attr('stroke-width', 1);
 
-    let simulation = d3.forceSimulation(nodes)
+    var simulation = d3.forceSimulation(nodes)
         .velocityDecay(0.2)
         .force("x", d3.forceX().strength(.0005))
         .force("y", d3.forceY().strength(.0005))
@@ -320,9 +320,7 @@ function createLogsTagsForce(){
     }
 
     function collide(alpha) {
-        var quadtree = d3.quadtree()
-                .x((d) => d.x)
-    .y((d) => d.y)
+        var quadtree = d3.quadtree().x((d) => d.x).y((d) => d.y)
     .addAll(nodes);
 
         nodes.forEach(function(d) {

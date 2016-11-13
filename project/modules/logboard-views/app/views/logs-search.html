@@ -6,68 +6,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="leaflet demos">
     <meta name="author" content="yaoooo">
-    <link rel="icon" href="../res/images/favicon.ico">
-    <title>日志搜索页 logs search</title>
-    <link href="../../res/styles/css/bootstrap-4.0.0a3.css" rel="stylesheet">
-    <link href="../../res/styles/general.css" rel="stylesheet">
+    <link rel="icon" href="../favicon.ico">
+    <title> logs search 日志搜索页</title>
+    <!--<link href="../res/styles/css/bootstrap-4.0.0a3.css" rel="stylesheet">-->
+    <link href="../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
+    <link href="../res/styles/css/bootstrap-table.css" rel="stylesheet">
+    <!--<link href="../res/styles/general.css" rel="stylesheet">-->
+    <link href="../res/styles/layout.css" rel="stylesheet">
+    <link href="../res/styles/logssearch.css" rel="stylesheet">
     <!--<link href="styles/css/bootstrap-4.0.0a3.min.css" rel="stylesheet">-->
 </head>
 
 <body>
+
+
 <!-- Fixed navbar -->
-<div class="pos-f-t">
-    <div class="collapse" id="navbar-header">
-        <div class="container bg-inverse p-a-1">
-            <h3>Collapsed content</h3>
-            <p>Toggleable via the navbar brand.</p>
-        </div>
-    </div>
-    <nav class="navbar navbar-light navbar-static-top bg-faded">
-        <div class="container">
-            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse"
-                    data-target="#exCollapsingNavbar2">
-                &#9776;
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-                <a class="navbar-brand" href="#">D3</a>
-                <ul class="nav navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">学习路线树形图<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </div>
+            <a class="navbar-brand" href="#">日志内容搜索</a>
         </div>
-    </nav>
-</div>
+        <!--<div id="navbar" class="collapse navbar-collapse">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="#">Home</a></li>-->
+                <!--<li><a href="#about">About</a></li>-->
+                <!--<li><a href="#contact">Contact</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+</nav>
 
 <!-- Begin page content -->
 <div class="container">
 
-    <h2 class="title1">学习路线 Roadmap</h2>
-    <div id="contents" class="container">
-
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="请输入查询关键字">
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                            <!--<i class=" fa fa-search  " style="color: #777;"></i>-->
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
-
-
 </div>
 
+
+<!--最新日志列表-->
+<div class="form-inline">
+    <button type="button"
+            class="btn btn-default mybtn-top">
+        Scroll to top
+    </button>
+    <button type="button"
+            class="btn btn-default mybtn-row">
+        Scroll to row index:
+    </button>
+    <input type="number"
+           class="form-control row-index"
+           value="3" min="0">
+    <button type="button"
+            class="btn btn-default mybtn-btm">
+        Scroll to bottom
+    </button>
+</div>
+
+<div style="padding: 20px; ">
+    <br>
+    <table id="table" data-search="true" data-show-columns="true" data-pagination="true" data-height="550">
+        <thead>
+        <tr>
+            <th data-field="stargazers_count" data-sortable="true">Stars</th>
+            <th data-field="name" data-sortable="true" width="200">Name</th>
+            <th data-field="forks_count" data-sortable="true">Forks</th>
+            <th data-field="description" data-sortable="true">Description</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<!--最新日志列表-->
+
+
+<!--页脚-->
 <footer class="footer">
     <div class="container">
-        <span>
-            <a href="https://github.com/uptonking/blog-leaflet/index.html">本页面</a> is maintained by <a
-                href="https://github.com/uptonking">yaoooo</a>.
-        </span>
+        <p class="text-muted">Place sticky footer content here.</p>
     </div>
 </footer>
+<!--/页脚-->
 
-<script src="../../res/scripts/js/jquery-3.1.0.js"></script>
-<script src="../../res/scripts/js/holder-2.6.0.min.js"></script>
-<script src="../../res/scripts/js/tether-1.3.2.min.js"></script>
-<script src="../../res/scripts/js/bootstrap-4.0.0a3.js"></script>
+
+<script src="../res/scripts/js/jquery-3.1.0.js"></script>
+<script src="../res/scripts/js/holder-2.6.0.min.js"></script>
+<script src="../res/scripts/js/tether-1.3.2.min.js"></script>
+<script src="../res/vendor/js/bootstrap-3.3.7.js"></script>
+<script src="../res/scripts/js/bootstrap-table.js"></script>
 <!--<script src="../res/scripts/js/d3-4.2.1.js"></script>-->
 <!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->
-<!--<script src="scripts/js/bootstrap-4.0.0a3.min.js"></script>-->
+<!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
 <script>
+
+    var searchListData = [{
+        "name": "bootstrap-table",
+        "stargazers_count": "10",
+        "forks_count": "122",
+        "description": "An extended Bootstrap table"
+    }, {
+        "name": "multiple-select",
+        "stargazers_count": "288",
+        "forks_count": "20",
+        "description": "A jQuery plugin to select multiple elements with checkboxes :)"
+    }, {
+        "name": "bootstrap-table",
+        "stargazers_count": "32",
+        "forks_count": "11",
+        "description": "Show/hide password plugin for twitter bootstrap."
+    }, {
+        "name": "bootstrap-table",
+        "stargazers_count": "1",
+        "forks_count": "4",
+        "description": "my blog"
+    }, {
+        "name": "scutech-redmine 1",
+        "stargazers_count": "50",
+        "forks_count": "3",
+        "description": "Redmine notification tools for chrome extension."
+    }];
+
+    $(function () {
+        $('#table').bootstrapTable({
+            data: searchListData
+        });
+
+        $(".mybtn-top").click(function () {
+            $('#table').bootstrapTable('scrollTo', 0);
+        });
+
+        $(".mybtn-row").click(function () {
+            var index = +$('.row-index').val(),
+                    top = 0;
+            $('#table').find('tbody tr').each(function (i) {
+                if (i < index) {
+                    top += $(this).height();
+                }
+            });
+            $('#table').bootstrapTable('scrollTo', top);
+        });
+
+        $(".mybtn-btm").click(function () {
+            $('#table').bootstrapTable('scrollTo', 'bottom');
+        });
+
+    });
 
 </script>
 </body>
