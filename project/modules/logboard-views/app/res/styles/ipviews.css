@@ -1,0 +1,43 @@
+#map {
+
+    width: 890px;
+    height: 420px;
+}
+
+svg {
+    position: relative;
+}
+
+path {
+    /*fill: yellow;*/
+    /*stroke: red;*/
+    stroke-width: 2px;
+    stroke-opacity: 1;
+}
+
+/*当前点*/
+.travelMarker {
+    fill: yellow;
+    opacity: 0.7;
+}
+
+/*路径点,来自文件的18个点，透明*/
+.waypoints {
+    fill: cyan;
+    opacity: 1;
+}
+
+/*路径线，主要样式*/
+.lineConnect {
+    fill: none;
+    stroke: white;
+    opacity: 1;
+}
+
+/*地名注记文字*/
+.locnames {
+    fill: white;
+    text-shadow: 3px 3px 5px #fff;
+    font-weight: bold;
+    font-size: 13px;
+}

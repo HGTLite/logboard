@@ -6,6 +6,14 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     border: none;
 }
 
+._is_visible{
+    visibility: visible;
+}
+
+._is_hidden{
+    visibility: hidden;
+}
+
 .exp_card {
     width: 20%;
     /*height:250px;*/
@@ -30,23 +38,23 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 }
 
 .exp_card_title_size {
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .exp_card_text_size {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .exp_card_item_size {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 .stats_count_number {
-    font-size: 2rem;
+    font-size: 2.4rem;
 }
 
 .stats_count_desc {
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 
 .stats_bundle {
@@ -72,7 +80,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     border: 0;
 }
 
-.search_top_padding{
+.search_top_padding {
     padding: 0.5rem;
 }
 
@@ -82,6 +90,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 
 .margin-top3 {
     margin-top: 3%;
+}
+
+._padding_left_18 {
+    padding-left: 18%;
 }
 
 .h_line {
@@ -115,9 +127,11 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 ._width75 {
     width: 75%;
 }
+
 ._width80 {
     width: 80%;
 }
+
 ._width100 {
     width: 100%;
 }
@@ -130,70 +144,73 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     border-color: #ffffff;
 }
 
-/* divider_rs */
-.divider_white1 {
+/* blank_divider */
+.blank_divider10 {
     height: 10px;
 }
 
-.divider_white2 {
+.blank_divider20 {
     height: 20px;
 }
 
-.divider_white3 {
+.blank_divider30 {
     height: 30px;
 }
 
-.divider_white4 {
+.blank_divider40 {
     height: 40px;
 }
 
-.divider_white6 {
+.blank_divider48 {
+    height: 48px;
+}
+
+.blank_divider60 {
     height: 60px;
 }
 
-.divider_white8 {
+.blank_divider80 {
     height: 80px;
 }
 
-.divider_white9 {
+.blank_divider90 {
     height: 90px;
 }
 
-.divider_white10 {
+.blank_divider100 {
     height: 100px;
 }
 
-.divider_white12 {
+.blank_divider120 {
     height: 120px;
 }
 
-.divider_white16 {
+.blank_divider160 {
     height: 160px;
 }
 
-.divider_white20 {
+.blank_divider200 {
     height: 200px;
 }
 
-.divider_white22 {
+.blank_divider220 {
     height: 220px;
 }
 
-.divider_white25 {
+.blank_divider250 {
     height: 250px;
 }
 
-.divider_white40 {
+.blank_divider400 {
     height: 400px;
 }
 
-.divider_white48 {
+.blank_divider480 {
     height: 480px;
 }
 
 ._divider_stripe {
     height: 200px;
-    background-color: #f0f0f0;
     text-align: center;
 }
 

@@ -9,11 +9,13 @@
     <meta name="author" content="yaoooo and Bootstrap contributors">
     <title>logboard 日志应用系统</title>
     <link rel="stylesheet" href="../res/styles/css/bootstrap-3.3.7.css"/>
-    <!--<link rel="stylesheet" href="../res/styles/css/leaflet-1.0.0rc3.css"/>-->
+    <link rel="stylesheet" href="../res/styles/css/leaflet-1.0.0rc3.css"/>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet'/>
     <link rel="stylesheet" href="../res/fonts/css/font-awesome.css">
     <link rel="stylesheet" href="../res/styles/general.css"/>
     <link rel="stylesheet" href="../res/styles/layout.css"/>
     <link rel="stylesheet" href="../res/styles/bscard.css"/>
+    <link rel="stylesheet" href="../res/styles/ipviews.css"/>
     <link rel="stylesheet" href="../res/styles/colors.css"/>
     <link rel="stylesheet" href="../res/styles/svg.css"/>
 </head>
@@ -44,43 +46,43 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-
+<!-- /Fixed navbar 顶部导航栏-->
 
 <!--顶部导航栏高度站位符-->
-<div class="divider_white6  "></div>
+<div class="blank_divider48"></div>
 <!--/顶部导航栏高度站位符-->
 
 <!--首屏简介模块-->
 <div id="logsTop" class="container-fluid screen-page ">
     <!--3大快速入口-->
-    <div class="row _text_align_center divider_white40 bg_blue_svg ">
+    <div class="row _text_align_center blank_divider400 bg_blue_svg ">
         <div class="col-sm-4 " onclick="window.open('logs-search.html')">
             <div style="margin-top: 25%">
                 <img class="top-icon" src="../images/top-search.svg" alt="日志搜索">
-                <div class="row divider_white3 "></div>
-                <button class="btn color_white_100  transparent_bg _white_border _width40 letter_spacing4">日志搜索</button>
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志搜索</button>
             </div>
         </div>
         <div class="col-sm-4 " onclick="window.open('logs-stats.html')">
             <div style="margin-top: 25%">
                 <img class="top-icon" src="../images/top-monitor.svg" alt="日志监控">
-                <div class="row divider_white3 "></div>
-                <button class="btn color_white_100  transparent_bg _white_border _width40 letter_spacing4">日志监控</button>
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志监控</button>
             </div>
         </div>
         <div class="col-sm-4 " onclick="window.open('logs-stats.html')">
             <div style="margin-top: 25%">
                 <img class="top-icon" src="../images/top-stats.svg" alt="日志统计">
-                <div class="row divider_white3 "></div>
-                <button class="btn color_white_100  transparent_bg _white_border _width40 letter_spacing4">日志统计</button>
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志统计</button>
             </div>
         </div>
     </div>
 
     <!--简单数量统计-->
-    <div id="apps_general1" class="row _divider_stripe">
+    <div id="apps_general1" class="row _divider_stripe bg_gray_shallow">
         <div class="col-sm-4 ">
-            <div style="margin-top: 10%">
+            <div style="margin-top: 18%">
                 <i class="fa fa-cubes fa-2x"></i>
                 <div class="stats_count_number">12</div>
                 <div class="stats_count_desc">接入应用数</div>
@@ -88,21 +90,21 @@
         </div>
 
         <div class="col-sm-4 ">
-            <div style="margin-top: 10%">
+            <div style="margin-top: 18%">
                 <i class="fa fa-th fa-2x"></i>
                 <div class="stats_count_number">12306</div>
                 <div class="stats_count_desc">日志记录数</div>
             </div>
         </div>
         <div class="col-sm-4 ">
-            <div style="margin-top: 10%">
+            <div style="margin-top: 18%">
                 <i class="fa fa-clock-o fa-2x"></i>
                 <div class="stats_count_number">488 小时</div>
                 <div class="stats_count_desc">监控总时间</div>
             </div>
         </div>
     </div>
-    <div class="divider_white1 ">
+    <div class="blank_divider10 ">
         <a name="aLogsOverview"></a>
     </div>
 </div>
@@ -117,7 +119,7 @@
             <div class="row">
                 <svg id="svgExpStatsPie" width="200" height="200"></svg>
             </div>
-            <div class="divider_white1"></div>
+            <div class="blank_divider100"></div>
             <div class="row">
                 <svg id="svgExpStatsLegend" width="210" height="200"></svg>
             </div>
@@ -140,7 +142,7 @@
                     </span>
                 </div>
             </div>
-            <div class="divider_white2"></div>
+            <div class="blank_divider20"></div>
             <div id="logsGeneralCurve" class="row bg_white_pure">
                 <div class="col-sm-12 _text_align_center">
                     <svg id="svgLogsGenaral" width="960" height="400"></svg>
@@ -148,20 +150,20 @@
             </div>
         </div>
     </div>
-    <div class="row  _height100 ">
-        <a name="aLogsException"></a>
-    </div>
 
 </div>
 <!--/系统概览模块-->
 
 
 <!--异常监控模块-->
-<div id="logsException" class="container-fluid screen-page bg_gray_barely ">
+<div id="logsException" class="container-fluid screen-page bg_gray_shallow ">
+    <div class="row  blank_divider20 ">
+        <a name="aLogsException"></a>
+    </div>
     <!--<a name="aLogsException"></a>-->
-    <div class="row divider_white3"></div>
+    <div class="row blank_divider30"></div>
     <!--曲线图标题部分-->
-    <div id="expLogsHeader" class="row divider_white4 ">
+    <div id="expLogsHeader" class="row blank_divider40 ">
         <div class="col-sm-3 _text_align_center">
         </div>
         <div class="col-sm-4 _text_align_center">
@@ -188,7 +190,7 @@
     <div id="expDetails" class=" row ">
 
         <div class="col-sm-1  _text_align_center _to_top30 ">
-            <i class="fa  fa-angle-left fa-4x  color_gray_shallow"></i>
+            <i class="fa  fa-angle-left fa-4x  c_bdbdbd"></i>
         </div>
 
         <div class="col-sm-10  ">
@@ -285,7 +287,7 @@
         </div>
 
         <div class="col-sm-1  _text_align_center _to_top30 ">
-            <i class="fa  fa-angle-right fa-4x  color_gray_shallow"></i>
+            <i class="fa  fa-angle-right fa-4x  c_bdbdbd"></i>
         </div>
     </div>
 </div>
@@ -295,7 +297,7 @@
 <!--日志统计模块-->
 <div id="logsStats" class="container-fluid  screen-page bg_white_pure _text_align_center">
     <a name="aLogsStats"></a>
-    <div class="row divider_white3"></div>
+    <div class="row blank_divider30"></div>
     <h2>日志统计</h2>
     <div>
         <svg id="svgLogsForce" width="1080" height="512"></svg>
@@ -306,48 +308,49 @@
 <!--用户挖掘模块-->
 <div id="logsBehavior" class="container-fluid screen-page bg_gray_shallow">
     <a name="aLogsBehavior"></a>
-    <div class="row divider_white3"></div>
-    <div class="row ">
+    <div class="row blank_divider30"></div>
+    <div class="row _height100">
 
-        <div class="col-sm-3">
+        <!--访问排行榜-->
+        <div class="col-sm-3 _text_align_center ">
 
-
-            <div class="card text-xs-center">
+            <div class="card text-xs-center ">
                 <div class="card-header">
                     <ul class="nav nav-pills card-header-pills float-xs-left">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">热搜排行</a>
+                            <a class="nav-link active" href="javascript:void(0)">IP访问排行</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">访问排行</a>
+                            <a class="nav-link" href="javascript:void(0)">搜索排行</a>
                         </li>
 
                     </ul>
                 </div>
-                <div class="card-block  ">
-                    <ul class="list-group list-group-flush _no_border  _text_align_left ">
-                        <li class="list-group-item _no_border search_top_padding ">Cras justo odio</li>
-                        <li class="list-group-item _no_border search_top_padding">Dapibus ac facilisis in</li>
-                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
-                        <li class="list-group-item _no_border search_top_padding">Cras justo odio</li>
-                        <li class="list-group-item _no_border search_top_padding">Dapibus ac facilisis in</li>
-                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
-                        <li class="list-group-item _no_border search_top_padding">Cras justo odio</li>
-                        <li class="list-group-item _no_border search_top_padding">Dapibus ac facilisis in</li>
-                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
-                        <li class="list-group-item _no_border search_top_padding">Vestibulum at eros</li>
+                <div class="card-block bg_f5f5f5 ">
+                    <ul class="list-group list-group-flush _no_border  _text_align_left bg_f5f5f5 ">
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5 ">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
                     </ul>
                     <div class="card-block _text_align_left search_top_padding">
-                        <a href="#" class="card-link">查看更多</a>
+                        <i class="fa fa-angle-double-down fa-2x c_999 "></i>
                     </div>
+
                 </div>
             </div>
         </div>
+        <!--/访问排行榜-->
 
-
-        <div class="co-sm-9 _text_align_center">
-            <h2>访客IP分布图</h2>
-            <div id="vmap"></div>
+        <div class="co-sm-9 _text_align_center ">
+            <!--<h2>IP访客分布图</h2>-->
+            <div id="map" class=""></div>
         </div>
     </div>
 
@@ -360,15 +363,15 @@
 
 <!--末尾页脚-->
 
-<div id="lastFooter" class="container-fluid _divider_stripe bg_gray_barely">
+<div id="lastFooter" class="container-fluid blank_divider160 bg_gray_barely">
     <a name="about"></a>
-    <div class="row divider_white4"></div>
+    <div class="row blank_divider20"></div>
     <div class="row _text_align_center">
         <div class="col-sm-12">
             <div class="h5">联系我们</div>
         </div>
     </div>
-    <div class="row divider_white2"></div>
+    <div class="row blank_divider10"></div>
 
     <div class="row">
         <div class="col-sm-6 _text_align_right">
@@ -399,12 +402,310 @@
 <!--<script type="text/javascript" src="../res/scripts/js/bootstrap-4.0.0a3.js"></script>-->
 <script type="text/javascript" src="../res/scripts/js/bootstrap-3.3.7.js"></script>
 <script type="text/javascript" src="../res/scripts/js/holder-2.6.0.min.js"></script>
-<script type="text/javascript" src="../res/scripts/js/d3-4.1.1.js"></script>
-<!--<script type="text/javascript" src="../res/scripts/js/leaflet-1.0.0rc3.js"></script>-->
-<script type="text/javascript" src="../res/scripts/svg.js"></script>
-<script type="text/javascript" src="../res/scripts/scripts.js"></script>
+<script type="text/javascript" src="../res/scripts/js/d3-3.5.17.js"></script>
+<script type="text/javascript" src="../res/scripts/js/leaflet-1.0.0rc3.js"></script>
+<!--<script type="text/javascript" src="../res/scripts/svg.js"></script>-->
+<!--<script type="text/javascript" src="../res/scripts/scripts.js"></script>-->
+<script type="text/javascript" src="../res/scripts/utils.js"></script>
+<!--<script type="text/javascript" src="../res/scripts/ipviews.js"></script>-->
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+
+
 <script type="text/javascript">
 
+    <!--
+    IP地址浏览-->
+    var apps = apps || {};
+    apps.namespace = function (str) {
+        var parts = str.split("."),
+                parent = apps,
+                i = 0,
+                l = 0;
+
+        if (parts[0] === "apps") {
+            parts = parts.slice(1);
+        }
+
+        for (i = 0, l = parts.length; i < l; i++) {
+            if (typeof parent[parts[i]] === "undefined") {
+                parent[parts[i]] = {};
+            }
+            parent = parent[parts[i]];
+        }
+        return parent;
+    }
+
+    apps.attrs = {
+        "mapSources": [
+            {
+                "mapbox": "//{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
+            },
+            {
+                "autonavi": "//webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}"
+            },
+            {
+                "osm": "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            }
+        ]
+    };
+
+    apps.data = {
+        "hgtPoint": {
+            "type": "FeatureCollection",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                }
+            },
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "time": 16,
+                        "id": "route1",
+                        "name": "lhkServerPoint"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            114.400,
+                            30.503
+                        ]
+                    }
+                }
+            ]
+        },
+
+        "ipPoints1": {
+            "type": "FeatureCollection",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                }
+            },
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "time": 1,
+                        "id": "route1",
+                        "name": "p1"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            114.360477,
+                            30.527036
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+
+                        "time": 16,
+                        "id": "route1",
+                        "name": "p2"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            114.420,
+                            30.520
+                        ]
+                    }
+                }
+            ]
+        }
+    };
+
+    apps.maps = {
+        mapOperations: (function () {
+            return {
+                initBasemap: function (mapUrl) {
+                    return L.tileLayer(mapUrl);
+                }
+
+            }
+        })(),
+        animations: {
+            arcInterpolate: function (points) {
+                return points.join("A 30,30 0 0 1 ");
+            }
+
+        },
+        general: {
+            projectPoint: function (x, y) {
+                var point = apps.attrs.map.latLngToLayerPoint(new L.LatLng(y, x));
+                this.stream.point(point.x, point.y);
+            },
+            applyLatLngToLayer: function (d) {
+                //获取纬度
+                var y = d.geometry.coordinates[1];
+                //获取经度
+                var x = d.geometry.coordinates[0];
+                //LatLngToLayerPoint is used to get coordinates for the layer's new position
+                return apps.attrs.map.latLngToLayerPoint(new L.LatLng(y, x));
+            }
+        }
+    };
+
+    apps.start = {
+        init: function () {
+            var mData = apps.namespace("apps.data");
+
+
+            var mapTiles = L.tileLayer(apps.attrs.mapSources[0].mapbox);
+            apps.attrs.map = L.map('map').addLayer(mapTiles).setView([30.520, 114.360], 10);
+            var map = apps.namespace("apps.attrs.map");
+            apps.attrs.svg = d3.select(map.getPanes().overlayPane).append("svg");
+            apps.attrs.g = apps.attrs.svg.append("g").attr("class", "leaflet-zoom-hide");
+
+        },
+        go: function () {
+            var mData = apps.namespace("apps.data");
+            var mMaps = apps.namespace("apps.maps");
+
+            var mMapOperations = apps.namespace("apps.maps.mapOperations");
+            var map = apps.namespace("apps.attrs.map");
+            var svg = apps.namespace("apps.attrs.svg");
+            var g = apps.namespace("apps.attrs.g");
+
+            var lhkServerPoint = mData.hgtPoint;
+            var ipPoints = mData.ipPoints1;
+
+//            console.log(lhkServerPoint)
+//            console.log(ipPoints)
+
+
+            //把导入的各个坐标点作为起点，把服务器位置作为终点，构建起止点数组
+            var startEndArr = [];
+            var pLength = ipPoints.features.length;
+            for (var i = 0; i < pLength; i++) {
+                var tempLine = cloneObj(lhkServerPoint);
+                var x1 = lhkServerPoint.features[0];
+                tempLine.features[0] = ipPoints.features[i];
+                tempLine.features[1] = x1;
+                startEndArr[i] = tempLine;
+            }
+//            console.log(startEndArr);
+
+            //定义方法：将经纬度转成屏幕地图图层点
+            var transform = d3.geo.transform({
+                point: apps.maps.general.projectPoint
+            });
+            var d3path = d3.geo.path().projection(transform);
+
+
+            var collection = startEndArr[0];
+            var featuresdata = collection.features;
+
+
+            var toLine = d3.svg.line()
+                    .interpolate(function (points) {
+                        return points.join("A 30,30 0 0 1 ");
+                    })
+                    .x(function (d) {
+                        return mMaps.general.applyLatLngToLayer(d).x;
+                    })
+                    .y(function (d) {
+                        return mMaps.general.applyLatLngToLayer(d).y;
+                    });
+
+
+//            目标服务器点，用于reset刷新
+            var ptFeatures = g.selectAll("circle")
+                    .data(lhkServerPoint.features)
+                    .enter()
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("class", "travelMarker");
+
+
+            //声明每对起止点的线
+//            for (var ii = 0; ii < pLength; ii++) {
+//
+//
+//
+//            }
+
+            var lines = cloneObj([featuresdata]);
+            lines[1] = cloneObj(featuresdata);
+
+            lines[1][0].geometry.coordinates[0] = 114.43;
+
+//            console.log(lines);
+
+            //已走路线
+            var linePath = g.selectAll(".lineConnect")
+                    .data(lines)
+                    .enter()
+                    .append("path")
+                    .attr("class", "lineConnect");
+
+
+            // 运动点
+//            var marker = g.append("circle")
+//                    .attr("r", 10)
+//                    .attr("id", "marker")
+//                    .attr("class", "travelMarker");
+
+            // NOT BEST Practice. Style start & end points.
+//            var originANDdestination = [featuresdata[0], featuresdata[1]]
+
+            map.on("viewreset", reset);
+
+            // this puts stuff on the map!
+            reset();
+
+            // Reposition the SVG to cover the features. 注意裁剪
+            function reset() {
+                var bounds = d3path.bounds(ipPoints),
+                        topLeft = bounds[0],
+                        bottomRight = bounds[1];
+
+
+                ptFeatures.attr("transform",
+                        function (d) {
+                            return "translate(" +
+                                    mMaps.general.applyLatLngToLayer(d).x + "," +
+                                    mMaps.general.applyLatLngToLayer(d).y + ")";
+                        });
+
+
+                // Setting the size and location of the overall SVG container
+                svg.attr("width", bottomRight[0] - topLeft[0] + 100)
+                        .attr("height", bottomRight[1] - topLeft[1] + 100)
+                        .style("left", topLeft[0] - 50 + "px")
+                        .style("top", topLeft[1] - 50 + "px");
+
+
+                linePath.attr("d", toLine);
+
+                var totalLength = linePath.node().getTotalLength();
+
+                linePath.attr("stroke-dasharray", totalLength + "," + totalLength)
+                        .attr("stroke-dashoffset", totalLength)
+                        .transition()
+                        .duration(300)
+                        .ease("linear")
+                        .attr("stroke-dashoffset", 0)
+                ;
+
+                g.attr("transform", "translate(" + (-topLeft[0] + 50) + "," + (-topLeft[1] + 50) + ")");
+            } // end reset
+
+        }
+
+
+//        }
+    }
+
+    apps.start.init();
+    apps.start.go();
+    <!--/IP地址浏览-->
 </script>
 </body>
 </html>

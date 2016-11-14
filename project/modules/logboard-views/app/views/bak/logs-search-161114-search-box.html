@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="leaflet demos">
     <meta name="author" content="yaoooo">
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="../../favicon.ico">
     <title> logs search 日志搜索页</title>
     <!--<link href="../res/styles/css/bootstrap-4.0.0a3.css" rel="stylesheet">-->
-    <link href="../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
-    <link href="../res/styles/css/bootstrap-table.css" rel="stylesheet">
-    <link href="../res/styles/general.css" rel="stylesheet">
-    <link href="../res/styles/layout.css" rel="stylesheet">
-    <link href="../res/styles/logssearch.css" rel="stylesheet">
+    <link href="../../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
+    <link href="../../res/styles/css/bootstrap-table.css" rel="stylesheet">
+    <!--<link href="../res/styles/general.css" rel="stylesheet">-->
+    <link href="../../res/styles/layout.css" rel="stylesheet">
+    <link href="../../res/styles/logssearch.css" rel="stylesheet">
     <!--<link href="styles/css/bootstrap-4.0.0a3.min.css" rel="stylesheet">-->
 </head>
 
@@ -30,8 +30,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!--<button onclick="showOrHideDOM('searchBox')" class="btn btn-default">测试显示-->
-            <!--</button>-->
             <a class="navbar-brand" href="#">日志内容搜索</a>
         </div>
 
@@ -41,65 +39,58 @@
 <!-- Begin page content -->
 <div class="container">
 
-    <div class="blank_divider20"></div>
     <!--搜索框-->
-    <div >
-        <div class="row">
-            <div class="col-sm-7">
-
-            </div>
-            <div class="col-sm-5">
-                <div class="form-inline">
-                    <button type="button" class="btn btn-default  choose_btn margin_lr2">
-                        选择index
-                    </button>
-                    <button type="button" class="btn btn-default  choose_btn margin_lr2">
-                        选择type
-                    </button>
-                    <button type="button" class="btn btn-default  choose_btn margin_lr2">
-                        选择AppCode
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="searchBox" class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <div id="imaginary_container">
-                    <div class="input-group stylish-input-group">
-                        <input type="text" class="form-control" placeholder="请输入查询关键字">
-                        <span class="input-group-addon">
-                        <button type="submit" onclick="removeElementById('searchBox');showElementById('logsList')">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="请输入查询关键字">
+                    <span class="input-group-addon">
+                        <button type="submit">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
-                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-    <!--/搜索框-->
-
-
-    <!--最新日志列表-->
-    <div id="logsList" class="_is_hidden">
-        <br>
-        <table id="table" data-search="true" data-show-columns="true" data-pagination="true" data-height="550">
-            <thead>
-            <tr>
-                <th data-field="stargazers_count" data-sortable="true">日志ID</th>
-                <th data-field="name" data-sortable="true" width="200">日志时间</th>
-                <th data-field="forks_count" data-sortable="true">LogMsg</th>
-                <th data-field="description" data-sortable="true">logOptions</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
-    <!--/最新日志列表-->
-
-
 </div>
+<!--/搜索框-->
+
+
+<!--最新日志列表-->
+<div class="form-inline">
+    <button type="button"
+            class="btn btn-default mybtn-top">
+        Scroll to top
+    </button>
+    <button type="button"
+            class="btn btn-default mybtn-row">
+        Scroll to row index:
+    </button>
+    <input type="number"
+           class="form-control row-index"
+           value="3" min="0">
+    <button type="button"
+            class="btn btn-default mybtn-btm">
+        Scroll to bottom
+    </button>
+</div>
+
+<div style="padding: 20px; ">
+    <br>
+    <table id="table" data-search="true" data-show-columns="true" data-pagination="true" data-height="550">
+        <thead>
+        <tr>
+            <th data-field="stargazers_count" data-sortable="true">Stars</th>
+            <th data-field="name" data-sortable="true" width="200">Name</th>
+            <th data-field="forks_count" data-sortable="true">Forks</th>
+            <th data-field="description" data-sortable="true">Description</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<!--最新日志列表-->
 
 
 <!--页脚-->
@@ -111,18 +102,15 @@
 <!--/页脚-->
 
 
-<script src="../res/scripts/js/jquery-3.1.0.js"></script>
-<script src="../res/scripts/js/holder-2.6.0.min.js"></script>
-<script src="../res/scripts/js/tether-1.3.2.min.js"></script>
-<script src="../res/vendor/js/bootstrap-3.3.7.js"></script>
-<script src="../res/scripts/js/bootstrap-table.js"></script>
-<script src="../res/scripts/general.js"></script>
-
+<script src="../../res/scripts/js/jquery-3.1.0.js"></script>
+<script src="../../res/scripts/js/holder-2.6.0.min.js"></script>
+<script src="../../res/scripts/js/tether-1.3.2.min.js"></script>
+<script src="../../res/vendor/js/bootstrap-3.3.7.js"></script>
+<script src="../../res/scripts/js/bootstrap-table.js"></script>
 <!--<script src="../res/scripts/js/d3-4.2.1.js"></script>-->
 <!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->
 <!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
 <script>
-
 
     var searchListData = [{
         "name": "bootstrap-table",
@@ -152,7 +140,6 @@
     }];
 
     $(function () {
-
         $('#table').bootstrapTable({
             data: searchListData
         });
@@ -177,10 +164,6 @@
         });
 
     });
-
-
-
-
 
 </script>
 </body>
