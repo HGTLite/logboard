@@ -41,7 +41,7 @@
 
 </style>
 <body>
-<script src="../../../res/scripts/js/d3-3.5.17.js"></script>
+<script src="../../../res/scripts/js/d3-3.5.17.js" type="text/javascript"></script>
 <script>
 
     var margin = {top: 40, right: 40, bottom: 40, left: 40},
@@ -67,14 +67,22 @@
 
     var area = d3.svg.area()
             .interpolate("monotone")
-            .x(function(d) { return x(d.date); })
+            .x(function (d) {
+                return x(d.date);
+            })
             .y0(height)
-            .y1(function(d) { return y(d.price); });
+            .y1(function (d) {
+                return y(d.price);
+            });
 
     var line = d3.svg.line()
             .interpolate("monotone")
-            .x(function(d) { return x(d.date); })
-            .y(function(d) { return y(d.price); });
+            .x(function (d) {
+                return x(d.date);
+            })
+            .y(function (d) {
+                return y(d.price);
+            });
 
     var svg = d3.select("body").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -88,15 +96,17 @@
             .attr("width", width)
             .attr("height", height);
 
-    d3.csv("../../res/data/readme.csv", type, function(error, data) {
+    d3.csv("../../../res/data/readme.csv", type, function (error, data) {
+
         if (error) throw error;
 
         // Compute the minimum and maximum date, and the maximum price.
         x.domain([data[0].date, data[data.length - 1].date]);
-        y.domain([0, d3.max(data, function(d) { return d.price; })]).nice();
+        y.domain([0, d3.max(data, function (d) {
+            return d.price;
+        })]).nice();
 
-        svg
-                .datum(data)
+        svg.datum(data)
                 .on("click", click);
 
         svg.append("path")

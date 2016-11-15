@@ -1,9 +1,12 @@
 
 // 图表绘制
 (function () {
-    createHourlyLogsCurve();
-    createExpLogsCurve();
-    createExpStatsPie();
-    createLogsTagsForce();
+    createLogsGeneralCurve();
+    // createExpLogsCurve();
+    // createExpStatsPie();
+    // createLogsTagsForce();
     // createExpStatsLegend();
+
+
+
 })();

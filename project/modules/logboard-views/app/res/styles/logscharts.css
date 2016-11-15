@@ -1,0 +1,40 @@
+#svgLogsGenaral .axis {
+    stroke-width: 1;
+}
+#svgLogsGenaral .axis .tick line {
+    stroke: black;
+}
+#svgLogsGenaral .axis .tick text {
+    fill: black;
+    font-size: 0.7em;
+}
+#svgLogsGenaral .axis .domain {
+    fill: none;
+    stroke: black;
+}
+#svgLogsGenaral .group {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5;
+}
+
+/*=================*/
+#svgLogsExp .axis {
+    stroke-width: 1;
+}
+#svgLogsExp .axis .tick line {
+    stroke: black;
+}
+#svgLogsExp .axis .tick text {
+    fill: black;
+    font-size: 0.7em;
+}
+#svgLogsExp .axis .domain {
+    fill: none;
+    stroke: black;
+}
+#svgLogsExp .group {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5;
+}

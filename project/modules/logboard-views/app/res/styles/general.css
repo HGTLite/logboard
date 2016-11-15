@@ -21,6 +21,8 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     margin-right: 4%;
 }
 
+
+
 .exp_contents_padding {
     padding: 0.7rem;
 }
@@ -95,6 +97,13 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 ._padding_left_18 {
     padding-left: 18%;
 }
+._padding_top_18{
+    padding-top: 18%;
+}
+
+._margin_left_24{
+margin-left:24px;
+}
 
 .h_line {
 
@@ -165,16 +174,16 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     height: 48px;
 }
 
-.blank_divider60 {
-    height: 60px;
+.blank_divider64 {
+    height: 64px;
 }
 
 .blank_divider80 {
     height: 80px;
 }
 
-.blank_divider90 {
-    height: 90px;
+.blank_divider96 {
+    height: 96px;
 }
 
 .blank_divider100 {
@@ -195,6 +204,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 
 .blank_divider220 {
     height: 220px;
+}
+
+.blank_divider240 {
+    height: 240px;
 }
 
 .blank_divider250 {

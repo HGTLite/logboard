@@ -1,0 +1,65 @@
+
+.panel-group {
+    padding-top: 50px;
+}
+
+.panel-default {
+    border-radius: 0;
+    border: none;
+    background: none;
+    margin-bottom: 0;
+    padding-bottom: 14px;
+}
+
+.panel-default > .panel-heading {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.panel-default > .panel-heading + .panel-collapse .panel-body {
+    border: none;
+    padding: 0 0 0 32px;
+}
+
+.panel-default h5 {
+    font: 300 19px "Open Sans", Arial, sans-serif;
+    padding: 0;
+    margin: 0 0 5px;
+}
+
+.panel-group .panel + .panel {
+    margin-top: 15px;
+}
+
+.panel-default .accordion-toggle:before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+    background: #e54a1a url(http://keenthemes.com/assets/bootsnipp/toggle-icons.png) no-repeat 6px 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative;
+    top: 4px;
+}
+
+.panel-default .collapsed:before {
+    background: #495764 url(http://keenthemes.com/assets/bootsnipp/toggle-icons.png) no-repeat 6px -148px;
+}
+
+.panel-default .panel-title:hover .collapsed:before {
+    background-color: #e54a1a;
+}
+
+.panel-default .accordion-toggle,
+.panel-default .accordion-toggle:focus,
+.panel-default .accordion-toggle:hover,
+.panel-default .accordion-toggle:active {
+    color: #1ea9e3;
+    text-decoration: none;
+}
+
+.panel-default .collapsed {
+    color: #5f6f7e;
+}

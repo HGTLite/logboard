@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 3 Collapse show/hide state - Bootsnipp.com</title>
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+
+        .panel-group {
+            padding-top: 50px;
+        }
+
+        .panel-default {
+            border-radius: 0;
+            border: none;
+            background: none;
+            margin-bottom: 0;
+            padding-bottom: 14px;
+        }
+
+        .panel-default > .panel-heading {
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .panel-default > .panel-heading + .panel-collapse .panel-body {
+            border: none;
+            padding: 0 0 0 32px;
+        }
+
+        .panel-default h5 {
+            font: 300 19px "Open Sans", Arial, sans-serif;
+            padding: 0;
+            margin: 0 0 5px;
+        }
+
+        .panel-group .panel + .panel {
+            margin-top: 15px;
+        }
+
+        .panel-default .accordion-toggle:before {
+            content: "";
+            width: 21px;
+            height: 21px;
+            display: inline-block;
+            background: #e54a1a url(http://keenthemes.com/assets/bootsnipp/toggle-icons.png) no-repeat 6px 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+            top: 4px;
+        }
+
+        .panel-default .collapsed:before {
+            background: #495764 url(http://keenthemes.com/assets/bootsnipp/toggle-icons.png) no-repeat 6px -148px;
+        }
+
+        .panel-default .panel-title:hover .collapsed:before {
+            background-color: #e54a1a;
+        }
+
+        .panel-default .accordion-toggle,
+        .panel-default .accordion-toggle:focus,
+        .panel-default .accordion-toggle:hover,
+        .panel-default .accordion-toggle:active {
+            color: #1ea9e3;
+            text-decoration: none;
+        }
+
+        .panel-default .collapsed {
+            color: #5f6f7e;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+<div class="container">
+    <div class="panel-group" id="accordion1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_1">Lorem
+                        ipsum dolor sit amet</a>
+                </h5>
+            </div>
+            <div id="accordion1_1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim minim veniam quis nostrud exercitation dolore magna
+                        ullamco.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut labore et
+                        dolore.</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                       href="#accordion1_2">Consectetur adipisicing elit</a>
+                </h5>
+            </div>
+            <div id="accordion1_2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim minim veniam quis nostrud exercitation dolore magna
+                        ullamco.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut labore et
+                        dolore.</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                       href="#accordion1_3">Augue assum anteposuerit dolore</a>
+                </h5>
+            </div>
+            <div id="accordion1_3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim minim veniam quis nostrud exercitation dolore magna
+                        ullamco.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut labore et
+                        dolore.</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                       href="#accordion1_4">Sollemnes in futurum</a>
+                </h5>
+            </div>
+            <div id="accordion1_4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim minim veniam quis nostrud exercitation dolore magna
+                        ullamco.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut labore et
+                        dolore.</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                       href="#accordion1_5">Nostrud Tempor veniam</a>
+                </h5>
+            </div>
+            <div id="accordion1_5" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim minim veniam quis nostrud exercitation dolore magna
+                        ullamco.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut labore et
+                        dolore.</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                       href="#accordion1_6">Ut enem magana sed dolore</a>
+                </h5>
+            </div>
+            <div id="accordion1_6" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim minim veniam quis nostrud exercitation dolore magna
+                        ullamco.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut labore et
+                        dolore.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<center>
+    <strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
+</center>
+<br>
+<br>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

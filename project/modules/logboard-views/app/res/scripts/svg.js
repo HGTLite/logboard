@@ -3,7 +3,7 @@
  */
 function createHourlyLogsCurve() {
     var n = 60;
-    var random = d3.randomNormal(1000, 200);
+    var random = d3.random.normal(1000, 200);
     var data = d3.range(0, n, 1).map(random);
 
     var svg = d3.select("#svgLogsGenaral"),
@@ -12,22 +12,31 @@ function createHourlyLogsCurve() {
         height = svg.attr("height") - margin.top - margin.bottom,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var x = d3.scaleLinear()
+    var x = d3.scale.linear()
         .domain([1, n - 2])
         .range([0, width]);
 
-    var y = d3.scaleLinear()
+    var y = d3.scale.linear()
         .domain([500, 1500])
         .range([height, 0]);
 
-    var line = d3.line()
-        .curve(d3.curveBasis)
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .tickSize(-height);
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .ticks(4)
+        .orient("left");
+
+    var line = d3.svg.line()
         .x(function (d, i) {
             return x(i);
         })
         .y(function (d, i) {
             return y(d);
-        });
+        })
+        .interpolate("basis");
 
     g.append("defs").append("clipPath")
         .attr("id", "clip")
@@ -38,12 +47,12 @@ function createHourlyLogsCurve() {
     g.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + y(500) + ")")
-        .call(d3.axisBottom(x));
+        .call(xAxis);
 
     g.append("g")
         .attr("class", "axis axis--y")
         .attr("transform", "translate(" + x(0) + ",0)")
-        .call(d3.axisLeft(y));
+        .call(yAxis);
 
     g.append("g")
         .attr("clip-path", "url(#clip)")
@@ -52,7 +61,7 @@ function createHourlyLogsCurve() {
         .attr("class", "logs_genereal_line")
         .transition()
         .duration(1000)
-        .ease(d3.easeLinear)
+        .ease("linear")
         .on("start", function tick() {
 
             // Push a new data point onto the back.
@@ -88,11 +97,11 @@ function createExpLogsCurve() {
         height = svg.attr("height") - margin.top - margin.bottom,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var x = d3.scaleLinear()
+    var x = d3.scale.linear()
         .domain([1, n - 2])
         .range([0, width]);
 
-    var y = d3.scaleLinear()
+    var y = d3.scale.linear()
         .domain([0, 100])
         .range([height, 0]);
 
@@ -205,7 +214,7 @@ function createExpStatsPie() {
             return "translate(" + arc.centroid(d) + ")";
         })
         .attr("text-anchor", "middle")
-        .text(function (d,i) {
+        .text(function (d, i) {
             return expDistData[i].value;
         });
     //endregion
@@ -227,8 +236,8 @@ function createExpStatsPie() {
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", function (d, i) {
-        return color(i);
-    });
+            return color(i);
+        });
 
     g.append("text")
         .attr("x", 24)
@@ -244,7 +253,7 @@ function createExpStatsPie() {
 /**
  * 生成异常统计环形图图例
  */
-function createLogsTagsForce(){
+function createLogsTagsForce() {
 
     var margin = {top: 100, right: 100, bottom: 100, left: 100};
 
@@ -268,22 +277,29 @@ function createLogsTagsForce(){
     var svg = d3.select('#svgLogsForce')
         .append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
-    var nodes = d3.range(200).map(() => {
+    var nodes = d3.range(200).map(() = > {
             var i = Math.floor(Math.random() * m),
             radius = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius,
         d = {cluster: i, r: radius};
     if (!clusters[i] || (radius > clusters[i].r)) clusters[i] = d;
     return d;
-});
+})
+    ;
 
     var circles = svg.append('g')
             .datum(nodes)
             .selectAll('.circle')
-            .data(d => d)
-.enter().append('circle')
-        .attr('r', (d) => d.r)
-.attr('fill', (d) => z(d.cluster))
-.attr('stroke', 'black')
+            .data(d = > d
+)
+.
+    enter().append('circle')
+        .attr('r', (d) = > d.r
+)
+.
+    attr('fill', (d) = > z(d.cluster)
+)
+.
+    attr('stroke', 'black')
         .attr('stroke-width', 1);
 
     var simulation = d3.forceSimulation(nodes)
@@ -296,13 +312,17 @@ function createLogsTagsForce(){
 
     function ticked() {
         circles
-            .attr('cx', (d) => d.x)
-    .attr('cy', (d) => d.y);
+            .attr('cx', (d) = > d.x
+    )
+    .
+        attr('cy', (d) = > d.y
+    )
+        ;
     }
 
     // These are implementations of the custom forces.
     function clustering(alpha) {
-        nodes.forEach(function(d) {
+        nodes.forEach(function (d) {
             var cluster = clusters[d.cluster];
             if (cluster === d) return;
             var x = d.x - cluster.x,
@@ -320,16 +340,20 @@ function createLogsTagsForce(){
     }
 
     function collide(alpha) {
-        var quadtree = d3.quadtree().x((d) => d.x).y((d) => d.y)
-    .addAll(nodes);
+        var quadtree = d3.quadtree().x((d) = > d.x
+    ).
+        y((d) = > d.y
+    )
+    .
+        addAll(nodes);
 
-        nodes.forEach(function(d) {
+        nodes.forEach(function (d) {
             var r = d.r + maxRadius + Math.max(padding, clusterPadding),
                 nx1 = d.x - r,
                 nx2 = d.x + r,
                 ny1 = d.y - r,
                 ny2 = d.y + r;
-            quadtree.visit(function(quad, x1, y1, x2, y2) {
+            quadtree.visit(function (quad, x1, y1, x2, y2) {
 
                 if (quad.data && (quad.data !== d)) {
                     var x = d.x - quad.data.x,
