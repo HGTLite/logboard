@@ -1,13 +1,16 @@
 /**
+ *
  * 日志概览曲线
+ *
  */
 function createLogsGeneralCurve(){
+
     var limit = 60 * 1,
         duration = 750,
         now = new Date(Date.now() - duration)
 
-    var width = 500,
-        height = 200
+    var width = 600,
+        height = 360;
 
     var groups = {
         current: {
@@ -147,8 +150,8 @@ function createLogsExpCurve(){
         duration = 750,
         now = new Date(Date.now() - duration)
 
-    var width = 500,
-        height = 200
+    var width = 960,
+        height = 240;
 
     var groups = {
         current: {

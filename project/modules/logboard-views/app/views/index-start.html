@@ -118,12 +118,9 @@
         <!--日志饼状图-->
         <div class="col-sm-5">
             <div class="row">
-                <svg id="svgLogsGenaralPie" width="400" height="200"></svg>
+                <svg id="svgLogsGenaralPie" width="420" height="480"></svg>
             </div>
-            <div class="blank_divider100"></div>
-            <!--<div class="row">-->
-            <!--<svg id="svgExpStatsLegend" width="210" height="200"></svg>-->
-            <!--</div>-->
+
         </div>
         <!--日志曲线图-->
         <div class="col-sm-7">
@@ -131,7 +128,7 @@
                 <div class="col-sm-3 _text_align_center">
                 </div>
                 <div class="col-sm-4 _text_align_center">
-                    <span class="h4">日志实时处理量变化曲线</span>
+                    <span class="h3">日志实时处理量</span>
                 </div>
                 <div class="col-sm-5 _text_align_right">
                     <span class="align_right ">
@@ -148,7 +145,7 @@
 
             <div id="logsGeneralCurve" class="row bg_white_pure">
                 <div class="col-sm-12 _text_align_center">
-                    <svg id="svgLogsGenaral" width="960" height="400"></svg>
+                    <svg id="svgLogsGenaral" width="960" height="480"></svg>
                 </div>
             </div>
         </div>
@@ -160,32 +157,33 @@
 
 <!--异常监控模块-->
 <div id="logsException" class="container-fluid screen-page bg_gray_shallow ">
+    <a name="aLogsException"></a>
     <div class="row  blank_divider20 ">
-        <a name="aLogsException"></a>
     </div>
-    <!--<a name="aLogsException"></a>-->
     <div class="row blank_divider30"></div>
+
     <!--曲线图标题部分-->
-    <div id="expLogsHeader" class="row blank_divider40 ">
-        <div class="col-sm-3 _text_align_center">
+    <div id="expLogsHeader" class="row blank_divider70 ">
+        <div class="col-sm-2 _text_align_center">
         </div>
-        <div class="col-sm-4 _text_align_center">
+        <div class="col-sm-3 _text_align_center">
             <span class="h3">异常日志监控</span>
         </div>
-        <div class="col-sm-5 _text_align_center">
-    <span class="align_right ">
-    <a id="a01" href="javascript:void(0)" class="btn btn-info">近1小时</a>
-    <a id="a02" href="javascript:void(0)" class="btn text-muted ">24小时</a>
-    <a id="a03" href="javascript:void(0)" class="btn text-muted">昨天</a>
-    <a id="a04" href="javascript:void(0)" class="btn text-muted">7天</a>
-    <a id="a05" href="javascript:void(0)" class="btn text-muted">本月</a>
-    </span>
+        <div class="col-sm-7 _text_align_center">
+            <span class="align_right ">
+                <a id="a01" href="javascript:void(0)" class="btn btn-info">近1小时</a>
+                <a id="a02" href="javascript:void(0)" class="btn text-muted ">24小时</a>
+                <a id="a03" href="javascript:void(0)" class="btn text-muted">昨天</a>
+                <a id="a04" href="javascript:void(0)" class="btn text-muted">7天</a>
+                <a id="a05" href="javascript:void(0)" class="btn text-muted">本月</a>
+            </span>
         </div>
     </div>
+
     <!--异常曲线-->
     <div id="expLogsCurve" class="row ">
         <div class="col-sm-12 _text_align_center">
-            <svg id="svgLogsExp" width="1080" height="330"></svg>
+            <svg id="svgLogsExp" width="1080" height="280"></svg>
         </div>
     </div>
 
@@ -300,16 +298,19 @@
 <!--日志统计模块-->
 <div id="logsStats" class="container-fluid  screen-page bg_white_pure _text_align_center">
     <a name="aLogsStats"></a>
-    <div class="row blank_divider30"></div>
+    <div class="row blank_divider10"></div>
     <h2>日志统计</h2>
-    <div>
-        <svg id="svgLogsStats" width="1080" height="512"></svg>
+    <div class="row ">
+        <svg id="svgLogsStats" width="1280" height="420"></svg>
+    </div>
+    <div class="row ">
+        分类标签
     </div>
 </div>
 <!--/日志统计模块-->
 
 <!--用户挖掘模块-->
-<div id="logsBehavior" class="container-fluid screen-page bg_gray_shallow">
+<div id="logsBehavior" lass="container-fluid screen-page bg_gray_shallow">
     <a name="aLogsBehavior"></a>
     <div class="row blank_divider30"></div>
     <div class="row _height100">
@@ -419,6 +420,7 @@
 
     // 图表绘制
     (function () {
+
         createLogsGeneralPie();
         createLogsGeneralCurve();
         createLogsExpCurve();

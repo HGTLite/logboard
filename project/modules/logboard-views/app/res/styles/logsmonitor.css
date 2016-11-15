@@ -1,3 +1,4 @@
+/*checkbox样式*/
 .checkbox {
     padding-left: 20px; }
 .checkbox label {
@@ -170,3 +171,26 @@
     border-color: #5cb85c; }
 .radio-success input[type="radio"]:checked + label::after {
     background-color: #5cb85c; }
+/*=====checkbox样式*/
+
+/*曲线样式*/
+#svgMonitor .axis {
+    stroke-width: 1;
+}
+#svgMonitor .axis .tick line {
+    stroke: black;
+}
+#svgMonitor .axis .tick text {
+    fill: black;
+    font-size: 0.7em;
+}
+#svgMonitor .axis .domain {
+    fill: none;
+    stroke: black;
+}
+#svgMonitor .group {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5;
+}
+/*=====曲线样式*/
