@@ -1,302 +1,436 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Starter Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="logboard 日志应用系统">
+    <meta name="keywords" content="logs, big data">
+    <meta name="author" content="yaoooo and Bootstrap contributors">
+    <link rel="icon" href="favicon.ico">
+    <title>logboard 日志应用系统 首页</title>
+    <link rel="stylesheet" href="res/styles/css/bootstrap-3.3.7.css"/>
+    <link rel="stylesheet" href="res/styles/css/leaflet-1.0.0rc3.css"/>
+    <link rel="stylesheet" href="res/styles/css/nv.d3.css"/>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="res/fonts/css/font-awesome.css">
+    <link rel="stylesheet" href="res/styles/general.css"/>
+    <link rel="stylesheet" href="res/styles/layout.css"/>
+    <link rel="stylesheet" href="res/styles/bscard.css"/>
+    <link rel="stylesheet" href="res/styles/ipviews.css"/>
+    <link rel="stylesheet" href="res/styles/colors.css"/>
+    <link rel="stylesheet" href="res/styles/svg.css"/>
+    <link rel="stylesheet" href="res/styles/logscharts.css"/>
+</head>
 
-    <!-- Disable tap highlight on IE -->
-    <meta name="msapplication-tap-highlight" content="no">
+<body>
 
-    <!-- Web Application Manifest -->
-    <!--<link rel="manifest" href="manifest.json">-->
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Web Starter Kit">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
-
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#2F3BA2">
-
-    <!-- Color the status bar on mobile devices -->
-    <meta name="theme-color" content="#2F3BA2">
-
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
-
-    <!-- Material Design Lite page styles:
-    You can choose other color schemes from the CDN, more formats here http://www.getmdl.io/customize/index.html
-    Format: material.color1-color2.min.css, some examples:
-    material.red-teal.min.css
-    material.blue-orange.min.css
-    material.purple-indigo.min.css
-    -->
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-
-    <!-- Material Design icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <!-- Your styles -->
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-          <h3>Web Starter Kit</h3>
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="#overview" class="mdl-layout__tab is-active">Overview</a>
-          <a href="#features" class="mdl-layout__tab">Features</a>
-          <a href="#features" class="mdl-layout__tab">Details</a>
-          <a href="#features" class="mdl-layout__tab">Technology</a>
-          <a href="#features" class="mdl-layout__tab">FAQ</a>
-          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
-            <i class="material-icons" role="presentation">add</i>
-            <span class="visuallyhidden">Add</span>
-          </button>
-        </div>
-      </header>
-      <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="overview">
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <i class="material-icons">play_circle_filled</i>
-            </header>
-            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
-                <h4>Features</h4>
-                Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse.
-              </div>
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">Read our features</a>
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-              <i class="material-icons">more_vert</i>
+<!-- Fixed navbar 顶部导航栏-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                <h4 class="mdl-cell mdl-cell--12-col">Details</h4>
-                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                  <div class="section__circle-container__circle mdl-color--primary"></div>
-                </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                  <h5>Lorem ipsum dolor sit amet</h5>
-                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="#">proident minim</a>.
-                </div>
-                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                  <div class="section__circle-container__circle mdl-color--primary"></div>
-                </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                  <h5>Lorem ipsum dolor sit amet</h5>
-                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="#">proident minim</a>.
-                </div>
-                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                  <div class="section__circle-container__circle mdl-color--primary"></div>
-                </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                  <h5>Lorem ipsum dolor sit amet</h5>
-                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="#">proident minim</a>.
-                </div>
-              </div>
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">Read our features</a>
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn2">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text">
-                <h4>Technology</h4>
-                Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse. Pariatur occaecat nisi laboris tempor laboris eiusmod qui id Lorem esse commodo in. Exercitation aute dolore deserunt culpa consequat elit labore incididunt elit anim.
-              </div>
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">Read our features</a>
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn3">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn3">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
-          <section class="section--footer mdl-color--white mdl-grid">
-            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-              <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
-            </div>
-            <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
-            </div>
-            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-              <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
-            </div>
-            <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
-            </div>
-          </section>
+            <a class="navbar-brand" href="#">LogBoard 日志公告牌</a>
         </div>
-        <div class="mdl-layout__tab-panel" id="features">
-          <section class="section--center mdl-grid mdl-grid--no-spacing">
-            <div class="mdl-cell mdl-cell--12-col">
-              <h4>Features</h4>
-              Minim duis incididunt est cillum est ex occaecat consectetur. Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
-              <ul class="toc">
-                <h4>Contents</h4>
-                <a href="#lorem1">Lorem ipsum</a>
-                <a href="#lorem2">Lorem ipsum</a>
-                <a href="#lorem3">Lorem ipsum</a>
-                <a href="#lorem4">Lorem ipsum</a>
-                <a href="#lorem5">Lorem ipsum</a>
-              </ul>
-
-              <h5 id="lorem1">Lorem ipsum dolor sit amet</h5>
-              Excepteur et pariatur officia veniam anim culpa cupidatat consequat ad velit culpa est non.
-              <ul>
-                <li>Nisi qui nisi duis commodo duis reprehenderit consequat velit aliquip.</li>
-                <li>Dolor consectetur incididunt in ipsum laborum non et irure pariatur excepteur anim occaecat officia sint.</li>
-                <li>Lorem labore proident officia excepteur do.</li>
-              </ul>
-
-              <p>
-                Sit qui est voluptate proident minim cillum in aliquip cupidatat labore pariatur id tempor id. Proident occaecat occaecat sint mollit tempor duis dolor cillum anim. Dolore sunt ea mollit fugiat in aliqua consequat nostrud aliqua ut irure in dolore. Proident aliqua culpa sint sint exercitation. Non proident occaecat reprehenderit veniam et proident dolor id culpa ea tempor do dolor. Nulla adipisicing qui fugiat id dolor. Nostrud magna voluptate irure veniam veniam labore ipsum deserunt adipisicing laboris amet eu irure. Sunt dolore nisi velit sit id. Nostrud voluptate labore proident cupidatat enim amet Lorem officia magna excepteur occaecat eu qui. Exercitation culpa deserunt non et tempor et non.
-              </p>
-              <p>
-                Do dolor eiusmod eu mollit dolore nostrud deserunt cillum irure esse sint irure fugiat exercitation. Magna sit voluptate id in tempor elit veniam enim cupidatat ea labore elit. Aliqua pariatur eu nulla labore magna dolore mollit occaecat sint commodo culpa. Eu non minim duis pariatur Lorem quis exercitation. Sunt qui ex incididunt sit anim incididunt sit elit ad officia id.
-              </p>
-              <p id="lorem2">
-                Tempor voluptate ex consequat fugiat aliqua. Do sit et reprehenderit culpa deserunt culpa. Excepteur quis minim mollit irure nulla excepteur enim quis in laborum. Aliqua elit voluptate ad deserunt nulla reprehenderit adipisicing sint. Est in eiusmod exercitation esse commodo. Ea reprehenderit exercitation veniam adipisicing minim nostrud. Veniam dolore ex ea occaecat non enim minim id ut aliqua adipisicing ad. Occaecat excepteur aliqua tempor cupidatat aute dolore deserunt ipsum qui incididunt aliqua occaecat sit quis. Culpa sint aliqua aliqua reprehenderit veniam irure fugiat ea ad.
-              </p>
-              <p>
-                Eu minim fugiat laborum irure veniam Lorem aliqua enim. Aliqua veniam incididunt consequat irure consequat tempor do nisi deserunt. Elit dolore ad quis consectetur sint laborum anim magna do nostrud amet. Ea nulla sit consequat quis qui irure dolor. Sint deserunt excepteur consectetur magna irure. Dolor tempor exercitation dolore pariatur incididunt ut laboris fugiat ipsum sunt veniam aute sunt labore. Non dolore sit nostrud eu ad excepteur cillum eu ex Lorem duis.
-              </p>
-              <p>
-                Id occaecat velit non ipsum occaecat aliqua quis ut. Eiusmod est magna non esse est ex incididunt aute ullamco. Cillum excepteur sint ipsum qui quis velit incididunt amet. Qui deserunt anim enim laborum cillum reprehenderit duis mollit amet ad officia enim. Minim sint et quis aliqua aliqua do minim officia dolor deserunt ipsum laboris. Nulla nisi voluptate consectetur est voluptate et amet. Occaecat ut quis adipisicing ad enim. Magna est magna sit duis proident veniam reprehenderit fugiat reprehenderit enim velit ex. Ullamco laboris culpa irure aliquip ad Lorem consequat veniam ad ipsum eu. Ipsum culpa dolore sunt officia laborum quis.
-              </p>
-
-              <h5 id="lorem3">Lorem ipsum dolor sit amet</h5>
-
-              <p id="lorem4">
-                Eiusmod nulla aliquip ipsum reprehenderit nostrud non excepteur mollit amet esse est est dolor. Dolore quis pariatur sit consectetur veniam esse ullamco duis Lorem qui enim ut veniam. Officia deserunt minim duis laborum dolor in velit pariatur commodo ullamco eu. Aute adipisicing ad duis labore laboris do mollit dolor cillum sunt aliqua ullamco. Esse tempor quis cillum consequat reprehenderit. Adipisicing proident anim eu sint elit aliqua anim dolore cupidatat fugiat aliquip qui.
-              </p>
-              <p id="lorem5">
-                Nisi eiusmod esse cupidatat excepteur exercitation ipsum reprehenderit nostrud deserunt aliqua ullamco. Anim est irure commodo eiusmod pariatur officia. Est dolor ipsum excepteur magna aliqua ad veniam irure qui occaecat eiusmod aute fugiat commodo. Quis mollit incididunt amet sit minim velit eu fugiat voluptate excepteur. Sit minim id pariatur ex cupidatat cupidatat nostrud nostrud ipsum.
-              </p>
-              <p>
-                Enim ea officia excepteur ad veniam id reprehenderit eiusmod esse mollit consequat. Esse non aute ullamco Lorem aliqua qui dolore irure eiusmod aute aliqua proident labore aliqua. Ipsum voluptate voluptate exercitation laborum deserunt nulla elit aliquip et minim ex veniam. Duis cupidatat aute sunt officia mollit dolor ad elit ad aute labore nostrud duis pariatur. In est sint voluptate consectetur velit ea non labore. Ut duis ea aliqua consequat nulla laboris fugiat aute id culpa proident. Minim eiusmod laboris enim Lorem nisi excepteur mollit voluptate enim labore reprehenderit officia mollit.
-              </p>
-              <p>
-                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
-              </p>
-            </div>
-          </section>
-        </div>
-        <footer class="mdl-mega-footer">
-          <div class="mdl-mega-footer--middle-section">
-            <div class="mdl-mega-footer--drop-down-section">
-              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">Features</h1>
-              <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Partners</a></li>
-                <li><a href="#">Updates</a></li>
-              </ul>
-            </div>
-            <div class="mdl-mega-footer--drop-down-section">
-              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">Details</h1>
-              <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">Spec</a></li>
-                <li><a href="#">Tools</a></li>
-                <li><a href="#">Resources</a></li>
-              </ul>
-            </div>
-            <div class="mdl-mega-footer--drop-down-section">
-              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">Technology</h1>
-              <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">How it works</a></li>
-                <li><a href="#">Patterns</a></li>
-                <li><a href="#">Usage</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Contracts</a></li>
-              </ul>
-            </div>
-            <div class="mdl-mega-footer--drop-down-section">
-              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
-              <h1 class="mdl-mega-footer--heading">FAQ</h1>
-              <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">Questions</a></li>
-                <li><a href="#">Answers</a></li>
-                <li><a href="#">Contact us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="mdl-mega-footer--bottom-section">
-            <div class="mdl-logo">
-              More Information
-            </div>
-            <ul class="mdl-mega-footer--link-list">
-              <li><a href="https://developers.google.com/web/starter-kit/">Web Starter Kit</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Privacy and Terms</a></li>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#aLogsOverview">日志概览</a></li>
+                <li><a href="#aLogsException">异常监控</a></li>
+                <li><a href="#aLogsStats">日志统计</a></li>
+                <li><a href="#aLogsBehavior">日志挖掘</a></li>
+                <li><a href="#about">关于</a></li>
             </ul>
-          </div>
-        </footer>
-      </main>
+        </div>
+    </div>
+</nav>
+<!-- /Fixed navbar 顶部导航栏-->
+
+<!--高度占位符-->
+<div class="blank_divider51"></div>
+<!--/高度占位符-->
+
+<!--首屏简介模块-->
+<div id="logsTop" class="container-fluid screen-page ">
+    <!--3大快速入口-->
+    <div class="row _text_align_center blank_divider400 bg_blue_svg ">
+        <div class="col-sm-4 " onclick="window.open('views/logs-search.html')">
+            <div style="margin-top: 25%">
+                <img class="top-icon" src="images/top-search.svg" alt="日志搜索">
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志搜索</button>
+            </div>
+        </div>
+        <div class="col-sm-4 " onclick="window.open('views/logs-monitor.html')">
+            <div style="margin-top: 25%">
+                <img class="top-icon" src="images/top-monitor.svg" alt="日志监控">
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志监控</button>
+            </div>
+        </div>
+        <div class="col-sm-4 " onclick="window.open('views/logs-stats.html')">
+            <div style="margin-top: 25%">
+                <img class="top-icon" src="images/top-stats.svg" alt="日志统计">
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志统计</button>
+            </div>
+        </div>
     </div>
 
-    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    <!-- build:js scripts/main.min.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
+    <!--简单数量统计-->
+    <div id="apps_general1" class="row _divider_stripe bg_gray_shallow">
+        <div class="col-sm-4 ">
+            <div style="margin-top: 18%">
+                <i class="fa fa-cubes fa-2x"></i>
+                <div class="stats_count_number">12</div>
+                <div class="stats_count_desc">接入应用数</div>
+            </div>
+        </div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-XXXXX-X', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <!-- Built with love using Web Starter Kit -->
-  </body>
+        <div class="col-sm-4 ">
+            <div style="margin-top: 18%">
+                <i class="fa fa-th fa-2x"></i>
+                <div class="stats_count_number">12306</div>
+                <div class="stats_count_desc">日志处理量</div>
+            </div>
+        </div>
+        <div class="col-sm-4 ">
+            <div style="margin-top: 18%">
+                <i class="fa fa-bell fa-2x"></i>
+                <div class="stats_count_number">1</div>
+                <div class="stats_count_desc">待处理异常</div>
+            </div>
+        </div>
+    </div>
+    <div class="blank_divider10 ">
+        <a name="aLogsOverview"></a>
+    </div>
+</div>
+<!--/首屏简介模块-->
+
+<!--系统概览模块-->
+<div id="logsOverview" class="container-fluid _height_600  ">
+    <div class="row  _height100 _text_align_center margin-top3 ">
+        <!--日志饼状图-->
+        <div class="col-sm-5">
+            <div class="row">
+                <svg id="svgLogsGenaralPie" width="420" height="480"></svg>
+            </div>
+
+        </div>
+        <!--日志曲线图-->
+        <div class="col-sm-7">
+            <div id="logsCurveHeader" class="row bg_white_pure ">
+                <div class="col-sm-3 _text_align_center">
+                </div>
+                <div class="col-sm-4 _text_align_center">
+                    <span class="h3">日志实时处理量</span>
+                </div>
+                <div class="col-sm-5 _text_align_right">
+                    <span class="align_right ">
+                    <a id="a1" href="javascript:void(0)" class="btn btn-info _width15">1小时</a>
+                    <a id="a2" href="javascript:void(0)" class="btn text-muted _width15">24小时</a>
+                    <a id="a3" href="javascript:void(0)" class="btn text-muted _width15">昨天</a>
+                    <a id="a4" href="javascript:void(0)" class="btn text-muted _width15">7天</a>
+                    <a id="a5" href="javascript:void(0)" class="btn text-muted _width15">本月</a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="blank_divider20"></div>
+
+            <div id="logsGeneralCurve" class="row bg_white_pure">
+                <div class="col-sm-12 _text_align_center">
+                    <svg id="svgLogsGenaral" width="960" height="480"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row  blank_divider20 ">
+        <a name="aLogsException"></a>
+    </div>
+</div>
+<!--/系统概览模块-->
+
+
+<!--异常监控模块-->
+<div id="logsException" class="container-fluid screen-page bg_gray_shallow ">
+
+
+    <div class="row blank_divider30"></div>
+
+    <!--曲线图标题部分-->
+    <div id="expLogsHeader" class="row blank_divider70 ">
+        <div class="col-sm-2 _text_align_center">
+        </div>
+        <div class="col-sm-3 _text_align_center">
+            <span class="h3">异常日志监控</span>
+        </div>
+        <div class="col-sm-7 _text_align_center">
+            <span class="align_right ">
+                <a id="a01" href="javascript:void(0)" class="btn btn-info">近1小时</a>
+                <a id="a02" href="javascript:void(0)" class="btn text-muted ">24小时</a>
+                <a id="a03" href="javascript:void(0)" class="btn text-muted">昨天</a>
+                <a id="a04" href="javascript:void(0)" class="btn text-muted">7天</a>
+                <a id="a05" href="javascript:void(0)" class="btn text-muted">本月</a>
+            </span>
+        </div>
+    </div>
+
+    <!--异常曲线-->
+    <div id="expLogsCurve" class="row ">
+        <div class="col-sm-12 _text_align_center">
+            <svg id="svgLogsExp" width="1080" height="280"></svg>
+        </div>
+    </div>
+
+    <!--异常消息列表-->
+    <div id="expDetails" class="row">
+
+        <div class="col-sm-1  _text_align_center _to_top30 ">
+            <i class="fa  fa-angle-left fa-4x  c_bdbdbd"></i>
+        </div>
+
+        <div class="col-sm-10  ">
+
+            <div class="row ">
+
+                <div class="col-sm-4 ">
+                    <div id="expCard01" class="card exp_card _width80 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="label label-danger label-pill float-xs-right exp_card_item_size">严重</span>
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4 ">
+                    <div id="expCard02" class="card exp_card _width80 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app2二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="label label-warning label-pill float-xs-right exp_card_item_size">警告</span>
+
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4 ">
+                    <div id="expCard03" class="card exp_card  _width80 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app3二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="label label-danger label-pill float-xs-right exp_card_item_size">严重</span>
+
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-1  _text_align_center _to_top30 ">
+            <i class="fa  fa-angle-right fa-4x  c_bdbdbd"></i>
+        </div>
+    </div>
+</div>
+<!--/异常监控模块-->
+
+
+<!--日志统计模块-->
+<div id="logsStats" class="container-fluid  screen-page bg_white_pure _text_align_center">
+    <a name="aLogsStats"></a>
+    <div class="row blank_divider10"></div>
+    <h2>日志统计</h2>
+    <div class="row ">
+        <svg id="svgLogsStats" width="1280" height="420"></svg>
+    </div>
+    <div class="row ">
+        分类标签
+    </div>
+</div>
+<!--/日志统计模块-->
+
+<!--用户挖掘模块-->
+<div id="logsBehavior" class="container-fluid screen-page bg_gray_shallow">
+    <a name="aLogsBehavior"></a>
+    <div class="row blank_divider30"></div>
+    <div class="row _height100">
+
+        <!--访问排行榜-->
+        <div class="col-sm-3 _text_align_center ">
+
+            <div class="card text-xs-center ">
+                <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills float-xs-left">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="javascript:void(0)">IP访问排行</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)">搜索排行</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="card-block bg_f5f5f5 ">
+                    <ul class="list-group list-group-flush _no_border  _text_align_left bg_f5f5f5 ">
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5 ">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                    </ul>
+                    <div class="card-block _text_align_left search_top_padding">
+                        <i class="fa fa-angle-double-down fa-2x c_999 "></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--/访问排行榜-->
+
+        <div class="co-sm-9 _text_align_right ">
+            <!--<h2>IP访客分布图</h2>-->
+            <div id="map" class=""></div>
+        </div>
+    </div>
+
+    <!--访客IP分布图-->
+
+</div>
+</div>
+<!--/用户挖掘模块-->
+
+<!--末尾页脚-->
+<div id="lastFooter" class="container-fluid blank_divider160 bg_gray_barely">
+    <a name="about"></a>
+    <div class="row blank_divider20"></div>
+    <div class="row _text_align_center">
+        <div class="col-sm-12">
+            <div class="h5">联系我们</div>
+        </div>
+    </div>
+    <div class="row blank_divider10"></div>
+
+    <div class="row">
+        <div class="col-sm-6 _text_align_right">
+            <i class="fa fa-home"></i>
+        </div>
+        <div class="col-sm-6 _text_align_left">
+            <span style="padding-left: 15px">湖北武汉</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 _text_align_right">
+            <i class="fa fa-phone"></i></div>
+        <div class="col-sm-6 _text_align_left">
+            <span style="padding-left: 15px">17086542389</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 _text_align_right">
+            <i class="fa fa-envelope"></i></div>
+        <div class="col-sm-6 _text_align_left">
+            <span style="padding-left: 15px">helloworld@qq.com</span></div>
+    </div>
+</div>
+<!--/末尾页脚-->
+
+<!-- jQuery first, optional tether for tooltips, then Bootstrap JS. -->
+<script type="text/javascript" src="res/scripts/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="res/scripts/js/tether-1.3.2.min.js"></script>
+<script type="text/javascript" src="res/scripts/js/bootstrap-3.3.7.js"></script>
+<script type="text/javascript" src="res/scripts/js/holder-2.6.0.min.js"></script>
+<script type="text/javascript" src="res/scripts/js/d3-3.5.17.js"></script>
+<script type="text/javascript" src="res/scripts/js/nv.d3.js"></script>
+<script type="text/javascript" src="res/scripts/js/leaflet-1.0.0rc3.js"></script>
+<script type="text/javascript" src="res/scripts/logscharts.js"></script>
+<script type="text/javascript" src="res/scripts/utils.js"></script>
+<script type="text/javascript" src="res/scripts/ipviews.js"></script>
+<!--<script type="text/javascript" src="../res/scripts/svg.js"></script>-->
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+
+<script type="text/javascript">
+
+    (function () {
+
+        //绘制日志饼状图
+        createLogsGeneralPie();
+        //绘制实时日志概览曲线
+        createLogsGeneralCurve();
+        //绘制异常日志曲线
+        createLogsExpCurve();
+        //绘制日志分类聚簇图
+        createLogsStatsForces();
+        //绘制IP访客分布图
+        createIPGeoViews();
+
+    })();
+
+</script>
+</body>
 </html>
