@@ -45,13 +45,13 @@
                 <li><a href="#aLogsBehavior">日志挖掘</a></li>
                 <li><a href="#about">关于</a></li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
 <!-- /Fixed navbar 顶部导航栏-->
 
 <!--顶部导航栏高度站位符-->
-<div class="blank_divider48"></div>
+<div class="blank_divider51"></div>
 <!--/顶部导航栏高度站位符-->
 
 <!--首屏简介模块-->
@@ -95,14 +95,14 @@
             <div style="margin-top: 18%">
                 <i class="fa fa-th fa-2x"></i>
                 <div class="stats_count_number">12306</div>
-                <div class="stats_count_desc">日志记录数</div>
+                <div class="stats_count_desc">日志处理量</div>
             </div>
         </div>
         <div class="col-sm-4 ">
             <div style="margin-top: 18%">
-                <i class="fa fa-clock-o fa-2x"></i>
-                <div class="stats_count_number">488 小时</div>
-                <div class="stats_count_desc">监控总时间</div>
+                <i class="fa fa-bell fa-2x"></i>
+                <div class="stats_count_number">1</div>
+                <div class="stats_count_desc">待处理异常</div>
             </div>
         </div>
     </div>
@@ -113,7 +113,7 @@
 <!--/首屏简介模块-->
 
 <!--系统概览模块-->
-<div id="logsOverview" class="container-fluid screen-page  ">
+<div id="logsOverview" class="container-fluid _height_600  ">
     <div class="row  _height100 _text_align_center margin-top3 ">
         <!--日志饼状图-->
         <div class="col-sm-5">
@@ -150,16 +150,17 @@
             </div>
         </div>
     </div>
-
+    <div class="row  blank_divider20 ">
+        <a name="aLogsException"></a>
+    </div>
 </div>
 <!--/系统概览模块-->
 
 
 <!--异常监控模块-->
 <div id="logsException" class="container-fluid screen-page bg_gray_shallow ">
-    <a name="aLogsException"></a>
-    <div class="row  blank_divider20 ">
-    </div>
+
+
     <div class="row blank_divider30"></div>
 
     <!--曲线图标题部分-->
@@ -310,7 +311,7 @@
 <!--/日志统计模块-->
 
 <!--用户挖掘模块-->
-<div id="logsBehavior" lass="container-fluid screen-page bg_gray_shallow">
+<div id="logsBehavior" class="container-fluid screen-page bg_gray_shallow">
     <a name="aLogsBehavior"></a>
     <div class="row blank_divider30"></div>
     <div class="row _height100">
@@ -414,17 +415,19 @@
 <!--<script type="text/javascript" src="../res/scripts/svg.js"></script>-->
 <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
 
-
 <script type="text/javascript">
 
-
-    // 图表绘制
     (function () {
 
+        //绘制日志饼状图
         createLogsGeneralPie();
+        //绘制实时日志概览曲线
         createLogsGeneralCurve();
+        //绘制异常日志曲线
         createLogsExpCurve();
+        //绘制日志分类聚簇图
         createLogsStatsForces();
+        //绘制IP访客分布图
         createIPGeoViews();
 
     })();

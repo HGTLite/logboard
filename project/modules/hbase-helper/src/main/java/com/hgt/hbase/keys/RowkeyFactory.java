@@ -12,7 +12,7 @@ import java.util.UUID;
 public class RowkeyFactory {
 
     /**
-     * 产生的RowKey定长16位，3位logType，10位日期（不含年份），3位随机（此处使用日期的后3位）
+     * 产生的RowKey定长16位，3位logType，10位日期（不含年份，如0720145017），3位随机（此处使用日期的后3位）
      *
      * @param strTags 日志类别
      * @param strDate 日志产生日期时间
@@ -29,7 +29,7 @@ public class RowkeyFactory {
     }
 
     /**
-     * 产生的RowKey定长48位，4位logType，10位日期（含年份），32位随机（此处使用uuid）
+     * 产生的RowKey定长48位，4位logType，10位日期（含年份，如1611151535），32位随机（此处使用uuid）
      *
      * @param strTags
      * @param strDate

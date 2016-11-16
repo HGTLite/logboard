@@ -13,6 +13,7 @@
     <link href="../res/styles/css/bootstrap-table.css" rel="stylesheet">
     <link href="../res/styles/general.css" rel="stylesheet">
     <link href="../res/styles/layout.css" rel="stylesheet">
+    <link href="../res/styles/modal.css" rel="stylesheet">
     <link href="../res/styles/logssearch.css" rel="stylesheet">
     <!--<link href="styles/css/bootstrap-4.0.0a3.min.css" rel="stylesheet">-->
 </head>
@@ -59,6 +60,7 @@
                     <button type="button" class="btn btn-default  choose_btn margin_lr2">
                         选择AppCode
                     </button>
+                    <a href="#search">Search</a>
                 </div>
             </div>
         </div>
@@ -82,8 +84,18 @@
     <!--/搜索框-->
 
 
+    <!--弹出界面-->
+    <div id="search">
+        <button type="button" class="close">×</button>
+        <form>
+            <input type="search" value="" placeholder="type keyword(s) here" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <!--/弹出界面-->
+
     <!--最新日志列表-->
-    <div id="logsList" class="_is_hidden">
+    <div id="logsList" class="">
         <br>
         <table id="table" data-search="true" data-show-columns="true" data-pagination="true" data-height="550">
             <thead>
@@ -117,6 +129,7 @@
 <script src="../res/vendor/js/bootstrap-3.3.7.js"></script>
 <script src="../res/scripts/js/bootstrap-table.js"></script>
 <script src="../res/scripts/general.js"></script>
+<script src="../res/scripts/modal.js"></script>
 
 <!--<script src="../res/scripts/js/d3-4.2.1.js"></script>-->
 <!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->

@@ -76,6 +76,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     height: 648px;;
 }
 
+
 .top-icon {
     height: 80px;
     vertical-align: middle;
@@ -152,6 +153,9 @@ margin-left:24px;
     height: 48%;
 }
 
+._height_600{
+    height: 600px;
+}
 ._white_border {
     border-color: #ffffff;
 }
@@ -176,7 +180,9 @@ margin-left:24px;
 .blank_divider48 {
     height: 48px;
 }
-
+.blank_divider51 {
+    height: 51px;
+}
 .blank_divider64 {
     height: 64px;
 }
