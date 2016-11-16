@@ -14,9 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * CHANGELOG：
  ******************************************************************************/
 
-//@Configuration
-//@EnableAutoConfiguration
-//@ComponentScan
 @SpringBootApplication
 public class App {
 
