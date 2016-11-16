@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--debug为true会打印logback内部日志，scan扫描配置文件时间间隔-->
+<configuration debug="false" scan="true" scanPeriod="60 seconds">
+
+    <!--设置日志文件本地存放目录-->
+    <property name="log.path" value="/logbase"/>
+
+    <!--使用spring boot提供的默认日志配置-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!--控制台日志,Spring Boot默认只输出到控制台-->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5p) --- [%.15(%t)] %cyan(%-25(%c{20}\(%-3L\))) : %m%n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!--文件日志-->
+    <appender name="error_file"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/err.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}.error.%d{yyyy-MM-dd}.zip</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %-5p [%.15(%t)] %.18(%c{15}) [%F\(%L\)] : %m %n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <!--文件日志-->
+    <appender name="info_file"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/info.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}.info.%d{yyyy-MM-dd}.zip</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %-5p [%.15(%t)] %.18(%c{15}) [%F\(%L\)] : %m %n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="error_file"/>
+    </root>
+
+    <!--logger可用于指明具体包或类的日志输出级别，会覆盖root    -->
+    <logger name="com.hgt" additivity="false" level="INFO">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="info_file"/>
+        <appender-ref ref="error_file"/>
+    </logger>
+
+    <logger name="org.springframework.web" level="INFO"/>
+
+    <springProfile name="dev">
+        <logger name="org.springframework.web" level="INFO"/>
+    </springProfile>
+
+    <springProfile name="staging">
+        <logger name="org.springframework.web" level="WARN"/>
+    </springProfile>
+
+</configuration>
