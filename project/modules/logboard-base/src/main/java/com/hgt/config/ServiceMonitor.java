@@ -26,7 +26,7 @@ public class ServiceMonitor {
     private Logger logger = LoggerFactory.getLogger(ServiceMonitor.class);
 
 //around在切入点前后切入内容
-    @Around("execution(* io.yaoooo..*Controller.*(..))")
+    @Around("execution(* com.hgt..*Controller.*(..))")
     public Object logServiceAccess(ProceedingJoinPoint pjp) {
 
         long start = System.currentTimeMillis();

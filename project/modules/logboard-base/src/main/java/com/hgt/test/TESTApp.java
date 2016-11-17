@@ -13,7 +13,7 @@ public class TESTApp {
 
     public static void main(String[] args) {
 
-    System.out.println();
+//    System.out.println();
 
     System.out.println(new SecurityUtil().SHA256String("111111"));
 

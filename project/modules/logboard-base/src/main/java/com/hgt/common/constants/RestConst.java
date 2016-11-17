@@ -15,7 +15,6 @@ public class RestConst {
         public final static String EMPTY_PARAM = "002"; //参数为空
         public final static String DATABASE_ERROR = "003"; //数据库层面的错误
 
-
     }
 
 

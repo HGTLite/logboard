@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hgt.mapper.LogAppsMapper">
+    <resultMap id="BaseResultMap" type="com.hgt.entity.LogApps">
+        <result column="LA_ID" property="laId" jdbcType="VARCHAR"/>
+        <result column="APP_NAME" property="appName" jdbcType="VARCHAR"/>
+        <result column="APP_CODE" property="appCode" jdbcType="VARCHAR"/>
+        <result column="APP_IP" property="appIp" jdbcType="VARCHAR"/>
+        <result column="APP_DESC" property="appDesc" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+  LA_ID,APP_NAME,APP_CODE,APP_IP,APP_DESC
+</sql>
+    <delete id="deleteLogAppsById" parameterType="java.lang.String">
+        delete from LOG_APPS
+        where LA_ID=#{laId,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectLogAppsById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from LOG_APPS
+        where LA_ID=#{laId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllLogApps" resultType="com.hgt.entity.LogApps">
+select * from LOG_APPS
+    </select>
+
+
+    <insert id="insert" parameterType="com.hgt.entity.LogApps">
+    insert into LOG_APPS (LA_ID, APP_NAME, APP_CODE, 
+      APP_IP, APP_DESC)
+    values (#{laId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, 
+      #{appIp,jdbcType=VARCHAR}, #{appDesc,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hgt.entity.LogApps">
+        insert into LOG_APPS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="laId != null">
+                LA_ID,
+            </if>
+            <if test="appName != null">
+                APP_NAME,
+            </if>
+            <if test="appCode != null">
+                APP_CODE,
+            </if>
+            <if test="appIp != null">
+                APP_IP,
+            </if>
+            <if test="appDesc != null">
+                APP_DESC,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="laId != null">
+                #{laId,jdbcType=VARCHAR},
+            </if>
+            <if test="appName != null">
+                #{appName,jdbcType=VARCHAR},
+            </if>
+            <if test="appCode != null">
+                #{appCode,jdbcType=VARCHAR},
+            </if>
+            <if test="appIp != null">
+                #{appIp,jdbcType=VARCHAR},
+            </if>
+            <if test="appDesc != null">
+                #{appDesc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertLogApps" parameterType="com.hgt.entity.LogApps">
+        insert into LOG_APPS (LA_ID, APP_NAME, APP_CODE,
+      APP_IP, APP_DESC)
+    values (#{laId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR},
+      #{appIp,jdbcType=VARCHAR}, #{appDesc,jdbcType=VARCHAR})
+    </insert>
+</mapper>
