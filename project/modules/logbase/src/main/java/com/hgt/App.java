@@ -37,6 +37,9 @@ public class App {
                 registry.addMapping("/lb/apps/delete/{laId}").allowedOrigins("*");
 
             }
+
+
+
         };
     }
 }

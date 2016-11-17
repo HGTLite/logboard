@@ -22,7 +22,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 public class SwaggerConfig {
 
     //初始化作者信息
-    Contact contact = new Contact("后台yaoooo", "https://github.com/HGTLite/logboard/issues", "837276086@qq.com");
+    Contact contact = new Contact("yaoooo", "https://github.com/HGTLite/logboard/issues", "837276086@qq.com");
 
     @Bean
     public Docket restfulApi() {
@@ -47,8 +47,7 @@ public class SwaggerConfig {
      */
     private Predicate<String> doFilteringRules() {
         return or(
-                regex("/apps.*"),
-                regex("/exps.*")
+                regex("/logs/apps.*")
         );
     }
 
@@ -71,7 +70,7 @@ public class SwaggerConfig {
                 .append("<ul>" + "<li>关于应用信息的接口，以\"/apps\"为标志；" + "</li>")
                 .append("<li>关于日志信息的接口，以\"/loginfo\"为标志；" + "</li>")
                 .append("<li>关于异常预警信息的接口，以\"/exps\"为标志。" + "</li></ul>")
-                .append("<p>接口的其他信息可以参考本项目的Wiki：https://hgtlite.github.io/logboard/" + "</p>");
+                .append("<p>接口的其他信息可以参考本项目的wiki：https://hgtlite.github.io/logboard/" + "</p>");
 
         return sb.toString();
     }

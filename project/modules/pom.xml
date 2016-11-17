@@ -18,7 +18,7 @@
         <module>streaming</module>
         <module>notification</module>
         <module>hbase-helper</module>
-        <module>logboard-base</module>
+        <module>logbase</module>
         <module>redis-helper</module>
         <module>es-helper</module>
     </modules>

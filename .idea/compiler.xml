@@ -37,6 +37,7 @@
         <module name="kafka-general-consumer" />
         <module name="kafka-general-producer" />
         <module name="log-consumer" />
+        <module name="logbase" />
         <module name="logboard-base" />
         <module name="notification" />
         <module name="pipeline-log2es" />
@@ -69,6 +70,7 @@
       <module name="kits" target="1.8" />
       <module name="log-consumer" target="1.8" />
       <module name="log2es-pipeline" target="1.8" />
+      <module name="logbase" target="1.8" />
       <module name="logboard" target="1.5" />
       <module name="logboard-base" target="1.8" />
       <module name="logs-producer" target="1.8" />

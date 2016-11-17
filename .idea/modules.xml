@@ -18,9 +18,9 @@
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/java-bean/java-bean.iml" filepath="$PROJECT_DIR$/project/common/tests/java-bean/java-bean.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/kafka-general-consumer/kafka-general-consumer.iml" filepath="$PROJECT_DIR$/project/common/tests/kafka-general-consumer/kafka-general-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/kafka-general-producer/kafka-general-producer.iml" filepath="$PROJECT_DIR$/project/common/tests/kafka-general-producer/kafka-general-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/logbase/logbase.iml" filepath="$PROJECT_DIR$/project/modules/logbase/logbase.iml" />
       <module fileurl="file://$PROJECT_DIR$/logboard.iml" filepath="$PROJECT_DIR$/logboard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/modules/logboard-base/logboard-base.iml" filepath="$PROJECT_DIR$/project/modules/logboard-base/logboard-base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/modules/logboard-views/logboard-views.iml" filepath="$PROJECT_DIR$/project/modules/logboard-views/logboard-views.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/logviews/logviews.iml" filepath="$PROJECT_DIR$/project/modules/logviews/logviews.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/modules.iml" filepath="$PROJECT_DIR$/project/modules/modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/notification/notification.iml" filepath="$PROJECT_DIR$/project/modules/notification/notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" filepath="$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" />
