@@ -16,11 +16,11 @@
         <module>ilogger</module>
         <module>starter</module>
         <module>streaming</module>
-        <module>notification</module>
         <module>hbase-helper</module>
         <module>logbase</module>
         <module>redis-helper</module>
         <module>es-helper</module>
+        <module>msg-router</module>
     </modules>
 
     <dependencyManagement>

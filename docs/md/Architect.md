@@ -160,3 +160,10 @@ APP_CODE
 
 #### 可视化方法  
 MySQL + Spring Boot + MyBatis + JS + Bootsrap   
+
+####  难点1 实时数据推送
+- 累加型数据  
+time msg total  
+- 时段型数据  
+time msg  
+ 

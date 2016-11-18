@@ -39,7 +39,7 @@
         <module name="log-consumer" />
         <module name="logbase" />
         <module name="logboard-base" />
-        <module name="notification" />
+        <module name="msg-router" />
         <module name="pipeline-log2es" />
         <module name="redis-helper" />
         <module name="starter" />
@@ -77,6 +77,7 @@
       <module name="logs-storm" target="1.8" />
       <module name="modules" target="1.8" />
       <module name="msg-middleware" target="1.5" />
+      <module name="msg-router" target="1.8" />
       <module name="notification" target="1.8" />
       <module name="parent" target="1.8" />
       <module name="pipeline-log2es" target="1.8" />
