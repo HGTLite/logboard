@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="logboot:war">
+    <output-path>$PROJECT_DIR$/project/modules/logboot/target</output-path>
+    <root id="archive" name="logboot-0.0.1.war">
+      <element id="artifact" artifact-name="logboot:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -14,13 +14,13 @@
 
     <modules>
         <module>ilogger</module>
-        <module>starter</module>
-        <module>streaming</module>
-        <module>hbase-helper</module>
-        <module>logbase</module>
-        <module>redis-helper</module>
         <module>es-helper</module>
+        <module>redis-helper</module>
+        <module>hbase-helper</module>
         <module>msg-router</module>
+        <module>streaming</module>
+        <module>logbase</module>
+        <module>log-boot</module>
     </modules>
 
     <dependencyManagement>

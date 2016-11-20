@@ -18,6 +18,7 @@
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/java-bean/java-bean.iml" filepath="$PROJECT_DIR$/project/common/tests/java-bean/java-bean.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/kafka-general-consumer/kafka-general-consumer.iml" filepath="$PROJECT_DIR$/project/common/tests/kafka-general-consumer/kafka-general-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/kafka-general-producer/kafka-general-producer.iml" filepath="$PROJECT_DIR$/project/common/tests/kafka-general-producer/kafka-general-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/log-boot/log-boot.iml" filepath="$PROJECT_DIR$/project/modules/log-boot/log-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/logbase/logbase.iml" filepath="$PROJECT_DIR$/project/modules/logbase/logbase.iml" />
       <module fileurl="file://$PROJECT_DIR$/logboard.iml" filepath="$PROJECT_DIR$/logboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/logviews/logviews.iml" filepath="$PROJECT_DIR$/project/modules/logviews/logviews.iml" />
@@ -26,7 +27,6 @@
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" filepath="$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/project.iml" filepath="$PROJECT_DIR$/project/project.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/redis-helper/redis-helper.iml" filepath="$PROJECT_DIR$/project/modules/redis-helper/redis-helper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/modules/starter/starter.iml" filepath="$PROJECT_DIR$/project/modules/starter/starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/streaming/streaming.iml" filepath="$PROJECT_DIR$/project/modules/streaming/streaming.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/tests.iml" filepath="$PROJECT_DIR$/project/common/tests/tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tools/tools.iml" filepath="$PROJECT_DIR$/project/common/tools/tools.iml" />

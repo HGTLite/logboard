@@ -15,7 +15,7 @@ public class App {
         // Jedis implements Closable. Hence, the jedis instance will be auto-closed after the last statement.
         try (Jedis jedis = pool.getResource()) {
             // / ... do stuff here ... for example
-            jedis.set("foo1", "bar1");
+            jedis.set("foo2", "bar2");
             String foobar = jedis.get("foo1");
             jedis.zadd("sose", 0, "car");
             jedis.zadd("sose", 0, "bike");

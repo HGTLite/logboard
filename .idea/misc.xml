@@ -3,6 +3,9 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/project/modules/logboot" />
+  </component>
   <component name="IvyIDEA.ProjectSettings">
     <option name="artifactTypeSettings">
       <ArtifactTypeSettings>
@@ -21,8 +24,8 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/project/common/tests/general-web/pom.xml" />
-        <option value="$PROJECT_DIR$/project/modules/log2es-pipeline/pom.xml" />
-        <option value="$PROJECT_DIR$/project/modules/notification/pom.xml" />
+        <option value="$PROJECT_DIR$/project/modules/logboot/pom.xml" />
+        <option value="$PROJECT_DIR$/project/modules/logview/pom.xml" />
       </set>
     </option>
   </component>

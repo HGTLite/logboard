@@ -36,13 +36,14 @@
         <module name="java-bean" />
         <module name="kafka-general-consumer" />
         <module name="kafka-general-producer" />
+        <module name="log-boot" />
         <module name="log-consumer" />
         <module name="logbase" />
         <module name="logboard-base" />
+        <module name="loghub" />
         <module name="msg-router" />
         <module name="pipeline-log2es" />
         <module name="redis-helper" />
-        <module name="starter" />
         <module name="streaming" />
         <module name="tools" />
       </profile>
@@ -68,13 +69,17 @@
       <module name="kafka-general-consumer" target="1.8" />
       <module name="kafka-general-producer" target="1.8" />
       <module name="kits" target="1.8" />
+      <module name="log-boot" target="1.8" />
       <module name="log-consumer" target="1.8" />
       <module name="log2es-pipeline" target="1.8" />
       <module name="logbase" target="1.8" />
       <module name="logboard" target="1.5" />
       <module name="logboard-base" target="1.8" />
+      <module name="logboot" target="1.8" />
+      <module name="loghub" target="1.8" />
       <module name="logs-producer" target="1.8" />
       <module name="logs-storm" target="1.8" />
+      <module name="logview" target="1.8" />
       <module name="modules" target="1.8" />
       <module name="msg-middleware" target="1.5" />
       <module name="msg-router" target="1.8" />

@@ -6,6 +6,7 @@
 ## TO-DO 能用但不好用的
 - streaming双写hdfs和elasticsearch拆分解耦，提高容错性
 - IP分布图自动调整地图范围
+- 依赖去重，如spark_core中的hadoop client_2.2
 
 ## RoadMap 更好用的发展方向
 - 常用日志格式正则规则整理，方便接入
