@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../res/styles/css/leaflet.css"/>
+
+    <script type="text/javascript" src="../../res/scripts/js/d3-3.5.17.js"></script>
+    <script type="text/javascript" src="../../res/scripts/js/leaflet-0.7.3.js"></script>
+    <script type="text/javascript" src="../../res/scripts/js/leaflet-d3-0.3.8.js"></script>
+
+    <style type="text/css">
+        circle.ping {
+            stroke: #000;
+            stroke-width: 1px;
+            fill: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map" style="width: 600px; height: 400px; border: 1px solid #ccc"></div>
+<button onclick="togglePlay()">Pause</button>
+
+
+<script type="text/javascript">
+    var center = [39.4, -78];
+
+    var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+
+    map = new L.Map('map', {layers: [osm], center: new L.LatLng(center[0], center[1]), zoom: 7});
+
+    var options = {
+        lng: function (d) {
+            return d[0];
+        },
+        lat: function (d) {
+            return d[1];
+        },
+        duration: 800
+    };
+
+    var pingLayer = L.pingLayer(options).addTo(map);
+    pingLayer.radiusScale().range([2, 18]);
+    pingLayer.opacityScale().range([1, 0]);
+
+    var latFn = d3.random.normal(center[0], 1);
+    var longFn = d3.random.normal(center[1], 1);
+
+    var paused = false;
+    var update = function () {
+        if (!paused) {
+            pingLayer.ping([longFn(), latFn()]);
+            window.setTimeout(update, 100 + Math.random() * 400);
+        }
+    };
+    window.setTimeout(update);
+
+    function togglePlay() {
+        paused = !paused;
+        d3.select('button').text((paused) ? 'Play' : 'Pause');
+
+        if (!paused) {
+            window.setTimeout(update);
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../res/scripts/js/d3-3.5.17.js"></script>
+
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: auto;
+            position: relative;
+            width: 960px;
+        }
+
+        text {
+            font: 10px sans-serif;
+        }
+
+        form {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    var dataset = {
+        apples: [53245, 28479, 19697, 24037, 40245],
+    };
+
+    var width = 460,
+            height = 300,
+            radius = Math.min(width, height) / 2;
+
+    var color = d3.scale.category20();
+
+    var pie = d3.layout.pie()
+            .sort(null);
+
+    var arc = d3.svg.arc()
+            .innerRadius(radius - 100)
+            .outerRadius(radius - 50);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var grads = svg.append("defs").selectAll("radialGradient").data(pie(dataset.apples))
+            .enter().append("radialGradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", "100%")
+            .attr("id", function(d, i) { return "grad" + i; });
+    grads.append("stop").attr("offset", "15%").style("stop-color", function(d, i) { return color(i); });
+    grads.append("stop").attr("offset", "20%").style("stop-color", "white");
+    grads.append("stop").attr("offset", "27%").style("stop-color", function(d, i) { return color(i); });
+
+    var path = svg.selectAll("path")
+            .data(pie(dataset.apples))
+            .enter().append("path")
+            .attr("fill", function(d, i) { return "url(#grad" + i + ")"; })
+            .attr("d", arc);
+
+</script>
+</body>
+</html>

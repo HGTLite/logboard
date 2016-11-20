@@ -1,0 +1,44 @@
+.bg_dark {
+    background-color: #212121;
+}
+
+.bg_gray_general {
+    background-color: #777;
+}
+
+.bg_gray_shallow {
+    background-color: #f0f0f0
+}
+
+.bg_gray_barely {
+    background-color: #fafafa
+}
+
+.bg_white_pure {
+    background-color: #ffffff
+}
+
+.bg_f5f5f5{
+    background-color: #f5f5f5;
+}
+
+.bg_transparent {
+    background-color: transparent;
+}
+
+.c_fff {
+    color: #ffffff;
+}
+
+.c_f0f0f0 {
+    color: #f0f0f0;
+}
+
+.c_999{
+    color: #999;
+}
+
+.c_bdbdbd {
+    color: #bdbdbd;;
+}
+

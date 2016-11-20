@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="logs stats demos">
+    <meta name="author" content="yaoooo">
+    <link rel="icon" href="../favicon.ico">
+    <title> logs stats 日志统计</title>
+    <link href="../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
+    <link href="../res/styles/css/nv.d3.css" rel="stylesheet">
+    <link href="../res/styles/layout.css" rel="stylesheet">
+    <link href="../res/styles/general.css" rel="stylesheet">
+    <link href="../res/styles/bscard.css" rel="stylesheet">
+    <link href="../res/styles/logsstats.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Fixed navbar  顶部导航栏-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">日志监控与统计</a>
+        </div>
+
+    </div>
+</nav>
+<!-- /Fixed navbar  顶部导航栏-->
+
+<!-- 高度占位符-->
+<div class="blank_divider64"></div>
+<!--/ 高度占位符-->
+
+<!-- Begin page content -->
+<div class="container-fluid">
+
+    <div class="row">
+
+        <!--设置面板-->
+        <div class="col-sm-3">
+
+            <div id="optionsCard" class="card ">
+                <div class="panel-group" id="accordion1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
+                                   href="#accordion1_1">x轴</a>
+                            </h5>
+                        </div>
+                        <div id="accordion1_1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
+                                    exercitation dolore magna ullamco.</p>
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
+                                    labore
+                                    et dolore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                                   href="#accordion1_2">y轴</a>
+                            </h5>
+                        </div>
+                        <div id="accordion1_2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
+                                    exercitation dolore magna ullamco.</p>
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
+                                    labore
+                                    et dolore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                                   href="#accordion1_3">时间</a>
+                            </h5>
+                        </div>
+                        <div id="accordion1_3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
+                                    exercitation dolore magna ullamco.</p>
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
+                                    labore
+                                    et dolore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
+                                   href="#accordion1_4">样式</a>
+                            </h5>
+                        </div>
+                        <div id="accordion1_4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
+                                    exercitation dolore magna ullamco.</p>
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
+                                    labore
+                                    et dolore.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--/设置面板-->
+
+        <!--绘制图表-->
+        <div class="col-sm-9">
+
+            <div id="chart1">
+                <svg id="resultGraph" width="800" height="360"></svg>
+            </div>
+
+        </div>
+        <!--/绘制图表-->
+
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+    </div>
+</footer>
+
+
+<script src="../res/scripts/js/jquery-3.1.0.js"></script>
+<script src="../res/scripts/js/holder-2.6.0.min.js"></script>
+<script src="../res/scripts/js/tether-1.3.2.min.js"></script>
+<script src="../res/vendor/js/bootstrap-3.3.7.js"></script>
+<script src="../res/scripts/js/d3-3.5.17.js"></script>
+<script src="../res/scripts/js/nv.d3.js"></script>
+<script src="../res/scripts/logsstats.js"></script>
+<!--<script src="../res/scripts/js/d3-4.2.1.js"></script>-->
+<!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->
+<!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>

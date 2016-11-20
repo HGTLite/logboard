@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>line1</title>
+    <style>
+        .line {
+            fill: none;
+            stroke: #00c5ff;
+            stroke-width: 1.5px;
+        }
+
+        .axis--x {
+            stroke: #00c5ff;
+        }
+    </style>
+</head>
+<body>
+<svg width="800" height="480"></svg>
+<script src="../../../res/scripts/js/d3-4.1.1.js"></script>
+<script>
+
+    var n = 40;
+    //定义一个产生随机数的函数
+    var random = d3.randomNormal(5, 2);
+    //定义产生从0到39的40元素数组
+    var data = d3.range(n).map(random);
+    //创建图表画布
+    var svg = d3.select("svg");
+    var margin = {top: 20, right: 20, bottom: 20, left: 40};
+    var width = +svg.attr("width") - margin.left - margin.right;
+    var height = +svg.attr("height") - margin.top - margin.bottom;
+    var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    //定义x比例尺
+    var x = d3.scaleLinear()
+            .domain([0, n - 1])
+            .range([0, width]);
+    //定义y比例尺
+    var y = d3.scaleLinear()
+            .domain([-10, 10])
+            .range([height, 0]);
+    //创建一条线
+    var line = d3.line()
+            .x(function (d, i) {
+                return x(i);
+            })
+            .y(function (d, i) {
+                return y(d);
+            });
+
+    console.log("创建线段的线段数据："+line);
+
+    //设置y=0的位置，即x轴的位置
+    g.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + y(0) + ")")
+            .call(d3.axisBottom(x));
+
+    //设置y轴位置，样式只能改变数字
+    g.append("g")
+            .attr("class", "axis axis--y")
+            .call(d3.axisLeft(y));
+
+    //给线段添加动画
+    g.append("path")
+            .datum(data)
+            .attr("class", "line")
+            .attr("d", line)
+            .transition()
+            .duration(2000)
+            .ease(d3.easeLinear)
+            .on("start", tick);
+
+    function tick() {
+
+        // 向数组末尾添加新元素，返回新长度
+        data.push(random());
+
+        // 将数组首个元素删掉，返回被删掉元素的内容
+        data.shift();
+
+        // Redraw the line (with the wrong interpolation).
+        d3.active(this)
+                .attr("d", line)
+                .transition()
+                .on("start", tick);
+
+    }
+
+</script>
+</body>
+</html>

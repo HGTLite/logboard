@@ -19,7 +19,6 @@ public class App {
 
     public static void main(String[] args) {
 
-        System.out.println("=====Main Method BEGIN=====");
         SpringApplication.run(App.class, args);
     }
 

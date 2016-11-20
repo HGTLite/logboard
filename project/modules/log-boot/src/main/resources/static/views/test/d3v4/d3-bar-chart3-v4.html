@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>柱形图</title>
+    <script type="text/javascript" src="../../../res/scripts/js/d3-3.5.17.js"></script>
+    <style>
+        .bar {
+            fill: #9e9e9e;
+        }
+
+        .bar:hover {
+            fill: #00c5ff;
+        }
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+        /*左侧坐标轴*/
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #212121;
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<script>
+
+    //声明布局宽高
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+            width = 800 - margin.left - margin.right,
+            height = 480 - margin.top - margin.bottom;
+
+    //定义序数比例尺，水平轴
+    var x = d3.scale.ordinal()
+            .rangeRoundBands([0, width], 0.3);
+
+    //定义线性比例尺，竖直轴
+    var y = d3.scale.linear()
+            .range([height, 0]);
+    //定义x轴
+    var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom");
+    //定义y轴
+    var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .ticks(10, "%");
+
+    //创建svg
+    var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.tsv("../../res/data/data3.tsv", type, function (error, data) {
+        if (error) throw error;
+
+        x.domain(data.map(function (d) {
+            return d.letter;
+        }));
+        y.domain([0, d3.max(data, function (d) {
+            return d.frequency;
+        })]);
+
+        svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+        svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("Frequency");
+
+        svg.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d) {
+                    return x(d.letter);
+                })
+                .attr("width", x.rangeBand())
+                .attr("y", function (d) {
+                    return y(d.frequency);
+                })
+                .attr("height", function (d) {
+                    return height - y(d.frequency);
+                });
+    });
+
+
+    function type(d) {
+        d.frequency = +d.frequency;
+        return d;
+    }
+
+</script>
+</body>
+</html>

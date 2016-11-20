@@ -1,34 +1,436 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Spring Boot WebSocket Messaging</title>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/1.0.3/sockjs.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="logboard 日志应用系统">
+    <meta name="keywords" content="logs, big data">
+    <meta name="author" content="yaoooo and Bootstrap contributors">
+    <link rel="icon" href="favicon.ico">
+    <title>logboard 日志应用系统 首页</title>
+    <link rel="stylesheet" href="res/styles/css/bootstrap-3.3.7.css"/>
+    <link rel="stylesheet" href="res/styles/css/leaflet-1.0.0rc3.css"/>
+    <link rel="stylesheet" href="res/styles/css/nv.d3.css"/>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="res/fonts/css/font-awesome.css">
+    <link rel="stylesheet" href="res/styles/general.css"/>
+    <link rel="stylesheet" href="res/styles/layout.css"/>
+    <link rel="stylesheet" href="res/styles/bscard.css"/>
+    <link rel="stylesheet" href="res/styles/ipviews.css"/>
+    <link rel="stylesheet" href="res/styles/colors.css"/>
+    <link rel="stylesheet" href="res/styles/svg.css"/>
+    <link rel="stylesheet" href="res/styles/logscharts.css"/>
 </head>
+
 <body>
-    <div>
-        <h3>Messages:</h3>
-        <ol id="messages"></ol>
-    </div>   
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-//            var msgURLOrigin="http://localhost:8080"
-//            var msgURLOrigin="http://192.168.99.15:8080"
-            var msgURLOrigin="";
-            var messageList = $("#messages");
-            var socket = new SockJS(msgURLOrigin+"/stomp");
+<!-- Fixed navbar 顶部导航栏-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">LogBoard 日志公告牌</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#aLogsOverview">日志概览</a></li>
+                <li><a href="#aLogsException">异常监控</a></li>
+                <li><a href="#aLogsStats">日志统计</a></li>
+                <li><a href="#aLogsBehavior">日志挖掘</a></li>
+                <li><a href="#about">关于</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /Fixed navbar 顶部导航栏-->
 
-            var stompClient = Stomp.over(socket);
+<!--高度占位符-->
+<div class="blank_divider51"></div>
+<!--/高度占位符-->
 
-            stompClient.connect({ }, function(frame) {
-                stompClient.subscribe(msgURLOrigin+"/topic/message", function(data) {
-                    var message = data.body;
-                    messageList.append("<li>" + message + "</li>");
-                });
-            });
-        });
-    </script>
+<!--首屏简介模块-->
+<div id="logsTop" class="container-fluid screen-page ">
+    <!--3大快速入口-->
+    <div class="row _text_align_center blank_divider400 bg_blue_svg ">
+        <div class="col-sm-4 " onclick="window.open('views/logs-search.html')">
+            <div style="margin-top: 25%">
+                <img class="top-icon" src="images/top-search.svg" alt="日志搜索">
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志搜索</button>
+            </div>
+        </div>
+        <div class="col-sm-4 " onclick="window.open('views/logs-monitor.html')">
+            <div style="margin-top: 25%">
+                <img class="top-icon" src="images/top-monitor.svg" alt="日志监控">
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志监控</button>
+            </div>
+        </div>
+        <div class="col-sm-4 " onclick="window.open('views/logs-stats.html')">
+            <div style="margin-top: 25%">
+                <img class="top-icon" src="images/top-stats.svg" alt="日志统计">
+                <div class="row blank_divider30 "></div>
+                <button class="btn c_fff  bg_transparent _white_border _width40 letter_spacing4">日志统计</button>
+            </div>
+        </div>
+    </div>
+
+    <!--简单数量统计-->
+    <div id="apps_general1" class="row _divider_stripe bg_gray_shallow">
+        <div class="col-sm-4 ">
+            <div style="margin-top: 18%" >
+                <i class="fa fa-cubes fa-2x" ></i>
+                <div class="stats_count_number " onclick="window.open('views/log_apps.html')">12</div>
+                <div class="stats_count_desc">接入应用数</div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 ">
+            <div style="margin-top: 18%">
+                <i class="fa fa-th fa-2x"></i>
+                <div class="stats_count_number">12306</div>
+                <div class="stats_count_desc">日志处理量</div>
+            </div>
+        </div>
+        <div class="col-sm-4 ">
+            <div style="margin-top: 18%">
+                <i class="fa fa-bell fa-2x"></i>
+                <div class="stats_count_number">1</div>
+                <div class="stats_count_desc">待处理异常</div>
+            </div>
+        </div>
+    </div>
+    <div class="blank_divider10 ">
+        <a name="aLogsOverview"></a>
+    </div>
+</div>
+<!--/首屏简介模块-->
+
+<!--系统概览模块-->
+<div id="logsOverview" class="container-fluid _height_600  ">
+    <div class="row  _height100 _text_align_center margin-top3 ">
+        <!--日志饼状图-->
+        <div class="col-sm-5">
+            <div class="row">
+                <svg id="svgLogsGenaralPie" width="420" height="480"></svg>
+            </div>
+
+        </div>
+        <!--日志曲线图-->
+        <div class="col-sm-7">
+            <div id="logsCurveHeader" class="row bg_white_pure ">
+                <div class="col-sm-3 _text_align_center">
+                </div>
+                <div class="col-sm-4 _text_align_center">
+                    <span class="h3">日志实时处理量</span>
+                </div>
+                <div class="col-sm-5 _text_align_right">
+                    <span class="align_right ">
+                    <a id="a1" href="javascript:void(0)" class="btn btn-info _width15">1小时</a>
+                    <a id="a2" href="javascript:void(0)" class="btn text-muted _width15">24小时</a>
+                    <a id="a3" href="javascript:void(0)" class="btn text-muted _width15">昨天</a>
+                    <a id="a4" href="javascript:void(0)" class="btn text-muted _width15">7天</a>
+                    <a id="a5" href="javascript:void(0)" class="btn text-muted _width15">本月</a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="blank_divider20"></div>
+
+            <div id="logsGeneralCurve" class="row bg_white_pure">
+                <div class="col-sm-12 _text_align_center">
+                    <svg id="svgLogsGenaral" width="960" height="480"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row  blank_divider20 ">
+        <a name="aLogsException"></a>
+    </div>
+</div>
+<!--/系统概览模块-->
+
+
+<!--异常监控模块-->
+<div id="logsException" class="container-fluid screen-page bg_gray_shallow ">
+
+
+    <div class="row blank_divider30"></div>
+
+    <!--曲线图标题部分-->
+    <div id="expLogsHeader" class="row blank_divider70 ">
+        <div class="col-sm-2 _text_align_center">
+        </div>
+        <div class="col-sm-3 _text_align_center">
+            <span class="h3">异常日志监控</span>
+        </div>
+        <div class="col-sm-7 _text_align_center">
+            <span class="align_right ">
+                <a id="a01" href="javascript:void(0)" class="btn btn-info">近1小时</a>
+                <a id="a02" href="javascript:void(0)" class="btn text-muted ">24小时</a>
+                <a id="a03" href="javascript:void(0)" class="btn text-muted">昨天</a>
+                <a id="a04" href="javascript:void(0)" class="btn text-muted">7天</a>
+                <a id="a05" href="javascript:void(0)" class="btn text-muted">本月</a>
+            </span>
+        </div>
+    </div>
+
+    <!--异常曲线-->
+    <div id="expLogsCurve" class="row ">
+        <div class="col-sm-12 _text_align_center">
+            <svg id="svgLogsExp" width="1080" height="280"></svg>
+        </div>
+    </div>
+
+    <!--异常消息列表-->
+    <div id="expDetails" class="row">
+
+        <div class="col-sm-1  _text_align_center _to_top30 ">
+            <i class="fa  fa-angle-left fa-4x  c_bdbdbd"></i>
+        </div>
+
+        <div class="col-sm-10  ">
+
+            <div class="row ">
+
+                <div class="col-sm-4 ">
+                    <div id="expCard01" class="card exp_card _width80 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app1二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="label label-danger label-pill float-xs-right exp_card_item_size">严重</span>
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4 ">
+                    <div id="expCard02" class="card exp_card _width80 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app2二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="label label-warning label-pill float-xs-right exp_card_item_size">警告</span>
+
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4 ">
+                    <div id="expCard03" class="card exp_card  _width80 ">
+                        <!--<img class="card-i2mg-top" src="..." alt="Card image cap">-->
+                        <div class="card-block exp_item_padding ">
+                            <h4 class="card-title exp_card_title_size">app3二维地图</h4>
+                            <p class="card-text exp_card_text_size">Utils: Uncaught exception in thread SparkListenerBus
+                                java.lang.InterruptedException at java.util.concurrent.locks...
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush exp_card_item_size ">
+                            <li class="list-group-item exp_item_padding">2016-11-08 23:32:06</li>
+                            <li class="list-group-item exp_item_padding">com.hgt.App 163</li>
+                        </ul>
+                        <div class="card-block exp_contents_padding ">
+                            <div class="_float_left">
+                                <a href="#" class="card-link exp_card_text_size">查看详情</a>
+
+                            </div>
+                            <div class="_float_right">
+                                <span class="label label-danger label-pill float-xs-right exp_card_item_size">严重</span>
+
+                            </div>
+
+                            <!--<span class="_text_align_right ">严重</span>-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-1  _text_align_center _to_top30 ">
+            <i class="fa  fa-angle-right fa-4x  c_bdbdbd"></i>
+        </div>
+    </div>
+</div>
+<!--/异常监控模块-->
+
+
+<!--日志统计模块-->
+<div id="logsStats" class="container-fluid  screen-page bg_white_pure _text_align_center">
+    <a name="aLogsStats"></a>
+    <div class="row blank_divider10"></div>
+    <h2>日志统计</h2>
+    <div class="row ">
+        <svg id="svgLogsStats" width="1280" height="420"></svg>
+    </div>
+    <div class="row ">
+        分类标签
+    </div>
+</div>
+<!--/日志统计模块-->
+
+<!--用户挖掘模块-->
+<div id="logsBehavior" class="container-fluid screen-page bg_gray_shallow">
+    <a name="aLogsBehavior"></a>
+    <div class="row blank_divider30"></div>
+    <div class="row _height100">
+
+        <!--访问排行榜-->
+        <div class="col-sm-3 _text_align_center ">
+
+            <div class="card text-xs-center ">
+                <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills float-xs-left">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="javascript:void(0)">IP访问排行</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)">搜索排行</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="card-block bg_f5f5f5 ">
+                    <ul class="list-group list-group-flush _no_border  _text_align_left bg_f5f5f5 ">
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5 ">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Cras justo odio</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Dapibus ac facilisis in</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                        <li class="list-group-item _no_border search_top_padding bg_f5f5f5">Vestibulum at eros</li>
+                    </ul>
+                    <div class="card-block _text_align_left search_top_padding">
+                        <i class="fa fa-angle-double-down fa-2x c_999 "></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--/访问排行榜-->
+
+        <div class="co-sm-9 _text_align_right ">
+            <!--<h2>IP访客分布图</h2>-->
+            <div id="map" class=""></div>
+        </div>
+    </div>
+
+    <!--访客IP分布图-->
+
+</div>
+</div>
+<!--/用户挖掘模块-->
+
+<!--末尾页脚-->
+<div id="lastFooter" class="container-fluid blank_divider160 bg_gray_barely">
+    <a name="about"></a>
+    <div class="row blank_divider20"></div>
+    <div class="row _text_align_center">
+        <div class="col-sm-12">
+            <div class="h5">联系我们</div>
+        </div>
+    </div>
+    <div class="row blank_divider10"></div>
+
+    <div class="row">
+        <div class="col-sm-6 _text_align_right">
+            <i class="fa fa-home"></i>
+        </div>
+        <div class="col-sm-6 _text_align_left">
+            <span style="padding-left: 15px">湖北武汉</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 _text_align_right">
+            <i class="fa fa-phone"></i></div>
+        <div class="col-sm-6 _text_align_left">
+            <span style="padding-left: 15px">17086542389</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 _text_align_right">
+            <i class="fa fa-envelope"></i></div>
+        <div class="col-sm-6 _text_align_left">
+            <span style="padding-left: 15px">helloworld@qq.com</span></div>
+    </div>
+</div>
+<!--/末尾页脚-->
+
+<!-- jQuery first, optional tether for tooltips, then Bootstrap JS. -->
+<script type="text/javascript" src="res/scripts/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="res/scripts/js/tether-1.3.2.min.js"></script>
+<script type="text/javascript" src="res/scripts/js/bootstrap-3.3.7.js"></script>
+<script type="text/javascript" src="res/scripts/js/holder-2.6.0.min.js"></script>
+<script type="text/javascript" src="res/scripts/js/d3-3.5.17.js"></script>
+<script type="text/javascript" src="res/scripts/js/nv.d3.js"></script>
+<script type="text/javascript" src="res/scripts/js/leaflet-1.0.0rc3.js"></script>
+<script type="text/javascript" src="res/scripts/logscharts.js"></script>
+<script type="text/javascript" src="res/scripts/utils.js"></script>
+<script type="text/javascript" src="res/scripts/ipviews.js"></script>
+<!--<script type="text/javascript" src="../res/scripts/svg.js"></script>-->
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+
+<script type="text/javascript">
+
+    (function () {
+
+        //绘制日志饼状图
+        createLogsGeneralPie();
+        //绘制实时日志概览曲线
+        createLogsGeneralCurve();
+        //绘制异常日志曲线
+        createLogsExpCurve();
+        //绘制日志分类聚簇图
+        createLogsStatsForces();
+        //绘制IP访客分布图
+        createIPGeoViews();
+
+    })();
+
+</script>
 </body>
 </html>

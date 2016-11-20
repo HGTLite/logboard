@@ -1,0 +1,260 @@
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+
+._no_border {
+    border: none;
+}
+
+._is_visible{
+    visibility: visible;
+}
+
+._is_hidden{
+    visibility: hidden;
+}
+
+.exp_card {
+    width: 20%;
+    /*height:250px;*/
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+
+
+.exp_contents_padding {
+    padding: 0.7rem;
+}
+
+.exp_item_padding {
+    padding: 0.4rem;
+}
+
+._float_left {
+    float: left;
+}
+
+._float_right {
+    float: right;
+}
+
+.exp_card_title_size {
+    font-size: 1.5rem;
+}
+
+.exp_card_text_size {
+    font-size: 1.1rem;
+}
+
+.exp_card_item_size {
+    font-size: 0.9rem;
+}
+
+.stats_count_number {
+    font-size: 2.4rem;
+}
+
+.stats_count_desc {
+    font-size: 1.4rem;
+}
+
+.stats_bundle {
+    margin-top: 10%;
+}
+
+._display_table {
+    display: table;
+}
+
+._display_table_cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.screen-page {
+    height: 648px;;
+}
+
+
+.top-icon {
+    height: 80px;
+    vertical-align: middle;
+    border: 0;
+}
+
+.search_top_padding {
+    padding: 0.5rem;
+}
+
+._to_top30 {
+    margin-top: 6%;
+}
+
+.margin-top3 {
+    margin-top: 3%;
+}
+
+._padding_left_18 {
+    padding-left: 18%;
+}
+._padding_top_18{
+    padding-top: 18%;
+}
+
+._margin_left_24{
+margin-left:24px;
+}
+
+.h_line {
+
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 3px;
+
+}
+
+.letter_spacing4 {
+    letter-spacing: 4px;
+}
+
+._width15 {
+    width: 18%;
+}
+
+._width30 {
+    width: 30%;
+}
+
+._width40 {
+    width: 40%;
+}
+
+._width60 {
+    width: 60%;
+}
+
+._width75 {
+    width: 75%;
+}
+
+._width80 {
+    width: 80%;
+}
+
+._width100 {
+    width: 100%;
+}
+
+._height100 {
+    height: 100%;
+}
+._height48 {
+    height: 48%;
+}
+
+._height_600{
+    height: 600px;
+}
+._white_border {
+    border-color: #ffffff;
+}
+
+/* blank_divider */
+.blank_divider10 {
+    height: 10px;
+}
+
+.blank_divider20 {
+    height: 20px;
+}
+
+.blank_divider30 {
+    height: 30px;
+}
+
+.blank_divider40 {
+    height: 40px;
+}
+
+.blank_divider48 {
+    height: 48px;
+}
+.blank_divider51 {
+    height: 51px;
+}
+.blank_divider64 {
+    height: 64px;
+}
+
+.blank_divider80 {
+    height: 80px;
+}
+
+.blank_divider96 {
+    height: 96px;
+}
+
+.blank_divider100 {
+    height: 100px;
+}
+
+.blank_divider120 {
+    height: 120px;
+}
+
+.blank_divider160 {
+    height: 160px;
+}
+
+.blank_divider200 {
+    height: 200px;
+}
+
+.blank_divider220 {
+    height: 220px;
+}
+
+.blank_divider240 {
+    height: 240px;
+}
+
+.blank_divider250 {
+    height: 250px;
+}
+
+.blank_divider400 {
+    height: 400px;
+}
+
+.blank_divider480 {
+    height: 480px;
+}
+
+._divider_stripe {
+    height: 200px;
+    text-align: center;
+}
+
+._text_align_center {
+    text-align: center;
+}
+
+._text_align_right {
+    text-align: right;
+}
+
+._text_align_left {
+    text-align: left;
+}
+
+._margin2_auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg_blue_svg {
+    background: #14a7df url(../../images/bkgd-light-blue.svg) no-repeat center center;
+    background-size: cover;
+}
+

@@ -1,0 +1,17 @@
+
+.logs_genereal_line {
+    fill: none;
+    stroke: #00c5ff;
+    stroke-width: 1.5px;
+}
+
+.logs_exp_line {
+    fill: none;
+    stroke: #ff5522;
+    stroke-width: 1.5px;
+}
+
+#svgExpStatsPie{
+    width:230px;
+    height:230px;
+}

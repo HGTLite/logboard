@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+<title>Radial Gradient"</title>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+    var w = 500, h = 500,
+            r = Math.min(w, h) / 2;
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", w)
+            .attr("height", h)
+            .append("g")
+            .attr("transform", "translate(" + w/2 + "," + h/2 + ")");
+
+    var radialGradient = svg.append("defs")
+            .append("radialGradient")
+            .attr("id", "radial-gradient");
+
+    radialGradient.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "red");
+
+    radialGradient.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "#fff");
+
+    svg.append("circle")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", r)
+            .style("fill", "url(#radial-gradient)");
+
+</script>

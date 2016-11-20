@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="logs search demos">
+    <meta name="author" content="yaoooo">
+    <link rel="icon" href="../favicon.ico">
+    <title> logs search 日志搜索</title>
+    <link href="../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
+    <link href="../res/styles/css/bootstrap-table.css" rel="stylesheet">
+    <link href="../res/styles/general.css" rel="stylesheet">
+    <link href="../res/styles/layout.css" rel="stylesheet">
+    <link href="../res/styles/modal.css" rel="stylesheet">
+    <link href="../res/styles/logssearch.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Fixed navbar 顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<button onclick="showOrHideDOM('searchBox')" class="btn btn-default">测试显示-->
+            <!--</button>-->
+            <a class="navbar-brand" href="#">日志内容搜索</a>
+        </div>
+
+    </div>
+</nav>
+<!-- /Fixed navbar 顶部导航栏 -->
+
+<!--高度占位符-->
+<div class="blank_divider20"></div>
+<!--/高度占位符-->
+
+<!-- Begin page content -->
+<div class="container">
+
+    <!--搜索框-->
+    <div >
+        <div class="row">
+            <div class="col-sm-7">
+
+            </div>
+            <div class="col-sm-5">
+                <div class="form-inline">
+                    <button type="button" class="btn btn-default  choose_btn margin_lr2">
+                        选择index
+                    </button>
+                    <button type="button" class="btn btn-default  choose_btn margin_lr2">
+                        选择type
+                    </button>
+                    <button type="button" class="btn btn-default  choose_btn margin_lr2">
+                        选择AppCode
+                    </button>
+                    <a href="#search">Search</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="searchBox" class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div id="imaginary_container">
+                    <div class="input-group stylish-input-group">
+                        <input type="text" class="form-control" placeholder="请输入查询关键字">
+                        <span class="input-group-addon">
+                        <button type="submit" onclick="removeElementById('searchBox');showElementById('logsList')">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--/搜索框-->
+
+
+    <!--弹出界面-->
+    <div id="search">
+        <button type="button" class="close">×</button>
+        <form>
+            <input type="search" value="" placeholder="type keyword(s) here" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <!--/弹出界面-->
+
+    <!--最新日志列表-->
+    <div id="logsList" class="">
+        <br>
+        <table id="table" data-search="true" data-show-columns="true" data-pagination="true" data-height="550">
+            <thead>
+            <tr>
+                <th data-field="stargazers_count" data-sortable="true">日志ID</th>
+                <th data-field="name" data-sortable="true" width="200">日志时间</th>
+                <th data-field="forks_count" data-sortable="true">LogMsg</th>
+                <th data-field="description" data-sortable="true">logOptions</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <!--/最新日志列表-->
+
+
+</div>
+
+<!--页脚-->
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+    </div>
+</footer>
+<!--/页脚-->
+
+<script src="../res/scripts/js/jquery-3.1.0.js"></script>
+<script src="../res/scripts/js/holder-2.6.0.min.js"></script>
+<script src="../res/scripts/js/tether-1.3.2.min.js"></script>
+<script src="../res/vendor/js/bootstrap-3.3.7.js"></script>
+<script src="../res/scripts/js/bootstrap-table.js"></script>
+<script src="../res/scripts/general.js"></script>
+<script src="../res/scripts/modal.js"></script>
+
+<!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->
+<!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
+<script>
+
+
+    var searchListData = [{
+        "name": "bootstrap-table",
+        "stargazers_count": "10",
+        "forks_count": "122",
+        "description": "An extended Bootstrap table"
+    }, {
+        "name": "multiple-select",
+        "stargazers_count": "288",
+        "forks_count": "20",
+        "description": "A jQuery plugin to select multiple elements with checkboxes :)"
+    }, {
+        "name": "bootstrap-table",
+        "stargazers_count": "32",
+        "forks_count": "11",
+        "description": "Show/hide password plugin for twitter bootstrap."
+    }, {
+        "name": "bootstrap-table",
+        "stargazers_count": "1",
+        "forks_count": "4",
+        "description": "my blog"
+    }, {
+        "name": "scutech-redmine 1",
+        "stargazers_count": "50",
+        "forks_count": "3",
+        "description": "Redmine notification tools for chrome extension."
+    }];
+
+    $(function () {
+
+        $('#table').bootstrapTable({
+            data: searchListData
+        });
+
+        $(".mybtn-top").click(function () {
+            $('#table').bootstrapTable('scrollTo', 0);
+        });
+
+        $(".mybtn-row").click(function () {
+            var index = +$('.row-index').val(),
+                    top = 0;
+            $('#table').find('tbody tr').each(function (i) {
+                if (i < index) {
+                    top += $(this).height();
+                }
+            });
+            $('#table').bootstrapTable('scrollTo', top);
+        });
+
+        $(".mybtn-btm").click(function () {
+            $('#table').bootstrapTable('scrollTo', 'bottom');
+        });
+
+    });
+
+
+
+</script>
+</body>
+</html>
