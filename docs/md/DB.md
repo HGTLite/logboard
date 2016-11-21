@@ -2,7 +2,7 @@
 落地在系统中的数据分为3大类：  
 用于日志备份和历史搜索的日志存放在HBase中，与原始日志最相近，存放时间暂定一年；  
 用于加速搜索的日志放在elasticsearch中，方便对自定义logOptions内容进行搜索，存放时间暂定3个月；  
-用于前端绘图的日志统计结果存放在Redis和MySQL中，Redis只存当前统计结果，MySQL存放历史统计结果；  
+用于前端绘图的日志统计结果存放在Redis和MySQL中，Redis只存当前统计结果，MySQL存放历史统计结果，存放时间暂定24h；  
 
 ##HBase表设计
 表名 LOG_RECORDS
@@ -61,7 +61,7 @@
 
 |Fields               |      DESC            |
 |:--------------------|:---------------------|
-| timePeriod          |日志时段，最小粒度每分钟 |
+| timePeriod          |日志时段，最小粒度30s |
 | logType             |日志类别               |
 | counts              |日志数量               |
 | logIDs              |日志ID集合             |
@@ -71,7 +71,7 @@
 
 |Fields               |      DESC            |
 |:--------------------|:---------------------|
-| timePeriod          |日志时段，最小粒度每分钟 |
+| timePeriod          |日志时段，最小粒度30s|
 | appCode             |应用系统               |
 | counts              |日志数量               |
 | logIDs              |日志ID集合             |
@@ -80,18 +80,18 @@
 
 |Fields               |      DESC            |
 |:--------------------|:---------------------|
-| timePeriod          |日志时段，最小粒度每分钟 |
+| timePeriod          |日志时段，最小粒度30s |
 | appCode             |应用系统               |
 | counts              |日志数量               |
 | logIDs              |日志ID集合             |
 
 预警通知表   
 
-|Fields               |      DESC            |
-|:--------------------|:---------------------|
-| notifyTime          |通知时间              |
-| notifyTo            |通知对象 ：所有用户/单个用户        |
-| notifyContents      |通知内容               |
+|Fields               |      DESC                   |
+|:--------------------|:----------------------------|
+| notifyTime          |通知时间                      |
+| notifyTo            |通知对象 ：所有用户/单个用户    |
+| notifyContents      |通知内容                      |
 
 
 
