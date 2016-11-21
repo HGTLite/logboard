@@ -47,8 +47,13 @@ public class SwaggerConfig {
      */
     private Predicate<String> doFilteringRules() {
         return or(
-                regex("/logs/apps.*")
+                regex("/lb.*")
         );
+
+//        return or(
+//                regex("/logs/apps.*")
+//        );
+
     }
 
     private ApiInfo initApiInfo() {

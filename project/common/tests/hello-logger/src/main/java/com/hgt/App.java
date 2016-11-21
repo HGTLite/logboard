@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 import static com.hgt.ip.IPHelper.getRandomIp;
 
-
 @SpringBootApplication
 public class App {
 
@@ -21,19 +20,27 @@ public class App {
         SpringApplication.run(App.class, args);
 
         ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(2);
+
         scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
+
             //日志条数
             int ii = 0;
 
             @Override
             public void run() {
-                StandardLogger logger = new StandardLogger(App.class, "hello1");
+                StandardLogger logger = new StandardLogger(App.class, "hello002");
                 StandardLogger log = (StandardLogger) logger.logType(LogType.LOGIN);
-                log.options(LogOptions.USER_ID, "user001").options(LogOptions.USER_IP, getRandomIp());
                 if (ii % 5 == 0) {
+                    log.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
                     log.i("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行");
                     ii++;
-                } else {
+                }else if (ii % 3 == 0) {
+                    log.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
+                    log.e("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行",new Exception());
+                    ii++;
+                }
+                else {
+                    log.options(LogOptions.USER_ID, "user004").options(LogOptions.USER_IP, getRandomIp());
                     log.w("这是第 " + ii + " 条消息！！！");
                     ii++;
                 }

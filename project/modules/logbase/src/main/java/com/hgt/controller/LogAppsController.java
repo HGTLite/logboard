@@ -22,11 +22,11 @@ import java.util.List;
  * =============================================================================
  * CHANGELOG:
  */
-@Api(value = "接入日志系统的第三方应用 val", description = "关于接入日志系统的第三方应用的接口 desc")
+@Api(value = "接入日志系统的第三方应用 val", description = "关于接入日志系统的第三方应用的接口")
 @RestController
 public class LogAppsController {
 
-    private final String BASE_URL = "logs/apps";
+    private final String BASE_URL = "lb/apps";
 
     @Autowired
     LogAppsService logAppsService;

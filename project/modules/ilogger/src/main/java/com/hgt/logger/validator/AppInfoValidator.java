@@ -17,7 +17,7 @@ public  class AppInfoValidator {
     public static boolean isAppCodeValid(String strCode) {
 
         boolean ret = false;
-        if (strCode.length() == 6) {
+        if (strCode.length() == 8) {
             ret = true;
         }
 

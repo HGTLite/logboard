@@ -52,7 +52,7 @@ public class TESTAdvancedController {
     public String getC() {
         logger.logType(LogType.LOGIN);
         logger.options(LogOptions.USER_ID, "user004").options(LogOptions.USER_IP, getRandomIp());
-        logger.i("LOG-AT-TESTAdvancedController. IP Address 004. INFO");
+        logger.e("LOG-AT-TESTAdvancedController. IP Address 004. INFO", new Exception());
         return "LOG-AT-TESTAdvancedController. IP Address 004. INFO";
     }
 

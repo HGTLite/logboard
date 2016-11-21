@@ -21,7 +21,6 @@
 - ...  
   
 ## 技术路线    
-
 　　统一日志服务系统总体分为4个模块：日志收集、日志存储、日志处理、日志可视化。  
 　　日志收集模块的目标是统一收集运行在不同平台、不同应用系统下的所有日志，采用的是文件采集法和流式采集法。  
 　　日志存储模块的目标是统一存储和管理有效日志，首先通过Kafka消息队列缓存所有日志信息以减轻存储服务器的压力，再将过滤后的日志存入NoSQL的HBase，日志统计结果存入MySQL关系数据库。    
@@ -32,6 +31,7 @@
 
 ## 日志收集模块  
 日志采集模块的目标是收集各个子系统（主要在Windows平台）产生的日志，方便后续的存储与分析。  
+
 #### 日志来源    
 重要日志处理成半结构化，对非结构化的日志*暂不处理*。
 - 业务日志（具体应用模块产生，处理成半结构化）  
@@ -41,27 +41,29 @@
      
 #### 日志规范化  
 统一日志的格式能够方便日志存储和分析，提高效率。
-将变化较少的数据存储在MySQL-LogMeta的LogApps表、LogContacts表，将实际日志存储在HBase的LogRecords表。
+将变化较少的数据存储在MySQL-logbase的LOG_APPS表、LOG_CONTACTS表，将实际日志存储在HBase的LOG_RECORDS表。
 
-**LogApps**  
+**LOG_APPS**  
 
 |Fields               |      DESC            |
 |:--------------------|:---------------------|
 | LA_ID               |自增ID                 |
-| LA_NAME             |子系统名                |
-| LA_CODE             |子系统编号，默认6位      |
-| LA_IP               |子系统服务器IP列表       |
-| LA_PLATFORM         |子系统操作系统或框架环境  |
-| LA_DESCRIPTION      |子系统描述              |
+| APP_NAME             |子系统名                |
+| APP_CODE             |子系统编号，默认6位      |
+| APP_IP               |子系统服务器IP列表       |
+| APP_PLATFORM         |子系统操作系统或框架环境  |
+| APP_DESC             |子系统描述              |
+
+<code>忽略
 | LA_NOTES            |备注                   |
 | CREATE_TIME         |创建时间                |
 | CREATE_BY           |创建人                  |
 | UPDATE_TIME         |修改时间                |
 | UPDATE_BY           |修改人                  |
+</code>
 
-
-**LogContacts**  
-
+<code>忽略
+**LogContacts** 
 |Fields               |      DESC            |
 |:--------------------|:---------------------|
 | LC_ID               |自增ID               |
@@ -73,6 +75,7 @@
 | CREATE_BY           |创建人                |
 | UPDATE_TIME         |修改时间              |
 | UPDATE_BY           |修改人                |
+</code>
 
 **LogRecords**   
 

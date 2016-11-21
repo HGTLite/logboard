@@ -9,8 +9,8 @@
         <result column="APP_DESC" property="appDesc" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-  LA_ID,APP_NAME,APP_CODE,APP_IP,APP_DESC
-</sql>
+     LA_ID,APP_NAME,APP_CODE,APP_IP,APP_DESC
+    </sql>
     <delete id="deleteLogAppsById" parameterType="java.lang.String">
         delete from LOG_APPS
         where LA_ID=#{laId,jdbcType=VARCHAR}
@@ -23,8 +23,8 @@
         where LA_ID=#{laId,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectAllLogApps" resultType="com.hgt.entity.LogApps">
-select * from LOG_APPS
+    <select id="selectAllLogApps" resultMap="BaseResultMap">
+    select * from LOG_APPS
     </select>
 
 
