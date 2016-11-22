@@ -65,6 +65,12 @@ public class LogAppsController {
         return new DataResult<>(pageInfo);
     }
 
+    @ApiOperation(value = "获取接入应用总数", notes = "已完成")
+    @RequestMapping(value = BASE_URL+"/counts",method = RequestMethod.GET)
+    public DataResult<SimpleStringBean> getTableCounts(){
+        return logAppsService.getTableCounts();
+    }
+
     @ApiOperation(value = "插入新记录", notes = "已完成")
     @RequestMapping(value = BASE_URL + "/add", method = RequestMethod.POST)
     public DataResult<SimpleStringBean> addLogApp(@RequestBody LogApps logApp) {
@@ -89,5 +95,8 @@ public class LogAppsController {
     public DataResult<SimpleStringBean> updateLogApp(@RequestBody LogApps logApp) {
         return logAppsService.updateLogApp(logApp);
     }
+
+
+
 
 }

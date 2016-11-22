@@ -18,6 +18,7 @@ public interface LogAppsMapper {
 
     int updateByPrimaryKey(LogApps record);
 
+    int getTableCounts();
 
     //========================================
     int deleteByPrimaryKey(String laId);

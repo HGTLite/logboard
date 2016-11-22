@@ -51,6 +51,10 @@
         from LOG_APPS
         where LA_ID = #{laId,jdbcType=VARCHAR}
     </select>
+    <select id="getTableCounts" resultType="java.lang.Integer">
+        select count(*)
+        from LOG_APPS
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from LOG_APPS
     where LA_ID = #{laId,jdbcType=VARCHAR}

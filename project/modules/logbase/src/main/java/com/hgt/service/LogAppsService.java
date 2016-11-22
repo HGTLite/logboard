@@ -18,6 +18,8 @@ public interface LogAppsService {
 
     DataResult<List<LogApps>>  findAllLogApps();
 
+    DataResult<SimpleStringBean> getTableCounts();
+
     DataResult<SimpleStringBean> addLogApp(LogApps logApp);
 
     DataResult<SimpleStringBean> deleteLogAppByRowId(String laId);
