@@ -228,8 +228,9 @@
             <div class="modal-body">
 
                 <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-warning-sign"></span> 确定要删除&nbsp;<span id="txtToDeleteAppName"
-                                                                                            class="text-info"></span>
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    确定要删除&nbsp;
+                    <span id="txtToDeleteAppName" class="text-info"></span>
                     &nbsp;这一条应用系统信息？
                 </div>
 
@@ -266,7 +267,7 @@
 
     $(document).ready(function () {
 
-        //项目全选UI效果
+        //列表全选UI效果
         $("#appsTable #checkall").click(function () {
 
             if ($("#appsTable #checkall").is(':checked')) {
@@ -295,11 +296,7 @@
         var vAppDesc = $("#aAppDesc").val();
         var vAppPlatform = $("#aAppPlatform").val();
         var vAppNotes = $("#aAppNotes").val();
-
         var appItem = '{"appCode":"' + vAppCode + '","appDesc":"' + vAppDesc + '","appIp":"' + vAppIp + '","appName":"' + vAppName + '","appNotes":"' + vAppNotes + '","appPlatform":"' + vAppPlatform + '","laId": "' + vAppCode + '"}';
-
-//        console.log(appItem);
-
         $.ajax({
             url: LOCAL_SERVER + "/lb/apps/add",
             type: "POST",
@@ -317,7 +314,6 @@
             error: function (err) {
                 console.log("add post 失败\n");
                 toastr.info("添加失败");
-
             }
 
         });
@@ -435,6 +431,7 @@
                 async: false,
                 dataType: "json",
                 success: function (res) {
+                    $("#deleteModal").modal("hide");
                     toastr.info("成功删除记录");
                     fetchAllApps();
                 },
