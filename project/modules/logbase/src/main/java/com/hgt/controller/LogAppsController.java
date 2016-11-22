@@ -73,9 +73,21 @@ public class LogAppsController {
 
 
     @ApiOperation(value = "根据行id删除单条信息", notes = "已完成")
-    @RequestMapping(value = BASE_URL + "/delete/{laId}", method = RequestMethod.GET)
-    public DataResult<SimpleStringBean> deleteLogApp(@PathVariable String laId) {
-        return logAppsService.deleteLogApp(laId);
+    @RequestMapping(value = BASE_URL + "/delete/id/{laId}", method = RequestMethod.GET)
+    public DataResult<SimpleStringBean> deleteLogAppByRowId(@PathVariable String laId) {
+        return logAppsService.deleteLogAppByRowId(laId);
+    }
+
+    @ApiOperation(value = "根据应用编号appCode删除单条信息", notes = "已完成")
+    @RequestMapping(value = BASE_URL + "/delete/code/{appCode}", method = RequestMethod.GET)
+    public DataResult<SimpleStringBean> deleteLogAppByAppCode(@PathVariable String appCode) {
+        return logAppsService.deleteLogAppByAppCode(appCode);
+    }
+
+    @ApiOperation(value = "更新记录", notes = "已完成")
+    @RequestMapping(value = BASE_URL + "/update", method = RequestMethod.POST)
+    public DataResult<SimpleStringBean> updateLogApp(@RequestBody LogApps logApp) {
+        return logAppsService.updateLogApp(logApp);
     }
 
 }

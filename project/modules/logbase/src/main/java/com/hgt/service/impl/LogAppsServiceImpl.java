@@ -39,10 +39,17 @@ public class LogAppsServiceImpl implements LogAppsService {
         return new DataResult<>(new SimpleStringBean("成功插入： " + count + " 条记录"));
     }
 
-    public DataResult<SimpleStringBean> deleteLogApp(String laId) {
-        int count = logAppsMapper.deleteLogAppsById(laId);
+    public DataResult<SimpleStringBean> deleteLogAppByRowId(String laId) {
+        int count = logAppsMapper.deleteLogAppByRowId(laId);
         return new DataResult<>(new SimpleStringBean("成功删除： " + count + " 条记录"));
     }
 
+    public DataResult<SimpleStringBean> deleteLogAppByAppCode(String appCode) {
+        int count = logAppsMapper.deleteLogAppByAppCode(appCode);
+        return new DataResult<>(new SimpleStringBean("成功删除： " + count + " 条记录"));
+    }
 
+    public DataResult<SimpleStringBean> updateLogApp(LogApps logApps) {
+        int count = logAppsMapper.updateByPrimaryKey(logApps);
+        return new DataResult<>(new SimpleStringBean("成功更新： " + count + " 条记录"));    }
 }

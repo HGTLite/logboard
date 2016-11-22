@@ -12,10 +12,22 @@ public interface LogAppsMapper {
 
     int insertLogApps(LogApps logApps);
 
-    int deleteLogAppsById(String laId);
+    int deleteLogAppByRowId(String laId);
 
+    int deleteLogAppByAppCode(String appCode);
+
+    int updateByPrimaryKey(LogApps record);
+
+
+    //========================================
+    int deleteByPrimaryKey(String laId);
 
     int insert(LogApps record);
 
     int insertSelective(LogApps record);
+
+    LogApps selectByPrimaryKey(String laId);
+
+    int updateByPrimaryKeySelective(LogApps record);
+
 }

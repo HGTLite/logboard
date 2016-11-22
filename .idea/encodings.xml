@@ -17,6 +17,7 @@
     <file url="file://$PROJECT_DIR$/project/common/tests/java-bean" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/kafka-general-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/kafka-general-producer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/project/common/tests/notify" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/pipeline-log2es" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tools" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/dependencies" charset="UTF-8" />
@@ -26,9 +27,6 @@
     <file url="file://$PROJECT_DIR$/project/modules/ilogger" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/log-boot" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/logbase" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/modules/logboot" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/modules/logboot" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/modules/logview" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/msg-router" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/redis-helper" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/streaming" charset="UTF-8" />

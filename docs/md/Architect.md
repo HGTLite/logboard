@@ -53,17 +53,14 @@
 | APP_IP               |子系统服务器IP列表       |
 | APP_PLATFORM         |子系统操作系统或框架环境  |
 | APP_DESC             |子系统描述              |
-
-<code>忽略
 | LA_NOTES            |备注                   |
 | CREATE_TIME         |创建时间                |
 | CREATE_BY           |创建人                  |
 | UPDATE_TIME         |修改时间                |
 | UPDATE_BY           |修改人                  |
-</code>
 
-<code>忽略
 **LogContacts** 
+
 |Fields               |      DESC            |
 |:--------------------|:---------------------|
 | LC_ID               |自增ID               |
@@ -75,7 +72,6 @@
 | CREATE_BY           |创建人                |
 | UPDATE_TIME         |修改时间              |
 | UPDATE_BY           |修改人                |
-</code>
 
 **LogRecords**   
 

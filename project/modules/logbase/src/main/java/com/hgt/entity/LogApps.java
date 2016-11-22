@@ -12,6 +12,10 @@ public class LogApps {
 
     private String appDesc;
 
+    private String appPlatform;
+
+    private String appNotes;
+
     public String getLaId() {
         return laId;
     }
@@ -50,5 +54,21 @@ public class LogApps {
 
     public void setAppDesc(String appDesc) {
         this.appDesc = appDesc == null ? null : appDesc.trim();
+    }
+
+    public String getAppPlatform() {
+        return appPlatform;
+    }
+
+    public void setAppPlatform(String appPlatform) {
+        this.appPlatform = appPlatform == null ? null : appPlatform.trim();
+    }
+
+    public String getAppNotes() {
+        return appNotes;
+    }
+
+    public void setAppNotes(String appNotes) {
+        this.appNotes = appNotes == null ? null : appNotes.trim();
     }
 }

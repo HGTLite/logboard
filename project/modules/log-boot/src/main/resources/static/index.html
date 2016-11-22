@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="res/styles/css/bootstrap-3.3.7.css"/>
     <link rel="stylesheet" href="res/styles/css/leaflet-1.0.0rc3.css"/>
     <link rel="stylesheet" href="res/styles/css/nv.d3.css"/>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="res/styles/css/mapbox.css"/>
     <link rel="stylesheet" href="res/fonts/css/font-awesome.css">
     <link rel="stylesheet" href="res/styles/general.css"/>
     <link rel="stylesheet" href="res/styles/layout.css"/>
@@ -85,10 +85,13 @@
     <!--简单数量统计-->
     <div id="apps_general1" class="row _divider_stripe bg_gray_shallow">
         <div class="col-sm-4 ">
-            <div style="margin-top: 18%" >
-                <i class="fa fa-cubes fa-2x" ></i>
+            <div style="margin-top: 18%">
+                <i class="fa fa-cubes fa-2x"></i>
                 <div class="stats_count_number " onclick="window.open('views/log_apps.html')">12</div>
-                <div class="stats_count_desc"><button class="btn bg_transparent _no_border" onclick="window.open('views/log-apps.html')"> 接入应用数</button> </div>
+                <div class="stats_count_desc">
+                    <button class="btn bg_transparent _no_border" onclick="window.open('views/log-apps.html')"> 接入应用数
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -96,14 +99,20 @@
             <div style="margin-top: 18%">
                 <i class="fa fa-th fa-2x"></i>
                 <div class="stats_count_number">12306</div>
-                <div class="stats_count_desc"><button class="btn bg_transparent _no_border" onclick=""> 日志处理量</button></div>
+                <div class="stats_count_desc">
+                    <button class="btn bg_transparent _no_border" onclick=""> 日志处理量</button>
+                </div>
             </div>
         </div>
         <div class="col-sm-4 ">
             <div style="margin-top: 18%">
                 <i class="fa fa-bell fa-2x"></i>
                 <div class="stats_count_number">1</div>
-                <div class="stats_count_desc"><button class="btn bg_transparent _no_border" onclick="window.open('views/logs-monitor.html')"> 待处理异常</button></div>
+                <div class="stats_count_desc">
+                    <button class="btn bg_transparent _no_border" onclick="window.open('views/logs-monitor.html')">
+                        待处理异常
+                    </button>
+                </div>
             </div>
         </div>
     </div>

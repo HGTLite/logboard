@@ -23,6 +23,7 @@
         <module>es-query</module>
         <module>java-bean</module>
         <module>pipeline-log2es</module>
+        <module>notify</module>
     </modules>
 
     <properties>

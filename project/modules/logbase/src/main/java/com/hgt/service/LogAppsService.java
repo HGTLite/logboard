@@ -20,6 +20,10 @@ public interface LogAppsService {
 
     DataResult<SimpleStringBean> addLogApp(LogApps logApp);
 
-    DataResult<SimpleStringBean> deleteLogApp(String laId);
+    DataResult<SimpleStringBean> deleteLogAppByRowId(String laId);
+
+    DataResult<SimpleStringBean> deleteLogAppByAppCode(String appCode);
+
+    DataResult<SimpleStringBean> updateLogApp(LogApps logApps);
 
 }

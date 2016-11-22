@@ -9,14 +9,14 @@
     <link rel="icon" href="../favicon.ico">
     <title>log apps 接入应用系统管理</title>
     <link href="../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
+    <link href="../res/styles/css/toastr.css" rel="stylesheet">
     <link href="../res/styles/general.css" rel="stylesheet">
     <link href="../res/styles/layout.css" rel="stylesheet">
-    <style type="text/css">
-
-    </style>
 </head>
+
 <body>
 
+<!--顶层container-->
 <div class="container">
 
     <!-- Fixed navbar 顶部导航栏-->
@@ -36,225 +36,134 @@
                 <!--<ul class="nav navbar-nav">-->
                 <!--<li class="active"><a href="#">Home</a></li>-->
                 <!--<li><a href="#about">About</a></li>-->
-                <!--<li><a href="#contact">Contact</a></li>-->
                 <!--</ul>-->
             </div>
         </div>
     </nav>
     <!-- /Fixed navbar 顶部导航栏-->
+
     <!--高度占位符-->
-    <div class="blank_divider20"></div>
+    <div class="blank_divider30"></div>
     <!--/高度占位符-->
 
-    <!-- Begin page content -->
+    <!-- 主内容container -->
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <button class="btn btn-default">添加新应用</button>
+                <button id="addNewApp" class="btn btn-default " data-title="Add" data-toggle="modal"
+                        data-target="#addModal">添加新应用
+                </button>
             </div>
             <div class="col-sm-9">
-
             </div>
         </div>
 
-        <div class="blank_divider10"></div>
+        <div class="blank_divider20"></div>
 
-
+        <!--表格所在行块-->
         <div class="row">
-
             <div class="col-md-12">
                 <!--<h6 class="text-muted">所有接入应用</h6>-->
                 <div class="table-responsive">
 
-                    <table id="mytable" class="table table-bordred table-striped">
+                    <table id="appsTable" class="table table-bordred table-striped">
 
                         <thead>
-
                         <th><input type="checkbox" id="checkall"/></th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Address</th>
-                        <th>Email</th>
-                        <th>Contact</th>
-                        <th>Edit</th>
-
-                        <th>Delete</th>
+                        <th>应用名</th>
+                        <th>应用编号</th>
+                        <th>应用系统IP</th>
+                        <th>应用描述</th>
+                        <th>应用环境</th>
+                        <th>备注</th>
                         </thead>
+
                         <tbody>
 
-                        <tr>
-                            <td><input type="checkbox" class="checkthis"/></td>
-                            <td>Mohsin</td>
-                            <td>Irshad</td>
-                            <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-                            <td>isometric.mohsin@gmail.com</td>
-                            <td>+923335586757</td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"
-                                            data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </p>
-                            </td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"
-                                            data-target="#delete"><span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><input type="checkbox" class="checkthis"/></td>
-                            <td>Mohsin</td>
-                            <td>Irshad</td>
-                            <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-                            <td>isometric.mohsin@gmail.com</td>
-                            <td>+923335586757</td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"
-                                            data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </p>
-                            </td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"
-                                            data-target="#delete"><span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><input type="checkbox" class="checkthis"/></td>
-                            <td>Mohsin</td>
-                            <td>Irshad</td>
-                            <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-                            <td>isometric.mohsin@gmail.com</td>
-                            <td>+923335586757</td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"
-                                            data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </p>
-                            </td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"
-                                            data-target="#delete"><span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><input type="checkbox" class="checkthis"/></td>
-                            <td>Mohsin</td>
-                            <td>Irshad</td>
-                            <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-                            <td>isometric.mohsin@gmail.com</td>
-                            <td>+923335586757</td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"
-                                            data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </p>
-                            </td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"
-                                            data-target="#delete"><span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><input type="checkbox" class="checkthis"/></td>
-                            <td>Mohsin</td>
-                            <td>Irshad</td>
-                            <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-                            <td>isometric.mohsin@gmail.com</td>
-                            <td>+923335586757</td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"
-                                            data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </p>
-                            </td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"
-                                            data-target="#delete"><span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-
+                        <!--<tr>-->
+                        <!--<td><input type="checkbox" class="checkthis"/></td>-->
+                        <!--<td>Mohsin</td>-->
+                        <!--<td>Irshad</td>-->
+                        <!--<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>-->
+                        <!--<td>isometric.mohsin@gmail.com</td>-->
+                        <!--<td>+923335586757</td>-->
+                        <!--<td>-->
+                        <!--<p data-placement="top" data-toggle="tooltip" title="Edit">-->
+                        <!--<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"-->
+                        <!--data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>-->
+                        <!--</button>-->
+                        <!--</p>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--<p data-placement="top" data-toggle="tooltip" title="Delete">-->
+                        <!--<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"-->
+                        <!--data-target="#delete"><span class="glyphicon glyphicon-trash"></span>-->
+                        <!--</button>-->
+                        <!--</p>-->
+                        <!--</td>-->
+                        <!--</tr>-->
 
                         </tbody>
 
                     </table>
 
                     <div class="clearfix"></div>
-                    <ul class="pagination pull-right">
-                        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                    </ul>
+
+                    <!--<ul id="pageNumIndicator" class="pagination pull-right">-->
+                    <!--<li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>-->
+                    <!--<li class="active"><a href="#">1</a></li>-->
+                    <!--<li><a href="#">2</a></li>-->
+                    <!--<li><a href="#">3</a></li>-->
+                    <!--<li><a href="#">4</a></li>-->
+                    <!--<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>-->
+                    <!--</ul>-->
 
                 </div>
 
             </div>
         </div>
-
+        <!--/表格所在行块-->
 
     </div>
-
-
+    <!-- /主内容container -->
 
 </div>
+<!--/顶层container-->
 
-
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<!--add弹出模态框-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
-                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h4 class="modal-title custom_align" id="Heading1">添加待接入的应用</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input class="form-control " type="text" placeholder="Mohsin">
+                    <input id="aAppName" class="form-control " type="text" placeholder="应用名称">
                 </div>
                 <div class="form-group">
-
-                    <input class="form-control " type="text" placeholder="Irshad">
+                    <input id="aAppCode" class="form-control " type="text" placeholder="应用编号（8位字母或数字）">
                 </div>
                 <div class="form-group">
-                    <textarea rows="2" class="form-control"
-                              placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
-
-
+                    <input id="aAppIp" class="form-control " type="text" placeholder="所在服务器IP">
+                </div>
+                <div class="form-group">
+                    <textarea id="aAppDesc" rows="2" class="form-control" placeholder="应用描述（可选）"></textarea>
+                </div>
+                <div class="form-group">
+                    <input id="aAppPlatform" class="form-control " type="text" placeholder="应用所在环境（可选）">
+                </div>
+                <div class="form-group">
+                    <input id="aAppNotes" class="form-control " type="text" placeholder="备注信息，如端口号等（可选）">
                 </div>
             </div>
+
             <div class="modal-footer ">
-                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span
-                        class="glyphicon glyphicon-ok-sign"></span> Update
+                <button id="submitNewApp" type="button" class="btn btn-info btn-lg" style="width: 100%;">
+                    <span class="glyphicon glyphicon-ok-sign"></span> 添加
                 </button>
             </div>
         </div>
@@ -262,28 +171,41 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<!--/add弹出模态框-->
 
-
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<!--edit弹出模态框-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
-                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h4 class="modal-title custom_align" id="Heading2">编辑应用信息</h4>
             </div>
-            <div class="modal-body">
-
-                <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you
-                    want to delete this Record?
+            <div id="editFormGroup" class="modal-body">
+                <div class="form-group">
+                    <input id="eAppName" class="form-control " type="text" placeholder="应用名称">
                 </div>
-
+                <div class="form-group">
+                    <input id="eAppCode" class="form-control " type="text" placeholder="应用编号（8位字母或数字）">
+                </div>
+                <div class="form-group">
+                    <input id="eAppIp" class="form-control " type="text" placeholder="所在服务器IP">
+                </div>
+                <div class="form-group">
+                    <textarea id="eAppDesc" rows="2" class="form-control" placeholder="应用描述（可选）"></textarea>
+                </div>
+                <div class="form-group">
+                    <input id="eAppPlatform" class="form-control " type="text" placeholder="应用所在环境（可选）">
+                </div>
+                <div class="form-group">
+                    <input id="eAppNotes" class="form-control " type="text" placeholder="备注信息，如端口号等（可选）">
+                </div>
             </div>
             <div class="modal-footer ">
-                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Yes
-                </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span
-                        class="glyphicon glyphicon-remove"></span> No
+                <button id="submitEditApp" type="button" class="btn btn-info btn-lg" style="width: 100%;">
+                    <span class="glyphicon glyphicon-ok-sign"></span> 更新
                 </button>
             </div>
         </div>
@@ -291,6 +213,41 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<!--/edit弹出模态框-->
+
+<!--delete弹出模态框-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h4 class="modal-title custom_align" id="Heading">删除操作</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-warning-sign"></span> 确定要删除&nbsp;<span id="txtToDeleteAppName"
+                                                                                            class="text-info"></span>
+                    &nbsp;这一条应用系统信息？
+                </div>
+
+            </div>
+            <div class="modal-footer ">
+                <button id="submitDeleteApp" type="button" class="btn btn-danger " data-dismiss="modal">
+                    <span class="glyphicon glyphicon-ok-sign"></span> 删除
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span> 取消
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--/delete弹出模态框-->
 
 <footer class="footer">
     <div class="container">
@@ -302,24 +259,192 @@
 <script src="../res/scripts/js/holder-2.6.0.min.js"></script>
 <script src="../res/scripts/js/tether-1.3.2.min.js"></script>
 <script src="../res/vendor/js/bootstrap-3.3.7.js"></script>
+<script src="../res/scripts/js/toastr.min.js"></script>
+<script src="../res/scripts/url.js"></script>
 
 <script type="text/javascript">
+
     $(document).ready(function () {
-        $("#mytable #checkall").click(function () {
-            if ($("#mytable #checkall").is(':checked')) {
-                $("#mytable input[type=checkbox]").each(function () {
+
+        //项目全选UI效果
+        $("#appsTable #checkall").click(function () {
+
+            if ($("#appsTable #checkall").is(':checked')) {
+                $("#appsTable input[type=checkbox]").each(function () {
                     $(this).prop("checked", true);
                 });
-
             } else {
-                $("#mytable input[type=checkbox]").each(function () {
+                $("#appsTable input[type=checkbox]").each(function () {
                     $(this).prop("checked", false);
                 });
             }
         });
-
         $("[data-toggle=tooltip]").tooltip();
+
+        //获取最新接入应用
+        fetchAllApps();
+
     });
+
+    //添加新应用系统信息--点击事件
+    $("#submitNewApp").click(function () {
+
+        var vAppName = $("#aAppName").val();
+        var vAppCode = $("#aAppCode").val();
+        var vAppIp = $("#aAppIp").val();
+        var vAppDesc = $("#aAppDesc").val();
+        var vAppPlatform = $("#aAppPlatform").val();
+        var vAppNotes = $("#aAppNotes").val();
+
+        var appItem = '{"appCode":"' + vAppCode + '","appDesc":"' + vAppDesc + '","appIp":"' + vAppIp + '","appName":"' + vAppName + '","appNotes":"' + vAppNotes + '","appPlatform":"' + vAppPlatform + '","laId": "' + vAppCode + '"}';
+
+//        console.log(appItem);
+
+        $.ajax({
+            url: LOCAL_SERVER + "/lb/apps/add",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: appItem,
+            async: false,
+            dataType: "json",
+            success: function (response) {
+                $("#addModal").modal("hide");
+                console.log("add post 成功\n");
+                toastr.info("添加成功");
+
+                fetchAllApps();
+            },
+            error: function (err) {
+                console.log("add post 失败\n");
+                toastr.info("添加失败");
+
+            }
+
+        });
+    });
+
+    /**
+     * 从服务器查询所有接入应用信息
+     */
+    function fetchAllApps() {
+        $.ajax({
+            url: LOCAL_SERVER + "/lb/apps/all",
+            type: "GET",
+            async: true,
+            dataType: "json",
+            success: renderDOMAppsTable
+        })
+    }
+
+    /**
+     * 填充最新应用信息到表格
+     * @param res
+     * @param status
+     */
+    function renderDOMAppsTable(res, status) {
+//        console.log(res);
+        var tbodyData = "";
+        for (var i = 0; i < res.data.length; i++) {
+            var trData = res.data[i];
+//            console.log(trData);
+            tbodyData += "<tr data-rowid='" + trData.laId + "'>" +
+                    "<td><input type=\"checkbox\" class=\"checkthis\"/></td>" +
+                    "<td>" + trData.appName + "</td>" +
+                    "<td>" + trData.appCode + "</td>" +
+                    "<td>" + trData.appIp + "</td>" +
+                    "<td>" + trData.appDesc + "</td>" +
+                    "<td>" + trData.appPlatform + "</td>" +
+                    "<td>" + trData.appNotes + "</td>" +
+                    "<td>" +
+                    "<p  data-placement=\"top\" data-toggle=\"tooltip\" title=\"Edit\"><button class=\"btn btn-primary btn-xs btnTrEdit\" data-title=\"Edit\" data-toggle=\"modal\" data-target=\"#editModal\"><span class=\"glyphicon glyphicon-pencil\"></span></button></p>" +
+                    "</td>" +
+                    "<td>" +
+                    "<p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs btnTrDelete\" data-title=\"Delete\" ><span class=\"glyphicon glyphicon-trash\"></span></button></p>" +
+                    "</td>" +
+                    "</tr>"
+        }
+//        console.log(tbodyData);
+
+        $("#appsTable tbody").html(tbodyData);
+
+        //添加删除按钮事件
+        $("#appsTable .btnTrDelete").each(function () {
+            $(this).bind("click", showDeleteModal);
+        });
+
+        //添加编辑按钮事件
+        $("#appsTable .btnTrEdit").each(function () {
+            $(this).bind("click", showEditModal);
+        });
+
+    }
+
+    function showEditModal() {
+        var tds = $(this).closest("tr").children();
+
+        var rowid = $(this).closest("tr").attr("data-rowid");
+
+        $("#eAppName").val(tds.eq(1).text());
+        $("#eAppCode").val(tds.eq(2).text());
+        $("#eAppIp").val(tds.eq(3).text());
+        $("#eAppDesc").val(tds.eq(4).text());
+        $("#eAppPlatform").val(tds.eq(5).text());
+        $("#eAppNotes").val(tds.eq(6).text());
+
+        //提交编辑后的应用信息--点击事件
+        $("#submitEditApp").click(function () {
+
+            var vAppName = $("#eAppName").val();
+            var vAppCode = $("#eAppCode").val();
+            var vAppIp = $("#eAppIp").val();
+            var vAppDesc = $("#eAppDesc").val();
+            var vAppPlatform = $("#eAppPlatform").val();
+            var vAppNotes = $("#eAppNotes").val();
+            var appItem = '{"appCode":"' + vAppCode + '","appDesc":"' + vAppDesc + '","appIp":"' + vAppIp + '","appName":"' + vAppName + '","appNotes":"' + vAppNotes + '","appPlatform":"' + vAppPlatform + '","laId": "' + vAppCode + '"}';
+            $.ajax({
+                url: LOCAL_SERVER + "/lb/apps/update",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: appItem,
+                async: false,
+                dataType: "json",
+                success: function (response) {
+                    $("#editModal").modal("hide");
+                    console.log("edit post 成功\n");
+
+                    fetchAllApps();
+                },
+                error: function (err) {
+                    console.log("edit post 失败\n");
+                }
+            });
+        });
+
+    }
+
+    function showDeleteModal() {
+        var rowid = $(this).closest("tr").attr("data-rowid");
+        $("#txtToDeleteAppName").html(rowid);
+        $("#deleteModal").modal("show");
+
+        //删除应用系统信息--点击事件
+        $("#submitDeleteApp").click(function () {
+            $.ajax({
+                url: LOCAL_SERVER + "/lb/apps/delete/id/" + rowid,
+                type: "GET",
+                async: false,
+                dataType: "json",
+                success: function (res) {
+                    toastr.info("成功删除记录");
+                    fetchAllApps();
+                },
+                error: function (res) {
+                    toastr.error("删除操作失败");
+                }
+            })
+        });
+
+    }
 
 </script>
 </body>

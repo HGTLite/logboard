@@ -2,19 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hgt.mapper.LogAppsMapper">
     <resultMap id="BaseResultMap" type="com.hgt.entity.LogApps">
-        <result column="LA_ID" property="laId" jdbcType="VARCHAR"/>
+        <id column="LA_ID" property="laId" jdbcType="VARCHAR"/>
         <result column="APP_NAME" property="appName" jdbcType="VARCHAR"/>
         <result column="APP_CODE" property="appCode" jdbcType="VARCHAR"/>
         <result column="APP_IP" property="appIp" jdbcType="VARCHAR"/>
         <result column="APP_DESC" property="appDesc" jdbcType="VARCHAR"/>
+        <result column="APP_PLATFORM" property="appPlatform" jdbcType="VARCHAR"/>
+        <result column="APP_NOTES" property="appNotes" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-     LA_ID,APP_NAME,APP_CODE,APP_IP,APP_DESC
-    </sql>
-    <delete id="deleteLogAppsById" parameterType="java.lang.String">
-        delete from LOG_APPS
-        where LA_ID=#{laId,jdbcType=VARCHAR}
-    </delete>
+    LA_ID, APP_NAME, APP_CODE, APP_IP, APP_DESC, APP_PLATFORM, APP_NOTES
+  </sql>
+    <!--=============================================================================================-->
 
     <select id="selectLogAppsById" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -25,14 +24,44 @@
 
     <select id="selectAllLogApps" resultMap="BaseResultMap">
     select * from LOG_APPS
+  </select>
+    <insert id="insertLogApps" parameterType="com.hgt.entity.LogApps">
+    insert into LOG_APPS (LA_ID, APP_NAME, APP_CODE,
+    APP_IP, APP_DESC, APP_PLATFORM,
+    APP_NOTES)
+    values (#{laId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR},
+    #{appIp,jdbcType=VARCHAR}, #{appDesc,jdbcType=VARCHAR}, #{appPlatform,jdbcType=VARCHAR},
+    #{appNotes,jdbcType=VARCHAR})
+  </insert>
+
+    <delete id="deleteLogAppByRowId" parameterType="java.lang.String">
+    delete from LOG_APPS
+    where LA_ID=#{laId,jdbcType=VARCHAR}
+  </delete>
+
+    <delete id="deleteLogAppByAppCode" parameterType="java.lang.String">
+    delete from LOG_APPS
+    where APP_CODE=#{appCode,jdbcType=VARCHAR}
+  </delete>
+
+    <!--=============================================================================================-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from LOG_APPS
+        where LA_ID = #{laId,jdbcType=VARCHAR}
     </select>
-
-
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from LOG_APPS
+    where LA_ID = #{laId,jdbcType=VARCHAR}
+  </delete>
     <insert id="insert" parameterType="com.hgt.entity.LogApps">
     insert into LOG_APPS (LA_ID, APP_NAME, APP_CODE, 
-      APP_IP, APP_DESC)
+      APP_IP, APP_DESC, APP_PLATFORM, 
+      APP_NOTES)
     values (#{laId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, 
-      #{appIp,jdbcType=VARCHAR}, #{appDesc,jdbcType=VARCHAR})
+      #{appIp,jdbcType=VARCHAR}, #{appDesc,jdbcType=VARCHAR}, #{appPlatform,jdbcType=VARCHAR}, 
+      #{appNotes,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.hgt.entity.LogApps">
         insert into LOG_APPS
@@ -52,6 +81,12 @@
             <if test="appDesc != null">
                 APP_DESC,
             </if>
+            <if test="appPlatform != null">
+                APP_PLATFORM,
+            </if>
+            <if test="appNotes != null">
+                APP_NOTES,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="laId != null">
@@ -69,12 +104,46 @@
             <if test="appDesc != null">
                 #{appDesc,jdbcType=VARCHAR},
             </if>
+            <if test="appPlatform != null">
+                #{appPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="appNotes != null">
+                #{appNotes,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
-    <insert id="insertLogApps" parameterType="com.hgt.entity.LogApps">
-        insert into LOG_APPS (LA_ID, APP_NAME, APP_CODE,
-      APP_IP, APP_DESC)
-    values (#{laId,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR},
-      #{appIp,jdbcType=VARCHAR}, #{appDesc,jdbcType=VARCHAR})
-    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.LogApps">
+        update LOG_APPS
+        <set>
+            <if test="appName != null">
+                APP_NAME = #{appName,jdbcType=VARCHAR},
+            </if>
+            <if test="appCode != null">
+                APP_CODE = #{appCode,jdbcType=VARCHAR},
+            </if>
+            <if test="appIp != null">
+                APP_IP = #{appIp,jdbcType=VARCHAR},
+            </if>
+            <if test="appDesc != null">
+                APP_DESC = #{appDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="appPlatform != null">
+                APP_PLATFORM = #{appPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="appNotes != null">
+                APP_NOTES = #{appNotes,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where LA_ID = #{laId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hgt.entity.LogApps">
+    update LOG_APPS
+    set APP_NAME = #{appName,jdbcType=VARCHAR},
+      APP_CODE = #{appCode,jdbcType=VARCHAR},
+      APP_IP = #{appIp,jdbcType=VARCHAR},
+      APP_DESC = #{appDesc,jdbcType=VARCHAR},
+      APP_PLATFORM = #{appPlatform,jdbcType=VARCHAR},
+      APP_NOTES = #{appNotes,jdbcType=VARCHAR}
+    where LA_ID = #{laId,jdbcType=VARCHAR}
+  </update>
 </mapper>
