@@ -60,12 +60,20 @@
                         </div>
                         <div id="accordion1_1" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
-                                    exercitation dolore magna ullamco.</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
-                                    labore
-                                    et dolore.</p>
+
+                                <!--日期选择器-->
+                                <div class="form-group _width_250">
+                                    <div id="startPicker">
+                                        <label for="startTimePicker">开始日期</label>
+                                        <input id="startTimePicker" type="text" value="" data-date-format="yyyy-mm-dd hh:ii">
+                                    </div>
+                                    <div id="endPicker">
+                                        <label for="endTimePicker">结束日期</label>
+                                        <input id="endTimePicker" type="text" value="" data-date-format="yyyy-mm-dd hh:ii">
+                                    </div>
+                                </div>
+                                <!--/日期选择器-->
+
                             </div>
                         </div>
                     </div>
@@ -78,33 +86,14 @@
                         </div>
                         <div id="accordion1_2" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
-                                    exercitation dolore magna ullamco.</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
-                                    labore
-                                    et dolore.</p>
+
+                                <button class="btn btn-default">选择应用</button>
+                                <button class="btn btn-default">日志类别</button>
+
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h5 class="panel-title">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1"
-                                   href="#accordion1_3">时间</a>
-                            </h5>
-                        </div>
-                        <div id="accordion1_3" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
-                                    exercitation dolore magna ullamco.</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
-                                    labore
-                                    et dolore.</p>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h5 class="panel-title">
@@ -114,12 +103,9 @@
                         </div>
                         <div id="accordion1_4" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim minim veniam quis nostrud
-                                    exercitation dolore magna ullamco.</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed eiusmod tempor ut
-                                    labore
-                                    et dolore.</p>
+                                <button class="btn btn-default">x轴</button>
+                                <button class="btn btn-default">y轴</button>
+                                <button class="btn btn-default">文本</button>
                             </div>
                         </div>
                     </div>
@@ -161,11 +147,24 @@
 <script src="../res/scripts/js/bootstrap-datetimepicker.js"></script>
 <script src="../res/scripts/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
-<!--<script src="../res/scripts/js/d3-4.2.1.js"></script>-->
 <!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->
 <!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
 <script type="text/javascript">
 
+    $('#startTimePicker').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1
+    });
+    $('#endTimePicker').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1
+    });
 
 </script>
 </body>
