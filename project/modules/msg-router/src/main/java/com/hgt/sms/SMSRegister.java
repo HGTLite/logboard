@@ -7,4 +7,5 @@ package com.hgt.sms;
  * CHANGELOG:
  */
 public class SMSRegister {
+
 }

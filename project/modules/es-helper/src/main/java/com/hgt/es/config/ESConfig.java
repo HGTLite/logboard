@@ -33,7 +33,7 @@ public class ESConfig implements Serializable {
 
     /**
      * 声明并初始化ES连接client
-     * <p>
+     *
      * strClusterName es集群名称
      * strHostList  es集群主机host列表，形如192.168.100.240:9300,192.168.100.241:9300
      *
