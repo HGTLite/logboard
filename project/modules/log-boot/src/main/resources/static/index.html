@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="res/styles/css/bootstrap-3.3.7.css"/>
     <link rel="stylesheet" href="res/styles/css/leaflet-1.0.0rc3.css"/>
     <link rel="stylesheet" href="res/styles/css/nv.d3.css"/>
-    <link rel="stylesheet" href="res/styles/css/mapbox.css"/>
+    <!--<link rel="stylesheet" href="res/styles/css/mapbox.css"/>-->
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css" />
     <link rel="stylesheet" href="res/fonts/css/font-awesome.css">
     <link rel="stylesheet" href="res/styles/general.css"/>
     <link rel="stylesheet" href="res/styles/layout.css"/>
@@ -124,16 +125,21 @@
 
 <!--系统概览模块-->
 <div id="logsOverview" class="container-fluid _height_600  ">
-    <div class="row  _height_480 _text_align_center margin-top3 ">
+    <div class="row  _height_480 _text_align_center margin-top1 ">
         <!--日志饼状图-->
-        <div class="col-sm-5">
+        <div class="col-sm-4">
+            <div class="row _text_align_center">
+                <span class="h3">日志分布</span>
+            </div>
+            <div class="blank_divider30"></div>
+
             <div class="row">
-                <svg id="svgLogsGenaralPie" width="420" height="480"></svg>
+                <svg id="svgLogsGenaralPie" width="320" height="480"></svg>
             </div>
 
         </div>
         <!--日志曲线图-->
-        <div class="col-sm-7">
+        <div class="col-sm-8">
             <div id="logsCurveHeader" class="row bg_white_pure ">
                 <div class="col-sm-3 _text_align_center">
                 </div>
@@ -142,20 +148,20 @@
                 </div>
                 <div class="col-sm-5 _text_align_right">
                     <span class="align_right ">
-                    <a id="a1" href="javascript:void(0)" class="btn btn-info _width15">1小时</a>
-                    <a id="a2" href="javascript:void(0)" class="btn text-muted _width15">24小时</a>
-                    <a id="a3" href="javascript:void(0)" class="btn text-muted _width15">昨天</a>
-                    <a id="a4" href="javascript:void(0)" class="btn text-muted _width15">7天</a>
-                    <a id="a5" href="javascript:void(0)" class="btn text-muted _width15">本月</a>
+                        <a id="a1" href="javascript:void(0)" class="btn btn-info _width15">1小时</a>
+                        <a id="a2" href="javascript:void(0)" class="btn text-muted _width15">24小时</a>
+                        <a id="a3" href="javascript:void(0)" class="btn text-muted _width15">昨天</a>
+                        <a id="a4" href="javascript:void(0)" class="btn text-muted _width15">7天</a>
+                        <a id="a5" href="javascript:void(0)" class="btn text-muted _width15">本月</a>
                     </span>
                 </div>
             </div>
 
-            <div class="blank_divider20"></div>
+            <div class="blank_divider30"></div>
 
             <div id="logsGeneralCurve" class="row bg_white_pure">
-                <div class="col-sm-12 _text_align_center">
-                    <svg id="svgLogsGenaral" width="960" height="480"></svg>
+                <div id="svgLogsGenaral" >
+                    <!--<svg id="svgLogsGenaral" width="800" height="420"></svg>-->
                 </div>
             </div>
         </div>
@@ -169,7 +175,6 @@
 
 <!--异常监控模块-->
 <div id="logsException" class="container-fluid screen-page bg_gray_shallow ">
-
 
     <div class="row blank_divider30"></div>
 
@@ -193,9 +198,17 @@
 
     <!--异常曲线-->
     <div id="expLogsCurve" class="row ">
-        <div class="col-sm-12 _text_align_center">
-            <svg id="svgLogsExp" width="1080" height="280"></svg>
+        <div class="col-sm-1">
+
         </div>
+        <div class="col-sm-10">
+            <div id="svgLogsExp">
+            </div>
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+
     </div>
 
     <!--异常消息列表-->
@@ -312,7 +325,8 @@
     <div class="row blank_divider10"></div>
     <h2>日志统计</h2>
     <div class="row ">
-        <svg id="svgLogsStats" width="1280" height="420"></svg>
+        <div id="svgLogsStats"></div>
+        <!--<svg id="svgLogsStats" width="1280" height="420"></svg>-->
     </div>
     <div class="row ">
         分类标签
@@ -369,7 +383,6 @@
         </div>
     </div>
 
-    <!--访客IP分布图-->
 
 </div>
 </div>
@@ -420,8 +433,9 @@
 <script type="text/javascript" src="res/scripts/logscharts.js"></script>
 <script type="text/javascript" src="res/scripts/utils.js"></script>
 <script type="text/javascript" src="res/scripts/ipviews.js"></script>
-<!--<script type="text/javascript" src="../res/scripts/svg.js"></script>-->
-<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+<script type="text/javascript" src="res/scripts/js/mapbox.js"></script>
+<!--<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>-->
+
 
 <script type="text/javascript">
 

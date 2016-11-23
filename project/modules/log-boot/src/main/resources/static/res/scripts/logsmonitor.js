@@ -1,6 +1,6 @@
 function createMonitorCurve(){
     var limit = 60 * 1,
-        duration = 750,
+        duration = 1*1000,
         now = new Date(Date.now() - duration)
 
     var width = 720,

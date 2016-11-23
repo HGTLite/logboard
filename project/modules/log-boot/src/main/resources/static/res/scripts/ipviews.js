@@ -1,4 +1,8 @@
+/**
+ * 首页显示访客IP分布图
+ */
 function createIPGeoViews() {
+
     var apps = apps || {};
     apps.namespace = function (str) {
         var parts = str.split("."),

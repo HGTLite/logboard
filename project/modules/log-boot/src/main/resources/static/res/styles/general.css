@@ -61,6 +61,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     margin-top: 10%;
 }
 
+.display_inline{
+    display: inline;
+}
+
 ._display_table {
     display: table;
 }
@@ -88,12 +92,36 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     margin-top: 6%;
 }
 
+.margin-top1 {
+    margin-top: 1%;
+}
+
+.margin-top2 {
+    margin-top: 2%;
+}
+
 .margin-top3 {
     margin-top: 3%;
 }
 
+._padding_left_5 {
+    padding-left: 5%;
+}
+
+._padding_left_10 {
+    padding-left: 10%;
+}
+
 ._padding_left_18 {
     padding-left: 18%;
+}
+
+._padding_top_12 {
+    padding-top: 12%;
+}
+
+._padding_top_15 {
+    padding-top: 15%;
 }
 
 ._padding_top_18 {
@@ -144,20 +172,47 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
-._width_640{
-    width:640px;
+._width_48 {
+    width: 48px;
 }
 
-._width_800{
-    width:800px;
+._width_120 {
+    width: 120px;
 }
 
-._width_960{
-    width:960px;
+._width_160 {
+    width: 160px;
 }
 
-._width_1080{
-    width:1080px;
+._width_180 {
+    width: 180px;
+}
+
+
+._width_200 {
+    width: 200px;
+}
+
+
+._width_250 {
+    width: 250px;
+}
+
+
+._width_640 {
+    width: 640px;
+}
+
+._width_800 {
+    width: 800px;
+}
+
+._width_960 {
+    width: 960px;
+}
+
+._width_1080 {
+    width: 1080px;
 }
 
 ._height100 {
@@ -183,7 +238,6 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 ._height_640 {
     height: 640px;
 }
-
 
 ._white_border {
     border-color: #ffffff;
@@ -253,6 +307,11 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 .blank_divider250 {
     height: 250px;
 }
+
+.blank_divider360 {
+    height: 360px;
+}
+
 
 .blank_divider400 {
     height: 400px;

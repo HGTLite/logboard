@@ -1,53 +1,52 @@
 /**
- *
  * 日志概览曲线
- *
  */
-function createLogsGeneralCurve(){
+function createLogsGeneralCurve() {
 
     var limit = 60 * 1,
-        duration = 750,
-        now = new Date(Date.now() - duration)
+        duration = 5 * 1000,
+        now = new Date(Date.now() - duration);
 
-    var width = 600,
-        height = 360;
+    var width = 720,
+        height = 400;
 
+    //**数据配置
     var groups = {
         current: {
             value: 0,
-            color: 'orange',
-            data: d3.range(limit).map(function() {
+            color: '#00c5ff',
+            data: d3.range(limit).map(function () {
                 return 0
             })
         }
-    }
+    };
 
     var x = d3.time.scale()
         .domain([now - (limit - 2), now - duration])
-        .range([0, width])
+        .range([0, width]);
 
     var y = d3.scale.linear()
-        .domain([0, 100])
-        .range([height, 0])
+        .domain([0, 110])
+        .range([height, 0]);
 
     var line = d3.svg.line()
         .interpolate('basis')
-        .x(function(d, i) {
+        .x(function (d, i) {
             return x(now - (limit - 1 - i) * duration)
         })
-        .y(function(d) {
+        .y(function (d) {
             return y(d)
-        })
+        });
 
     var svg = d3.select('#svgLogsGenaral').append('svg')
         .attr('class', 'chart')
         .attr('width', width)
-        .attr('height', height + 50)
+        .attr('height', height + 25);
 
     var axis = svg.append('g')
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + height + ')')
-        .call(x.axis = d3.svg.axis().scale(x).orient('bottom'))
+        .call(x.axis = d3.svg.axis().scale(x).orient('bottom'));
 
     var paths = svg.append('g')
 
@@ -97,29 +96,30 @@ function createLogsGeneralCurve(){
     tick()
 }
 
-
 /**
  * 日志分布饼状图
  */
-function createLogsGeneralPie(){
+function createLogsGeneralPie() {
+
+    //**数据配置
     var testdata = [
         {key: "One", y: 5},
         {key: "Two", y: 2},
         {key: "Three", y: 9},
         {key: "Four", y: 7},
-        {key: "Five", y: 4},
-        {key: "Six", y: 3},
-        {key: "Seven", y: 0.5}
     ];
 
     var height = 350;
     var width = 350;
 
-    var chart1;
-    nv.addGraph(function() {
+    nv.addGraph(function () {
         var chart1 = nv.models.pieChart()
-            .x(function(d) { return d.key })
-            .y(function(d) { return d.y })
+            .x(function (d) {
+                return d.key
+            })
+            .y(function (d) {
+                return d.y
+            })
             .donut(true)
             .width(width)
             .height(height)
@@ -127,14 +127,13 @@ function createLogsGeneralPie(){
             .cornerRadius(5)
             .id('donut1'); // allow custom CSS for this one svg
 
-        chart1.title("100%");
-        chart1.pie.donutLabelsOutside(true).donut(true);
+        // chart1.title("100%");
+        chart1.pie.labelsOutside(true).donut(true);
 
         d3.select("#svgLogsGenaralPie")
             .datum(testdata)
             .transition().duration(1200)
             .call(chart1);
-
 
 
         return chart1;
@@ -145,40 +144,41 @@ function createLogsGeneralPie(){
 /**
  * 日志异常曲线
  */
-function createLogsExpCurve(){
+function createLogsExpCurve() {
     var limit = 60 * 1,
-        duration = 750,
+        duration = 1 * 1000,
         now = new Date(Date.now() - duration)
 
-    var width = 960,
+    var width = 1080,
         height = 240;
 
+    //**配置数据
     var groups = {
         current: {
             value: 0,
-            color: 'orange',
-            data: d3.range(limit).map(function() {
+            color: '#ff6666',
+            data: d3.range(limit).map(function () {
                 return 0
             })
         }
-    }
+    };
 
     var x = d3.time.scale()
         .domain([now - (limit - 2), now - duration])
-        .range([0, width])
+        .range([0, width]);
 
     var y = d3.scale.linear()
-        .domain([0, 100])
-        .range([height, 0])
+        .domain([0, 110])
+        .range([height, 0]);
 
     var line = d3.svg.line()
         .interpolate('basis')
-        .x(function(d, i) {
+        .x(function (d, i) {
             return x(now - (limit - 1 - i) * duration)
         })
-        .y(function(d) {
+        .y(function (d) {
             return y(d)
-        })
+        });
 
     var svg = d3.select('#svgLogsExp').append('svg')
         .attr('class', 'chart')
@@ -241,14 +241,16 @@ function createLogsExpCurve(){
 /**
  * 日志统计聚簇图
  */
-function createLogsStatsForces(){
-    var width = 1280,
-        height = 640,
-        padding = 6, // separation between nodes
-        maxRadius = 12;
+function createLogsStatsForces() {
 
+    var width = 1080,
+        height = 400,
+        padding = 5, // separation between nodes
+        maxRadius = 10;
+
+    //**配置数据
     var n = 200; // total number of nodes
-    var m = 9; // number of distinct clusters
+    var m = 6; // number of distinct clusters
 
     var color = d3.scale.category10()
         .domain(d3.range(m));
@@ -339,3 +341,4 @@ function createLogsStatsForces(){
         };
     }
 }
+

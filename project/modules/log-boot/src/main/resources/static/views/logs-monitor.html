@@ -9,11 +9,11 @@
     <link rel="icon" href="../favicon.ico">
     <title>logs monitor 日志监控</title>
     <link href="../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
+    <link href="../res/styles/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <link href="../res/styles/layout.css" rel="stylesheet">
     <link href="../res/styles/general.css" rel="stylesheet">
     <link href="../res/styles/logsmonitor.css" rel="stylesheet">
     <link href="../res/styles/bscard.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -56,35 +56,62 @@
         <!--监控项目选择+设置面板-->
         <div class="col-sm-3">
 
-            <div id="optionsCard" class="card blank_divider240 _padding_left_18 _padding_top_18">
+            <div id="optionsCard" class="card blank_divider360 _padding_left_5 _padding_top_15">
                 <div class="checkbox checkbox-circle">
-                    <input id="checkbox7" type="checkbox">
-                    <label for="checkbox7">
-                        严重级别
+                    <input id="checkbox1" type="checkbox">
+                    <label for="checkbox1">
+                        应用1
                     </label>
                 </div>
                 <div class="checkbox checkbox-info checkbox-circle">
-                    <input id="checkbox8" type="checkbox" checked="">
-                    <label for="checkbox8">
-                        警告级别
+                    <input id="checkbox2" type="checkbox" checked="">
+                    <label for="checkbox2">
+                        应用2
                     </label>
                 </div>
-
+                <div class="checkbox checkbox-circle">
+                    <input id="checkbox3" type="checkbox">
+                    <label for="checkbox3">
+                        应用3
+                    </label>
+                </div>
+                <div class="checkbox checkbox-info checkbox-circle">
+                    <input id="checkbox4" type="checkbox" checked="">
+                    <label for="checkbox4">
+                        应用4
+                    </label>
+                </div>
                 <div class="checkbox checkbox-warning checkbox-circle">
                     <input id="checkbox11" type="checkbox" disabled="" checked="">
                     <label for="checkbox11">
                         时间序列
                     </label>
                 </div>
+
+                <!--日期选择器-->
+                <div class="form-group _width_250">
+                    <div id="startPicker">
+                        <label for="startTimePicker">开始日期</label>
+                        <input id="startTimePicker" type="text" value="" data-date-format="yyyy-mm-dd hh:ii">
+                    </div>
+                    <div id="endPicker">
+                        <label for="endTimePicker">结束日期</label>
+                        <input id="endTimePicker" type="text" value="" data-date-format="yyyy-mm-dd hh:ii">
+                    </div>
+                </div>
+
             </div>
+            <!--/日期选择器-->
+
         </div>
         <!--/监控项目选择-->
 
         <!--监控曲线-->
         <div class="col-sm-9">
-            <h2>实时变化曲线</h2>
+            <!--<h2>实时变化曲线</h2>-->
             <div id="svgDiv">
-                <svg id="svgMonitor" width="800" height="480"></svg>
+                <div id="svgMonitor"></div>
+                <!--<svg id="svgMonitor" width="800" height="480"></svg>-->
             </div>
         </div>
         <!--/监控曲线-->
@@ -104,11 +131,28 @@
 <script src="../res/scripts/js/holder-2.6.0.min.js"></script>
 <script src="../res/scripts/js/tether-1.3.2.min.js"></script>
 <script src="../res/vendor/js/bootstrap-3.3.7.js"></script>
+<script src="../res/scripts/js/bootstrap-datetimepicker.js"></script>
+<script src="../res/scripts/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script src="../res/scripts/js/d3-3.5.17.js"></script>
 <script src="../res/scripts/logsmonitor.js"></script>
 <!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->
 <!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
-<script>
+<script type="text/javascript">
+
+    $('#startTimePicker').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1
+    });
+    $('#endTimePicker').datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1
+    });
 
     (function () {
         //绘制曲线

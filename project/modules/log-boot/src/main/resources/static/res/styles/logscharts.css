@@ -2,19 +2,21 @@
     stroke-width: 1;
 }
 #svgLogsGenaral .axis .tick line {
-    stroke: black;
+    stroke: #777;
 }
 #svgLogsGenaral .axis .tick text {
-    fill: black;
+    fill: #777;
     font-size: 0.7em;
 }
+/*横轴x*/
 #svgLogsGenaral .axis .domain {
     fill: none;
-    stroke: black;
+    stroke: #777;
+    stroke-width: 1;
 }
 #svgLogsGenaral .group {
     fill: none;
-    stroke: black;
+    stroke: #777;
     stroke-width: 1.5;
 }
 
@@ -23,18 +25,18 @@
     stroke-width: 1;
 }
 #svgLogsExp .axis .tick line {
-    stroke: black;
+    stroke: #777;
 }
 #svgLogsExp .axis .tick text {
-    fill: black;
+    fill: #777;
     font-size: 0.7em;
 }
 #svgLogsExp .axis .domain {
     fill: none;
-    stroke: black;
+    stroke: #777;
 }
 #svgLogsExp .group {
     fill: none;
-    stroke: black;
+    stroke: #777;
     stroke-width: 1.5;
 }

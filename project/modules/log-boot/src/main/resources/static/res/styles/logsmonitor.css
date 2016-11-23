@@ -178,19 +178,19 @@
     stroke-width: 1;
 }
 #svgMonitor .axis .tick line {
-    stroke: black;
+    stroke: #777;
 }
 #svgMonitor .axis .tick text {
-    fill: black;
+    fill: #777;
     font-size: 0.7em;
 }
 #svgMonitor .axis .domain {
     fill: none;
-    stroke: black;
+    stroke: #777;
 }
 #svgMonitor .group {
     fill: none;
-    stroke: black;
+    stroke: #777;
     stroke-width: 1.5;
 }
 /*=====曲线样式*/
