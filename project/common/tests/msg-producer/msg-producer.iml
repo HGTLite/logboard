@@ -3,10 +3,7 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/com/hgt/config/RedisConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/hgt/SpringBootRedisApplication.java</file>
-        </fileset>
+        <fileset id="fileset" name="Spring Application Context" removed="false" />
       </configuration>
     </facet>
   </component>
@@ -48,5 +45,6 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
   </component>
 </module>

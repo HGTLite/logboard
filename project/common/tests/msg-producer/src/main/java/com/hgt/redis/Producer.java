@@ -11,14 +11,15 @@ public class Producer {
 
 	private static final Logger log = LoggerFactory.getLogger(Producer.class);
 	private StringRedisTemplate template;
-	
+
 	@Autowired
 	public Producer(StringRedisTemplate template){
+
 		this.template = template;
 	}
-	
+
 	public void sendTo(String topic, String message){
-		log.info("16生产消息 Producer Sending> ...");
+		log.info("即将发送消息 Producer Sending> ..."+message);
 		this.template.convertAndSend(topic, message);
 	}
 
