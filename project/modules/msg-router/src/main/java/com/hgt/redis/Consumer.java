@@ -9,6 +9,6 @@ public class Consumer {
 	private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 	
 	public void messageHandler(String message) {
-        log.info("Consumer> " + message);
+        log.info(" ===消费消息 Consumer> " + message);
     }
 }

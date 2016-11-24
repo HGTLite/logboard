@@ -1,4 +1,4 @@
-package com.hgt.redis;
+package com.hgt.producer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class Producer {
 	}
 	
 	public void sendTo(String topic, String message){
-		log.info("生产消息 Producer Sending> ...");
+//		log.info("生产消息 Producer Sending> ...");
 		this.template.convertAndSend(topic, message);
 	}
 }

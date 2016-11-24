@@ -23,6 +23,7 @@
       <module fileurl="file://$PROJECT_DIR$/logboard.iml" filepath="$PROJECT_DIR$/logboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/logviews/logviews.iml" filepath="$PROJECT_DIR$/project/modules/logviews/logviews.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/modules.iml" filepath="$PROJECT_DIR$/project/modules/modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tests/msg-producer/msg-producer.iml" filepath="$PROJECT_DIR$/project/common/tests/msg-producer/msg-producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/msg-router/msg-router.iml" filepath="$PROJECT_DIR$/project/modules/msg-router/msg-router.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/notify/notify.iml" filepath="$PROJECT_DIR$/project/common/tests/notify/notify.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" filepath="$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" />

@@ -41,6 +41,7 @@
         <module name="logbase" />
         <module name="logboard-base" />
         <module name="loghub" />
+        <module name="msg-producer" />
         <module name="msg-router" />
         <module name="notify" />
         <module name="pipeline-log2es" />
@@ -83,6 +84,7 @@
       <module name="logview" target="1.8" />
       <module name="modules" target="1.8" />
       <module name="msg-middleware" target="1.5" />
+      <module name="msg-producer" target="1.8" />
       <module name="msg-router" target="1.8" />
       <module name="notification" target="1.8" />
       <module name="notify" target="1.8" />

@@ -24,6 +24,7 @@
         <module>java-bean</module>
         <module>pipeline-log2es</module>
         <module>notify</module>
+        <module>msg-producer</module>
     </modules>
 
     <properties>

@@ -20,7 +20,6 @@ public class App {
         SpringApplication.run(App.class, args);
 
         ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(2);
-
         scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
 
             //日志条数
@@ -34,18 +33,18 @@ public class App {
                     log.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
                     log.i("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行");
                     ii++;
-                }else if (ii % 3 == 0) {
+                } else if (ii % 3 == 0) {
                     log.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
-                    log.e("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行",new Exception());
+                    log.e("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行", new Exception());
                     ii++;
-                }
-                else {
+                } else {
                     log.options(LogOptions.USER_ID, "user004").options(LogOptions.USER_IP, getRandomIp());
                     log.w("这是第 " + ii + " 条消息！！！");
                     ii++;
                 }
             }
         }, 5, 4, TimeUnit.SECONDS);
+
     }
 
 }

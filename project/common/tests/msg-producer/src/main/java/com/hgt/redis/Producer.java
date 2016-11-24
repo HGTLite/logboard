@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Producer {
+
 	private static final Logger log = LoggerFactory.getLogger(Producer.class);
 	private StringRedisTemplate template;
 	
@@ -17,7 +18,8 @@ public class Producer {
 	}
 	
 	public void sendTo(String topic, String message){
-		log.info("生产消息 Producer Sending> ...");
+		log.info("16生产消息 Producer Sending> ...");
 		this.template.convertAndSend(topic, message);
 	}
+
 }
