@@ -10,17 +10,21 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SpringBootRedisApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
+		System.out.println("before boot");
 		SpringApplication.run(SpringBootRedisApplication.class, args);
+		System.out.println("after boot");
+
 	}
 	
-	@Value("${topic}")
-	String topic;
-	
-	@Bean
-    CommandLineRunner sendMessage(Producer producer){
-		return args -> {
-			producer.sendTo(topic, "Spring Boot rocks with Redis messaging!");
-		};
-	}
+//	@Value("${topic}")
+//	String topic;
+//
+//	@Bean
+//    CommandLineRunner sendMessage(Producer producer){
+//		return args -> {
+//			producer.sendTo(topic, "Spring Boot rocks with Redis messaging!");
+//		};
+//	}
 }

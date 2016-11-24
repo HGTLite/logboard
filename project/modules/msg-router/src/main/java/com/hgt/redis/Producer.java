@@ -17,7 +17,7 @@ public class Producer {
 	}
 	
 	public void sendTo(String topic, String message){
-		log.info("Sending> ...");
+		log.info("Producer Sending> ...");
 		this.template.convertAndSend(topic, message);
 	}
 }
