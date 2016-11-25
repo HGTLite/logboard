@@ -12,5 +12,7 @@ public class StringConsumer {
 
         log.info(" ===成功消费消息 Consumer> " + message);
 
+
+
     }
 }

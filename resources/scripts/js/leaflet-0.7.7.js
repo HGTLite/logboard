@@ -1469,7 +1469,7 @@ L.CRS.Simple = L.extend({}, L.CRS, {
 
 
 /*
- * L.CRS.EPSG3857 (Spherical Mercator) is the most common CRS for web mapping
+ * L.CRS.EPSG3857 (Spherical Mercator) is the most common CRS for controller mapping
  * and is used by Leaflet by default.
  */
 
