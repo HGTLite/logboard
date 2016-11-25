@@ -286,8 +286,8 @@ public class HttpUtil {
 
     public static void main(String[] args) {
         Map params = new HashMap();
-        params.put("message", "hello");
-        String str = HttpUtil.post("http://localhost:8080/send/message", params, 3000, 3000, "UTF-8");
+        params.put("message", "hello, b**ches");
+        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
         System.out.println(str);
     }
 }
