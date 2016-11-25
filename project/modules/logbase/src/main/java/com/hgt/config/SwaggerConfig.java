@@ -47,7 +47,7 @@ public class SwaggerConfig {
      */
     private Predicate<String> doFilteringRules() {
         return or(
-                regex("/lb.*")
+                regex("/logb.*")
         );
 
 //        return or(

@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 public class LogAppsController {
 
-    private final String BASE_URL = "lb/apps";
+    private final String BASE_URL = "logb/apps";
 
     @Autowired
     LogAppsService logAppsService;

@@ -1,6 +1,6 @@
 package com.hgt.config;
 
-import com.hgt.redis.Consumer;
+import com.hgt.redis.consumer.StringConsumer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +27,7 @@ public class RedisConfig {
 	}
 
 	@Bean
-    MessageListenerAdapter listenerAdapter(Consumer consumer) {
+    MessageListenerAdapter listenerAdapter(StringConsumer consumer) {
 		return new MessageListenerAdapter(consumer, "messageHandler");
 	}
 	

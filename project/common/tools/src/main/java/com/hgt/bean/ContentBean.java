@@ -10,6 +10,10 @@ public class ContentBean {
 
     private String content;
 
+    public ContentBean(String content) {
+        this.content = content;
+    }
+
     public String getContent() {
         return content;
     }

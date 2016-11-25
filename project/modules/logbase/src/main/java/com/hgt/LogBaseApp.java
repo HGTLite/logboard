@@ -30,7 +30,7 @@ public class LogBaseApp {
             public void addCorsMappings(CorsRegistry registry) {
 
                 //===============================/lb/apps=============================
-                registry.addMapping("/lb/**").allowedOrigins("*");
+                registry.addMapping("/logb/**").allowedOrigins("*");
 //                registry.addMapping("/lb/apps//all").allowedOrigins("*");
 //                registry.addMapping("/lb/apps/all/{pageNum}/{pageSize}").allowedOrigins("*");
 //                registry.addMapping("/lb/apps/add").allowedOrigins("*");

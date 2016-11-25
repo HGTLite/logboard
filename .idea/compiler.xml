@@ -49,18 +49,13 @@
       <module name="common" target="1.8" />
       <module name="dependencies" target="1.8" />
       <module name="es-helper" target="1.8" />
-      <module name="es-query" target="1.8" />
       <module name="examples" target="1.8" />
       <module name="general-console" target="1.8" />
-      <module name="general-rest" target="1.8" />
       <module name="general-spring" target="1.8" />
       <module name="general-web" target="1.8" />
-      <module name="geoip" target="1.8" />
       <module name="hbase-helper" target="1.8" />
-      <module name="hbase112" target="1.8" />
       <module name="hello-logger" target="1.8" />
       <module name="ilogger" target="1.8" />
-      <module name="java-bean" target="1.8" />
       <module name="kafka-general-consumer" target="1.8" />
       <module name="kafka-general-producer" target="1.8" />
       <module name="log-boot" target="1.8" />
@@ -69,9 +64,7 @@
       <module name="modules" target="1.8" />
       <module name="msg-producer" target="1.8" />
       <module name="msg-router" target="1.8" />
-      <module name="pipeline-log2es" target="1.8" />
       <module name="project" target="1.8" />
-      <module name="redis-helper" target="1.8" />
       <module name="streaming" target="1.8" />
       <module name="tests" target="1.8" />
       <module name="tools" target="1.8" />
