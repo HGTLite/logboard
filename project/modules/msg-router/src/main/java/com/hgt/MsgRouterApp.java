@@ -10,23 +10,14 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class MsgRouterApp {
 
-	@Value("${topic}")
-	  String topic;
+    @Value("${topic}")
+    String topic;
 
-	public static void main(String[] args)
-	{
-		System.out.println("===1 before boot");
-		SpringApplication.run(MsgRouterApp.class, args);
-		System.out.println("===2 after boot");
+    public static void main(String[] args) {
+        SpringApplication.run(MsgRouterApp.class, args);
+        System.out.println("===MsgRouterApp 启动完成===");
 
-	}
-	
-//	@Bean
-//    CommandLineRunner sendMessage(Producer producer){
-//		return args -> {
-////			System.out.println("===topic是 "+this.topic);
-//			producer.sendTo(topic, "Spring Boot rocks with Redis messaging!");
-//		};
-//	}
+    }
+
 
 }

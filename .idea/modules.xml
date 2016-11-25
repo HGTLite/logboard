@@ -6,16 +6,13 @@
       <module fileurl="file://$PROJECT_DIR$/project/dependencies/dependencies.iml" filepath="$PROJECT_DIR$/project/dependencies/dependencies.iml" />
       <module fileurl="file://$PROJECT_DIR$/docs/docs.iml" filepath="$PROJECT_DIR$/docs/docs.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/es-helper/es-helper.iml" filepath="$PROJECT_DIR$/project/modules/es-helper/es-helper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/common/tests/es-query/es-query.iml" filepath="$PROJECT_DIR$/project/common/tests/es-query/es-query.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/examples/examples.iml" filepath="$PROJECT_DIR$/project/common/examples/examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" filepath="$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-spring/general-spring.iml" filepath="$PROJECT_DIR$/project/common/tests/general-spring/general-spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-web/general-web.iml" filepath="$PROJECT_DIR$/project/common/tests/general-web/general-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/common/tests/geoip/geoip.iml" filepath="$PROJECT_DIR$/project/common/tests/geoip/geoip.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/hbase-helper/hbase-helper.iml" filepath="$PROJECT_DIR$/project/modules/hbase-helper/hbase-helper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/common/tests/hbase112/hbase112.iml" filepath="$PROJECT_DIR$/project/common/tests/hbase112/hbase112.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/hello-logger/hello-logger.iml" filepath="$PROJECT_DIR$/project/common/tests/hello-logger/hello-logger.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/ilogger/ilogger.iml" filepath="$PROJECT_DIR$/project/modules/ilogger/ilogger.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/common/tests/java-bean/java-bean.iml" filepath="$PROJECT_DIR$/project/common/tests/java-bean/java-bean.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/kafka-general-consumer/kafka-general-consumer.iml" filepath="$PROJECT_DIR$/project/common/tests/kafka-general-consumer/kafka-general-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/kafka-general-producer/kafka-general-producer.iml" filepath="$PROJECT_DIR$/project/common/tests/kafka-general-producer/kafka-general-producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/log-boot/log-boot.iml" filepath="$PROJECT_DIR$/project/modules/log-boot/log-boot.iml" />
@@ -25,10 +22,7 @@
       <module fileurl="file://$PROJECT_DIR$/project/modules/modules.iml" filepath="$PROJECT_DIR$/project/modules/modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/msg-producer/msg-producer.iml" filepath="$PROJECT_DIR$/project/common/tests/msg-producer/msg-producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/msg-router/msg-router.iml" filepath="$PROJECT_DIR$/project/modules/msg-router/msg-router.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/common/tests/notify/notify.iml" filepath="$PROJECT_DIR$/project/common/tests/notify/notify.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" filepath="$PROJECT_DIR$/project/common/tests/pipeline-log2es/pipeline-log2es.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/project.iml" filepath="$PROJECT_DIR$/project/project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project/modules/redis-helper/redis-helper.iml" filepath="$PROJECT_DIR$/project/modules/redis-helper/redis-helper.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/streaming/streaming.iml" filepath="$PROJECT_DIR$/project/modules/streaming/streaming.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/tests.iml" filepath="$PROJECT_DIR$/project/common/tests/tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tools/tools.iml" filepath="$PROJECT_DIR$/project/common/tools/tools.iml" />

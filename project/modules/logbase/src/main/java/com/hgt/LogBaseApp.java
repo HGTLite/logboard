@@ -20,7 +20,7 @@ public class LogBaseApp {
     public static void main(String[] args) {
 
         SpringApplication.run(LogBaseApp.class, args);
-
+        System.out.println("===LogBaseApp 启动完成===");
     }
 
     @Bean

@@ -24,16 +24,13 @@
         <processorPath useClasspath="true" />
         <module name="console" />
         <module name="es-helper" />
-        <module name="es-query" />
         <module name="examples" />
         <module name="general-console" />
+        <module name="general-spring" />
         <module name="general-web" />
-        <module name="geoip" />
         <module name="hbase-helper" />
-        <module name="hbase112" />
         <module name="hello-logger" />
         <module name="ilogger" />
-        <module name="java-bean" />
         <module name="kafka-general-consumer" />
         <module name="kafka-general-producer" />
         <module name="log-boot" />
@@ -44,55 +41,37 @@
         <module name="msg-producer" />
         <module name="msg-router" />
         <module name="notify" />
-        <module name="pipeline-log2es" />
-        <module name="redis-helper" />
         <module name="streaming" />
         <module name="tools" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="applications" target="1.8" />
-      <module name="collector" target="1.8" />
       <module name="common" target="1.8" />
-      <module name="console" target="1.8" />
       <module name="dependencies" target="1.8" />
       <module name="es-helper" target="1.8" />
       <module name="es-query" target="1.8" />
       <module name="examples" target="1.8" />
       <module name="general-console" target="1.8" />
+      <module name="general-rest" target="1.8" />
+      <module name="general-spring" target="1.8" />
       <module name="general-web" target="1.8" />
       <module name="geoip" target="1.8" />
       <module name="hbase-helper" target="1.8" />
-      <module name="hbase-io" target="1.8" />
       <module name="hbase112" target="1.8" />
       <module name="hello-logger" target="1.8" />
       <module name="ilogger" target="1.8" />
       <module name="java-bean" target="1.8" />
       <module name="kafka-general-consumer" target="1.8" />
       <module name="kafka-general-producer" target="1.8" />
-      <module name="kits" target="1.8" />
       <module name="log-boot" target="1.8" />
-      <module name="log-consumer" target="1.8" />
-      <module name="log2es-pipeline" target="1.8" />
       <module name="logbase" target="1.8" />
       <module name="logboard" target="1.5" />
-      <module name="logboard-base" target="1.8" />
-      <module name="logboot" target="1.8" />
-      <module name="loghub" target="1.8" />
-      <module name="logs-producer" target="1.8" />
-      <module name="logs-storm" target="1.8" />
-      <module name="logview" target="1.8" />
       <module name="modules" target="1.8" />
-      <module name="msg-middleware" target="1.5" />
       <module name="msg-producer" target="1.8" />
       <module name="msg-router" target="1.8" />
-      <module name="notification" target="1.8" />
-      <module name="notify" target="1.8" />
-      <module name="parent" target="1.8" />
       <module name="pipeline-log2es" target="1.8" />
       <module name="project" target="1.8" />
       <module name="redis-helper" target="1.8" />
-      <module name="starter" target="1.8" />
       <module name="streaming" target="1.8" />
       <module name="tests" target="1.8" />
       <module name="tools" target="1.8" />

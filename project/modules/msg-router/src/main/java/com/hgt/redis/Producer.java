@@ -20,4 +20,5 @@ public class Producer {
 		log.info("生产消息 Producer Sending> ...");
 		this.template.convertAndSend(topic, message);
 	}
+
 }

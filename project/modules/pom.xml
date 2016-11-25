@@ -16,7 +16,6 @@
     <modules>
         <module>ilogger</module>
         <module>es-helper</module>
-        <module>redis-helper</module>
         <module>hbase-helper</module>
         <module>msg-router</module>
         <module>streaming</module>

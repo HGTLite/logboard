@@ -15,15 +15,10 @@
     <modules>
         <module>general-console</module>
         <module>general-web</module>
+        <module>general-spring</module>
         <module>kafka-general-producer</module>
         <module>kafka-general-consumer</module>
         <module>hello-logger</module>
-        <module>hbase112</module>
-        <module>geoip</module>
-        <module>es-query</module>
-        <module>java-bean</module>
-        <module>pipeline-log2es</module>
-        <module>notify</module>
         <module>msg-producer</module>
     </modules>
 

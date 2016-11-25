@@ -10,6 +10,8 @@
     <file url="file://$PROJECT_DIR$/project/common/tests" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/es-query" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/general-console" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/project/common/tests/general-rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/project/common/tests/general-spring" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/general-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/geoip" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/hbase112" charset="UTF-8" />
@@ -18,7 +20,6 @@
     <file url="file://$PROJECT_DIR$/project/common/tests/kafka-general-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/kafka-general-producer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/msg-producer" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/common/tests/notify" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/pipeline-log2es" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tools" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/dependencies" charset="UTF-8" />

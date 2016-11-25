@@ -38,10 +38,13 @@ public class MsgProducerApp {
     public static void main(String[] args) {
 
         SpringApplication.run(MsgProducerApp.class, args);
+        System.out.println("===MsgProducerApp 启动完成===");
 
         ApplicationContext ctx = SpringApplication.run(MsgProducerApp.class, args);
         StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
         template.convertAndSend("spring-boot", "Hello from Redis!");
+        System.out.println("===redis消息发送成功===");
+
     }
 
 

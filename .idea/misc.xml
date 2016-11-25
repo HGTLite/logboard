@@ -23,9 +23,15 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/project/common/tests/es-query/pom.xml" />
         <option value="$PROJECT_DIR$/project/common/tests/general-web/pom.xml" />
+        <option value="$PROJECT_DIR$/project/common/tests/geoip/pom.xml" />
+        <option value="$PROJECT_DIR$/project/common/tests/hbase112/pom.xml" />
+        <option value="$PROJECT_DIR$/project/common/tests/java-bean/pom.xml" />
+        <option value="$PROJECT_DIR$/project/common/tests/pipeline-log2es/pom.xml" />
         <option value="$PROJECT_DIR$/project/modules/logboot/pom.xml" />
         <option value="$PROJECT_DIR$/project/modules/logview/pom.xml" />
+        <option value="$PROJECT_DIR$/project/modules/redis-helper/pom.xml" />
       </set>
     </option>
   </component>

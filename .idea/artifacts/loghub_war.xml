@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="loghub:war">
-    <output-path>$PROJECT_DIR$/project/modules/loghub/target</output-path>
-    <root id="archive" name="loghub.war">
-      <element id="artifact" artifact-name="loghub:war exploded" />
-    </root>
-  </artifact>
-</component>

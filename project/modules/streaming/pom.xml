@@ -21,6 +21,13 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.hgt</groupId>
+            <artifactId>tools</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
         <!--ES依赖-->
         <dependency>
             <groupId>com.hgt</groupId>
