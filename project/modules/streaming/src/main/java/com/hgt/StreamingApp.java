@@ -38,11 +38,15 @@ public class StreamingApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        读取kafka配置
         String zkQuorum = prop.getProperty("kafka.zookeeper");
-        //话题所在的组
         String group = prop.getProperty("group.name");
-        //话题名称以","分隔
         String topics = prop.getProperty("topic.list");
+//        读取es配置
+        String esCName=prop.getProperty("es.cname");
+        String esCHost=prop.getProperty("es.chost");
+        String esIndex=prop.getProperty("es.index");
+        String esType=prop.getProperty("es.type");
         //endregion
 
         //每个话题的分片数
@@ -76,7 +80,7 @@ public class StreamingApp {
             @Override
             public Boolean call(String s) throws Exception {
 
-                System.out.println(s);
+//                System.out.println(s);
 
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
@@ -126,9 +130,9 @@ public class StreamingApp {
                 String eslogString = MapJsonConverter.simpleMapToJsonStr(esLogMap);
 
                 //region ES配置
-                ESConfig esConfig = new ESConfig("es-yao", "192.168.99.140:9300,192.168.99.141:9300");
+                ESConfig esConfig = new ESConfig(esCName, esCHost);
                 ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
-                esAdminOperations.indexingDataByMap("test-log", "log9type", esLogMap);
+                esAdminOperations.indexingDataByMap(esIndex, esType, esLogMap);
                 esAdminOperations.close();
                 //endregion
 
@@ -180,18 +184,23 @@ public class StreamingApp {
         });
         //endregion
 
-
-
         //region 统计该时段所有日志
         JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
 
                 new PairFunction<String, String, Integer>() {
                     @Override
                     public Tuple2<String, Integer> call(String s) {
-                        return new Tuple2<>(s, 1);
+
+                        String logsRight = s.substring(100, s.length() - 2);
+                        String[] manualLogs = logsRight.split(",");
+                        String appCode = manualLogs[0].split(":")[1].replace("\"","");
+
+
+                        return new Tuple2<>(appCode, 1);
                     }
                 })
                 .reduceByKey(new Function2<Integer, Integer, Integer>() {
+
                     @Override
                     public Integer call(Integer i1, Integer i2) {
                         return i1 + i2;
@@ -213,8 +222,7 @@ public class StreamingApp {
 
                         System.out.println("Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
 
-                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
-
+//                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
 
                     }
                 });

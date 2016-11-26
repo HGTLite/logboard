@@ -1,6 +1,7 @@
 package com.hgt.counter;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * README:
@@ -11,7 +12,8 @@ import java.util.HashMap;
 public class StatsMapCreator {
 
     public HashMap<String, String> createStatsMap() {
-        HashMap<String, String> statsMap = new HashMap<>();
+
+        HashMap<String, String> statsMap = new LinkedHashMap<>();
 
         return statsMap;
     }

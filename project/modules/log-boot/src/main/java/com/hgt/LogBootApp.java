@@ -12,4 +12,5 @@ public class LogBootApp {
 		System.out.println("===LogBootApp 启动完成===");
 
 	}
+
 }
