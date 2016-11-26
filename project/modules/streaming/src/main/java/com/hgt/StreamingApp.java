@@ -181,7 +181,8 @@ public class StreamingApp {
         //endregion
 
 
-        //统计该时段所有日志
+
+        //region 统计该时段所有日志
         JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
 
                 new PairFunction<String, String, Integer>() {
@@ -221,6 +222,8 @@ public class StreamingApp {
                 return null;
             }
         });
+        //endregion
+
 
         jssc.start();
         jssc.awaitTermination();
