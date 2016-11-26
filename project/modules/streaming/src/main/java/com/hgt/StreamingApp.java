@@ -160,10 +160,10 @@ public class StreamingApp {
 
                         }
                     }
-
                 }
 
-                //使用过滤器
+
+                //过滤日志
                 if (new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid()) {
                     List<String> keys = new ArrayList<String>(logMap.keySet());
                     List<String> vals = new ArrayList<String>(logMap.values());
@@ -181,40 +181,46 @@ public class StreamingApp {
         //endregion
 
 
-        //对其中的单词进行统计
-//        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
-//
-//                new PairFunction<String, String, Integer>() {
-//                    @Override
-//                    public Tuple2<String, Integer> call(String s) {
-//                        return new Tuple2<>(s, 1);
-//                    }
-//                }).reduceByKey(new Function2<Integer, Integer, Integer>() {
-//            @Override
-//            public Integer call(Integer i1, Integer i2) {
-//                return i1 + i2;
-//            }
-//        });
+        //统计该时段所有日志
+        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
 
-//        wordCounts.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
-//
-//            @Override
-//            public Void call(JavaPairRDD<String, Integer> values, Time time)
-//                    throws Exception {
-//
-//                values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
-//
-//                    @Override
-//                    public void call(Tuple2<String, Integer> tuple) throws Exception {
-//
-//                        System.out.println("Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
-//
-//                    }
-//                });
-//
-//                return null;
-//            }
-//        });
+                new PairFunction<String, String, Integer>() {
+                    @Override
+                    public Tuple2<String, Integer> call(String s) {
+                        return new Tuple2<>(s, 1);
+                    }
+                })
+                .reduceByKey(new Function2<Integer, Integer, Integer>() {
+                    @Override
+                    public Integer call(Integer i1, Integer i2) {
+                        return i1 + i2;
+                    }
+                });
+
+        HashMap<String, String> countMap = new HashMap<>();
+
+        wordCounts.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
+
+            @Override
+            public Void call(JavaPairRDD<String, Integer> values, Time time)
+                    throws Exception {
+
+                values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
+
+                    @Override
+                    public void call(Tuple2<String, Integer> tuple) throws Exception {
+
+                        System.out.println("Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
+
+                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+
+
+                    }
+                });
+
+                return null;
+            }
+        });
 
         jssc.start();
         jssc.awaitTermination();

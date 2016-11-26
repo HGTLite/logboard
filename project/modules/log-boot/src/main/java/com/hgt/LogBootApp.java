@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LogBootApp {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(LogBootApp.class, args);
 		System.out.println("===LogBootApp 启动完成===");
 

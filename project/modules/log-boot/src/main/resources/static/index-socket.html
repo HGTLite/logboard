@@ -18,7 +18,7 @@
 //            var msgURLOrigin="http://192.168.99.15:8080"
             var msgURLOrigin="";
             var messageList = $("#messages");
-            var socket = new SockJS(msgURLOrigin+"/stomp");
+            var socket = new SockJS(msgURLOrigin+"/logging");
 
             var stompClient = Stomp.over(socket);
 
