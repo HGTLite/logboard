@@ -53,7 +53,7 @@ public class StreamingApp {
         int numThreads = 2;
         SparkConf sparkConf = new SparkConf().setAppName("LogStreaming").setMaster("local[3]");
         //每5s进行批处理
-        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(5000));
+        JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, new Duration(12000));
 
         //存放话题跟分片的映射关系
         Map<String, Integer> topicmap = new HashMap<>();
@@ -188,8 +188,8 @@ public class StreamingApp {
         //endregion
 
         //region 统计该时段所有日志
+        //        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
         JavaPairDStream<String, Integer> wordCounts = logItems.mapToPair(
-//        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
 
                 new PairFunction<String, String, Integer>() {
                     @Override
@@ -235,7 +235,8 @@ public class StreamingApp {
 
                         System.out.println("计数之后的结果是"+"Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
 
-//                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+
 
                     }
                 });
