@@ -11,7 +11,6 @@
     <link href="../res/vendor/css/bootstrap-3.3.7.css" rel="stylesheet">
     <link href="../res/styles/css/bootstrap-table.css" rel="stylesheet">
     <link href="../res/styles/css/bootstrap-datetimepicker.css" rel="stylesheet">
-
     <link href="../res/styles/general.css" rel="stylesheet">
     <link href="../res/styles/layout.css" rel="stylesheet">
     <link href="../res/styles/modal.css" rel="stylesheet">
@@ -92,8 +91,8 @@
     <div id="search">
         <button type="button" class="close">×</button>
         <form>
-            <input type="search" value="" placeholder="type keyword(s) here"/>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <!--<input type="search" value="" placeholder="type keyword(s) here"/>-->
+            <!--<button type="submit" class="btn btn-primary">Search</button>-->
         </form>
     </div>
     <!--/弹出界面-->
@@ -132,15 +131,18 @@
 <script src="../res/scripts/js/bootstrap-table.js"></script>
 <script src="../res/scripts/js/bootstrap-datetimepicker.js"></script>
 <script src="../res/scripts/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-
+<script src="../res/scripts/js/elasticsearch.jquery.js"></script>
 <script src="../res/scripts/general.js"></script>
-<script src="../res/scripts/modal.js"></script>
+<!--<script src="../res/scripts/modal.js"></script>-->
 
 <!--<script src="scripts/js/jquery-3.1.0.min.js"></script>-->
 <!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
 <script>
 
+
     $(function () {
+
+        ///弹出模态框控制
         $('a[href="#search"]').on('click', function (event) {
             event.preventDefault();
             $('#search').addClass('open');
@@ -152,13 +154,26 @@
                 $(this).removeClass('open');
             }
         });
+        ///```弹出模态框控制
+
+        var client = new $.es.Client({
+            hosts: '192.168.99.140:9200'
+        });
+
+        client.ping({
+            requestTimeout: 5000
+
+            // undocumented params are appended to the query string
+//            hello: "elasticsearch"
+        }, function (error) {
+            if (error) {
+                console.error('elasticsearch cluster is down!');
+            } else {
+                console.log('All es is well');
+            }
+        });
 
 
-        //Do not include! This prevents the form from submitting for DEMO purposes only!
-        $('form').submit(function (event) {
-            event.preventDefault();
-            return false;
-        })
     });
 
     var searchListData = [{
