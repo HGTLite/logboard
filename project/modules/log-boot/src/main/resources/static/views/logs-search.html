@@ -160,17 +160,13 @@
             hosts: '192.168.99.140:9200'
         });
 
-        client.ping({
-            requestTimeout: 5000
-
-            // undocumented params are appended to the query string
-//            hello: "elasticsearch"
+        client.search({
+            q: '延迟'
+        }).then(function (body) {
+            var hits = body.hits.hits;
+            console.log(hits);
         }, function (error) {
-            if (error) {
-                console.error('elasticsearch cluster is down!');
-            } else {
-                console.log('All es is well');
-            }
+            console.trace(error.message);
         });
 
 
