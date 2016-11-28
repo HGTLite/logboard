@@ -1,6 +1,6 @@
 package com.hgt.single;
 
-import com.hgt.es.common.QueryFromES;
+import com.hgt.es.common.ESQueryAll;
 import com.hgt.es.config.ESConfig;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +21,7 @@ public class GeneralQuery {
     public String getAllByIndex() {
         String allDocs = "";
         ESConfig esConfig = new ESConfig("es-yao", "192.168.99.140:9300,192.168.99.141:9300");
-        QueryFromES queryFromES = new QueryFromES(esConfig);
+        ESQueryAll queryFromES = new ESQueryAll(esConfig);
         allDocs = queryFromES.queryAllByType("one-index", "one-type");
         queryFromES.close();
         return allDocs;

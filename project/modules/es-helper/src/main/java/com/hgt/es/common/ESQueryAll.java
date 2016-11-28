@@ -21,21 +21,21 @@ import java.util.List;
  * =============================================================================
  * CHANGELOG:
  */
-public class QueryFromES implements Serializable {
+public class ESQueryAll implements Serializable {
 
     public String hostList = "";
     public TransportClient client = null;
     IndicesAdminClient indicesAdminClient = null;
 
 
-    public QueryFromES(ESConfig esConfig) {
+    public ESQueryAll(ESConfig esConfig) {
         this.client = esConfig.createESClient();
 
         AdminClient adminClient = client.admin();
         this.indicesAdminClient = adminClient.indices();
     }
 
-    public QueryFromES(String strClusterName, String strHost) {
+    public ESQueryAll(String strClusterName, String strHost) {
         this.hostList = strHost;
         this.client = new ESConfig(strClusterName, strHost).createESClient();
     }

@@ -1,6 +1,8 @@
 package com.hgt.es.common;
 
+import com.hgt.converter.MapJsonConverter;
 import com.hgt.es.config.ESConfig;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -13,6 +15,7 @@ import org.elasticsearch.search.SearchHit;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
@@ -37,6 +40,34 @@ public class ESAdvancedQuery<T> {
     public ESAdvancedQuery(String strClusterName, String strHost) {
         this.hostList = strHost;
         this.client = new ESConfig(strClusterName, strHost).createESClient();
+    }
+
+    /**
+     * 根据ID查文档
+     *
+     * @param strIndex
+     * @param strType
+     * @param strId
+     * @return
+     */
+    public String queryDocById(String strIndex, String strType, String strId) {
+        String resultStr = "";
+        GetResponse response = client.prepareGet(strIndex, strType, strId).execute().actionGet();
+        Map<String, Object> result = response.getSourceAsMap();
+
+        result.entrySet().stream().forEach(s -> {
+            System.out.println(s.getKey() + ":" + s.getValue());
+        });
+
+        return resultStr;
+    }
+
+    public List<T> queryLatest() {
+
+        List<T> resultList = new LinkedList<T>();
+
+
+        return resultList;
     }
 
 
@@ -65,12 +96,12 @@ public class ESAdvancedQuery<T> {
 
         SearchResponse response = searchBuilder.execute().actionGet();
 
-        for(SearchHit hit: response.getHits().getHits()) {
+        for (SearchHit hit : response.getHits().getHits()) {
             System.out.println(hit.getId());
             if (hit.getFields().containsKey("title")) {
                 String v = hit.getFields().get("title").getValue();
-                System.out.println("field.title: "+ v);
-                resultList.add((T)v);
+                System.out.println("field.title: " + v);
+                resultList.add((T) v);
             }
             System.out.println("source.title: " + hit.getSource().get("title"));
         }
