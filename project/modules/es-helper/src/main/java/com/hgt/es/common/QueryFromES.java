@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * INTRO:ES与查询相关的操作
- * <p>
+ * README:ES与查询相关的操作
+ *
  * Created by root on 11/2/16.
  * =============================================================================
  * CHANGELOG:
@@ -41,23 +41,6 @@ public class QueryFromES implements Serializable {
     }
 
 
-    /**
-     * 查询集群的所有索引
-     *
-     * @return
-     */
-    public List<String> queryIndices() {
-        List<String> indices = new ArrayList<String>();
-        AdminClient adminClient = client.admin();
-        ClusterAdminClient clusterAdminClient = adminClient.cluster();
-        ClusterHealthResponse healths = clusterAdminClient.prepareHealth().get();
-        for (ClusterIndexHealth health : healths.getIndices().values()) {
-            String index = health.getIndex();
-            indices.add(index);
-//            System.out.println(" index - " + index);
-        }
-        return indices;
-    }
 
     /**
      * 简单查询某一类型的文档
