@@ -21,6 +21,7 @@
         <module>streaming</module>
         <module>logbase</module>
         <module>log-boot</module>
+        <module>es-query</module>
     </modules>
 
     <dependencyManagement>

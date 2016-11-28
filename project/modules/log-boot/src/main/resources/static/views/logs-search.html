@@ -46,13 +46,13 @@
 <!-- Begin page content -->
 <div class="container">
 
-    <!--搜索框-->
+    <!--搜索头部-->
     <div>
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-5">
 
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-7">
                 <div class="form-inline">
                     <button type="button" class="btn btn-default  choose_btn margin_lr2">
                         选择index
@@ -63,31 +63,32 @@
                     <button type="button" class="btn btn-default  choose_btn margin_lr2">
                         选择AppCode
                     </button>
-                    <a href="#search">Search</a>
                 </div>
             </div>
+            <a class="display_inline" href="#search">Search</a>
+
         </div>
 
-        <div id="searchBox" class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <div id="imaginary_container">
-                    <div class="input-group stylish-input-group">
-                        <input type="text" class="form-control" placeholder="请输入查询关键字">
-                        <span class="input-group-addon">
-                        <button type="submit" onclick="removeElementById('searchBox');showElementById('logsList')">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--<div id="searchBox" class="row">-->
+        <!--<div class="col-sm-6 col-sm-offset-3">-->
+        <!--<div id="imaginary_container">-->
+        <!--<div class="input-group stylish-input-group">-->
+        <!--<input type="text" class="form-control" placeholder="请输入查询关键字">-->
+        <!--<span class="input-group-addon">-->
+        <!--<button type="submit" onclick="removeElementById('searchBox');showElementById('logsList')">-->
+        <!--<span class="glyphicon glyphicon-search"></span>-->
+        <!--</button>-->
+        <!--</span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
 
     </div>
-    <!--/搜索框-->
+    <!--/搜索头部-->
 
 
-    <!--弹出界面-->
+    <!--弹出模态框-->
     <div id="search">
         <button type="button" class="close">×</button>
         <form>
@@ -95,7 +96,7 @@
             <!--<button type="submit" class="btn btn-primary">Search</button>-->
         </form>
     </div>
-    <!--/弹出界面-->
+    <!--/弹出模态框-->
 
     <!--最新日志列表-->
     <div id="logsList" class="">
@@ -112,7 +113,6 @@
         </table>
     </div>
     <!--/最新日志列表-->
-
 
 </div>
 
@@ -139,8 +139,52 @@
 <!--<script src="scripts/js/bootstrap-3.3.7.min.js"></script>-->
 <script>
 
+    ///全局变量设置
+    var apps = apps || {};
+    apps.namespace = function (str) {
+        var parts = str.split("."),
+                parent = apps,
+                i = 0,
+                l = 0;
+        if (parts[0] === "apps") {
+            parts = parts.slice(1);
+        }
+        for (i = 0, l = parts.length; i < l; i++) {
+            if (typeof parent[parts[i]] === "undefined") {
+                parent[parts[i]] = {};
+            }
+            parent = parent[parts[i]];
+        }
+        return parent;
+    }
+    ///===全局变量设置
 
     $(function () {
+
+        fetchLatestLogs();
+
+        $('#table').bootstrapTable({
+            data: searchListData
+        });
+
+        $(".mybtn-top").click(function () {
+            $('#table').bootstrapTable('scrollTo', 0);
+        });
+
+        $(".mybtn-row").click(function () {
+            var index = +$('.row-index').val(),
+                    top = 0;
+            $('#table').find('tbody tr').each(function (i) {
+                if (i < index) {
+                    top += $(this).height();
+                }
+            });
+            $('#table').bootstrapTable('scrollTo', top);
+        });
+
+        $(".mybtn-btm").click(function () {
+            $('#table').bootstrapTable('scrollTo', 'bottom');
+        });
 
         ///弹出模态框控制
         $('a[href="#search"]').on('click', function (event) {
@@ -154,7 +198,9 @@
                 $(this).removeClass('open');
             }
         });
-        ///```弹出模态框控制
+        ///===弹出模态框控制
+
+    function fetchLatestLogs() {
 
         var client = new $.es.Client({
             hosts: '192.168.99.140:9200'
@@ -165,12 +211,16 @@
         }).then(function (body) {
             var hits = body.hits.hits;
             console.log(hits);
+
         }, function (error) {
             console.trace(error.message);
         });
+    }
 
 
-    });
+    function renderDOMLogTable() {
+
+    }
 
     var searchListData = [{
         "name": "bootstrap-table",
@@ -199,30 +249,7 @@
         "description": "Redmine notification tools for chrome extension."
     }];
 
-    $(function () {
 
-        $('#table').bootstrapTable({
-            data: searchListData
-        });
-
-        $(".mybtn-top").click(function () {
-            $('#table').bootstrapTable('scrollTo', 0);
-        });
-
-        $(".mybtn-row").click(function () {
-            var index = +$('.row-index').val(),
-                    top = 0;
-            $('#table').find('tbody tr').each(function (i) {
-                if (i < index) {
-                    top += $(this).height();
-                }
-            });
-            $('#table').bootstrapTable('scrollTo', top);
-        });
-
-        $(".mybtn-btm").click(function () {
-            $('#table').bootstrapTable('scrollTo', 'bottom');
-        });
 
     });
 

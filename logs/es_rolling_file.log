@@ -34,3 +34,11 @@
 2016-11-26 at 22:22:34 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.script.mustache.MustachePlugin]
 2016-11-26 at 22:22:34 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.transport.Netty3Plugin]
 2016-11-26 at 22:22:34 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.transport.Netty4Plugin]
+2016-11-28 at 11:40:49 CST INFO  org.hibernate.validator.internal.util.Version 30 <clinit> - HV000001: Hibernate Validator 5.2.4.Final
+2016-11-28 at 11:45:55 CST INFO  org.hibernate.validator.internal.util.Version 30 <clinit> - HV000001: Hibernate Validator 5.2.4.Final
+2016-11-28 at 11:46:05 CST INFO  org.elasticsearch.plugins.PluginsService 220 logPluginInfo - no modules loaded
+2016-11-28 at 11:46:05 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.index.reindex.ReindexPlugin]
+2016-11-28 at 11:46:05 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.percolator.PercolatorPlugin]
+2016-11-28 at 11:46:05 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.script.mustache.MustachePlugin]
+2016-11-28 at 11:46:05 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.transport.Netty3Plugin]
+2016-11-28 at 11:46:05 CST INFO  org.elasticsearch.plugins.PluginsService 223 logPluginInfo - loaded plugin [org.elasticsearch.transport.Netty4Plugin]

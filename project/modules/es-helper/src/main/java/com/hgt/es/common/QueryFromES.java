@@ -65,7 +65,9 @@ public class QueryFromES implements Serializable {
      * @param strIndex
      * @param strType
      */
-    public void queryAllByType(String strIndex, String strType) {
+    public String queryAllByType(String strIndex, String strType) {
+
+        String resultStr = "";
 
         SearchResponse sr = client.prepareSearch(strIndex)
                 .setTypes(strType)
@@ -78,12 +80,11 @@ public class QueryFromES implements Serializable {
 
             String sourceAsString = hit.getSourceAsString();
             if (sourceAsString != null) {
-
                 System.out.println(sourceAsString);
+                resultStr += sourceAsString;
             }
         }
-
-
+        return resultStr;
     }
 
     ///TO-DO:查询某个字段

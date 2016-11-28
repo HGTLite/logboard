@@ -8,29 +8,23 @@
     <file url="file://$PROJECT_DIR$/project/common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/examples" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/common/tests/es-query" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/general-console" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/common/tests/general-rest" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/general-spring" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/general-web" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/common/tests/geoip" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/common/tests/hbase112" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/hello-logger" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/common/tests/java-bean" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/kafka-general-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/kafka-general-producer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tests/msg-producer" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/common/tests/pipeline-log2es" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/common/tools" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/dependencies" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/es-helper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/project/modules/es-query" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/hbase-helper" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/ilogger" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/log-boot" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/logbase" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/msg-router" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project/modules/redis-helper" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project/modules/streaming" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

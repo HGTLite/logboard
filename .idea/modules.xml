@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/project/dependencies/dependencies.iml" filepath="$PROJECT_DIR$/project/dependencies/dependencies.iml" />
       <module fileurl="file://$PROJECT_DIR$/docs/docs.iml" filepath="$PROJECT_DIR$/docs/docs.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/es-helper/es-helper.iml" filepath="$PROJECT_DIR$/project/modules/es-helper/es-helper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/modules/es-query/es-query.iml" filepath="$PROJECT_DIR$/project/modules/es-query/es-query.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/examples/examples.iml" filepath="$PROJECT_DIR$/project/common/examples/examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" filepath="$PROJECT_DIR$/project/common/tests/general-console/general-console.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/general-spring/general-spring.iml" filepath="$PROJECT_DIR$/project/common/tests/general-spring/general-spring.iml" />
