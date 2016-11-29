@@ -48,9 +48,15 @@
         <table tableName="LOG_APPS" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false"/>
-        <!--<table tableName="wp_photos_info" enableCountByExample="false" enableDeleteByExample="false"-->
-        <!--enableSelectByExample="false"-->
-        <!--enableUpdateByExample="false"/>-->
+        <table tableName="LOG_APPS" enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false"/>
+        <table tableName="LOG_APPS" enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false"/>
+        <table tableName="LOG_APPS" enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false"/>
 
     </context>
 </generatorConfiguration>
