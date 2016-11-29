@@ -1,4 +1,4 @@
-package com.hgt.heartbeat;
+package com.hgt.socket;
 
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
@@ -7,7 +7,6 @@ import java.net.Socket;
 /**
  * 客户端发送类
  *
- * @author Administrator
  */
 public class ClientSender {
 

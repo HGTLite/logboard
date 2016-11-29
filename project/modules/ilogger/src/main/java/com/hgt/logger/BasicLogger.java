@@ -3,6 +3,7 @@ package com.hgt.logger;
 import com.hgt.logger.formats.LogKeyInfo;
 import com.hgt.logger.formats.LogLevels;
 import com.hgt.logger.formats.LogType;
+import com.hgt.logger.heartbeat.HeartBeatClient;
 import com.hgt.logger.validator.LoggerInputsValidator;
 import com.hgt.utils.JsonHelper;
 import org.slf4j.Logger;
@@ -34,6 +35,10 @@ public class BasicLogger extends ILogger {
     private ArrayList<String> infoList;
     private LoggerInputsValidator logValidator;
 
+    static {
+        new HeartBeatClient().start();
+    }
+
     /**
      * 指定日志类型为GENERAL
      *
@@ -43,7 +48,7 @@ public class BasicLogger extends ILogger {
     public BasicLogger(Class c, String strAppCode) {
 
         logger = LoggerFactory.getLogger(c);
-        super.LEVEL=0;
+        super.LEVEL = 0;
 
         infoList = new ArrayList<>();
         infoList.add(strAppCode);
@@ -67,7 +72,7 @@ public class BasicLogger extends ILogger {
      */
     public BasicLogger(Class c, String strAppCode, String type) {
         logger = LoggerFactory.getLogger(c);
-        super.LEVEL=0;
+        super.LEVEL = 0;
 
         infoList = new ArrayList<>();
         infoList.add(strAppCode);
@@ -92,7 +97,7 @@ public class BasicLogger extends ILogger {
      */
     public BasicLogger(Class c, String strAppCode, String type, String msg) {
         logger = LoggerFactory.getLogger(c);
-        super.LEVEL=0;
+        super.LEVEL = 0;
 
         infoList = new ArrayList<>();
         infoList.add(strAppCode);
@@ -108,27 +113,27 @@ public class BasicLogger extends ILogger {
 
     }
 
-    public BasicLogger logLevel(LogLevels strLevel){
+    public BasicLogger logLevel(LogLevels strLevel) {
         super.setLEVEL(strLevel.ordinal());
         return this;
     }
 
-    public BasicLogger appCode(String strCode){
+    public BasicLogger appCode(String strCode) {
         info.setAppCode(strCode);
         return this;
     }
 
-    public BasicLogger logType(LogType strType){
+    public BasicLogger logType(LogType strType) {
         info.setLogType(strType);
         return this;
     }
 
-    public BasicLogger logMsg(String strMsg){
+    public BasicLogger logMsg(String strMsg) {
         info.setLogMsg(strMsg);
         return this;
     }
 
-    public BasicLogger logOptions(HashMap<String, String> o){
+    public BasicLogger logOptions(HashMap<String, String> o) {
         info.setLogOptions(o);
         return this;
     }
@@ -142,7 +147,7 @@ public class BasicLogger extends ILogger {
     @Override
     public void d(String strD) {
         info.setLogMsg(strD);
-        if (super.LEVEL  <= DEBUG) {
+        if (super.LEVEL <= DEBUG) {
             logger.debug(jsonHelper.convertBean2Json(info));
         }
     }
@@ -156,7 +161,7 @@ public class BasicLogger extends ILogger {
     public void i(String strI) {
         info.setLogMsg(strI);
 
-        if (super.LEVEL  <= INFO) {
+        if (super.LEVEL <= INFO) {
             logger.info(jsonHelper.convertBean2Json(info));
         }
     }
@@ -169,7 +174,7 @@ public class BasicLogger extends ILogger {
     @Override
     public void w(String strW) {
         info.setLogMsg(strW);
-        if (super.LEVEL  <= WARN) {
+        if (super.LEVEL <= WARN) {
             logger.warn(jsonHelper.convertBean2Json(info));
         }
     }

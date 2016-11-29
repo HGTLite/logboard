@@ -1,4 +1,4 @@
-package com.hgt.heartbeat;
+package com.hgt.socket;
 
 /**
  * 客户端类

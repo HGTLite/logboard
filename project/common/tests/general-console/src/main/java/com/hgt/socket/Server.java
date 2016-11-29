@@ -1,4 +1,4 @@
-package com.hgt.heartbeat;
+package com.hgt.socket;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;

@@ -1,7 +1,5 @@
-package com.hgt.heartbeat;
+package com.hgt.socket;
 
-import java.io.DataInput;
-import java.io.IOException;
 import java.io.Serializable;
 
 
