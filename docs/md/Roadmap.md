@@ -1,7 +1,7 @@
 # LogBoard Dev Plan
 ## Bugs 不能用的  
-- 打日志的类默认是BasicLogger、行号默认是
-- bug2
+- 打日志的类默认是BasicLogger，行号默认固定
+- es默认日志是log4j2，与log4j冲突
 
 ## TO-DO 能用但不好用的
 - redis订阅者不在线，消息会消失  
