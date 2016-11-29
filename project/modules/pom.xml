@@ -22,6 +22,7 @@
         <module>logbase</module>
         <module>log-boot</module>
         <module>es-query</module>
+        <module>task-scheduler</module>
     </modules>
 
     <dependencyManagement>

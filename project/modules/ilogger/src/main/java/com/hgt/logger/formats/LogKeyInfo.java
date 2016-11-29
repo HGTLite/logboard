@@ -7,7 +7,7 @@ import static com.hgt.logger.formats.LogType.GENERAL;
 /******************************************************************************
  * Created by  Yao  on  2016/7/4
  * README:日志内容格式拼凑类
- * 必填：AppCode-默认为00000000表示未知，LogType-默认为GENERAL表示一般，LogMsg-默认为"LOG-AT-CLASS.NAME"
+ * 必填：AppCode-默认8位00000000表示未知，LogType-默认为GENERAL表示一般，LogMsg-默认为"LOG-AT-CLASS.NAME"
  * 选填：logOptions
  * ============================================================================
  * CHANGELOG：

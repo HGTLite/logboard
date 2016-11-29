@@ -6,7 +6,7 @@ import static com.hgt.logger.validator.AppInfoValidator.isAppCodeValid;
 
 /******************************************************************************
  * Created by  Yao  on  2016/9/27
- * README: 验证所有的logger输入信息格式是否都正确
+ * README: 验证所有的logger输入信息格式是否都正确，集合所有规则，可扩展
  *         暂时只实现验证AppCode，作为示例
  * ============================================================================
  * CHANGELOG：

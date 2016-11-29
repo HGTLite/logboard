@@ -1,10 +1,10 @@
 # LogBoard Dev Plan
 ## Bugs 不能用的  
-- bug1
+- 打日志的类默认是BasicLogger、行号默认是
 - bug2
 
 ## TO-DO 能用但不好用的
-- redis订阅着不在线，消息会消失  
+- redis订阅者不在线，消息会消失  
 - streaming双写hdfs和elasticsearch拆分解耦，提高容错性
 - IP分布图自动调整地图范围
 - 依赖去重，如spark_core中的hadoop client_2.2

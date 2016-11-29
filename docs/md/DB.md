@@ -24,7 +24,6 @@
  AppModule, AppThread, LogExp, LogLocation,
  Inputs, Outputs, CoderComments, LogTopic
 
-
 ## elasticsearch搜索数据结构设计
 8个固定字段+1个大字段     
 
