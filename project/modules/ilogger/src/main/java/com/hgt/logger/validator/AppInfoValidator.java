@@ -7,17 +7,18 @@ package com.hgt.logger.validator;
  * ============================================================================
  * CHANGELOG：
  ******************************************************************************/
-public  class AppInfoValidator {
+public class AppInfoValidator {
 
     /**
-     * 验证应用代码
+     * 验证应用代码，规则待定
+     *
      * @param strCode
      * @return
      */
     public static boolean isAppCodeValid(String strCode) {
 
         boolean ret = false;
-        if (strCode.length() == 8) {
+        if (strCode.length() == 8 || strCode.length() < 30) {
             ret = true;
         }
 

@@ -1,6 +1,7 @@
 package com.hgt;
 
 import com.hgt.logger.StandardLogger;
+import com.hgt.logger.formats.LogLevels;
 import com.hgt.logger.formats.LogOptions;
 import com.hgt.logger.formats.LogType;
 import org.springframework.boot.SpringApplication;
@@ -29,18 +30,18 @@ public class HelloLoggerApp {
             @Override
             public void run() {
                 StandardLogger logger = new StandardLogger(HelloLoggerApp.class, "hello002");
-                StandardLogger log = (StandardLogger) logger.logType(LogType.LOGIN);
+                logger.logType(LogType.LOGIN).logLevel(LogLevels.DEBUG);
                 if (ii % 5 == 0) {
-                    log.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
-                    log.i("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行");
+                    logger.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
+                    logger.w("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行");
                     ii++;
                 } else if (ii % 3 == 0) {
-                    log.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
-                    log.e("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行", new Exception());
+                    logger.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
+                    logger.e("这是第 " + ii + " 条消息！！！, 3的倍数", new Exception());
                     ii++;
                 } else {
-                    log.options(LogOptions.USER_ID, "user004").options(LogOptions.USER_IP, getRandomIp());
-                    log.w("这是第 " + ii + " 条消息！！！");
+                    logger.options(LogOptions.USER_ID, "user004").options(LogOptions.USER_IP, getRandomIp());
+                    logger.i("这是第 " + ii + " 条消息！！！");
                     ii++;
                 }
             }

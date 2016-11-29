@@ -1,6 +1,7 @@
 package com.hgt.logger;
 
 import com.hgt.logger.formats.LogKeyInfo;
+import com.hgt.logger.formats.LogLevels;
 import com.hgt.logger.formats.LogType;
 import com.hgt.logger.validator.LoggerInputsValidator;
 import com.hgt.utils.JsonHelper;
@@ -15,6 +16,7 @@ import java.util.HashMap;
  * README:基本日志打印工具类
  *        只支持设置AppCode, LogType, LogMsg
  *        不支持设置可选字段
+ * TO—DO: 日志初始化时参数验证失败仍可打日志，改为不能打
  * ============================================================================
  * CHANGELOG：160927重构
  ******************************************************************************/
@@ -29,11 +31,11 @@ public class BasicLogger extends ILogger {
     private JsonHelper jsonHelper;
 
     //log输入信息验证
-    private ArrayList<String> loginfo;
+    private ArrayList<String> infoList;
     private LoggerInputsValidator logValidator;
 
     /**
-     * 指定日志类型位GENERAL
+     * 指定日志类型为GENERAL
      *
      * @param c
      * @param strAppCode
@@ -41,11 +43,11 @@ public class BasicLogger extends ILogger {
     public BasicLogger(Class c, String strAppCode) {
 
         logger = LoggerFactory.getLogger(c);
+        super.LEVEL=0;
 
-        loginfo = new ArrayList<>();
-        loginfo.add(strAppCode);
-        logValidator = new LoggerInputsValidator(loginfo);
-
+        infoList = new ArrayList<>();
+        infoList.add(strAppCode);
+        logValidator = new LoggerInputsValidator(infoList);
         if (logValidator.isLogValid()) {
             info = new LogKeyInfo(strAppCode, "General");
             info.setLogOptions(null);
@@ -65,10 +67,11 @@ public class BasicLogger extends ILogger {
      */
     public BasicLogger(Class c, String strAppCode, String type) {
         logger = LoggerFactory.getLogger(c);
+        super.LEVEL=0;
 
-        loginfo = new ArrayList<>();
-        loginfo.add(strAppCode);
-        logValidator = new LoggerInputsValidator(loginfo);
+        infoList = new ArrayList<>();
+        infoList.add(strAppCode);
+        logValidator = new LoggerInputsValidator(infoList);
 
         if (logValidator.isLogValid()) {
             info = new LogKeyInfo(strAppCode, type);
@@ -89,10 +92,11 @@ public class BasicLogger extends ILogger {
      */
     public BasicLogger(Class c, String strAppCode, String type, String msg) {
         logger = LoggerFactory.getLogger(c);
+        super.LEVEL=0;
 
-        loginfo = new ArrayList<>();
-        loginfo.add(strAppCode);
-        logValidator = new LoggerInputsValidator(loginfo);
+        infoList = new ArrayList<>();
+        infoList.add(strAppCode);
+        logValidator = new LoggerInputsValidator(infoList);
 
         if (logValidator.isLogValid()) {
             info = new LogKeyInfo(strAppCode, type, msg);
@@ -102,6 +106,11 @@ public class BasicLogger extends ILogger {
             logger.error("==========BaiscLogger初始化失败!!!!!==========");
         }
 
+    }
+
+    public BasicLogger logLevel(LogLevels strLevel){
+        super.setLEVEL(strLevel.ordinal());
+        return this;
     }
 
     public BasicLogger appCode(String strCode){
@@ -124,6 +133,7 @@ public class BasicLogger extends ILogger {
         return this;
     }
 
+
     /**
      * 打印debug型日志
      *
@@ -132,7 +142,7 @@ public class BasicLogger extends ILogger {
     @Override
     public void d(String strD) {
         info.setLogMsg(strD);
-        if (LEVEL <= DEBUG) {
+        if (super.LEVEL  <= DEBUG) {
             logger.debug(jsonHelper.convertBean2Json(info));
         }
     }
@@ -146,7 +156,7 @@ public class BasicLogger extends ILogger {
     public void i(String strI) {
         info.setLogMsg(strI);
 
-        if (LEVEL <= INFO) {
+        if (super.LEVEL  <= INFO) {
             logger.info(jsonHelper.convertBean2Json(info));
         }
     }
@@ -159,7 +169,7 @@ public class BasicLogger extends ILogger {
     @Override
     public void w(String strW) {
         info.setLogMsg(strW);
-        if (LEVEL <= WARN) {
+        if (super.LEVEL  <= WARN) {
             logger.warn(jsonHelper.convertBean2Json(info));
         }
     }
@@ -173,7 +183,7 @@ public class BasicLogger extends ILogger {
     @Override
     public void e(String strE, Exception e) {
         info.setLogMsg(strE);
-        if (LEVEL <= ERROR) {
+        if (super.LEVEL <= ERROR) {
             logger.error(jsonHelper.convertBean2Json(info), e);
         }
     }

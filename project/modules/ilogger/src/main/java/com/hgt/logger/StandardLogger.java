@@ -1,6 +1,5 @@
 package com.hgt.logger;
 
-
 import com.hgt.logger.formats.LogOptions;
 
 import java.util.EnumMap;
@@ -25,22 +24,18 @@ public class StandardLogger extends BasicLogger {
     }
 
     public StandardLogger(Class c, String strAppCode, EnumMap<LogOptions, String> map) {
-
         super(c, strAppCode);
         super.logOptions((HashMap) convertEnumMap2HashMap(map));
-
     }
 
     public StandardLogger(Class c, String strAppCode, String type, EnumMap<LogOptions, String> map) {
         super(c, strAppCode, type);
         super.logOptions((HashMap) convertEnumMap2HashMap(map));
-
     }
 
     public StandardLogger(Class c, String strAppCode, String type, String msg, EnumMap<LogOptions, String> map) {
         super(c, strAppCode, type, msg);
         super.logOptions((HashMap) convertEnumMap2HashMap(map));
-
     }
 
     /**
@@ -63,5 +58,6 @@ public class StandardLogger extends BasicLogger {
         super.logOptions((HashMap) convertEnumMap2HashMap(options));
         return this;
     }
+
 
 }

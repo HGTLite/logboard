@@ -7,7 +7,7 @@ import static com.hgt.logger.formats.LogType.GENERAL;
 /******************************************************************************
  * Created by  Yao  on  2016/7/4
  * README:日志内容格式拼凑类
- * 必填：AppCode-默认为000000表示未知，LogType-默认为GENERAL表示一般，LogMsg-默认为"LOG-AT-CLASS.NAME"
+ * 必填：AppCode-默认为00000000表示未知，LogType-默认为GENERAL表示一般，LogMsg-默认为"LOG-AT-CLASS.NAME"
  * 选填：logOptions
  * ============================================================================
  * CHANGELOG：
@@ -15,7 +15,9 @@ import static com.hgt.logger.formats.LogType.GENERAL;
 @SuppressWarnings("unused")
 public class LogKeyInfo {
 
-    //应用ID，默认为000000
+    //日志ID
+    private String beating;
+    //应用ID，默认为00000000
     private String appCode;
     //日志类别，默认为GENERAL
     private LogType logType;
@@ -27,7 +29,7 @@ public class LogKeyInfo {
     //默认无参构造函数
     public LogKeyInfo() {
 //      this("000000","GENERAL","LOG-AT-" + this.getClass().getName(),new HashMap<>());
-        this.appCode = "000000";
+        this.appCode = "00000000";
         this.logType = GENERAL;
         this.logMsg = "LOG-AT-" + this.getClass().getName();
         this.logOptions = new HashMap<>();
