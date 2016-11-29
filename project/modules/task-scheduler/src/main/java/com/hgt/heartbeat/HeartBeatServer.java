@@ -51,7 +51,6 @@ public class HeartBeatServer extends Thread {
             this.client = client;
         }
 
-
         @Override
         public void run() {
             try {
