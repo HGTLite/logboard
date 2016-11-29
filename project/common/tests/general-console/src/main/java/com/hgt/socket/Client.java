@@ -16,7 +16,7 @@ public class Client extends Thread {
                 // 获得ClientSender实例后，调用send()方法发送数据
                 ClientSender.getInstance().send();
                 synchronized (Client.class) {
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 }
             }
         } catch (InterruptedException e) {

@@ -11,35 +11,36 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
 public class Update {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		new Update().run();
-	}
+        new Update().run();
+    }
 
-	public void run() {
-		Client client = null;
-		TransportClient transportClient = null;
-		try {
-			transportClient = new TransportClient();
-			client = transportClient.addTransportAddress(new InetSocketTransportAddress("192.168.1.40", 9300));
+    public void run() {
+        Client client = null;
+        TransportClient transportClient = null;
+//		try {
+//			transportClient = new TransportClient();
+//			client = transportClient.addTransportAddress(new InetSocketTransportAddress("192.168.1.40", 9300));
+//
+//			Map<String, String> map = new HashMap<>();
+//			map.put("library", "seasar,struts,spring-boot");
+//
+//			UpdateRequest request = new UpdateRequest("tms-allflat", "personal", "AVEdzC6G9PWe3gelUGEP");
+//			request.doc(map);
+//
+//			client.update(request).get();
+//
+//			System.out.println("update finished.");
+//
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		} catch (ExecutionException e) {
+//			throw new RuntimeException(e);
+//		} finally {
+//			transportClient.close();
+//			client.close();
+//		}
 
-			Map<String, String> map = new HashMap<>();
-			map.put("library", "seasar,struts,spring-boot");
-
-			UpdateRequest request = new UpdateRequest("tms-allflat", "personal", "AVEdzC6G9PWe3gelUGEP");
-			request.doc(map);
-
-			client.update(request).get();
-			
-			System.out.println("update finished.");
-			
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		} catch (ExecutionException e) {
-			throw new RuntimeException(e);
-		} finally {
-			transportClient.close();
-			client.close();
-		}
-	}
+    }
 }

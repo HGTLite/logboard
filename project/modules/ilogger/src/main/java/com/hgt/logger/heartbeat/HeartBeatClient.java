@@ -10,7 +10,7 @@ public class HeartBeatClient extends Thread {
         try {
             while (true) {
                 // 获得ClientSender实例后，调用send()方法发送数据
-                ClientSender.getInstance().send();
+//                ClientSender.getInstance().send();
                 synchronized (HeartBeatClient.class) {
                     Thread.sleep(3000);
                 }

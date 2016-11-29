@@ -1,8 +1,10 @@
 package com.hgt.logger;
 
+import com.hgt.logger.config.LoggerConfig;
 import com.hgt.logger.formats.LogKeyInfo;
 import com.hgt.logger.formats.LogLevels;
 import com.hgt.logger.formats.LogType;
+import com.hgt.logger.heartbeat.ClientSender;
 import com.hgt.logger.heartbeat.HeartBeatClient;
 import com.hgt.logger.validator.LoggerInputsValidator;
 import com.hgt.utils.JsonHelper;
@@ -36,7 +38,9 @@ public class BasicLogger extends ILogger {
     private LoggerInputsValidator logValidator;
 
     static {
-        new HeartBeatClient().start();
+
+        ClientSender.getInstance().send(LoggerConfig.getInstance().setHeartBeatConfig());
+
     }
 
     /**
