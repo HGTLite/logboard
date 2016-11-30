@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface LogAppsMapper {
 
-    LogApps selectLogAppsById(String laId);
-
     List<LogApps> selectAllLogApps();
+
+    LogApps selectLogAppsById(String laId);
 
     int insertLogApps(LogApps logApps);
 
