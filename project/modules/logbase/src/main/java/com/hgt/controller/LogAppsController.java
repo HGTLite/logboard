@@ -22,7 +22,7 @@ import java.util.List;
  * =============================================================================
  * CHANGELOG:
  */
-@Api(value = "接入日志系统的第三方应用 val", description = "关于接入日志系统的第三方应用的接口")
+@Api(value = "接入日志系统的第三方应用 val", description = "关于接入日志系统的第三方应用操作的接口")
 @RestController
 public class LogAppsController {
 
