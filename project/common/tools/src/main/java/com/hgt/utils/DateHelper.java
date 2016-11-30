@@ -11,13 +11,14 @@ import java.util.Date;
  */
 public class DateHelper {
 
-
-    public static String getSimpleDate(){
-        String result="";
-        SimpleDateFormat formatter   =   new   SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date curDate   =   new   Date(System.currentTimeMillis());
+    public static String getSimpleDate() {
+        String result = "";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date curDate = new Date(System.currentTimeMillis());
         result = formatter.format(curDate);
         return result;
     }
+
+
 
 }

@@ -7,6 +7,7 @@ import com.hgt.es.config.ESConfig;
 import com.hgt.filter.LogKeyChecker;
 import com.hgt.filter.LogOptionsChecker;
 import com.hgt.hbase.common.HBaseOperations;
+import com.hgt.msg.HttpUtil;
 import com.hgt.obj.CloneUtils;
 import com.hgt.tools.LogIdBuilder;
 import org.apache.spark.SparkConf;
@@ -51,7 +52,7 @@ public class StreamingApp {
 
         String sparkAppName = "LogStreaming";
         String sparkMaster = "local[3]";
-        Duration jobInterval = new Duration(12000);
+        Duration jobInterval = new Duration(5000);
 
         //每个话题的分片数
         int numThreads = 2;
@@ -145,13 +146,11 @@ public class StreamingApp {
                             String k1 = m[j][1].substring(1).replace("\"", "");
                             String v1 = m[j][2].replace("\"", "");
                             logMap.put(k1, v1);
-
                         } else if (j == ml - 1) {
                             //去掉最后一个键值对后面的"}"
                             String k1 = m[j][0].replace("\"", "");
                             String v1 = m[j][1].substring(0, m[j][1].length() - 1).replace("\"", "");
                             logMap.put(k1, v1);
-
                         } else {
                             //普通键值对直接加入map
                             String k1 = m[j][0].replace("\"", "");
@@ -177,7 +176,7 @@ public class StreamingApp {
                 String logMapStr = MapJsonConverter.simpleMapToJsonStr(logMap);
 
                 String addedIdLog = "{" +
-                        "\"logid\":\"" + thisLogId + "\"," +
+                        "\"logId\":\"" + thisLogId + "\"," +
                         logMapStr.substring(1);
 
                 System.out.println("=====扁平化后的日志是：" + addedIdLog);
@@ -186,87 +185,155 @@ public class StreamingApp {
             }
         });
 
-
         //region 过滤次要日志，存储有效日志
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
-
-                System.out.println("=====过滤后的日志是：" + s);
-
+//                System.out.println("=====过滤之后的日志是：" + s);
                 return true;
             }
         });
         //endregion
 
         //region 按应用统计该时段日志
-        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
-                //JavaPairDStream<String, Integer> wordCounts = logItems.mapToPair(
-
+        JavaPairDStream<String, Integer> logCountsByApp = validLogs.mapToPair(
+                //JavaPairDStream<String, Integer> logCountsByApp = logItems.mapToPair(
                 new PairFunction<String, String, Integer>() {
-
                     @Override
                     public Tuple2<String, Integer> call(String s) {
-
                         //System.out.println("=====没有mapToPair的日志是 " + s);
-
-                        String logsRight = s.substring(100, s.length() - 2);
-                        String[] manualLogs = logsRight.split(",");
-                        String appCode = manualLogs[1].split(":")[1].replace("\"", "");
-
+                        String[] flatLogs = s.split(",");
+                        String appCode = flatLogs[7].split(":")[1].replace("\"", "");
+//                        System.out.println("=====统计的app是 " + appCode);
                         return new Tuple2<>(appCode, 1);
                     }
                 })
-                .reduceByKey(new Function2<Integer, Integer, Integer>() {
-
+                .reduceByKeyAndWindow(new Function2<Integer, Integer, Integer>() {
                     @Override
                     public Integer call(Integer i1, Integer i2) {
-
-                        System.out.println("累加处理 " + i1);
-
+//                        System.out.println("累加处理 " + i1);
                         return i1 + i2;
                     }
-                });
+                }, new Duration(5000), new Duration(5000));
 
-
-        HashMap<String, String> countMap = new HashMap<>();
-
-        wordCounts.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
-
+        //按应用统计结果存入mysql
+        logCountsByApp.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
             @Override
             public Void call(JavaPairRDD<String, Integer> values, Time time)
                     throws Exception {
-
-//                System.out.println("经过mapToPair的日志是 "+i1);
-
                 values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
-
                     @Override
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
-
-                        System.out.println("计数之后的结果是" + "Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
-
+//                        System.out.println("计数之后的结果是" + "Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
+                        HashMap<String, String> countMap = new HashMap<>();
                         countMap.put(tuple._1(), String.valueOf(tuple._2()));
 
+                        Map params = new HashMap();
+                        params.put("message", "hello, b**ches");
+                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+//                        System.out.println(str);
 
                     }
                 });
-
                 return null;
             }
         });
         //endregion
 
+        //region 按日志类别统计该时段所有异常
+        JavaPairDStream<String, Integer> logCountsByType = validLogs.mapToPair(
+                //JavaPairDStream<String, Integer> logCountsByApp = logItems.mapToPair(
+                new PairFunction<String, String, Integer>() {
+                    @Override
+                    public Tuple2<String, Integer> call(String s) {
+                        String[] flatLogs = s.split(",");
+                        String type = flatLogs[8].split(":")[1].replace("\"", "");
+                        //System.out.println("=====统计的type是 " + appCode);
+                        return new Tuple2<>(type, 1);
+                    }
+                })
+                .reduceByKeyAndWindow(new Function2<Integer, Integer, Integer>() {
+                    @Override
+                    public Integer call(Integer i1, Integer i2) {
+                        //System.out.println("累加处理 " + i1);
+                        return i1 + i2;
+                    }
+                }, new Duration(5000), new Duration(5000));
 
-        //region 按类别统计该时段日志
+        //按日志类别统计结果存入mysql
+        logCountsByApp.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
+            @Override
+            public Void call(JavaPairRDD<String, Integer> values, Time time)
+                    throws Exception {
+                values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
+                    @Override
+                    public void call(Tuple2<String, Integer> tuple) throws Exception {
 
+                        HashMap<String, String> countMap = new HashMap<>();
+
+                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+
+                        Map params = new HashMap();
+                        params.put("message", "hello ");
+                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+                        //System.out.println(str);
+                    }
+                });
+                return null;
+            }
+        });
         //endregion
 
+        //region 按日志级别统计该时段日志
+        JavaPairDStream<String, Integer> logCountsByLevel = validLogs.mapToPair(
+                new PairFunction<String, String, Integer>() {
+                    @Override
+                    public Tuple2<String, Integer> call(String s) {
+                        String[] flatLogs = s.split(",");
+                        String type = flatLogs[1].split(":")[1].replace("\"", "");
 
-        //region 统计该时段所有异常
+                        //错误日志入库
+                        if (type == "ERROR") {
+                            Map params = new HashMap();
+                            params.put("level", "hello ");
+                            String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+                            //System.out.println(str);
+                        }
 
+                        return new Tuple2<>(type, 1);
+                    }
+                })
+                .reduceByKeyAndWindow(new Function2<Integer, Integer, Integer>() {
+                    @Override
+                    public Integer call(Integer i1, Integer i2) {
+                        //System.out.println("累加处理 " + i1);
+                        return i1 + i2;
+                    }
+                }, new Duration(5000), new Duration(5000));
+
+        //按级别统计结果存入mysql
+        logCountsByApp.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
+            @Override
+            public Void call(JavaPairRDD<String, Integer> values, Time time)
+                    throws Exception {
+                values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
+                    @Override
+                    public void call(Tuple2<String, Integer> tuple) throws Exception {
+
+                        HashMap<String, String> countMap = new HashMap<>();
+
+                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+
+                        Map params = new HashMap();
+                        params.put("level", "hello ");
+                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+                        //System.out.println(str);
+                    }
+                });
+                return null;
+            }
+        });
         //endregion
-
 
         jssc.start();
         jssc.awaitTermination();

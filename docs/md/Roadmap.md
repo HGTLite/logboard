@@ -4,6 +4,7 @@
 - es默认日志是log4j2，与log4j冲突
 
 ## TO-DO 能用但不好用的
+- spark计数异常日志，取不到明细信息
 - redis订阅者不在线，消息会消失  
 - streaming双写hdfs和elasticsearch拆分解耦，提高容错性
 - IP分布图自动调整地图范围

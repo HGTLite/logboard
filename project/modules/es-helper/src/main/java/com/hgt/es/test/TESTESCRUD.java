@@ -12,10 +12,10 @@ public class TESTESCRUD {
         ESQueryAll ESQueryAll = new ESQueryAll(esConfig);
         ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
 
-//        esAdminOperations.addIndex("test-log");
+        esAdminOperations.addIndex("hgt-logs");
 //        System.out.println(ESQueryAll.queryIndices());
 
-        esAdminOperations.deleteIndex("one-index");
+//        esAdminOperations.deleteIndex("hgt-logs");
         String typeDesc = "{\n" +
                 "  \"properties\": {\n" +
                 "    \"appCode\": {\n" +
@@ -45,7 +45,7 @@ public class TESTESCRUD {
 
 
         String typeList = "logLevel:text,logTime:date,codeClass:text,codeFile:text,lineNumber:integer,appCode:text,logType:text,logMsg:text,logOptions:text";
-        esAdminOperations.addType("logs-index,logs-type", typeList);
+//        esAdminOperations.addType("logs-index,logs-type", typeList);
 
         //可用的测试数据
         String log = "{\"appCode\":\"hello1\"," +
