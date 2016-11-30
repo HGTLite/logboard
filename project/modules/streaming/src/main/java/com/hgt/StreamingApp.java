@@ -191,6 +191,9 @@ public class StreamingApp {
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
+
+                System.out.println("=====过滤后的日志是：" + s);
+
                 return true;
             }
         });
@@ -201,6 +204,7 @@ public class StreamingApp {
                 //JavaPairDStream<String, Integer> wordCounts = logItems.mapToPair(
 
                 new PairFunction<String, String, Integer>() {
+
                     @Override
                     public Tuple2<String, Integer> call(String s) {
 

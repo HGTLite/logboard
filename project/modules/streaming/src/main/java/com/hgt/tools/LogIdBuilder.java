@@ -34,7 +34,7 @@ public class LogIdBuilder {
         String uuid8 = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
         resultId.append(uuid8);
 
-        return resultId.toString();
+        return resultId.toString().toLowerCase();
     }
 
 }
