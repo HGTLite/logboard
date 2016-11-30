@@ -204,12 +204,11 @@ public class StreamingApp {
                     @Override
                     public Tuple2<String, Integer> call(String s) {
 
-//                        System.out.println("=====没有mapToPair的日志是 " + s);
+                        //System.out.println("=====没有mapToPair的日志是 " + s);
 
                         String logsRight = s.substring(100, s.length() - 2);
                         String[] manualLogs = logsRight.split(",");
-                        String appCode = manualLogs[0].split(":")[1].replace("\"", "");
-
+                        String appCode = manualLogs[1].split(":")[1].replace("\"", "");
 
                         return new Tuple2<>(appCode, 1);
                     }
