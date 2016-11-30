@@ -34,30 +34,30 @@ public class LogAppsServiceImpl implements LogAppsService {
 
     @Override
     public DataResult<SimpleStringBean> getTableCounts() {
-        int count = logAppsMapper.getTableCounts();
-        return new DataResult<>(new SimpleStringBean(String.valueOf(count)));
+        int ret = logAppsMapper.getTableCounts();
+        return new DataResult<>(new SimpleStringBean(String.valueOf(ret)));
     }
 
     @Override
     public DataResult<SimpleStringBean> addLogApp(LogApps logApp) {
-        int count = logAppsMapper.insertLogApps(logApp);
-        return new DataResult<>(new SimpleStringBean("成功插入： " + count + " 条记录"));
+        int ret = logAppsMapper.insertLogApps(logApp);
+        return new DataResult<>(new SimpleStringBean("成功插入： " + ret + " 条记录"));
     }
 
     @Override
     public DataResult<SimpleStringBean> deleteLogAppByRowId(String laId) {
-        int count = logAppsMapper.deleteLogAppByRowId(laId);
-        return new DataResult<>(new SimpleStringBean("成功删除： " + count + " 条记录"));
+        int ret = logAppsMapper.deleteLogAppByRowId(laId);
+        return new DataResult<>(new SimpleStringBean("成功删除： " + ret + " 条记录"));
     }
 
     @Override
     public DataResult<SimpleStringBean> deleteLogAppByAppCode(String appCode) {
-        int count = logAppsMapper.deleteLogAppByAppCode(appCode);
-        return new DataResult<>(new SimpleStringBean("成功删除： " + count + " 条记录"));
+        int ret = logAppsMapper.deleteLogAppByAppCode(appCode);
+        return new DataResult<>(new SimpleStringBean("成功删除： " + ret + " 条记录"));
     }
 
     @Override
     public DataResult<SimpleStringBean> updateLogApp(LogApps logApps) {
-        int count = logAppsMapper.updateByPrimaryKey(logApps);
-        return new DataResult<>(new SimpleStringBean("成功更新： " + count + " 条记录"));    }
+        int ret = logAppsMapper.updateByPrimaryKey(logApps);
+        return new DataResult<>(new SimpleStringBean("成功更新： " + ret + " 条记录"));    }
 }
