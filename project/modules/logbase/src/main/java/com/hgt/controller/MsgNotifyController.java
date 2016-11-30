@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 public class MsgNotifyController {
 
-    private final String BASE_URL = "logb/beats";
+    private final String BASE_URL = "logb/notify";
 
     @Autowired
     MsgNotifyService msgNotifyService;

@@ -72,9 +72,9 @@ public class SwaggerConfig {
     private String initContextInfo() {
         StringBuffer sb = new StringBuffer();
         sb.append("<p>LogBoard后台提供的服务接口主要分为3类：  </p>")
-                .append("<ul>" + "<li>关于应用信息的接口，以\"/apps\"为标志；" + "</li>")
-                .append("<li>关于日志信息的接口，以\"/loginfo\"为标志；" + "</li>")
-                .append("<li>关于异常预警信息的接口，以\"/exps\"为标志。" + "</li></ul>")
+                .append("<ul>" + "<li>关于应用信息的接口，以\"/logb/apps\"为标志；" + "</li>")
+                .append("<li>关于日志统计信息的接口，以\"/logb/stats\"为标志；" + "</li>")
+                .append("<li>关于异常预警信息的接口，以\"/logb/exp\"和\"/logb/notify\"为标志。" + "</li></ul>")
                 .append("<p>接口的其他信息可以参考本项目的wiki：https://hgtlite.github.io/logboard/" + "</p>");
 
         return sb.toString();
