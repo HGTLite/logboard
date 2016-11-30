@@ -5,7 +5,7 @@ package com.hgt.logger.formats;
  * README:日志类型枚举, 共11类
  *        01-GENERAL--一般类
  *        02-QUERY--用户搜索关键词类
- *        03-GUI--用户界面点击交互类
+ *        03-UILAYOUT--用户界面点击交互类
  *        04-ACCOUNT--账户资料修改类
  *        05-LOGIN--用户登陆退出类
  *        06-SYSTEM--系统日志
@@ -21,7 +21,7 @@ package com.hgt.logger.formats;
 public enum LogType {
     GENERAL,
     QUERY,
-    GUI,
+    UILAYOUT,
     ACCOUNT,
     LOGIN,
     SYSTEM,
@@ -29,5 +29,5 @@ public enum LogType {
     DBADD,
     DBUPDATE,
     FLLOWS,
-    TEST
+    TESTS
 }

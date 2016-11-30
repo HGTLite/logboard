@@ -7,8 +7,8 @@ import com.hgt.es.config.ESConfig;
 import com.hgt.filter.LogKeyChecker;
 import com.hgt.filter.LogOptionsChecker;
 import com.hgt.hbase.common.HBaseOperations;
-import com.hgt.hbase.keys.RowkeyFactory;
 import com.hgt.obj.CloneUtils;
+import com.hgt.tools.LogIdBuilder;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.function.*;
@@ -38,12 +38,11 @@ public class StreamingApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        读取kafka配置
+        //读取kafka配置
         String zkQuorum = prop.getProperty("kafka.zookeeper");
         String group = prop.getProperty("group.name");
         String topics = prop.getProperty("topic.list");
-//        读取es配置
+        //读取es配置
         String esCName = prop.getProperty("es.cname");
         String esCHost = prop.getProperty("es.chost");
         String esIndex = prop.getProperty("es.index");
@@ -73,19 +72,14 @@ public class StreamingApp {
 
         //从topic中获取所需数据
         JavaDStream<String> logItems = lines.flatMap(new FlatMapFunction<Tuple2<String, String>, String>() {
+
             @Override
             public Iterable<String> call(Tuple2<String, String> arg0)
                     throws Exception {
-//                System.out.println("原始日志是 " + arg0._2);
-                return Lists.newArrayList(arg0._2);
-            }
-        });
+                String s = arg0._2;
 
-        //region 过滤次要日志，存储有效日志
-        JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
-            @Override
-            public Boolean call(String s) throws Exception {
-//                System.out.println(s);
+                System.out.println("=====原始日志是：" + s);
+
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
                 logMap.put("logTime", s.substring(7, 30).trim());
@@ -93,7 +87,7 @@ public class StreamingApp {
                 logMap.put("codeFile", s.substring(72, 92).trim());
                 logMap.put("lineNumber", s.substring(93, 96).trim());
 
-                ///!!!!!BUG 日志内容不能含有逗号等
+                //TODO:!!!!!BUG 日志内容不能含有逗号等
                 String logsRight = s.substring(100, s.length() - 2);
                 String[] manualLogs = logsRight.split(",");
                 int ml = manualLogs.length;
@@ -101,14 +95,14 @@ public class StreamingApp {
                 String[][] m = new String[ml][2];
                 //将3个固定的appCode, logType, logMsg加入map
                 for (int i = 0; i < 3; i++) {
-
                     m[i] = manualLogs[i].split(":");
                     String k = m[i][0].replace("\"", "");
                     String v = m[i][1].replace("\"", "");
-
                     logMap.put(k, v);
-
                 }
+
+                //生成该条日志ID
+                String thisLogId = LogIdBuilder.build(logMap.get("appCode"), logMap.get("logType"), logMap.get("logTime"));
 
                 //region 将日志索引进es集群
                 HashMap<String, String> esLogMap = new LinkedHashMap<>();
@@ -131,15 +125,13 @@ public class StreamingApp {
                 String vo = strLogOptions.substring(strLogOptions.split(":")[0].length() + 1).replace("\"", "");
                 esLogMap.put(ko, vo);
 
-                String eslogString = MapJsonConverter.simpleMapToJsonStr(esLogMap);
-
                 //region ES配置
                 ESConfig esConfig = new ESConfig(esCName, esCHost);
                 ESAdminOperations esAdminOperations = new ESAdminOperations(esConfig);
-                esAdminOperations.indexingDataByMap(esIndex, esType, esLogMap);
+                esAdminOperations.indexingDataByMap(esIndex, esType, thisLogId, esLogMap);
                 esAdminOperations.close();
                 //endregion
-
+                //endregion
 
                 //将不固定的logOptions加入map
                 if (manualLogs[3].substring(13).contains(":")) {
@@ -165,11 +157,9 @@ public class StreamingApp {
                             String k1 = m[j][0].replace("\"", "");
                             String v1 = m[j][1].replace("\"", "");
                             logMap.put(k1, v1);
-
                         }
                     }
                 }
-
 
                 //过滤日志
                 if (new LogKeyChecker(logMap).isLogValid() && new LogOptionsChecker(logMap).isLogValid()) {
@@ -178,27 +168,43 @@ public class StreamingApp {
                     String tableName = "one-log";
                     String cfName = "loginfo";
                     HBaseOperations hBaseOperations = new HBaseOperations();
-                    String rk = RowkeyFactory.build16(logMap.get("logType"), logMap.get("logTime"));
+                    //String rk = RowkeyFactory.build16(logMap.get("logType"), logMap.get("logTime"));
                     //TO-DO：分成2个列族存储
-                    hBaseOperations.insertRow(tableName, rk, cfName, keys, vals);
-                    return true;
+                    hBaseOperations.insertRow(tableName, thisLogId, cfName, keys, vals);
                 } else {
-                    return false;
                 }
+
+                String logMapStr = MapJsonConverter.simpleMapToJsonStr(logMap);
+
+                String addedIdLog = "{" +
+                        "\"logid\":\"" + thisLogId + "\"," +
+                        logMapStr.substring(1);
+
+                System.out.println("=====扁平化后的日志是：" + addedIdLog);
+
+                return Lists.newArrayList(addedIdLog);
+            }
+        });
+
+
+        //region 过滤次要日志，存储有效日志
+        JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
+            @Override
+            public Boolean call(String s) throws Exception {
+                return true;
             }
         });
         //endregion
 
         //region 按应用统计该时段日志
-        //        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
-        JavaPairDStream<String, Integer> wordCounts = logItems.mapToPair(
+        JavaPairDStream<String, Integer> wordCounts = validLogs.mapToPair(
+                //JavaPairDStream<String, Integer> wordCounts = logItems.mapToPair(
 
                 new PairFunction<String, String, Integer>() {
                     @Override
                     public Tuple2<String, Integer> call(String s) {
 
-//                        System.out.println("没有mapToPair的日志是 " + s);
-
+//                        System.out.println("=====没有mapToPair的日志是 " + s);
 
                         String logsRight = s.substring(100, s.length() - 2);
                         String[] manualLogs = logsRight.split(",");

@@ -46,9 +46,18 @@ public class LoggerConfig {
 
         String beatingHost = p.getProperty("beating.host");
         String appid = p.getProperty("beating.appid");
+
+        //TODO：统一设置日志级别
+        String logLevel = p.getProperty("log.level");
+        if (logLevel != null) {
+            configMap.put("loglevel", logLevel);
+        } else {
+            configMap.put("loglevel", "DEBUG");
+        }
+
         configMap.put("host", beatingHost);
         configMap.put("appid", appid);
-//        System.out.println("=====beating.host " + beatingHost);
+        //System.out.println("=====beating.host " + beatingHost);
         return configMap;
     }
 

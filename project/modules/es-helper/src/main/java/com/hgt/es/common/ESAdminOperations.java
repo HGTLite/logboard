@@ -120,16 +120,15 @@ public class ESAdminOperations implements Serializable {
      * @param strTypeName
      * @param mData
      */
-    public void indexingDataByMap(String strIndexName, String strTypeName, HashMap<String, String> mData) {
+    public void indexingDataByMap(String strIndexName, String strTypeName, String strId, HashMap<String, String> mData) {
         Map<String, String> json = new HashMap<String, String>();
         json = mData;
-        String dataId = DateHelper.getSimpleDate().replace(" ", "").replace("-", "").replace(":", "");
+//        String dataId = DateHelper.getSimpleDate().replace(" ", "").replace("-", "").replace(":", "");
+        String dataId = strId;
         IndexResponse response = client.prepareIndex(strIndexName, strTypeName, dataId)
                 .setSource(json)
                 .get();
-
     }
-
 
     public void deleteIndex(String strIndexName) {
         indicesAdminClient.prepareDelete(strIndexName).get();
