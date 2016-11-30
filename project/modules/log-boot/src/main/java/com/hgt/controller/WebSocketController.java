@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 前端消息请求处理类
+ */
 @RestController
 public class WebSocketController {
-
-
 
     @Autowired
     SocketProducer producer;

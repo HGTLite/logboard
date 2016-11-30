@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * socket消息的真实生产者
+ */
 @Component
 public class SocketProducer {
 
@@ -16,10 +19,11 @@ public class SocketProducer {
     private SimpMessagingTemplate template;
 
     public void sendMessageTo(String topic, String message) {
+
         StringBuilder builder = new StringBuilder();
-        builder.append("[");
-        builder.append(dateFormatter.format(new Date()));
-        builder.append("] ");
+//        builder.append("[");
+//        builder.append(dateFormatter.format(new Date()));
+//        builder.append("] ");
         builder.append(message);
 
         this.template.convertAndSend("/topic/" + topic, builder.toString());
