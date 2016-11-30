@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="res/styles/css/leaflet-1.0.0rc3.css"/>
     <link rel="stylesheet" href="res/styles/css/nv.d3.css"/>
     <!--<link rel="stylesheet" href="res/styles/css/mapbox.css"/>-->
-    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css" />
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css"/>
     <link rel="stylesheet" href="res/fonts/css/font-awesome.css">
     <link rel="stylesheet" href="res/styles/general.css"/>
     <link rel="stylesheet" href="res/styles/layout.css"/>
@@ -160,7 +160,7 @@
             <div class="blank_divider30"></div>
 
             <div id="logsGeneralCurve" class="row bg_white_pure">
-                <div id="svgLogsGenaral" >
+                <div id="svgLogsGenaral">
                     <!--<svg id="svgLogsGenaral" width="800" height="420"></svg>-->
                 </div>
             </div>
@@ -433,6 +433,7 @@
 <script type="text/javascript" src="res/scripts/logscharts.js"></script>
 <script type="text/javascript" src="res/scripts/utils.js"></script>
 <script type="text/javascript" src="res/scripts/ipviews.js"></script>
+<script type="text/javascript" src="res/scripts/newmsg.js"></script>
 <script type="text/javascript" src="res/scripts/js/mapbox.js"></script>
 <!--<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>-->
 
@@ -451,6 +452,9 @@
         createLogsStatsForces();
         //绘制IP访客分布图
         createIPGeoViews();
+
+        //监听socket实时消息
+        waitingForNewMsg();
 
     })();
 
