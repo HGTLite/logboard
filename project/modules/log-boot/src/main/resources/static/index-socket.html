@@ -7,27 +7,29 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
-    <div>
-        <h3>Messages:</h3>
-        <ol id="messages"></ol>
-    </div>   
+<div>
+    <h3>Messages:</h3>
+    <ol id="messages"></ol>
+</div>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-//            var msgURLOrigin="http://localhost:8080"
-            var msgURLOrigin="";
-            var messageList = $("#messages");
-            var socket = new SockJS(msgURLOrigin+"/logging");
+<script type="text/javascript">
+    $(document).ready(function () {
+        //var msgURLOrigin="http://localhost:8080"
+        var msgURLOrigin = "";
+        var messageList = $("#messages");
+        var socket = new SockJS(msgURLOrigin + "/logging");
 
-            var stompClient = Stomp.over(socket);
+        var stompClient = Stomp.over(socket);
 
-            stompClient.connect({ }, function(frame) {
-                stompClient.subscribe(msgURLOrigin+"/topic/message", function(data) {
-                    var message = data.body;
-                    messageList.append("<li>" + message + "</li>");
-                });
+        stompClient.connect({}, function (frame) {
+            //订阅的主题名为message
+            var topicTestName = "/topic/testDiv";
+            stompClient.subscribe(msgURLOrigin + topicTestName, function (data) {
+                var message = data.body;
+                messageList.append("<li>" + message + "</li>");
             });
         });
-    </script>
+    });
+</script>
 </body>
 </html>

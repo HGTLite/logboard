@@ -284,17 +284,17 @@ public class HttpUtil {
         return invokeUrl(url, params, headers, connectTimeout, readTimeout, charset, HttpMethod.HEAD);
     }
 
-//    public static void main(String[] args) {
-//
-//
-//        //region 测试第三方触发websocket消息
-//        Map params = new HashMap();
-//        params.put("message", "hello, b**ches");
-//        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
-//        System.out.println(str);
-//        //endregion
-//
-//    }
+    public static void main(String[] args) {
+
+
+        //region 测试第三方触发websocket消息
+        Map params = new HashMap();
+        params.put("message", "hello, b**ches");
+        String str = HttpUtil.post("http://localhost:8701/send/testDiv", params, 3000, 3000, "UTF-8");
+        System.out.println(str);
+        //endregion
+
+    }
 
 }
 
