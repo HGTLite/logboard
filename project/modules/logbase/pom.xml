@@ -143,7 +143,7 @@
         </dependency>
         <!-- JSON end -->
 
-        <!-- 用于加密转二进制https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <!-- 用于加密转二进制 -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -175,7 +175,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
                 <configuration>
-                    <mainClass>com.hgt.App</mainClass>
+                    <mainClass>com.hgt.LogBaseApp</mainClass>
                     <layout>ZIP</layout>
                 </configuration>
                 <executions>

@@ -136,11 +136,8 @@ public class StreamingApp {
 
                 //将不固定的logOptions加入map
                 if (manualLogs[3].substring(13).contains(":")) {
-
                     for (int j = 3; j < ml; j++) {
-
                         m[j] = manualLogs[j].split(":");
-
                         if (j == 3) {
                             //去掉第4个键值对的"logOptions:"
                             String k1 = m[j][1].substring(1).replace("\"", "");

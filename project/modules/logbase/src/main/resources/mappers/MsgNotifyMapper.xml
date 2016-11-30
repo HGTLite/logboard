@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hgt.mapper.MsgNotifyMapper" >
+  <resultMap id="BaseResultMap" type="com.hgt.entity.MsgNotify" >
+    <id column="MSG_RID" property="msgRid" jdbcType="VARCHAR" />
+    <result column="MSG_TIME" property="msgTime" jdbcType="TIMESTAMP" />
+    <result column="MSG_FROM" property="msgFrom" jdbcType="VARCHAR" />
+    <result column="MSG_TO" property="msgTo" jdbcType="VARCHAR" />
+    <result column="MSG_TYPE" property="msgType" jdbcType="VARCHAR" />
+    <result column="MSG_CONTENTS" property="msgContents" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MSG_RID, MSG_TIME, MSG_FROM, MSG_TO, MSG_TYPE, MSG_CONTENTS
+  </sql>
+  <!--=============================================================================================-->
+
+  <!--/=============================================================================================-->
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MSG_NOTIFY
+    where MSG_RID = #{msgRid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MSG_NOTIFY
+    where MSG_RID = #{msgRid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hgt.entity.MsgNotify" >
+    insert into MSG_NOTIFY (MSG_RID, MSG_TIME, MSG_FROM, 
+      MSG_TO, MSG_TYPE, MSG_CONTENTS
+      )
+    values (#{msgRid,jdbcType=VARCHAR}, #{msgTime,jdbcType=TIMESTAMP}, #{msgFrom,jdbcType=VARCHAR}, 
+      #{msgTo,jdbcType=VARCHAR}, #{msgType,jdbcType=VARCHAR}, #{msgContents,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hgt.entity.MsgNotify" >
+    insert into MSG_NOTIFY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="msgRid != null" >
+        MSG_RID,
+      </if>
+      <if test="msgTime != null" >
+        MSG_TIME,
+      </if>
+      <if test="msgFrom != null" >
+        MSG_FROM,
+      </if>
+      <if test="msgTo != null" >
+        MSG_TO,
+      </if>
+      <if test="msgType != null" >
+        MSG_TYPE,
+      </if>
+      <if test="msgContents != null" >
+        MSG_CONTENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="msgRid != null" >
+        #{msgRid,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTime != null" >
+        #{msgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgFrom != null" >
+        #{msgFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTo != null" >
+        #{msgTo,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContents != null" >
+        #{msgContents,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.MsgNotify" >
+    update MSG_NOTIFY
+    <set >
+      <if test="msgTime != null" >
+        MSG_TIME = #{msgTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgFrom != null" >
+        MSG_FROM = #{msgFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTo != null" >
+        MSG_TO = #{msgTo,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        MSG_TYPE = #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContents != null" >
+        MSG_CONTENTS = #{msgContents,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MSG_RID = #{msgRid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hgt.entity.MsgNotify" >
+    update MSG_NOTIFY
+    set MSG_TIME = #{msgTime,jdbcType=TIMESTAMP},
+      MSG_FROM = #{msgFrom,jdbcType=VARCHAR},
+      MSG_TO = #{msgTo,jdbcType=VARCHAR},
+      MSG_TYPE = #{msgType,jdbcType=VARCHAR},
+      MSG_CONTENTS = #{msgContents,jdbcType=VARCHAR}
+    where MSG_RID = #{msgRid,jdbcType=VARCHAR}
+  </update>
+</mapper>
