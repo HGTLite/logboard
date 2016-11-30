@@ -38,9 +38,7 @@ public class BasicLogger extends ILogger {
     private LoggerInputsValidator logValidator;
 
     static {
-
         ClientSender.getInstance().send(LoggerConfig.getInstance().setHeartBeatConfig());
-
     }
 
     /**

@@ -76,9 +76,7 @@ public class StreamingApp {
             @Override
             public Iterable<String> call(Tuple2<String, String> arg0)
                     throws Exception {
-
 //                System.out.println("原始日志是 " + arg0._2);
-
                 return Lists.newArrayList(arg0._2);
             }
         });
@@ -87,9 +85,7 @@ public class StreamingApp {
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
-
 //                System.out.println(s);
-
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
                 logMap.put("logTime", s.substring(7, 30).trim());
@@ -180,10 +176,11 @@ public class StreamingApp {
                     List<String> keys = new ArrayList<String>(logMap.keySet());
                     List<String> vals = new ArrayList<String>(logMap.values());
                     String tableName = "one-log";
+                    String cfName = "loginfo";
                     HBaseOperations hBaseOperations = new HBaseOperations();
                     String rk = RowkeyFactory.build16(logMap.get("logType"), logMap.get("logTime"));
                     //TO-DO：分成2个列族存储
-                    hBaseOperations.insertRow(tableName, rk, "loginfo", keys, vals);
+                    hBaseOperations.insertRow(tableName, rk, cfName, keys, vals);
                     return true;
                 } else {
                     return false;
@@ -260,7 +257,6 @@ public class StreamingApp {
         //region 统计该时段所有异常
 
         //endregion
-
 
 
         jssc.start();

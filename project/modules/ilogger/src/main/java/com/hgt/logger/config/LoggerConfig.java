@@ -1,13 +1,10 @@
 package com.hgt.logger.config;
 
-import com.hgt.logger.heartbeat.ClientSender;
 import com.hgt.logger.heartbeat.HeartBeatClient;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Properties;
 
 /**
@@ -51,7 +48,7 @@ public class LoggerConfig {
         String appid = p.getProperty("beating.appid");
         configMap.put("host", beatingHost);
         configMap.put("appid", appid);
-        System.out.println("=====beating.host " + beatingHost);
+//        System.out.println("=====beating.host " + beatingHost);
         return configMap;
     }
 
