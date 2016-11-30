@@ -14,6 +14,9 @@
     LA_ID, APP_NAME, APP_CODE, APP_IP, APP_DESC, APP_PLATFORM, APP_NOTES
   </sql>
     <!--=============================================================================================-->
+    <select id="selectAllLogApps" resultMap="BaseResultMap">
+        select * from LOG_APPS
+    </select>
 
     <select id="selectLogAppsById" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -22,9 +25,7 @@
         where LA_ID=#{laId,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectAllLogApps" resultMap="BaseResultMap">
-    select * from LOG_APPS
-  </select>
+
     <insert id="insertLogApps" parameterType="com.hgt.entity.LogApps">
     insert into LOG_APPS (LA_ID, APP_NAME, APP_CODE,
     APP_IP, APP_DESC, APP_PLATFORM,
