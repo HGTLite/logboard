@@ -23,7 +23,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 /**
- * README: 查询es集群的index、type、fields
+ * README: es集群基本查询，如index、type、fields
  * Created by Yao on 11/28/16.
  * =============================================================================
  * CHANGELOG:

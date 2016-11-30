@@ -8,14 +8,18 @@ import org.elasticsearch.client.ClusterAdminClient;
 import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.health.ClusterIndexHealth;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.sort.SortOrder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
+
 /**
- * README:ES与查询相关的操作
+ * README:es与查询所有相关的操作
  *
  * Created by root on 11/2/16.
  * =============================================================================
@@ -43,7 +47,7 @@ public class ESQueryAll implements Serializable {
 
 
     /**
-     * 简单查询某一类型的文档
+     * 简单查询某一类型的文档，默认按时间将序排列
      *
      * @param strIndex
      * @param strType
@@ -52,10 +56,15 @@ public class ESQueryAll implements Serializable {
 
         String resultStr = "";
 
+        QueryBuilder qb = matchAllQuery();
+
         SearchResponse sr = client.prepareSearch(strIndex)
                 .setTypes(strType)
+                .setQuery(qb)
+                .addSort("logTime", SortOrder.DESC)
                 .execute()
                 .actionGet();
+
 
         SearchHit[] hits = sr.getHits().getHits();
 

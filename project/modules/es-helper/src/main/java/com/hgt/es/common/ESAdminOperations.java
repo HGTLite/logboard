@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * INTRO: ES与创建与管理相关的操作，如创建index, type, document
+ * README: es与创建和管理相关的操作，如创建index, type, document
  * Created by root on 11/2/16.
  * ============================================================================
  * CHANGELOG:
@@ -42,11 +42,20 @@ public class ESAdminOperations implements Serializable {
         this.indicesAdminClient = adminClient.indices();
     }
 
-
+    /**
+     * 简单添加索引
+     * @param strIndexName
+     */
     public void addIndex(String strIndexName) {
         indicesAdminClient.prepareCreate(strIndexName).get();
     }
 
+    /**
+     * 高级添加索引
+     * @param strIndexName
+     * @param intNumberOfShards
+     * @param intNumberOfReplicas
+     */
     public void addIndex(String strIndexName, int intNumberOfShards, int intNumberOfReplicas) {
         indicesAdminClient
                 .prepareCreate(strIndexName)
@@ -130,10 +139,20 @@ public class ESAdminOperations implements Serializable {
                 .get();
     }
 
+    /**
+     * 删除索引及数据
+     * @param strIndexName
+     */
     public void deleteIndex(String strIndexName) {
         indicesAdminClient.prepareDelete(strIndexName).get();
     }
 
+    /**
+     * 删除某一类型的文档，本质是先删除索引再建立索引和文档
+     * 会同时删除同一索引的其他文档，此方法```慎用```
+     * @param strIndexName
+     * @param strTypeName
+     */
     public void deleteType(String strIndexName, String strTypeName) {
         AdminClient adminClient = client.admin();
         ClusterAdminClient clusterAdminClient = adminClient.cluster();
@@ -158,17 +177,11 @@ public class ESAdminOperations implements Serializable {
         }
     }
 
-    ///TO-DO:直接对HashMap类型的数据建立索引
-    public void indexingDataByHashMap(String strIndexName, String strTypeName, HashMap<String, String> mapData) {
-
-    }
-
-    ///TO-DO:动态添加新字段
+    ///TODO:动态添加新字段
     public void addNewField(String strIndex, String strType, String strNewField) {
-
     }
 
-    ///TO-DO:自动关闭
+    ///TODO:自动关闭
     public void close() {
         this.client.close();
     }

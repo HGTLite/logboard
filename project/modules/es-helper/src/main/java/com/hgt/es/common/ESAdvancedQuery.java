@@ -1,6 +1,5 @@
 package com.hgt.es.common;
 
-import com.hgt.converter.MapJsonConverter;
 import com.hgt.es.config.ESConfig;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;

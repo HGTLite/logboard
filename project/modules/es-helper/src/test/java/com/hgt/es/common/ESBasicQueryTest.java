@@ -30,6 +30,7 @@ public class ESBasicQueryTest {
 
     @After
     public void after() throws Exception {
+
     }
 
     /**
