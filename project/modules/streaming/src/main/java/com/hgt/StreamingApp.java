@@ -277,15 +277,25 @@ public class StreamingApp {
                 values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
                     @Override
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
+                        String appCode = tuple._1();
+                        String counts = tuple._2().toString();
+                        String datetime = DateHelper.getSimpleDate().replace("-","").replace(" ","").replace(":","");
+                        HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
 
-                        HashMap<String, String> countMap = new HashMap<>();
+                        statsMap.put("STATS_RID",appCode.substring(0,4)+datetime.substring(2));
+                        statsMap.put("STATS_TIME",datetime);
+                        statsMap.put("APP_CODE",appCode);
+                        statsMap.put("LOG_COUNTS",counts);
 
-                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+                        String postAddURL="http://localhost:8702/logb/stats/app/add";
 
-                        Map params = new HashMap();
-                        params.put("message", "hello ");
-                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
-                        //System.out.println(str);
+                        HttpUtil.postJson(postAddURL,MapJsonConverter.simpleMapToJsonStr(statsMap));
+//                        HashMap<String, String> countMap = new HashMap<>();
+//                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+//                        Map params = new HashMap();
+//                        params.put("message", "hello ");
+//                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+//                        //System.out.println(str);
                     }
                 });
                 return null;
@@ -328,14 +338,24 @@ public class StreamingApp {
                 values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
                     @Override
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
+                        String appCode = tuple._1();
+                        String counts = tuple._2().toString();
+                        String datetime = DateHelper.getSimpleDate().replace("-","").replace(" ","").replace(":","");
+                        HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
 
-                        HashMap<String, String> countMap = new HashMap<>();
+                        statsMap.put("STATS_RID",appCode.substring(0,4)+datetime.substring(2));
+                        statsMap.put("STATS_TIME",datetime);
+                        statsMap.put("APP_CODE",appCode);
+                        statsMap.put("LOG_COUNTS",counts);
 
-                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+                        String postAddURL="http://localhost:8702/logb/stats/app/add";
 
-                        Map params = new HashMap();
-                        params.put("level", "hello ");
-                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+                        HttpUtil.postJson(postAddURL,MapJsonConverter.simpleMapToJsonStr(statsMap));
+//                        HashMap<String, String> countMap = new HashMap<>();
+//                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+//                        Map params = new HashMap();
+//                        params.put("level", "hello ");
+//                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
                         //System.out.println(str);
                     }
                 });
