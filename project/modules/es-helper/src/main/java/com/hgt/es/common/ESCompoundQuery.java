@@ -1,5 +1,6 @@
 package com.hgt.es.common;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hgt.converter.BeanMapConverter;
 import com.hgt.es.config.ESConfig;
 import com.hgt.es.tools.ESLogBean;
@@ -15,6 +16,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 
 import java.beans.IntrospectionException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * README: es集群组合条件查询
@@ -79,43 +82,104 @@ public class ESCompoundQuery {
         return esLogBean;
     }
 
-    public List<ESLogBean> executeQuery(String strIndex, String strType, String strBody) {
+    /**
+     * 输入字符串全文搜索
+     *
+     * @param strIndex
+     * @param strType
+     * @param strWord
+     * @return
+     */
+    public List<ESLogBean> simpleStringQuery(String strIndex, String strType, String strWord) {
 
         List<ESLogBean> resultList = new LinkedList<ESLogBean>();
         SearchRequestBuilder searchBuilder = client.prepareSearch(strIndex)
                 .setTypes(strType)
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
                 .setExplain(true);
+
         QueryBuilder qb;
-        String qBody = strBody;
+        qb = queryStringQuery(strWord);
+        searchBuilder.setQuery(qb);
+        String qBody = strWord;
 
-        if (qBody.contains("queryContext")) {
-            qb = matchQuery(strBody, strBody);
-            searchBuilder.setQuery(qb);
-        }
-        if (qBody.contains("filterContext")) {
-            qb = matchQuery(strBody, strBody);
-            searchBuilder.setPostFilter(QueryBuilders.rangeQuery("age").from(12).to(18));
-        }
-
-        if (qBody.contains("sizes")) {
-            searchBuilder.setFrom(0).setSize(60).setExplain(true);
-        }
+//        if (qBody.contains("queryContext")) {
+//            qb = matchQuery(strBody, strBody);
+//            searchBuilder.setQuery(qb);
+//        }
+//        if (qBody.contains("filterContext")) {
+//            qb = matchQuery(strBody, strBody);
+//            searchBuilder.setPostFilter(QueryBuilders.rangeQuery("age").from(12).to(18));
+//        }
+//
+//        if (qBody.contains("sizes")) {
+//            searchBuilder.setFrom(0).setSize(60).setExplain(true);
+//        }
 
         SearchResponse response = searchBuilder.execute().actionGet();
+        SearchHit[] hits = response.getHits().getHits();
+        ObjectMapper mapper = new ObjectMapper();
 
-        for (SearchHit hit : response.getHits().getHits()) {
-            System.out.println(hit.getId());
-            if (hit.getFields().containsKey("title")) {
-                String v = hit.getFields().get("title").getValue();
-                System.out.println("field.title: " + v);
-//                resultList.add((ESLogBean) v);
+        for (SearchHit hit : hits) {
+            String hitString = hit.getSourceAsString();
+            if (hitString != null) {
+                try {
+                    ESLogBean esLogBean = mapper.readValue(hitString, ESLogBean.class);
+                    resultList.add(esLogBean);
+                    esLogBean = null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            System.out.println("source.title: " + hit.getSource().get("title"));
         }
-
         return resultList;
+    }
 
+    public List<ESLogBean> simpleStringQueryByPages(String strIndex, String strType, String strWord,int pageNum,int pageSize) {
+
+        List<ESLogBean> resultList = new LinkedList<ESLogBean>();
+        SearchRequestBuilder searchBuilder = client.prepareSearch(strIndex)
+                .setTypes(strType)
+                .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+                .setFrom(pageNum)
+                .setSize(pageSize)
+                .setExplain(true);
+
+        QueryBuilder qb;
+        qb = queryStringQuery(strWord);
+        searchBuilder.setQuery(qb);
+//        String qBody = strWord;
+
+//        if (qBody.contains("queryContext")) {
+//            qb = matchQuery(strBody, strBody);
+//            searchBuilder.setQuery(qb);
+//        }
+//        if (qBody.contains("filterContext")) {
+//            qb = matchQuery(strBody, strBody);
+//            searchBuilder.setPostFilter(QueryBuilders.rangeQuery("age").from(12).to(18));
+//        }
+//
+//        if (qBody.contains("sizes")) {
+//            searchBuilder.setFrom(0).setSize(60).setExplain(true);
+//        }
+
+        SearchResponse response = searchBuilder.execute().actionGet();
+        SearchHit[] hits = response.getHits().getHits();
+        ObjectMapper mapper = new ObjectMapper();
+
+        for (SearchHit hit : hits) {
+            String hitString = hit.getSourceAsString();
+            if (hitString != null) {
+                try {
+                    ESLogBean esLogBean = mapper.readValue(hitString, ESLogBean.class);
+                    resultList.add(esLogBean);
+                    esLogBean = null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return resultList;
     }
 
 }

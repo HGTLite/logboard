@@ -45,9 +45,7 @@ public class HeartBeatServer extends Thread {
 
         Socket client;
 
-
         public Client(Socket client) {
-
             this.client = client;
         }
 

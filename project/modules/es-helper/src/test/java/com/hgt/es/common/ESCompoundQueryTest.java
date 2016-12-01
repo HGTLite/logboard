@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.After;
 import org.omg.CORBA.Object;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +36,7 @@ public class ESCompoundQueryTest {
      */
     @Test
     public void testQueryDocById() throws Exception {
-        ESLogBean ret = esCompoundQuery.queryDocById("hgt-logs","common","hello0logi201611301411349cee6086");
+        ESLogBean ret = esCompoundQuery.queryDocById("hgt-logs", "common", "hello0logi201611301411349cee6086");
         System.out.println(ret);
     }
 
@@ -44,7 +45,8 @@ public class ESCompoundQueryTest {
      */
     @Test
     public void testExecuteQuery() throws Exception {
-//TODO: Test goes here... 
+       List<ESLogBean> list = esCompoundQuery.simpleStringQuery("hgt-logs", "common", "");
+        System.out.println(list.toString());
     }
 
 

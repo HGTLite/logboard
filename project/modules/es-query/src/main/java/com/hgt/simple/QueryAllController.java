@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 public class QueryAllController {
 
-    private final String BASE_URL = "logb/query";
+    private final String BASE_URL = "logb/q";
 
     String esCname = "es-yao";
     String esChost = "192.168.99.140:9300,192.168.99.141:9300";
