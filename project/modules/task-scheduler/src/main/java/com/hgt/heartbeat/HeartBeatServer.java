@@ -69,9 +69,9 @@ public class HeartBeatServer extends Thread {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("开始检测客户端是否在线...");
-        new HeartBeatServer().start();
-    }
+//    public static void main(String[] args) {
+//        System.out.println("开始检测客户端是否在线...");
+//        new HeartBeatServer().start();
+//    }
 
 }

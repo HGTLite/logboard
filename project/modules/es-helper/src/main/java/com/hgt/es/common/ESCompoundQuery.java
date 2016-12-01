@@ -29,7 +29,7 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
  * =============================================================================
  * CHANGELOG:
  */
-public class ESCompoundQuery<T> {
+public class ESCompoundQuery {
 
     public String hostList = "";
     public TransportClient client = null;
@@ -55,12 +55,12 @@ public class ESCompoundQuery<T> {
      * @return
      */
     public ESLogBean queryDocById(String strIndex, String strType, String strId) {
-        Map<String, Object> resultMap = new HashMap<String, Object>() ;
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         GetResponse response = client.prepareGet(strIndex, strType, strId).execute().actionGet();
         resultMap = response.getSourceAsMap();
         ESLogBean esLogBean = new ESLogBean();
         try {
-            esLogBean = (ESLogBean) BeanMapConverter.convertMap2Bean(resultMap,ESLogBean.class);
+            esLogBean = (ESLogBean) BeanMapConverter.convertMap2Bean(resultMap, ESLogBean.class);
         } catch (IntrospectionException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -79,10 +79,9 @@ public class ESCompoundQuery<T> {
         return esLogBean;
     }
 
+    public List<ESLogBean> executeQuery(String strIndex, String strType, String strBody) {
 
-    public List<T> executeQuery(String strIndex, String strType, String strBody) {
-
-        List<T> resultList = new LinkedList<T>();
+        List<ESLogBean> resultList = new LinkedList<ESLogBean>();
         SearchRequestBuilder searchBuilder = client.prepareSearch(strIndex)
                 .setTypes(strType)
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
@@ -110,7 +109,7 @@ public class ESCompoundQuery<T> {
             if (hit.getFields().containsKey("title")) {
                 String v = hit.getFields().get("title").getValue();
                 System.out.println("field.title: " + v);
-                resultList.add((T) v);
+//                resultList.add((ESLogBean) v);
             }
             System.out.println("source.title: " + hit.getSource().get("title"));
         }

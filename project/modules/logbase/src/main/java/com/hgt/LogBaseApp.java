@@ -29,12 +29,8 @@ public class LogBaseApp {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
 
-                //===============================/lb/apps=============================
                 registry.addMapping("/logb/**").allowedOrigins("*");
-//                registry.addMapping("/lb/apps//all").allowedOrigins("*");
 //                registry.addMapping("/lb/apps/all/{pageNum}/{pageSize}").allowedOrigins("*");
-//                registry.addMapping("/lb/apps/add").allowedOrigins("*");
-//                registry.addMapping("/lb/apps/delete/id/{laId}").allowedOrigins("*");
 
             }
 
