@@ -331,7 +331,7 @@ nv.interactiveGuideline = function() {
                     });
                 }
 
-                // if user single clicks the layer, fire elementClick
+                // if user simple clicks the layer, fire elementClick
                 if (d3.event.type === 'click') {
                     dispatch.elementClick({
                         mouseX: mouseX,
@@ -856,7 +856,7 @@ nv.models.tooltip = function() {
             }
         }},
         data: {get: function(){return data;}, set: function(_){
-            // if showing a single data point, adjust data format with that
+            // if showing a simple data point, adjust data format with that
             if (_.point) {
                 _.value = _.point.x;
                 _.series = _.series || {};
@@ -940,7 +940,7 @@ nv.utils.windowResize = function(handler) {
     } else {
         nv.log("ERROR: Failed to bind to window.resize with: ", handler);
     }
-    // return object with clear function to remove the single added callback.
+    // return object with clear function to remove the simple added callback.
     return {
         callback: handler,
         clear: function() {
@@ -3124,7 +3124,7 @@ nv.models.candlestickBar = function() {
                 ]
             ).range(yRange || [availableHeight, 0]);
 
-            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a single data point
+            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a simple data point
             if (x.domain()[0] === x.domain()[1])
                 x.domain()[0] ?
                     x.domain([x.domain()[0] - x.domain()[0] * 0.01, x.domain()[1] + x.domain()[1] * 0.01])
@@ -5239,7 +5239,7 @@ nv.models.furiousLegend = function() {
                             else {
                                 d.disabled = !d.disabled;
                                 if (data.every(function(series) { return series.disabled})) {
-                                    //the default behavior of NVD3 legends is, if every single series
+                                    //the default behavior of NVD3 legends is, if every simple series
                                     // is disabled, turn all series' back on.
                                     data.forEach(function(series) { series.disabled = false});
                                 }
@@ -5254,7 +5254,7 @@ nv.models.furiousLegend = function() {
                                 d.userDisabled = d.disabled;
                                 var engaged = data.filter(function(d) { return !d.disengaged; });
                                 if (engaged.every(function(series) { return series.userDisabled })) {
-                                    //the default behavior of NVD3 legends is, if every single series
+                                    //the default behavior of NVD3 legends is, if every simple series
                                     // is disabled, turn all series' back on.
                                     data.forEach(function(series) {
                                         series.disabled = series.userDisabled = false;
@@ -5480,7 +5480,7 @@ nv.models.furiousLegend = function() {
 
     return chart;
 };
-//TODO: consider deprecating and using multibar with single series for this
+//TODO: consider deprecating and using multibar with simple series for this
 nv.models.historicalBar = function() {
     "use strict";
 
@@ -5533,7 +5533,7 @@ nv.models.historicalBar = function() {
             y.domain(yDomain || d3.extent(data[0].values.map(getY).concat(forceY) ))
                 .range(yRange || [availableHeight, 0]);
 
-            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a single data point
+            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a simple data point
             if (x.domain()[0] === x.domain()[1])
                 x.domain()[0] ?
                     x.domain([x.domain()[0] - x.domain()[0] * 0.01, x.domain()[1] + x.domain()[1] * 0.01])
@@ -6237,7 +6237,7 @@ nv.models.legend = function() {
                             else {
                                 d.disabled = !d.disabled;
                                 if (data.every(function(series) { return series.disabled})) {
-                                    //the default behavior of NVD3 legends is, if every single series
+                                    //the default behavior of NVD3 legends is, if every simple series
                                     // is disabled, turn all series' back on.
                                     data.forEach(function(series) { series.disabled = false});
                                 }
@@ -6252,7 +6252,7 @@ nv.models.legend = function() {
                                 d.userDisabled = d.disabled;
                                 var engaged = data.filter(function(d) { return !d.disengaged; });
                                 if (engaged.every(function(series) { return series.userDisabled })) {
-                                    //the default behavior of NVD3 legends is, if every single series
+                                    //the default behavior of NVD3 legends is, if every simple series
                                     // is disabled, turn all series' back on.
                                     data.forEach(function(series) {
                                         series.disabled = series.userDisabled = false;
@@ -8103,7 +8103,7 @@ nv.models.multiBar = function() {
             }).concat(forceY)))
             .range(yRange || [availableHeight, 0]);
 
-            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a single data point
+            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a simple data point
             if (x.domain()[0] === x.domain()[1])
                 x.domain()[0] ?
                     x.domain([x.domain()[0] - x.domain()[0] * 0.01, x.domain()[1] + x.domain()[1] * 0.01])
@@ -10297,7 +10297,7 @@ nv.models.ohlcBar = function() {
                 ]
             ).range(yRange || [availableHeight, 0]);
 
-            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a single data point
+            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a simple data point
             if (x.domain()[0] === x.domain()[1])
                 x.domain()[0] ?
                     x.domain([x.domain()[0] - x.domain()[0] * 0.01, x.domain()[1] + x.domain()[1] * 0.01])
@@ -12647,7 +12647,7 @@ nv.models.scatter = function() {
             z   .domain(sizeDomain || d3.extent(seriesData.map(function(d) { return d.size }).concat(forceSize)))
                 .range(sizeRange || _sizeRange_def);
 
-            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a single data point
+            // If scale's domain don't have a range, slightly adjust to make one... so a chart can show a simple data point
             singlePoint = x.domain()[0] === x.domain()[1] || y.domain()[0] === y.domain()[1];
 
             if (x.domain()[0] === x.domain()[1])
@@ -12686,7 +12686,7 @@ nv.models.scatter = function() {
             var gEnter = wrapEnter.append('g');
             var g = wrap.select('g');
 
-            wrap.classed('nv-single-point', singlePoint);
+            wrap.classed('nv-simple-point', singlePoint);
             gEnter.append('g').attr('class', 'nv-groups');
             gEnter.append('g').attr('class', 'nv-point-paths');
             wrapEnter.append('g').attr('class', 'nv-point-clips');

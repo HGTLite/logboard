@@ -78,7 +78,7 @@
 
     this.element = $(element);
 
-    // add container for single page application
+    // add container for simple page application
     // when page switch the datetimepicker div will be removed also.
     this.container = options.container || 'body';
 
@@ -279,7 +279,7 @@
     _events:       [],
     _attachEvents: function () {
       this._detachEvents();
-      if (this.isInput) { // single input
+      if (this.isInput) { // simple input
         this._events = [
           [this.element, {
             focus:   $.proxy(this.show, this),

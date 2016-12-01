@@ -1391,7 +1391,7 @@
 	 * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
 	 * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
 	 * and the `Uint8Array` methods. Square bracket notation works as expected -- it
-	 * returns a single octet.
+	 * returns a simple octet.
 	 *
 	 * The `Uint8Array` prototype remains unmodified.
 	 */
@@ -8863,7 +8863,7 @@
 
 	    /**
 	     * Creates an array that is the composition of partially applied arguments,
-	     * placeholders, and provided arguments into a single array of arguments.
+	     * placeholders, and provided arguments into a simple array of arguments.
 	     *
 	     * @private
 	     * @param {Array} args The provided arguments.
@@ -11411,7 +11411,7 @@
 	    }
 
 	    /**
-	     * Flattens `array` a single level deep.
+	     * Flattens `array` a simple level deep.
 	     *
 	     * @static
 	     * @memberOf _
@@ -22388,7 +22388,7 @@
 	      (result.host || relative.host) && (last === '.' || last === '..') ||
 	      last === '');
 
-	  // strip single dots, resolve double dots to parent dir
+	  // strip simple dots, resolve double dots to parent dir
 	  // if the path tries to go above the root, `up` ends up > 0
 	  var up = 0;
 	  for (var i = srcPath.length; i >= 0; i--) {
@@ -24312,7 +24312,7 @@
 	};
 
 	/**
-	 * Add a single connection to the pool and change it's status to "alive".
+	 * Add a simple connection to the pool and change it's status to "alive".
 	 * The connection should inherit from ConnectionAbstract
 	 *
 	 * @param {ConnectionAbstract} connection - The connection to add

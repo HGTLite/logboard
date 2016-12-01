@@ -3207,7 +3207,7 @@
             // @event contextmenu: MouseEvent
             // Fired when the user pushes the right mouse button on the map, prevents
             // default browser context menu from showing if there are listeners on
-            // this event. Also fired on mobile when the user holds a single touch
+            // this event. Also fired on mobile when the user holds a simple touch
             // for a second (also called long press).
             // @event keypress: Event
             // Fired when the user presses a key from the keyboard while the map is focused.
@@ -5110,7 +5110,7 @@
      * @aka L.ImageOverlay
      * @inherits Interactive layer
      *
-     * Used to load and display a single image over specific bounds of the map. Extends `Layer`.
+     * Used to load and display a simple image over specific bounds of the map. Extends `Layer`.
      *
      * @example
      *
@@ -7691,7 +7691,7 @@
             }
         },
 
-        // reduce points that are too close to each other to a single point
+        // reduce points that are too close to each other to a simple point
         _reducePoints: function (points, sqTolerance) {
             var reducedPoints = [points[0]];
 
@@ -10061,7 +10061,7 @@
             return (related !== el);
         },
 
-        // this is a horrible workaround for a bug in Android where a single touch triggers two click events
+        // this is a horrible workaround for a bug in Android where a simple touch triggers two click events
         _filterClick: function (e, handler) {
             var timeStamp = (e.timeStamp || (e.originalEvent && e.originalEvent.timeStamp)),
                 elapsed = L.DomEvent._lastClick && (timeStamp - L.DomEvent._lastClick);

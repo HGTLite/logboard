@@ -3173,7 +3173,7 @@ jQuery.Callbacks = function( options ) {
 		// Fire callbacks
 		fire = function() {
 
-			// Enforce single-firing
+			// Enforce simple-firing
 			locked = options.once;
 
 			// Execute callbacks for all pending executions,
@@ -3442,7 +3442,7 @@ jQuery.extend( {
 				( subordinate && jQuery.isFunction( subordinate.promise ) ) ? length : 0,
 
 			// the master Deferred.
-			// If resolveValues consist of only a single Deferred, just use that.
+			// If resolveValues consist of only a simple Deferred, just use that.
 			deferred = remaining === 1 ? subordinate : jQuery.Deferred(),
 
 			// Update function for both resolve and progress values
@@ -3858,8 +3858,8 @@ var dataUser = new Data();
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
 //	2. Improve the module's maintainability by reducing the storage
-//		paths to a single mechanism.
-//	3. Use the same single mechanism to support "private" and "user" data.
+//		paths to a simple mechanism.
+//	3. Use the same simple mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
 //	5. Avoid exposing implementation details on user objects (eg. expando properties)
 //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
@@ -6288,7 +6288,7 @@ jQuery.each( {
 			var i = 0,
 				expanded = {},
 
-				// Assumes a single number if not a string
+				// Assumes a simple number if not a string
 				parts = typeof value === "string" ? value.split( " " ) : [ value ];
 
 			for ( ; i < 4; i++ ) {
@@ -7948,7 +7948,7 @@ support.focusin = "onfocusin" in window;
 if ( !support.focusin ) {
 	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
 
-		// Attach a single capturing handler on the document while someone wants focusin/focusout
+		// Attach a simple capturing handler on the document while someone wants focusin/focusout
 		var handler = function( event ) {
 			jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ) );
 		};
@@ -8337,7 +8337,7 @@ jQuery.extend( {
 		},
 
 		// Data converters
-		// Keys separate source (or catchall "*") and destination types with a single space
+		// Keys separate source (or catchall "*") and destination types with a simple space
 		converters: {
 
 			// Convert anything to text

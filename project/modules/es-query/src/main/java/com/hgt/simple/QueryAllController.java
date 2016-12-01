@@ -1,4 +1,4 @@
-package com.hgt.single;
+package com.hgt.simple;
 
 import com.hgt.es.common.ESQueryAll;
 import com.hgt.es.config.ESConfig;
@@ -45,6 +45,9 @@ public class QueryAllController {
         queryFromES.close();
         return docList;
     }
+
+
+
 
 
 }

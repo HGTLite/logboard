@@ -5,6 +5,9 @@ import com.hgt.es.tools.ESLogBean;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import org.omg.CORBA.Object;
+
+import java.util.Map;
 
 /**
  * ESCompoundQuery Tester.
@@ -32,7 +35,7 @@ public class ESCompoundQueryTest {
      */
     @Test
     public void testQueryDocById() throws Exception {
-        String ret = esCompoundQuery.queryDocById("hgt-logs","common","hello0logi201611301411349cee6086");
+        ESLogBean ret = esCompoundQuery.queryDocById("hgt-logs","common","hello0logi201611301411349cee6086");
         System.out.println(ret);
     }
 

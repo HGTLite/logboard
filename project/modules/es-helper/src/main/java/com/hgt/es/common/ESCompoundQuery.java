@@ -1,6 +1,8 @@
 package com.hgt.es.common;
 
+import com.hgt.converter.BeanMapConverter;
 import com.hgt.es.config.ESConfig;
+import com.hgt.es.tools.ESLogBean;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -12,6 +14,8 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,16 +54,29 @@ public class ESCompoundQuery<T> {
      * @param strId
      * @return
      */
-    public Map<String, Object> queryDocById(String strIndex, String strType, String strId) {
+    public ESLogBean queryDocById(String strIndex, String strType, String strId) {
         Map<String, Object> resultMap = new HashMap<String, Object>() ;
         GetResponse response = client.prepareGet(strIndex, strType, strId).execute().actionGet();
         resultMap = response.getSourceAsMap();
+        ESLogBean esLogBean = new ESLogBean();
+        try {
+            esLogBean = (ESLogBean) BeanMapConverter.convertMap2Bean(resultMap,ESLogBean.class);
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
 
         //result.entrySet().stream().forEach(s -> {
         //System.out.println(s.getKey() + ":" + s.getValue());
         //});
+//        System.out.println(esLogBean.toString());
 
-        return resultMap;
+        return esLogBean;
     }
 
 

@@ -1,7 +1,7 @@
 package com.hgt.es.tools;
 
 /**
- * README:
+ * README: ES索引文档类型Bean
  * Created by Yao on 12/1/16.
  * =============================================================================
  * CHANGELOG:

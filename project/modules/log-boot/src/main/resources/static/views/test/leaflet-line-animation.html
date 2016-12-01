@@ -148,10 +148,10 @@
                 .attr("r", 3)
                 .attr("class", "waypoints");
 
-        // Here we will make the points into a single
+        // Here we will make the points into a simple
         // line/path. Note that we surround the featuresdata
         // with [] to tell d3 to treat all the points as a
-        // single line. For now these are basically points
+        // simple line. For now these are basically points
         // but below we set the "d" attribute using the
         // line creator function from above.
         var linePath = g.selectAll(".lineConnect")
@@ -294,11 +294,11 @@
         // stroke and dash lengths
         function tweenDash() {
             return function (t) {
-                //total length of path (single value)
+                //total length of path (simple value)
                 var l = linePath.node().getTotalLength();
 
                 // this is creating a function called interpolate which takes
-                // as input a single value 0-1. The function will interpolate
+                // as input a simple value 0-1. The function will interpolate
                 // between the numbers embedded in a string. An example might
                 // be interpolatString("0,500", "500,500") in which case
                 // the first number would interpolate through 0-500 and the

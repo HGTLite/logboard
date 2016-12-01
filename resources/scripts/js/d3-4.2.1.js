@@ -4184,7 +4184,7 @@ var   tau$1 = 2 * pi$1;
       else s[++i] = bs;
     }
 
-    // Special optimization for only a single match.
+    // Special optimization for only a simple match.
     // Otherwise, interpolate each of the numbers and rejoin the string.
     return s.length < 2 ? (q[0]
         ? one(q[0].x)

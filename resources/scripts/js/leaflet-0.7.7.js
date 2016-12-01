@@ -5298,7 +5298,7 @@ L.LineUtil = {
 		}
 	},
 
-	// reduce points that are too close to each other to a single point
+	// reduce points that are too close to each other to a simple point
 	_reducePoints: function (points, sqTolerance) {
 		var reducedPoints = [points[0]];
 
@@ -6578,7 +6578,7 @@ L.DomEvent = {
 		return e;
 	},
 
-	// this is a horrible workaround for a bug in Android where a single touch triggers two click events
+	// this is a horrible workaround for a bug in Android where a simple touch triggers two click events
 	_filterClick: function (e, handler) {
 		var timeStamp = (e.timeStamp || e.originalEvent.timeStamp),
 			elapsed = L.DomEvent._lastClick && (timeStamp - L.DomEvent._lastClick);
