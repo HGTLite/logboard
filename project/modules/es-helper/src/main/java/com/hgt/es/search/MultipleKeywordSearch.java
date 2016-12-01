@@ -15,7 +15,6 @@ import org.elasticsearch.search.sort.SortOrder;
 public class MultipleKeywordSearch {
 
 	public static void main(String[] args) {
-
 		new MultipleKeywordSearch().run();
 	}
 

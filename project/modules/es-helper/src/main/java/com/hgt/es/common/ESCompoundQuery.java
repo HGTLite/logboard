@@ -12,6 +12,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -24,19 +25,19 @@ import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
  * =============================================================================
  * CHANGELOG:
  */
-public class ESAdvancedQuery<T> {
+public class ESCompoundQuery<T> {
 
     public String hostList = "";
     public TransportClient client = null;
     IndicesAdminClient indicesAdminClient = null;
 
-    public ESAdvancedQuery(ESConfig esConfig) {
+    public ESCompoundQuery(ESConfig esConfig) {
         this.client = esConfig.createESClient();
         AdminClient adminClient = client.admin();
         this.indicesAdminClient = adminClient.indices();
     }
 
-    public ESAdvancedQuery(String strClusterName, String strHost) {
+    public ESCompoundQuery(String strClusterName, String strHost) {
         this.hostList = strHost;
         this.client = new ESConfig(strClusterName, strHost).createESClient();
     }
@@ -49,24 +50,16 @@ public class ESAdvancedQuery<T> {
      * @param strId
      * @return
      */
-    public String queryDocById(String strIndex, String strType, String strId) {
-        String resultStr = "";
+    public Map<String, Object> queryDocById(String strIndex, String strType, String strId) {
+        Map<String, Object> resultMap = new HashMap<String, Object>() ;
         GetResponse response = client.prepareGet(strIndex, strType, strId).execute().actionGet();
-        Map<String, Object> result = response.getSourceAsMap();
+        resultMap = response.getSourceAsMap();
 
-        result.entrySet().stream().forEach(s -> {
-            System.out.println(s.getKey() + ":" + s.getValue());
-        });
+        //result.entrySet().stream().forEach(s -> {
+        //System.out.println(s.getKey() + ":" + s.getValue());
+        //});
 
-        return resultStr;
-    }
-
-    public List<T> queryLatest() {
-
-        List<T> resultList = new LinkedList<T>();
-
-
-        return resultList;
+        return resultMap;
     }
 
 
