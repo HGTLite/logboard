@@ -1,11 +1,12 @@
 package com.hgt.bean;
 
 /**
- * README:
+ * README: 简单单属性bean
  * Created by root on 11/25/16.
  * =============================================================================
  * CHANGELOG:
  */
+
 public class ContentBean {
 
     private String content;

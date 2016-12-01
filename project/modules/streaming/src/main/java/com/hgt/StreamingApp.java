@@ -10,6 +10,7 @@ import com.hgt.hbase.common.HBaseOperations;
 import com.hgt.msg.HttpUtil;
 import com.hgt.obj.CloneUtils;
 import com.hgt.tools.LogIdBuilder;
+import com.hgt.utils.DateHelper;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.function.*;
@@ -222,12 +223,23 @@ public class StreamingApp {
                     @Override
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
 //                        System.out.println("计数之后的结果是" + "Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
-                        HashMap<String, String> countMap = new HashMap<>();
-                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
+                        String appCode = tuple._1();
+                        String counts = tuple._2().toString();
+                        String datetime = DateHelper.getSimpleDate().replace("-","").replace(" ","").replace(":","");
+                        HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
 
-                        Map params = new HashMap();
-                        params.put("message", "hello, b**ches");
-                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+                        statsMap.put("STATS_RID",appCode.substring(0,4)+datetime.substring(2));
+                        statsMap.put("STATS_TIME",datetime);
+                        statsMap.put("APP_CODE",appCode);
+                        statsMap.put("LOG_COUNTS",counts);
+
+                        String postAddURL="http://localhost:8702/logb/stats/app/add";
+
+                        HttpUtil.postJson(postAddURL,MapJsonConverter.simpleMapToJsonStr(statsMap));
+
+//                        Map params = new HashMap();
+//                        params.put("message", "hello, b**ches");
+//                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
 //                        System.out.println(str);
 
                     }

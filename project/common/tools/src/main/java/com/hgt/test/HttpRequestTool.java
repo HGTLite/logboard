@@ -57,7 +57,7 @@ public class HttpRequestTool {
     public static void main(String[] args) throws Exception {
         String urlOrigin = "http://localhost:8080";
         String urlPostfix = "/send/message";
-        String paramString = "message=fuck";
+        String paramString = "message=f**k";
         sendPost(urlOrigin + urlPostfix, paramString);
     }
 }
