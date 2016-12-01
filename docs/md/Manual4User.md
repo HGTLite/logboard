@@ -10,9 +10,13 @@
   
 |   services    |       host     |    port    |      desc      |
 |:-------------:|:--------------:|:----------:|:---------------|
-|logboot webpage| 192.168.99.140 |     8701   | 日志系统主页    |
-| logbase  rest | 192.168.99.143 |     8702   | 日志系统后台服务 |
-| logbase  db   | 123.206.19.126 |     3306   | root/111111    |
+|log-boot       |                |     8701   | 日志首页，socket服务端           |
+|logbase        |                |     8702   | 日志系统Mysql统计结果后台服务     |
+|es-query       |                |     8703   | es查询专用接口                  |
+|msg-router     |                |     6379   | redis消息转发、短信邮件消息      |
+|task-scheduler |                |     18701  | 心跳检测端口                    |
+| logbase  db   |                |     3306   | root/111111                   |
+
 
 - 日志接入系统操作类 
   - 查询  
