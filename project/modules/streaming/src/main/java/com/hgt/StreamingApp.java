@@ -307,6 +307,9 @@ public class StreamingApp {
 //                            String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
                             System.out.println("=====错误日志是 " + s);
 
+                            HashMap logMap = (HashMap) MapJsonConverter.simpleJsonStrToMap(s);
+
+                            HashMap errMap = new LinkedHashMap();
 
 
                         }

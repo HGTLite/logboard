@@ -9,6 +9,11 @@ import java.util.Set;
  */
 public class MapJsonConverter {
 
+    /**
+     * 简单map转换成json
+     * @param map
+     * @return
+     */
     public static String simpleMapToJsonStr(Map<String, String> map) {
         if (map == null || map.isEmpty()) {
             return "null";
@@ -23,15 +28,19 @@ public class MapJsonConverter {
         return jsonStr;
     }
 
-    //{"pass":"4355","name":"12342","wang":"fsf"}
-    public Map getData(String str) {
+    /**
+     * 简单json转换成map
+     * @param str
+     * @return
+     */
+    public static Map simpleJsonStrToMap(String str) {
         String sb = str.substring(1, str.length() - 1);
         String[] name = sb.split("\\\",\\\"");
         String[] nn = null;
         Map map = new HashMap();
         for (int i = 0; i < name.length; i++) {
             nn = name[i].split("\\\":\\\"");
-            map.put(nn[0], nn[1]);
+            map.put(nn[0].replace("\"",""), nn[1].replace("\"",""));
         }
         return map;
     }
