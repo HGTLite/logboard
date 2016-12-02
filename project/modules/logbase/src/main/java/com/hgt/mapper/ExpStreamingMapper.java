@@ -1,7 +1,6 @@
 package com.hgt.mapper;
 
 import com.hgt.entity.ExpStreaming;
-import com.hgt.entity.LogApps;
 
 import java.util.List;
 
@@ -11,9 +10,9 @@ public interface ExpStreamingMapper {
 
     ExpStreaming selectByPrimaryKey(String statsRid);
 
-    int insert(ExpStreaming record);
-
     int deleteByPrimaryKey(String statsRid);
+
+    int insert(ExpStreaming record);
 
     int updateByPrimaryKey(ExpStreaming record);
 

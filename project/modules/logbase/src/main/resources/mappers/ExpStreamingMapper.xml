@@ -3,15 +3,14 @@
 <mapper namespace="com.hgt.mapper.ExpStreamingMapper" >
   <resultMap id="BaseResultMap" type="com.hgt.entity.ExpStreaming" >
     <id column="STATS_RID" property="statsRid" jdbcType="VARCHAR" />
-    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="NOTES" property="notes" jdbcType="VARCHAR" />
     <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
-    <result column="LOG_TIME" property="logTime" jdbcType="VARCHAR" />
+    <result column="LOG_TIME" property="logTime" jdbcType="TIMESTAMP" />
     <result column="LOG_ID" property="logId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    STATS_RID, START_TIME, APP_CODE, LOG_TIME, LOG_ID
+    STATS_RID, NOTES, APP_CODE, LOG_TIME, LOG_ID
   </sql>
-
   <!--=============================================================================================-->
   <select id="selectAll" resultMap="BaseResultMap">
     select * from EXP_STREAMING
@@ -25,15 +24,15 @@
     from EXP_STREAMING
     where STATS_RID = #{statsRid,jdbcType=VARCHAR}
   </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from EXP_STREAMING
     where STATS_RID = #{statsRid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.hgt.entity.ExpStreaming" >
-    insert into EXP_STREAMING (STATS_RID, START_TIME, APP_CODE, 
+    insert into EXP_STREAMING (STATS_RID, NOTES, APP_CODE, 
       LOG_TIME, LOG_ID)
-    values (#{statsRid,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{appCode,jdbcType=VARCHAR}, 
-      #{logTime,jdbcType=VARCHAR}, #{logId,jdbcType=VARCHAR})
+    values (#{statsRid,jdbcType=VARCHAR}, #{notes,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, 
+      #{logTime,jdbcType=TIMESTAMP}, #{logId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hgt.entity.ExpStreaming" >
     insert into EXP_STREAMING
@@ -41,8 +40,8 @@
       <if test="statsRid != null" >
         STATS_RID,
       </if>
-      <if test="startTime != null" >
-        START_TIME,
+      <if test="notes != null" >
+        NOTES,
       </if>
       <if test="appCode != null" >
         APP_CODE,
@@ -58,14 +57,14 @@
       <if test="statsRid != null" >
         #{statsRid,jdbcType=VARCHAR},
       </if>
-      <if test="startTime != null" >
-        #{startTime,jdbcType=TIMESTAMP},
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
       </if>
       <if test="appCode != null" >
         #{appCode,jdbcType=VARCHAR},
       </if>
       <if test="logTime != null" >
-        #{logTime,jdbcType=VARCHAR},
+        #{logTime,jdbcType=TIMESTAMP},
       </if>
       <if test="logId != null" >
         #{logId,jdbcType=VARCHAR},
@@ -75,14 +74,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.ExpStreaming" >
     update EXP_STREAMING
     <set >
-      <if test="startTime != null" >
-        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      <if test="notes != null" >
+        NOTES = #{notes,jdbcType=VARCHAR},
       </if>
       <if test="appCode != null" >
         APP_CODE = #{appCode,jdbcType=VARCHAR},
       </if>
       <if test="logTime != null" >
-        LOG_TIME = #{logTime,jdbcType=VARCHAR},
+        LOG_TIME = #{logTime,jdbcType=TIMESTAMP},
       </if>
       <if test="logId != null" >
         LOG_ID = #{logId,jdbcType=VARCHAR},
@@ -92,9 +91,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hgt.entity.ExpStreaming" >
     update EXP_STREAMING
-    set START_TIME = #{startTime,jdbcType=TIMESTAMP},
+    set NOTES = #{notes,jdbcType=VARCHAR},
       APP_CODE = #{appCode,jdbcType=VARCHAR},
-      LOG_TIME = #{logTime,jdbcType=VARCHAR},
+      LOG_TIME = #{logTime,jdbcType=TIMESTAMP},
       LOG_ID = #{logId,jdbcType=VARCHAR}
     where STATS_RID = #{statsRid,jdbcType=VARCHAR}
   </update>

@@ -63,7 +63,7 @@
         <!--<table tableName="LOG_BEATS" enableCountByExample="false" enableDeleteByExample="false"-->
         <!--enableSelectByExample="false"-->
         <!--enableUpdateByExample="false"/>-->
-        <table tableName="MSG_NOTIFY" enableCountByExample="false" enableDeleteByExample="false"
+        <table tableName="EXP_STREAMING" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false"/>
     </context>
