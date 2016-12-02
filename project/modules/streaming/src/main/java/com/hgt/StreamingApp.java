@@ -187,7 +187,7 @@ public class StreamingApp {
         JavaDStream<String> validLogs = logItems.filter(new Function<String, Boolean>() {
             @Override
             public Boolean call(String s) throws Exception {
-//                System.out.println("=====过滤之后的日志是：" + s);
+                //System.out.println("=====过滤之后的日志是：" + s);
                 return true;
             }
         });
@@ -225,23 +225,14 @@ public class StreamingApp {
 //                        System.out.println("计数之后的结果是" + "Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
                         String appCode = tuple._1();
                         String counts = tuple._2().toString();
-                        String datetime = DateHelper.getSimpleDate().replace("-","").replace(" ","").replace(":","");
+                        String datetime = DateHelper.getSimpleDate().replace("-", "").replace(" ", "").replace(":", "");
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-
-                        statsMap.put("STATS_RID",appCode.substring(0,4)+datetime.substring(2));
-                        statsMap.put("STATS_TIME",datetime);
-                        statsMap.put("APP_CODE",appCode);
-                        statsMap.put("LOG_COUNTS",counts);
-
-                        String postAddURL="http://localhost:8702/logb/stats/app/add";
-
-                        HttpUtil.postJson(postAddURL,MapJsonConverter.simpleMapToJsonStr(statsMap));
-
-//                        Map params = new HashMap();
-//                        params.put("message", "hello, b**ches");
-//                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
-//                        System.out.println(str);
-
+                        statsMap.put("STATS_RID", appCode.substring(0, 4) + datetime.substring(2));
+                        statsMap.put("START_TIME", datetime);
+                        statsMap.put("APP_CODE", appCode);
+                        statsMap.put("LOG_COUNTS", counts);
+                        String postAddURL = "http://localhost:8702/logb/stats/app/add";
+                        HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
                     }
                 });
                 return null;
@@ -270,32 +261,23 @@ public class StreamingApp {
                 }, new Duration(5000), new Duration(5000));
 
         //按日志类别统计结果存入mysql
-        logCountsByApp.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
+        logCountsByType.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
             @Override
             public Void call(JavaPairRDD<String, Integer> values, Time time)
                     throws Exception {
                 values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
                     @Override
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
-                        String appCode = tuple._1();
+                        String logType = tuple._1();
                         String counts = tuple._2().toString();
-                        String datetime = DateHelper.getSimpleDate().replace("-","").replace(" ","").replace(":","");
+                        String datetime = DateHelper.getSimpleDate().replace("-", "").replace(" ", "").replace(":", "");
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-
-                        statsMap.put("STATS_RID",appCode.substring(0,4)+datetime.substring(2));
-                        statsMap.put("STATS_TIME",datetime);
-                        statsMap.put("APP_CODE",appCode);
-                        statsMap.put("LOG_COUNTS",counts);
-
-                        String postAddURL="http://localhost:8702/logb/stats/app/add";
-
-                        HttpUtil.postJson(postAddURL,MapJsonConverter.simpleMapToJsonStr(statsMap));
-//                        HashMap<String, String> countMap = new HashMap<>();
-//                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
-//                        Map params = new HashMap();
-//                        params.put("message", "hello ");
-//                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
-//                        //System.out.println(str);
+                        statsMap.put("STATS_RID", logType.substring(0, 4) + datetime.substring(2));
+                        statsMap.put("START_TIME", datetime);
+                        statsMap.put("LOG_TYPE", logType);
+                        statsMap.put("LOG_COUNTS", counts);
+                        String postAddURL = "http://localhost:8702/logb/stats/type/add";
+                        HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
                     }
                 });
                 return null;
@@ -311,12 +293,13 @@ public class StreamingApp {
                         String[] flatLogs = s.split(",");
                         String type = flatLogs[1].split(":")[1].replace("\"", "");
 
-                        //错误日志入库
+                        //错误日志入库+消息通知
                         if (type == "ERROR") {
-                            Map params = new HashMap();
-                            params.put("level", "hello ");
-                            String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
-                            //System.out.println(str);
+//                            Map params = new HashMap();
+//                            params.put("level", "hello ");
+//                            String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+                            System.out.println("=====错误日志是 " + s);
+
                         }
 
                         return new Tuple2<>(type, 1);
@@ -331,32 +314,23 @@ public class StreamingApp {
                 }, new Duration(5000), new Duration(5000));
 
         //按级别统计结果存入mysql
-        logCountsByApp.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
+        logCountsByLevel.foreach(new Function2<JavaPairRDD<String, Integer>, Time, Void>() {
             @Override
             public Void call(JavaPairRDD<String, Integer> values, Time time)
                     throws Exception {
                 values.foreach(new VoidFunction<Tuple2<String, Integer>>() {
                     @Override
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
-                        String appCode = tuple._1();
+                        String logLevel = tuple._1();
                         String counts = tuple._2().toString();
-                        String datetime = DateHelper.getSimpleDate().replace("-","").replace(" ","").replace(":","");
+                        String datetime = DateHelper.getSimpleDate().replace("-", "").replace(" ", "").replace(":", "");
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-
-                        statsMap.put("STATS_RID",appCode.substring(0,4)+datetime.substring(2));
-                        statsMap.put("STATS_TIME",datetime);
-                        statsMap.put("APP_CODE",appCode);
-                        statsMap.put("LOG_COUNTS",counts);
-
-                        String postAddURL="http://localhost:8702/logb/stats/app/add";
-
-                        HttpUtil.postJson(postAddURL,MapJsonConverter.simpleMapToJsonStr(statsMap));
-//                        HashMap<String, String> countMap = new HashMap<>();
-//                        countMap.put(tuple._1(), String.valueOf(tuple._2()));
-//                        Map params = new HashMap();
-//                        params.put("level", "hello ");
-//                        String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
-                        //System.out.println(str);
+                        statsMap.put("STATS_RID", logLevel.substring(0, 4) + datetime.substring(2));
+                        statsMap.put("START_TIME", datetime);
+                        statsMap.put("LOG_LEVEL", logLevel);
+                        statsMap.put("LOG_COUNTS", counts);
+                        String postAddURL = "http://localhost:8702/logb/stats/level/add";
+                        HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
                     }
                 });
                 return null;
