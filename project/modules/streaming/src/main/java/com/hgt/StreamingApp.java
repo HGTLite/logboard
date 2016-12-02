@@ -231,8 +231,12 @@ public class StreamingApp {
                         statsMap.put("START_TIME", datetime);
                         statsMap.put("APP_CODE", appCode);
                         statsMap.put("LOG_COUNTS", counts);
+
                         String postAddURL = "http://localhost:8702/logb/stats/app/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        statsMap.clear();
+                        statsMap=null;
+
                     }
                 });
                 return null;
@@ -278,6 +282,9 @@ public class StreamingApp {
                         statsMap.put("LOG_COUNTS", counts);
                         String postAddURL = "http://localhost:8702/logb/stats/type/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        statsMap.clear();
+                        statsMap=null;
+
                     }
                 });
                 return null;
@@ -299,6 +306,8 @@ public class StreamingApp {
 //                            params.put("level", "hello ");
 //                            String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
                             System.out.println("=====错误日志是 " + s);
+
+
 
                         }
 
@@ -331,6 +340,9 @@ public class StreamingApp {
                         statsMap.put("LOG_COUNTS", counts);
                         String postAddURL = "http://localhost:8702/logb/stats/level/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        statsMap.clear();
+                        statsMap=null;
+
                     }
                 });
                 return null;
