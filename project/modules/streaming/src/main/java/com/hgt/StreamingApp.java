@@ -10,6 +10,7 @@ import com.hgt.hbase.common.HBaseOperations;
 import com.hgt.msg.HttpUtil;
 import com.hgt.obj.CloneUtils;
 import com.hgt.tools.LogIdBuilder;
+import com.hgt.tools.StatsIdBuilder;
 import com.hgt.utils.DateHelper;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -32,6 +33,8 @@ import java.util.*;
 public class StreamingApp {
 
     public static void main(String[] args) {
+
+        final String STATS_HOST = "http://localhost:8702";
 
         //region 读取配置文件
         Properties prop = new Properties();
@@ -225,17 +228,19 @@ public class StreamingApp {
 //                        System.out.println("计数之后的结果是" + "Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
                         String appCode = tuple._1();
                         String counts = tuple._2().toString();
-                        String datetime = DateHelper.getSimpleDate().replace("-", "").replace(" ", "").replace(":", "");
+                        String datetime = DateHelper.getFullStandardDate();
+                        String rid = StatsIdBuilder.build(appCode, datetime);
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-                        statsMap.put("STATS_RID", appCode.substring(0, 4) + datetime.substring(2));
+                        statsMap.put("STATS_RID", rid);
                         statsMap.put("START_TIME", datetime);
                         statsMap.put("APP_CODE", appCode);
                         statsMap.put("LOG_COUNTS", counts);
 
-                        String postAddURL = "http://localhost:8702/logb/stats/app/add";
+                        //入库
+                        String postAddURL = STATS_HOST + "/logb/stats/app/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
                         statsMap.clear();
-                        statsMap=null;
+                        statsMap = null;
 
                     }
                 });
@@ -274,16 +279,19 @@ public class StreamingApp {
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
                         String logType = tuple._1();
                         String counts = tuple._2().toString();
-                        String datetime = DateHelper.getSimpleDate().replace("-", "").replace(" ", "").replace(":", "");
+                        String datetime = DateHelper.getFullStandardDate();
+                        String rid = StatsIdBuilder.build(logType, datetime);
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-                        statsMap.put("STATS_RID", logType.substring(0, 4) + datetime.substring(2));
+                        statsMap.put("STATS_RID", rid);
                         statsMap.put("START_TIME", datetime);
                         statsMap.put("LOG_TYPE", logType);
                         statsMap.put("LOG_COUNTS", counts);
-                        String postAddURL = "http://localhost:8702/logb/stats/type/add";
+
+                        //入库
+                        String postAddURL = STATS_HOST + "/logb/stats/type/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
                         statsMap.clear();
-                        statsMap=null;
+                        statsMap = null;
 
                     }
                 });
@@ -302,16 +310,29 @@ public class StreamingApp {
 
                         //错误日志入库+消息通知
                         if (type == "ERROR") {
-//                            Map params = new HashMap();
-//                            params.put("level", "hello ");
-//                            String str = HttpUtil.post("http://localhost:8701/send/message", params, 3000, 3000, "UTF-8");
+
                             System.out.println("=====错误日志是 " + s);
 
-                            HashMap logMap = (HashMap) MapJsonConverter.simpleJsonStrToMap(s);
+                            HashMap<String, String> logMap = (HashMap) MapJsonConverter.simpleJsonStrToMap(s);
+                            String appCode = logMap.get("appCode");
+                            String logTime = logMap.get("logTime");
+                            String formattedTime = logTime.replace(" ", "T").replace(",", ".") + "Z";
+                            String logId = logMap.get("logId");
+                            String notes = logMap.get("logLevel") + " ;;; " + logMap.get("logType");
+                            String rid = StatsIdBuilder.build(notes, DateHelper.getFullStandardDate());
 
-                            HashMap errMap = new LinkedHashMap();
-//                            errMap.put("")
+                            HashMap<String, String> errMap = new LinkedHashMap<>();
+                            errMap.put("STATS_RID", rid);
+                            errMap.put("NOTES", notes);
+                            errMap.put("APP_CODE", appCode);
+                            errMap.put("LOG_TIME", formattedTime);
+                            errMap.put("LOG_ID", logId);
 
+                            //入库
+                            String postAddURL = STATS_HOST + "/logb/exp/add";
+                            HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(errMap));
+                            errMap.clear();
+                            errMap = null;
 
                         }
 
@@ -342,10 +363,10 @@ public class StreamingApp {
                         statsMap.put("START_TIME", datetime);
                         statsMap.put("LOG_LEVEL", logLevel);
                         statsMap.put("LOG_COUNTS", counts);
-                        String postAddURL = "http://localhost:8702/logb/stats/level/add";
+                        String postAddURL = STATS_HOST + "/logb/stats/level/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
                         statsMap.clear();
-                        statsMap=null;
+                        statsMap = null;
 
                     }
                 });
