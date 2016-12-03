@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import com.hgt.utils.DateHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -344,12 +345,21 @@ public class HttpUtil {
 //        System.out.println(str);
         //endregion
 
+//        String lts = postJson("http://localhost:8702/logb/stats/app/add",
+//                "{\n" +
+//                        "  \"appCode\": \"hello004\",\n" +
+//                        "  \"logCounts\": 2,\n" +
+//                        "  \"startTime\": \"2016-12-03T14:22:07.931Z\",\n" +
+//                        "  \"statsRid\": \"hell161201142249\"\n" +
+//                        "}");
+        String formattedDate = DateHelper.getFullStandardDate();
+        System.out.println(formattedDate);
         String lts = postJson("http://localhost:8702/logb/stats/app/add",
                 "{\n" +
-                        "  \"appCode\": \"hello004\",\n" +
+                        "  \"appCode\": \"hello006\",\n" +
                         "  \"logCounts\": 2,\n" +
-                        "  \"startTime\": \"2016-12-01T14:22:07.931Z\",\n" +
-                        "  \"statsRid\": \"hell161201142249\"\n" +
+                        "  \"startTime\": \""+ formattedDate+"\",\n" +
+                        "  \"statsRid\": \"hell161203094349\"\n" +
                         "}");
         System.out.println(lts);
 

@@ -310,6 +310,7 @@ public class StreamingApp {
                             HashMap logMap = (HashMap) MapJsonConverter.simpleJsonStrToMap(s);
 
                             HashMap errMap = new LinkedHashMap();
+//                            errMap.put("")
 
 
                         }

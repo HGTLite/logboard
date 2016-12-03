@@ -1,17 +1,16 @@
 package com.hgt.utils;
 
+import com.hgt.utils.DateHelper;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
-
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 
 /**
  * DateHelper Tester.
  *
  * @author <Authors name>
  * @version 1.0
- * @since <pre>Nov 30, 2016</pre>
+ * @since <pre>Dec 3, 2016</pre>
  */
 public class DateHelperTest {
 
@@ -28,7 +27,17 @@ public class DateHelperTest {
      */
     @Test
     public void testGetSimpleDate() throws Exception {
-        System.out.println( DateHelper.getSimpleDate());
+        String dateStr = DateHelper.getSimpleDate();
+        System.out.println(dateStr);
+    }
+
+    /**
+     * Method: getFullStandardDate()
+     */
+    @Test
+    public void testGetFullStandardDate() throws Exception {
+        String dataStr = DateHelper.getFullStandardDate();
+        System.out.println(dataStr);
     }
 
 
