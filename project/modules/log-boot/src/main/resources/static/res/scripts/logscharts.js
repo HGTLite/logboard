@@ -48,7 +48,7 @@ function createLogsGeneralCurve() {
         .attr('transform', 'translate(0,' + height + ')')
         .call(x.axis = d3.svg.axis().scale(x).orient('bottom'));
 
-    var paths = svg.append('g')
+    var paths = svg.append('g');
 
     for (var name in groups) {
         var group = groups[name]
@@ -59,6 +59,7 @@ function createLogsGeneralCurve() {
     }
 
     function tick() {
+
         now = new Date()
 
         // Add new values

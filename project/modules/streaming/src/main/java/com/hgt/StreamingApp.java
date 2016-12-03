@@ -387,5 +387,4 @@ public class StreamingApp {
         jssc.awaitTermination();
 
     }
-
 }
