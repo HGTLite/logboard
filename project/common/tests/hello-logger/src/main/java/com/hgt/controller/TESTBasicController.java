@@ -18,12 +18,12 @@ public class TESTBasicController {
     private BasicLogger logger;
 
     public TESTBasicController() {
-        logger = new BasicLogger(TESTBasicController.class, "hello002");
+        logger = new BasicLogger(TESTBasicController.class, "hello001");
     }
 
     @RequestMapping("/")
     public String defaultHome() {
-        logger.logType(LogType.TEST);
+        logger.logType(LogType.TESTS);
         logger.i("Request Contents is default index. Hello, it's me. DEBUG");
         return "Hello, it's me. DEBUG";
     }

@@ -49,7 +49,7 @@ public class ESBasicQueryTest {
     @Test
     public void testQueryAllTypes() throws Exception {
         List<String> list = new ArrayList<>();
-        list = esBasicQuery.queryAllTypes("test-log");
+        list = esBasicQuery.queryAllTypes("hgt-logs");
         for (String s : list) {
             System.out.println(s);
         }
@@ -63,7 +63,7 @@ public class ESBasicQueryTest {
     @Test
     public void testQueryAllFields() throws Exception {
         List<String> list = new ArrayList<>();
-        list = esBasicQuery.queryAllFields("test-log","log9type");
+        list = esBasicQuery.queryAllFields("hgt-logs","common");
         for (String s : list) {
             System.out.println(s);
         }

@@ -21,6 +21,7 @@ public class LogBaseApp {
 
         SpringApplication.run(LogBaseApp.class, args);
         System.out.println("===LogBaseApp 启动完成===");
+
     }
 
     @Bean

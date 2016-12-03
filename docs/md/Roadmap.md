@@ -1,5 +1,6 @@
 # LogBoard Dev Plan
 ## Bugs 不能用的  
+- 发心跳时阻塞spring的启动
 - 日志输出的类不是实际类，默认是BasicLogger，行号默认固定，可以考虑重新封装log4j
 - 日志工具使用的是log4j，可能与应用系统本身日志记录工具冲突，如es程序默认日志是log4j2，可以考虑从底层自己构建logger
 

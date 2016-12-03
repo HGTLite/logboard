@@ -173,15 +173,11 @@ public class StreamingApp {
                     hBaseOperations.insertRow(tableName, thisLogId, cfName, keys, vals);
                 } else {
                 }
-
                 String logMapStr = MapJsonConverter.simpleMapToJsonStr(logMap);
-
                 String addedIdLog = "{" +
                         "\"logId\":\"" + thisLogId + "\"," +
                         logMapStr.substring(1);
-
                 System.out.println("=====扁平化后的日志是：" + addedIdLog);
-
                 return Lists.newArrayList(addedIdLog);
             }
         });
@@ -205,14 +201,14 @@ public class StreamingApp {
                         //System.out.println("=====没有mapToPair的日志是 " + s);
                         String[] flatLogs = s.split(",");
                         String appCode = flatLogs[7].split(":")[1].replace("\"", "");
-//                        System.out.println("=====统计的app是 " + appCode);
+                        System.out.println("=====统计的app是 " + appCode);
                         return new Tuple2<>(appCode, 1);
                     }
                 })
                 .reduceByKeyAndWindow(new Function2<Integer, Integer, Integer>() {
                     @Override
                     public Integer call(Integer i1, Integer i2) {
-//                        System.out.println("累加处理 " + i1);
+                        System.out.println("累加处理 " + i1);
                         return i1 + i2;
                     }
                 }, new Duration(5000), new Duration(5000));
@@ -227,18 +223,24 @@ public class StreamingApp {
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
 //                        System.out.println("计数之后的结果是" + "Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
                         String appCode = tuple._1();
-                        String counts = tuple._2().toString();
+                        int counts = tuple._2();
                         String datetime = DateHelper.getFullStandardDate();
                         String rid = StatsIdBuilder.build(appCode, datetime);
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-                        statsMap.put("STATS_RID", rid);
-                        statsMap.put("START_TIME", datetime);
-                        statsMap.put("APP_CODE", appCode);
-                        statsMap.put("LOG_COUNTS", counts);
+
+
+                        statsMap.put("appCode", appCode);
+                        statsMap.put("logCounts", String.valueOf(counts));
+                        statsMap.put("startTime", datetime);
+                        statsMap.put("statsRid", rid);
+//                      statsMap.put("APP_CODE", tuple._1());
+//                      statsMap.put("LOG_COUNTS", tuple._2().toString());
 
                         //入库
                         String postAddURL = STATS_HOST + "/logb/stats/app/add";
-                        HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
+                        HttpUtil.postJson(postAddURL, postBody);
+                        System.out.println("=====按应用统计结果插入数据库完成");
                         statsMap.clear();
                         statsMap = null;
 
@@ -257,7 +259,7 @@ public class StreamingApp {
                     public Tuple2<String, Integer> call(String s) {
                         String[] flatLogs = s.split(",");
                         String type = flatLogs[8].split(":")[1].replace("\"", "");
-                        //System.out.println("=====统计的type是 " + appCode);
+                        System.out.println("=====统计的type是 " + type);
                         return new Tuple2<>(type, 1);
                     }
                 })
@@ -290,6 +292,8 @@ public class StreamingApp {
                         //入库
                         String postAddURL = STATS_HOST + "/logb/stats/type/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        System.out.println("=====按类型统计结果插入数据库完成");
+
                         statsMap.clear();
                         statsMap = null;
 
@@ -306,10 +310,12 @@ public class StreamingApp {
                     @Override
                     public Tuple2<String, Integer> call(String s) {
                         String[] flatLogs = s.split(",");
-                        String type = flatLogs[1].split(":")[1].replace("\"", "");
+                        String level = flatLogs[1].split(":")[1].replace("\"", "");
+                        System.out.println("=====统计的type是 " + level);
+
 
                         //错误日志入库+消息通知
-                        if (type == "ERROR") {
+                        if (level == "ERROR") {
 
                             System.out.println("=====错误日志是 " + s);
 
@@ -331,12 +337,14 @@ public class StreamingApp {
                             //入库
                             String postAddURL = STATS_HOST + "/logb/exp/add";
                             HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(errMap));
+                            System.out.println("=====异常日志统计结果插入数据库完成");
+
                             errMap.clear();
                             errMap = null;
 
                         }
 
-                        return new Tuple2<>(type, 1);
+                        return new Tuple2<>(level, 1);
                     }
                 })
                 .reduceByKeyAndWindow(new Function2<Integer, Integer, Integer>() {
@@ -365,6 +373,8 @@ public class StreamingApp {
                         statsMap.put("LOG_COUNTS", counts);
                         String postAddURL = STATS_HOST + "/logb/stats/level/add";
                         HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        System.out.println("=====按级别统计结果插入数据库完成");
+
                         statsMap.clear();
                         statsMap = null;
 
