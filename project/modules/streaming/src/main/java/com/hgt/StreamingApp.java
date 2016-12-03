@@ -223,14 +223,14 @@ public class StreamingApp {
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
 //                        System.out.println("计数之后的结果是" + "Tuple1: " + tuple._1() + ", Tuple2: " + tuple._2());
                         String appCode = tuple._1();
-                        int counts = tuple._2();
+                        String counts = tuple._2().toString();
                         String datetime = DateHelper.getFullStandardDate();
                         String rid = StatsIdBuilder.build(appCode, datetime);
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
 
 
                         statsMap.put("appCode", appCode);
-                        statsMap.put("logCounts", String.valueOf(counts));
+                        statsMap.put("logCounts", counts);
                         statsMap.put("startTime", datetime);
                         statsMap.put("statsRid", rid);
 //                      statsMap.put("APP_CODE", tuple._1());
@@ -242,7 +242,6 @@ public class StreamingApp {
                         HttpUtil.postJson(postAddURL, postBody);
                         System.out.println("=====按应用统计结果插入数据库完成");
                         statsMap.clear();
-                        statsMap = null;
 
                     }
                 });
@@ -284,18 +283,19 @@ public class StreamingApp {
                         String datetime = DateHelper.getFullStandardDate();
                         String rid = StatsIdBuilder.build(logType, datetime);
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-                        statsMap.put("STATS_RID", rid);
-                        statsMap.put("START_TIME", datetime);
-                        statsMap.put("LOG_TYPE", logType);
-                        statsMap.put("LOG_COUNTS", counts);
+                        statsMap.put("logCounts", counts);
+                        statsMap.put("logType", logType);
+                        statsMap.put("startTime", datetime);
+                        statsMap.put("statsRid", rid);
 
                         //入库
                         String postAddURL = STATS_HOST + "/logb/stats/type/add";
-                        HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
+
+                        HttpUtil.postJson(postAddURL, postBody);
                         System.out.println("=====按类型统计结果插入数据库完成");
 
                         statsMap.clear();
-                        statsMap = null;
 
                     }
                 });
@@ -313,9 +313,8 @@ public class StreamingApp {
                         String level = flatLogs[1].split(":")[1].replace("\"", "");
                         System.out.println("=====统计的type是 " + level);
 
-
                         //错误日志入库+消息通知
-                        if (level == "ERROR") {
+                        if (level.equals("ERROR")) {
 
                             System.out.println("=====错误日志是 " + s);
 
@@ -328,19 +327,18 @@ public class StreamingApp {
                             String rid = StatsIdBuilder.build(notes, DateHelper.getFullStandardDate());
 
                             HashMap<String, String> errMap = new LinkedHashMap<>();
-                            errMap.put("STATS_RID", rid);
-                            errMap.put("NOTES", notes);
-                            errMap.put("APP_CODE", appCode);
-                            errMap.put("LOG_TIME", formattedTime);
-                            errMap.put("LOG_ID", logId);
+                            errMap.put("appCode", appCode);
+                            errMap.put("logId", logId);
+                            errMap.put("logTime", formattedTime);
+                            errMap.put("notes", notes);
+                            errMap.put("statsRid", rid);
 
                             //入库
                             String postAddURL = STATS_HOST + "/logb/exp/add";
-                            HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(errMap));
+                            String postBody = MapJsonConverter.simpleMapToJsonStr(errMap);
+                            HttpUtil.postJson(postAddURL, postBody);
                             System.out.println("=====异常日志统计结果插入数据库完成");
-
                             errMap.clear();
-                            errMap = null;
 
                         }
 
@@ -365,19 +363,19 @@ public class StreamingApp {
                     public void call(Tuple2<String, Integer> tuple) throws Exception {
                         String logLevel = tuple._1();
                         String counts = tuple._2().toString();
-                        String datetime = DateHelper.getSimpleDate().replace("-", "").replace(" ", "").replace(":", "");
+                        String datetime = DateHelper.getFullStandardDate();
+                        String rid = StatsIdBuilder.build(logLevel, datetime);
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
-                        statsMap.put("STATS_RID", logLevel.substring(0, 4) + datetime.substring(2));
-                        statsMap.put("START_TIME", datetime);
-                        statsMap.put("LOG_LEVEL", logLevel);
-                        statsMap.put("LOG_COUNTS", counts);
+                        statsMap.put("logCounts", counts);
+                        statsMap.put("logLevel", logLevel);
+                        statsMap.put("startTime", datetime);
+                        statsMap.put("statsRid", rid);
                         String postAddURL = STATS_HOST + "/logb/stats/level/add";
-                        HttpUtil.postJson(postAddURL, MapJsonConverter.simpleMapToJsonStr(statsMap));
+                        String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
+                        HttpUtil.postJson(postAddURL, postBody);
                         System.out.println("=====按级别统计结果插入数据库完成");
 
                         statsMap.clear();
-                        statsMap = null;
-
                     }
                 });
                 return null;
