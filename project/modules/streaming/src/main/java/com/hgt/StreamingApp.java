@@ -59,7 +59,7 @@ public class StreamingApp {
         //endregion
 
         String sparkAppName = "LogStreaming";
-        String sparkMaster = "local[3 ]";
+        String sparkMaster = "local[3]";
         Duration jobInterval = new Duration(5000);
 
         //每个话题的分片数
@@ -89,8 +89,9 @@ public class StreamingApp {
 
                 //region 日志处理量计数
                 System.out.println("=====原始日志是：" + s);
-                Map<String, Integer> params = new HashMap<>();
-                params.put("message", 1);
+                Map<String, String> params = new HashMap<>();
+                params.put("msgTag", "TOTAL_COUNTS");
+                params.put("msgBody", "1");
                 String targetServerURL = MSG_ROUTER_HOST_ENDPOINT + "/msg/router";
                 String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
                 System.out.println("已处理1条日志：" + str);
