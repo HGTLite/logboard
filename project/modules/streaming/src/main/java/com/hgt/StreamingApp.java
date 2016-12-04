@@ -27,16 +27,16 @@ import scala.Tuple2;
 import java.io.IOException;
 import java.util.*;
 
+import static com.hgt.ip.URLBuilder.buildHttpHostEndpoint;
+
 /**
  * 日志实时处理类
  */
 public class StreamingApp {
 
     private static final String HOST_IP = "192.168.99.75";
-
-    private static final String STATS_HOST_ENDPOINT = "http://" + HOST_IP + ":8702";
-
-    private static final String MSG_ROUTER_HOST_ENDPOINT = "http://" + HOST_IP + ":8703";
+    private static final String STATS_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP,"8702");
+    private static final String MSG_ROUTER_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP,"8703");
 
     public static void main(String[] args) {
 
