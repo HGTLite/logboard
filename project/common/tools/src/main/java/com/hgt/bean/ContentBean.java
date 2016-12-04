@@ -1,7 +1,7 @@
 package com.hgt.bean;
 
 /**
- * README: 简单单属性bean
+ * README: 仅有一个属性的bean
  * Created by root on 11/25/16.
  * =============================================================================
  * CHANGELOG:

@@ -347,11 +347,14 @@ public class HttpUtil {
 
 
         //region 测试触发redis消息
-        Map params = new HashMap();
-        String targetSrverURL = "http://192.168.99.75:8703/msg/spring-boot/fuck";
-        String response = HttpUtil.get(targetSrverURL, params, 3000, 3000, "UTF-8");
-        System.out.println(response);
+        Map<String, String> params = new HashMap<>();
+        params.put("msgTag", "TOTAL_COUNTS");
+        params.put("msgBody", "1");
+        String targetServerURL = "http://192.168.99.75:8703" + "/msg/router";
+        String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
+        System.out.println("已处理1条日志：" + str);
         //endregion
+
 
 //        String lts = postJson("http://localhost:8702/logb/stats/app/add",
 //                "{\n" +

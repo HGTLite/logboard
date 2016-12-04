@@ -13,8 +13,8 @@ public class StringConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(StringConsumer.class);
 
-    private final String socketHostIP = "192.168.99.75";
-    private final String socketHost = "http://" + socketHostIP + ":8701";
+    private final String SOCKET_HOST_IP = "192.168.99.75";
+    private final String SOCKET_HOST_ENDPOINT = "http://" + SOCKET_HOST_IP + ":8701";
 
     public void messageHandler(String message) {
 
@@ -22,11 +22,14 @@ public class StringConsumer {
 
         //发送到socket
 
-        String targetServerURL = socketHost + "/send/log-counts-streaming";
+        String targetServerURL = SOCKET_HOST_ENDPOINT + "/send/log-counts-streaming";
 
         Map params = new HashMap();
-        params.put("message", "hello, b**ches2");
+        params.put("message", message);
         String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
+
+
+
 
         System.out.println("消息转发到：" + targetServerURL);
 

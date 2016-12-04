@@ -32,9 +32,13 @@ import java.util.*;
  */
 public class StreamingApp {
 
-    public static void main(String[] args) {
+    private static final String HOST_IP = "192.168.99.75";
 
-        final String STATS_HOST = "http://localhost:8702";
+    private static final String STATS_HOST_ENDPOINT = "http://" + HOST_IP + ":8702";
+
+    private static final String MSG_ROUTER_HOST_ENDPOINT = "http://" + HOST_IP + ":8703";
+
+    public static void main(String[] args) {
 
         //region 读取配置文件
         Properties prop = new Properties();
@@ -55,13 +59,12 @@ public class StreamingApp {
         //endregion
 
         String sparkAppName = "LogStreaming";
-        String sparkMaster = "local[3]";
+        String sparkMaster = "local[3 ]";
         Duration jobInterval = new Duration(5000);
 
         //每个话题的分片数
         int numThreads = 2;
         SparkConf sparkConf = new SparkConf().setAppName(sparkAppName).setMaster(sparkMaster);
-        //批处理时间间隔
         JavaStreamingContext jssc = new JavaStreamingContext(sparkConf, jobInterval);
 
         //存放话题跟分片的映射关系
@@ -81,9 +84,17 @@ public class StreamingApp {
             @Override
             public Iterable<String> call(Tuple2<String, String> arg0)
                     throws Exception {
+
                 String s = arg0._2;
 
+                //region 日志处理量计数
                 System.out.println("=====原始日志是：" + s);
+                Map<String, Integer> params = new HashMap<>();
+                params.put("message", 1);
+                String targetServerURL = MSG_ROUTER_HOST_ENDPOINT + "/msg/router";
+                String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
+                System.out.println("已处理1条日志：" + str);
+                //endregion
 
                 HashMap<String, String> logMap = new LinkedHashMap<>();
                 logMap.put("logLevel", s.substring(1, 6).trim());
@@ -237,7 +248,7 @@ public class StreamingApp {
 //                      statsMap.put("LOG_COUNTS", tuple._2().toString());
 
                         //入库
-                        String postAddURL = STATS_HOST + "/logb/stats/app/add";
+                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/app/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
                         HttpUtil.postJson(postAddURL, postBody);
                         System.out.println("=====按应用统计结果插入数据库完成");
@@ -289,7 +300,7 @@ public class StreamingApp {
                         statsMap.put("statsRid", rid);
 
                         //入库
-                        String postAddURL = STATS_HOST + "/logb/stats/type/add";
+                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/type/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
 
                         HttpUtil.postJson(postAddURL, postBody);
@@ -334,7 +345,7 @@ public class StreamingApp {
                             errMap.put("statsRid", rid);
 
                             //入库
-                            String postAddURL = STATS_HOST + "/logb/exp/add";
+                            String postAddURL = STATS_HOST_ENDPOINT + "/logb/exp/add";
                             String postBody = MapJsonConverter.simpleMapToJsonStr(errMap);
                             HttpUtil.postJson(postAddURL, postBody);
                             System.out.println("=====异常日志统计结果插入数据库完成");
@@ -370,7 +381,7 @@ public class StreamingApp {
                         statsMap.put("logLevel", logLevel);
                         statsMap.put("startTime", datetime);
                         statsMap.put("statsRid", rid);
-                        String postAddURL = STATS_HOST + "/logb/stats/level/add";
+                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/level/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
                         HttpUtil.postJson(postAddURL, postBody);
                         System.out.println("=====按级别统计结果插入数据库完成");

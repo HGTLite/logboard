@@ -1,6 +1,5 @@
 package com.hgt.mapper;
 
-import com.hgt.entity.LogBeats;
 import com.hgt.entity.StatsByType;
 
 import java.util.List;

@@ -3,6 +3,7 @@ package com.hgt.obj;
 import java.io.*;
 
 /**
+ * 利用序列化实现对象的复制
  * Created by root on 11/6/16.
  */
 public class CloneUtils {

@@ -3,10 +3,7 @@ package com.hgt.controller;
 import com.hgt.bean.ContentBean;
 import com.hgt.redis.producer.StringProducer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * README:
@@ -22,14 +19,19 @@ public class ProducerController {
     @Autowired
     StringProducer producer;
 
-    @RequestMapping(value = BASE_URL + "/{topicName}/{msg}", method = RequestMethod.GET)
-    public ContentBean sendStr2All(@PathVariable String topicName, @PathVariable String msg) {
+    @RequestMapping(value = BASE_URL + "/{topicName}", method = RequestMethod.POST)
+    public ContentBean sendStr2All(@PathVariable String topicName, @RequestParam String msgTag, @RequestParam String msgBody) {
 
-        System.out.println("即将发送消息：" + msg);
+        if (msgTag == null || msgTag.trim().isEmpty()) {
+            return new ContentBean("参数内容不能为空");
+        }
 
-        producer.sendTo(topicName, msg);
+        System.out.println("即将发送消息：" + msgTag);
+        System.out.println("即将发送消息：" + msgBody);
 
-        return new ContentBean("发送成功： " + msg);
+        producer.sendTo(topicName, msgBody);
+
+        return new ContentBean("发送成功： " + msgBody);
 
     }
 

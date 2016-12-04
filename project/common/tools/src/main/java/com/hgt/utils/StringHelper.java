@@ -10,8 +10,13 @@ import java.util.*;
  ******************************************************************************/
 public class StringHelper {
 
-    ///长字符串转List
-    public static List<String> strTOList(String str) {
+    /**
+     * 长字符串转List
+     *
+     * @param str
+     * @return
+     */
+    public static List<String> strToList(String str) {
         List<String> result = new ArrayList<String>();
         String[] strArr = str.split(",");
 
@@ -22,7 +27,15 @@ public class StringHelper {
         return result;
     }
 
+    /**
+     * 多个主机相同端口的host_endpoint拼凑
+     *
+     * @param hostList
+     * @param port
+     * @return
+     */
     public static String joinHostPort(String hostList, String port) {
+
         String result = "";
 
         String[] hostArr = hostList.split(",");
@@ -32,7 +45,6 @@ public class StringHelper {
                 result += ",";
             }
         }
-
         return result;
     }
 

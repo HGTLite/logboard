@@ -170,7 +170,7 @@ public class HBaseOperations {
     public void createTable(String strTableName, String strCFNames, int minV, int maxV) {
 
         TableName tableName = TableName.valueOf(strTableName);
-        List<String> columnFamilyNames = StringHelper.strTOList(strCFNames);
+        List<String> columnFamilyNames = StringHelper.strToList(strCFNames);
 
         if (strCFNames.trim() == "") {
             System.out.println("建表时请指定至少一个列族名。");
