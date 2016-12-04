@@ -10,6 +10,7 @@ function waitingForNewMsg(){
 
     var stompClient = Stomp.over(socket);
 
+    //region 日志处理量更新
     stompClient.connect({}, function (frame) {
             //订阅的主题名为message
             var topicLogCounts = "/topic/log-counts-streaming";
@@ -19,6 +20,7 @@ function waitingForNewMsg(){
             });
         }
     );
+    //endregion
 
 }
 
