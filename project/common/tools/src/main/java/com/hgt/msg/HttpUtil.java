@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 提供通过HTTP协议获取内容的方法 <br/>
- * 所有提供方法中的params参数在内部不会进行自动的url encode，如果提交参数需要进行url encode，请调用方自行处理
+ * 所有提供方法中的params参数在内部不会进行自动的url encode，如果提交参数需要进行url encode，请调用方法自行处理
  *
  * @author lushuifa
  * @Description: HTTP请求代理工具
@@ -339,10 +339,18 @@ public class HttpUtil {
     public static void main(String[] args) {
 
         //region 测试第三方触发websocket消息
+        Map params = new HashMap();
+        params.put("message", "hello, b**ches");
+        String str = HttpUtil.post("http://192.168.99.75:8701/send/log-counts-streaming", params, 3000, 3000, "UTF-8");
+        System.out.println(str);
+        //endregion
+
+
+        //region 测试触发redis消息
 //        Map params = new HashMap();
-//        params.put("message", "hello, b**ches");
-//        String str = HttpUtil.post("http://localhost:8701/send/testDiv", params, 3000, 3000, "UTF-8");
-//        System.out.println(str);
+//        String targetSrverURL = "http://192.168.99.75:8703/msg/spring-boot/fuck";
+//        String response = HttpUtil.get(targetSrverURL, params, 3000, 3000, "UTF-8");
+//        System.out.println(response);
         //endregion
 
 //        String lts = postJson("http://localhost:8702/logb/stats/app/add",
@@ -352,16 +360,7 @@ public class HttpUtil {
 //                        "  \"startTime\": \"2016-12-03T14:22:07.931Z\",\n" +
 //                        "  \"statsRid\": \"hell161201142249\"\n" +
 //                        "}");
-        String formattedDate = DateHelper.getFullStandardDate();
-        System.out.println(formattedDate);
-        String lts = postJson("http://localhost:8702/logb/stats/app/add",
-                "{\n" +
-                        "  \"appCode\": \"hello006\",\n" +
-                        "  \"logCounts\": 2,\n" +
-                        "  \"startTime\": \""+ formattedDate+"\",\n" +
-                        "  \"statsRid\": \"hell161203094349\"\n" +
-                        "}");
-        System.out.println(lts);
+
 
     }
 

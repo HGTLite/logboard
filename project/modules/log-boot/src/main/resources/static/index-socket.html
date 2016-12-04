@@ -8,8 +8,8 @@
 </head>
 <body>
 <div>
-    <h3>Messages:</h3>
-    <ol id="messages"></ol>
+    <h3>日志实时处理量: </h3>
+    <ul id="messages"></ul>
 </div>
 
 <script type="text/javascript">
@@ -23,7 +23,7 @@
 
         stompClient.connect({}, function (frame) {
                     //订阅的主题名为message
-                    var topicTestName = "/topic/testDiv";
+                    var topicTestName = "/topic/log-counts-streaming";
                     stompClient.subscribe(msgURLOrigin + topicTestName, function (data) {
                         var message = data.body;
                         messageList.append("<li>" + message + "</li>");

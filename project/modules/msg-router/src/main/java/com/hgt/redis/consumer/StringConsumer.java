@@ -5,9 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Component
 public class StringConsumer {
+
     private static final Logger log = LoggerFactory.getLogger(StringConsumer.class);
+
+    private final String socketHostIP = "192.168.99.75";
+    private final String socketHost = "http://" + socketHostIP + ":8701";
 
     public void messageHandler(String message) {
 
@@ -15,12 +22,16 @@ public class StringConsumer {
 
         //发送到socket
 
-        String socketHost = "http://localhost:8701/send/testDiv";
+        String targetServerURL = socketHost + "/send/log-counts-streaming";
 
-        String msgJson = message;
+        Map params = new HashMap();
+        params.put("message", "hello, b**ches2");
+        String str = HttpUtil.post(socketHost, params, 3000, 3000, "UTF-8");
 
-        String str = HttpUtil.postJson(socketHost, message);
+        System.out.println("消息转发到：" + targetServerURL);
+
 
     }
+
 
 }

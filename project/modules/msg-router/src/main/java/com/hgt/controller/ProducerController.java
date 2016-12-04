@@ -17,18 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProducerController {
 
-    public final String BASE_URL = "msg/send";
+    public final String BASE_URL = "msg";
 
     @Autowired
     StringProducer producer;
 
-    @RequestMapping(value = BASE_URL + "/{msg}", method = RequestMethod.GET)
+    @RequestMapping(value = BASE_URL + "/{topicName}/{msg}", method = RequestMethod.GET)
     public ContentBean sendStr2All(@PathVariable String topicName, @PathVariable String msg) {
 
-        System.out.println("即将发送消息");
+        System.out.println("即将发送消息：" + msg);
+
         producer.sendTo(topicName, msg);
 
-        return new ContentBean("发送成功");
+        return new ContentBean("发送成功： " + msg);
 
     }
 
