@@ -7,12 +7,16 @@ import com.hgt.logger.formats.LogType;
 import com.hgt.logger.heartbeat.ClientSender;
 import com.hgt.logger.heartbeat.HeartBeatClient;
 import com.hgt.logger.validator.LoggerInputsValidator;
+import com.hgt.msg.HttpUtil;
 import com.hgt.utils.JsonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /******************************************************************************
  * Created by  Yao  on  2016/7/4
@@ -38,7 +42,16 @@ public class BasicLogger extends ILogger {
     private LoggerInputsValidator logValidator;
 
     static {
-        ClientSender.getInstance().send(LoggerConfig.getInstance().setHeartBeatConfig());
+        //多线程发送心跳，避免spring启动卡死的问题
+        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+        cachedThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                ClientSender.getInstance().send(LoggerConfig.getInstance().setHeartBeatConfig());
+
+            }
+        });
+
     }
 
     /**
