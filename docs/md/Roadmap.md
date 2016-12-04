@@ -1,10 +1,15 @@
 # LogBoard Dev Plan
 ## Bugs 不能用的  
-- 发心跳时阻塞spring的启动
+- 定时统计日志结果
+- UI数据连通
+- 心跳异常入库
+- 短信+邮件通知
+- 发心跳时阻塞spring的启动（over）
 - 日志输出的类不是实际类，默认是BasicLogger，行号默认固定，可以考虑重新封装log4j
 - 日志工具使用的是log4j，可能与应用系统本身日志记录工具冲突，如es程序默认日志是log4j2，可以考虑从底层自己构建logger
 
 ## TO-DO 能用但不好用的
+- 搜索优化
 - spark计数异常日志，取不到明细信息，无解
 - redis订阅者不在线，消息会消失，可以考虑更换消息队列
 - streaming任务过多，可以考虑把双写hdfs和elasticsearch拆分解耦，提高容错性
