@@ -24,11 +24,11 @@ public class StatsIdBuilder {
         String tag4 = strTag.substring(0, 4);
         resultId.append(tag4);
 
-        String date12 = strDate.replace("-", "").replace(" ", "").replace(":", "").replace(",", "");
+        String date12 = strDate.replace("-", "").replace(" ", "").replace(":", "").replace(".", "").replace(",", "");
         if (date12.indexOf("T") != -1 ||date12.indexOf("t") != -1   ) {
             date12.replace("T","");
         }
-        date12.substring(2, 14);
+        date12=date12.substring(2, 14);
         resultId.append(date12);
 
         String uuid16 = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16);

@@ -28,11 +28,11 @@ public class LogIdBuilder {
         String type4 = strType.substring(0, 4);
         resultId.append(type4);
 
-        String date14 = strDate.replace("-", "").replace(" ", "").replace(":", "").replace(",", "");
+        String date14 = strDate.replace("-", "").replace(" ", "").replace(":", "").replace(",", "").replace(".", "");
         if (date14.indexOf("T") != -1 || date14.indexOf("t") != -1) {
             date14.replace("T", "");
         }
-        date14.substring(0, 14);
+        date14=date14.substring(0, 14);
         resultId.append(date14);
 
         String uuid8 = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
