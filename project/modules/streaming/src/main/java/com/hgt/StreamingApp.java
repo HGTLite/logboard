@@ -245,8 +245,6 @@ public class StreamingApp {
                         statsMap.put("logCounts", counts);
                         statsMap.put("startTime", datetime);
                         statsMap.put("statsRid", rid);
-//                      statsMap.put("APP_CODE", tuple._1());
-//                      statsMap.put("LOG_COUNTS", tuple._2().toString());
 
                         //入库
                         String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/app/add";
