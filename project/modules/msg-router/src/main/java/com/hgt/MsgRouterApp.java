@@ -15,6 +15,7 @@ public class MsgRouterApp {
     String topic;
 
     public static void main(String[] args) {
+
         SpringApplication.run(MsgRouterApp.class, args);
         System.out.println("===MsgRouterApp 启动完成===");
 

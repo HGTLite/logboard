@@ -26,7 +26,7 @@ public class StringConsumer {
 
         Map params = new HashMap();
         params.put("message", "hello, b**ches2");
-        String str = HttpUtil.post(socketHost, params, 3000, 3000, "UTF-8");
+        String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
 
         System.out.println("消息转发到：" + targetServerURL);
 

@@ -339,18 +339,18 @@ public class HttpUtil {
     public static void main(String[] args) {
 
         //region 测试第三方触发websocket消息
-        Map params = new HashMap();
-        params.put("message", "hello, b**ches");
-        String str = HttpUtil.post("http://192.168.99.75:8701/send/log-counts-streaming", params, 3000, 3000, "UTF-8");
-        System.out.println(str);
+//        Map params = new HashMap();
+//        params.put("message", "hello, b**ches");
+//        String str = HttpUtil.post("http://192.168.99.75:8701/send/log-counts-streaming", params, 3000, 3000, "UTF-8");
+//        System.out.println(str);
         //endregion
 
 
         //region 测试触发redis消息
-//        Map params = new HashMap();
-//        String targetSrverURL = "http://192.168.99.75:8703/msg/spring-boot/fuck";
-//        String response = HttpUtil.get(targetSrverURL, params, 3000, 3000, "UTF-8");
-//        System.out.println(response);
+        Map params = new HashMap();
+        String targetSrverURL = "http://192.168.99.75:8703/msg/spring-boot/fuck";
+        String response = HttpUtil.get(targetSrverURL, params, 3000, 3000, "UTF-8");
+        System.out.println(response);
         //endregion
 
 //        String lts = postJson("http://localhost:8702/logb/stats/app/add",
