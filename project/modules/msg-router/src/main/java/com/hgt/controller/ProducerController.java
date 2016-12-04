@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProducerController {
 
-    public final String BASE_URL="msg/send";
+    public final String BASE_URL = "msg/send";
 
     @Autowired
     StringProducer producer;
 
     @RequestMapping(value = BASE_URL + "/{msg}", method = RequestMethod.GET)
-    public ContentBean sendStr2All(@PathVariable String msg) {
+    public ContentBean sendStr2All(@PathVariable String topicName, @PathVariable String msg) {
 
         System.out.println("即将发送消息");
-        producer.sendTo("spring-boot", msg);
+        producer.sendTo(topicName, msg);
 
         return new ContentBean("发送成功");
 
@@ -36,7 +36,6 @@ public class ProducerController {
     public String index() {
         return "Greetings from Spring Boot!";
     }
-
 
 
 }

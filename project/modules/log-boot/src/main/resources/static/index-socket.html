@@ -22,13 +22,14 @@
         var stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
-            //订阅的主题名为message
-            var topicTestName = "/topic/testDiv";
-            stompClient.subscribe(msgURLOrigin + topicTestName, function (data) {
-                var message = data.body;
-                messageList.append("<li>" + message + "</li>");
-            });
-        });
+                    //订阅的主题名为message
+                    var topicTestName = "/topic/testDiv";
+                    stompClient.subscribe(msgURLOrigin + topicTestName, function (data) {
+                        var message = data.body;
+                        messageList.append("<li>" + message + "</li>");
+                    });
+                }
+        );
     });
 </script>
 </body>
