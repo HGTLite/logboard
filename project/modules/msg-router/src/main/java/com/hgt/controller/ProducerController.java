@@ -26,8 +26,7 @@ public class ProducerController {
             return new ContentBean("参数内容不能为空");
         }
 
-        System.out.println("即将发送消息：" + msgTag);
-        System.out.println("即将发送消息：" + msgBody);
+        System.out.println("即将发送消息 参数msgTag：" + msgTag + "  ;  参数msgBody是" + msgBody);
 
         producer.sendTo(topicName, msgBody);
 

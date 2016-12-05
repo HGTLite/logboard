@@ -11,7 +11,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>logbase</artifactId>
-
     <name>logbase</name>
 
     <properties>
@@ -40,6 +39,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <!--自定义工具包-->
+        <dependency>
+            <groupId>com.hgt</groupId>
+            <artifactId>tools</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <!--spring-boot基础jar-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -162,6 +167,12 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.hgt</groupId>
+            <artifactId>tools</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
 
         <!--Swagger end-->
 

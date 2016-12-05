@@ -37,11 +37,11 @@ public class HelloLoggerApp {
                     ii++;
                 } else if (ii % 7 == 0) {
                     logger.options(LogOptions.USER_ID, "user002").options(LogOptions.USER_IP, getRandomIp());
-                    logger.e("这是第 " + ii + " 条消息！！！, 7的倍数", new Exception());
+                    logger.w("这是第 " + ii + " 条消息！！！, 7的倍数");
                     ii++;
                 } else {
                     logger.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
-                    logger.e("这是第 " + ii + " 条消息！！！", new Exception());
+                    logger.i("这是第 " + ii + " 条消息！！！");
                     ii++;
                 }
             }

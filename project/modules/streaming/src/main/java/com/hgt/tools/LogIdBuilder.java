@@ -30,7 +30,7 @@ public class LogIdBuilder {
 
         String date14 = strDate.replace("-", "").replace(" ", "").replace(":", "").replace(",", "").replace(".", "");
         if (date14.indexOf("T") != -1 || date14.indexOf("t") != -1) {
-            date14.replace("T", "");
+            date14=date14.replace("T","").replace("t","");
         }
         date14=date14.substring(0, 14);
         resultId.append(date14);

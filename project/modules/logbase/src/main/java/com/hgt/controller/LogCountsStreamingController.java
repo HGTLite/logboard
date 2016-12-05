@@ -7,6 +7,7 @@ import com.hgt.domain.SimpleStringBean;
 import com.hgt.entity.LogCountsStreaming;
 import com.hgt.mapper.LogCountsStreamingMapper;
 import com.hgt.service.LogCountsStreamingService;
+import com.hgt.utils.DateHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -14,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,6 +71,7 @@ public class LogCountsStreamingController {
     public DataResult<SimpleStringBean> updateAddCount(@PathVariable String strId, @PathVariable int intCount) {
 
         LogCountsStreaming logCountsStreaming = logCountsStreamingService.findById(strId).getData();
+        logCountsStreaming.setStartTime(new Date(System.currentTimeMillis()));
         logCountsStreaming.setCounts(logCountsStreaming.getCounts() + intCount);
         logCountsStreamingMapper.updateByPrimaryKey(logCountsStreaming);
         return new DataResult<>(new SimpleStringBean("日志处理量加 " + intCount + " 成功"));

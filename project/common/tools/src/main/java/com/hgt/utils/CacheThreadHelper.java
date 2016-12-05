@@ -38,7 +38,7 @@ public class CacheThreadHelper {
         cachedThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                response[0] =HttpUtil.get(targetURL, params, 2500, 2500, "UTF-8");
+                response[0] =HttpUtil.post(targetURL, params, 2500, 2500, "UTF-8");
             }
         });
         return response[0];

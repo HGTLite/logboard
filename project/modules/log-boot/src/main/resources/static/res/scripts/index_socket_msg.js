@@ -8,6 +8,8 @@ function waitingForSocketMsg() {
 
     var socket = new SockJS(msgURLOrigin + "/logging");
     var stompClient = Stomp.over(socket);
+    //取消控制台日志，正式部署时需注释
+    // stompClient.debug = null;
 
     stompClient.connect({}, function (frame) {
 

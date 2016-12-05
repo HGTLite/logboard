@@ -11,6 +11,7 @@ import com.hgt.msg.HttpUtil;
 import com.hgt.obj.CloneUtils;
 import com.hgt.tools.LogIdBuilder;
 import com.hgt.tools.StatsIdBuilder;
+import com.hgt.utils.CacheThreadHelper;
 import com.hgt.utils.DateHelper;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -34,9 +35,10 @@ import static com.hgt.ip.URLBuilder.buildHttpHostEndpoint;
  */
 public class StreamingApp {
 
-    private static final String HOST_IP = "192.168.99.75";
-    private static final String STATS_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP,"8702");
-    private static final String MSG_ROUTER_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP,"8703");
+    //    private static final String HOST_IP = "192.168.99.75";
+    private static final String HOST_IP = "localhost";
+    private static final String STATS_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP, "8702");
+    private static final String MSG_ROUTER_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP, "8703");
 
     public static void main(String[] args) {
 
@@ -89,12 +91,13 @@ public class StreamingApp {
 
                 //region 日志处理量计数
                 System.out.println("=====原始日志是：" + s);
+                //====原始日志是：[INFO ]2016-12-05 13:31:38,236[                  com.hgt.HelloLoggerApp]    BasicLogger.java(180): {"appCode":"hello002","logType":"LOGIN","logMsg":"这是第 537 条消息！！！","logOptions":{"USER_ID":"user003","USER_IP":"61.237.32.236"}}
                 Map<String, String> params = new HashMap<>();
                 params.put("msgTag", "TOTAL_COUNTS");
                 params.put("msgBody", "1");
                 String targetServerURL = MSG_ROUTER_HOST_ENDPOINT + "/msg/router";
-                String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
-                System.out.println("已处理1条日志：" + str);
+//                String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
+                CacheThreadHelper.newThreadPostByMap(targetServerURL, params);
                 //endregion
 
                 HashMap<String, String> logMap = new LinkedHashMap<>();
@@ -190,6 +193,7 @@ public class StreamingApp {
                         "\"logId\":\"" + thisLogId + "\"," +
                         logMapStr.substring(1);
                 System.out.println("=====扁平化后的日志是：" + addedIdLog);
+                //=====扁平化后的日志是：{"logId":"hello0logi20161205133138a5d361bc","logLevel":"INFO","logTime":"2016-12-05 13:31:38,236","codeClass":"com.hgt.HelloLoggerApp","codeFile":"BasicLogger.java","lineNumber":"180","appCode":"hello002","logType":"LOGIN","logMsg":"这是第 537 条消息！！！","USER_ID":"user003","USER_IP":"61.237.32.236"}
                 return Lists.newArrayList(addedIdLog);
             }
         });
@@ -240,7 +244,6 @@ public class StreamingApp {
                         String rid = StatsIdBuilder.build(appCode, datetime);
                         HashMap<String, String> statsMap = new LinkedHashMap<String, String>();
 
-
                         statsMap.put("appCode", appCode);
                         statsMap.put("logCounts", counts);
                         statsMap.put("startTime", datetime);
@@ -249,7 +252,8 @@ public class StreamingApp {
                         //入库
                         String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/app/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
-                        HttpUtil.postJson(postAddURL, postBody);
+                        CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);
+                        //HttpUtil.postJson(postAddURL, postBody);
                         System.out.println("=====按应用统计结果插入数据库完成");
                         statsMap.clear();
 
@@ -301,8 +305,8 @@ public class StreamingApp {
                         //入库
                         String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/type/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
-
-                        HttpUtil.postJson(postAddURL, postBody);
+                        CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);
+                        //HttpUtil.postJson(postAddURL, postBody);
                         System.out.println("=====按类型统计结果插入数据库完成");
 
                         statsMap.clear();
@@ -331,7 +335,7 @@ public class StreamingApp {
                             HashMap<String, String> logMap = (HashMap) MapJsonConverter.simpleJsonStrToMap(s);
                             String appCode = logMap.get("appCode");
                             String logTime = logMap.get("logTime");
-                            String formattedTime = logTime.replace(" ", "T").replace(",", ".") + "Z";
+                            String formattedTime = logTime.replace(" ", "T").replace(",", ".") + "+0800";
                             String logId = logMap.get("logId");
                             String notes = logMap.get("logLevel") + " ;;; " + logMap.get("logType");
                             String rid = StatsIdBuilder.build(notes, DateHelper.getFullStandardDate());
@@ -346,8 +350,9 @@ public class StreamingApp {
                             //入库
                             String postAddURL = STATS_HOST_ENDPOINT + "/logb/exp/add";
                             String postBody = MapJsonConverter.simpleMapToJsonStr(errMap);
-                            HttpUtil.postJson(postAddURL, postBody);
-                            System.out.println("=====异常日志统计结果插入数据库完成");
+                            CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);
+                            //HttpUtil.postJson(postAddURL, postBody);
+                            System.out.println("=====异常日志单条结果插入数据库完成");
                             errMap.clear();
 
                         }
@@ -382,9 +387,9 @@ public class StreamingApp {
                         statsMap.put("statsRid", rid);
                         String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/level/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
-                        HttpUtil.postJson(postAddURL, postBody);
+                        //HttpUtil.postJson(postAddURL, postBody);
+                        CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);
                         System.out.println("=====按级别统计结果插入数据库完成");
-
                         statsMap.clear();
                     }
                 });

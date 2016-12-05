@@ -26,7 +26,7 @@ public class StatsIdBuilder {
 
         String date12 = strDate.replace("-", "").replace(" ", "").replace(":", "").replace(".", "").replace(",", "");
         if (date12.indexOf("T") != -1 ||date12.indexOf("t") != -1   ) {
-            date12.replace("T","");
+            date12=date12.replace("T","").replace("t","");
         }
         date12=date12.substring(2, 14);
         resultId.append(date12);
