@@ -27,7 +27,7 @@ public class ESQueryApp {
             public void addCorsMappings(CorsRegistry registry) {
 
                 registry.addMapping("/logb/**").allowedOrigins("*");
-//                registry.addMapping("/lb/apps/all/{pageNum}/{pageSize}").allowedOrigins("*");
+//              registry.addMapping("/lb/apps/all/{pageNum}/{pageSize}").allowedOrigins("*");
 
             }
 
