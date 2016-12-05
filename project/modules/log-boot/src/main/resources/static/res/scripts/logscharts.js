@@ -102,8 +102,29 @@ function createLogsGeneralCurve() {
  */
 function createLogsGeneralPie() {
 
-    //**数据配置
-    var testdata = [
+    //**请求按应用按小时的日志分布数据
+    var dataToSend = "";
+    var targetServerURL = LOGBASE_HOST_ENDPOINT + "logb/stats/1h/app/"
+    $.ajax({
+        url: targetServerURL,
+        type: 'GET',
+        contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+        data: dataToSend,
+        async: true,
+        timeout: 4000,
+        dataType: 'json',
+        success: function (response) {
+            console.log("请求成功 -- " + " ");
+            console.log(response);
+        },
+        error: function (response) {
+            console.log("请求失败 -- " +" ");
+            console.log(response);
+        }
+    });
+
+
+    var statsCountsByApp = [
         {key: "One", y: 5},
         {key: "Two", y: 2},
         {key: "Three", y: 9},
@@ -132,7 +153,7 @@ function createLogsGeneralPie() {
         chart1.pie.labelsOutside(true).donut(true);
 
         d3.select("#svgLogsGenaralPie")
-            .datum(testdata)
+            .datum(statsCountsByApp)
             .transition().duration(1200)
             .call(chart1);
 
@@ -200,6 +221,8 @@ function createLogsExpCurve() {
             .attr('class', name + ' group')
             .style('stroke', group.color)
     }
+
+
 
     function tick() {
         now = new Date()
