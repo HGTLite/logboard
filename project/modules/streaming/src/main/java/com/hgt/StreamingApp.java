@@ -93,7 +93,7 @@ public class StreamingApp {
                 System.out.println("=====原始日志是：" + s);
                 //====原始日志是：[INFO ]2016-12-05 13:31:38,236[                  com.hgt.HelloLoggerApp]    BasicLogger.java(180): {"appCode":"hello002","logType":"LOGIN","logMsg":"这是第 537 条消息！！！","logOptions":{"USER_ID":"user003","USER_IP":"61.237.32.236"}}
                 Map<String, String> params = new HashMap<>();
-                params.put("msgTag", "TOTAL_COUNTS");
+                params.put("msgTag", "STREAMING_LOG_COUNTS");
                 params.put("msgBody", "1");
                 String targetServerURL = MSG_ROUTER_HOST_ENDPOINT + "/msg/router";
 //                String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
@@ -107,7 +107,7 @@ public class StreamingApp {
                 logMap.put("codeFile", s.substring(72, 92).trim());
                 logMap.put("lineNumber", s.substring(93, 96).trim());
 
-                //TODO:!!!!!BUG 日志内容不能含有逗号等
+                //TODO:!!!!!BUG 日志内容不能含有英文逗号等
                 String logsRight = s.substring(100, s.length() - 2);
                 String[] manualLogs = logsRight.split(",");
                 int ml = manualLogs.length;
@@ -325,7 +325,7 @@ public class StreamingApp {
                     public Tuple2<String, Integer> call(String s) {
                         String[] flatLogs = s.split(",");
                         String level = flatLogs[1].split(":")[1].replace("\"", "");
-                        System.out.println("=====统计的type是 " + level);
+                        System.out.println("=====统计的level是 " + level);
 
                         //错误日志入库+消息通知
                         if (level.equals("ERROR")) {
@@ -347,13 +347,23 @@ public class StreamingApp {
                             errMap.put("notes", notes);
                             errMap.put("statsRid", rid);
 
-                            //入库
+                            //异常单条日志入库
                             String postAddURL = STATS_HOST_ENDPOINT + "/logb/exp/add";
                             String postBody = MapJsonConverter.simpleMapToJsonStr(errMap);
                             CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);
                             //HttpUtil.postJson(postAddURL, postBody);
                             System.out.println("=====异常日志单条结果插入数据库完成");
                             errMap.clear();
+
+
+                            //region 发送异常socket消息
+                            Map<String, String> params = new HashMap<>();
+                            params.put("msgTag", "STREAMING_EXP_COUNTS");
+                            params.put("msgBody", "1");
+                            String targetServerURL = MSG_ROUTER_HOST_ENDPOINT + "/msg/router";
+                            // String str = HttpUtil.post(targetServerURL, params, 3000, 3000, "UTF-8");
+                            CacheThreadHelper.newThreadPostByMap(targetServerURL, params);
+                            //endregion
 
                         }
 

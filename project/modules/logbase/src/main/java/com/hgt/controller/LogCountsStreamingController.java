@@ -66,15 +66,26 @@ public class LogCountsStreamingController {
         return new DataResult<>(pageInfo);
     }
 
-    @ApiOperation(value = "计数加N", notes = "已完成")
-    @RequestMapping(value = BASE_URL + "/update/counts/{strId}/{intCount}", method = RequestMethod.GET)
-    public DataResult<SimpleStringBean> updateAddCount(@PathVariable String strId, @PathVariable int intCount) {
+    @ApiOperation(value = "日志处理量计数加N", notes = "已完成")
+    @RequestMapping(value = BASE_URL + "/update/counts/logs/{strId}/{intCount}", method = RequestMethod.GET)
+    public DataResult<SimpleStringBean> updateAddLogsCount(@PathVariable String strId, @PathVariable int intCount) {
 
         LogCountsStreaming logCountsStreaming = logCountsStreamingService.findById(strId).getData();
         logCountsStreaming.setStartTime(new Date(System.currentTimeMillis()));
         logCountsStreaming.setCounts(logCountsStreaming.getCounts() + intCount);
         logCountsStreamingMapper.updateByPrimaryKey(logCountsStreaming);
         return new DataResult<>(new SimpleStringBean("日志处理量加 " + intCount + " 成功"));
+    }
+
+    @ApiOperation(value = "异常处理量计数加N", notes = "已完成")
+    @RequestMapping(value = BASE_URL + "/update/counts/exp/{strId}/{intCount}", method = RequestMethod.GET)
+    public DataResult<SimpleStringBean> updateAddExpCount(@PathVariable String strId, @PathVariable int intCount) {
+
+        LogCountsStreaming logCountsStreaming = logCountsStreamingService.findById(strId).getData();
+        logCountsStreaming.setStartTime(new Date(System.currentTimeMillis()));
+        logCountsStreaming.setCounts(logCountsStreaming.getCounts() + intCount);
+        logCountsStreamingMapper.updateByPrimaryKey(logCountsStreaming);
+        return new DataResult<>(new SimpleStringBean("异常日志量加 " + intCount + " 成功"));
     }
 
 //    @ApiOperation(value = "计数加N", notes = "已完成")

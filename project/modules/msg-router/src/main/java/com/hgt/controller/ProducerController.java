@@ -17,7 +17,8 @@ public class ProducerController {
     public final String BASE_URL = "msg";
 
     @Autowired
-    StringProducer producer;
+    StringProducer stringProducer;
+
 
     @RequestMapping(value = BASE_URL + "/{topicName}", method = RequestMethod.POST)
     public ContentBean sendStr2All(@PathVariable String topicName, @RequestParam String msgTag, @RequestParam String msgBody) {
@@ -28,9 +29,14 @@ public class ProducerController {
 
         System.out.println("即将发送消息 参数msgTag：" + msgTag + "  ;  参数msgBody是" + msgBody);
 
-        producer.sendTo(topicName, msgBody);
+        String msgJson = "{" +
+                "\"msgTag\":\"" + msgTag + "\"," +
+                "\"msgBody\":\"" + msgBody + "\"" +
+                "}";
 
-        return new ContentBean("发送成功： " + msgBody);
+        stringProducer.sendTo(topicName, msgJson);
+
+        return new ContentBean("发送成功： " + msgJson);
 
     }
 

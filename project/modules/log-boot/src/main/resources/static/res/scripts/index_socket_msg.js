@@ -28,6 +28,17 @@ function waitingForSocketMsg() {
             });
             //endregion
 
+            //region 日志处理量更新，订阅主题log-counts-streaming
+            var topicLogCounts = "/topic/log-exp-streaming";
+            stompClient.subscribe(msgURLOrigin + topicLogCounts, function (data) {
+                var addCounts = parseInt(data.body);
+                var oldCounts = parseInt(document.getElementById("newExpCounts").innerHTML);
+                var newCounts = addCounts + oldCounts;
+                document.getElementById("newExpCounts").innerHTML = newCounts.toString();
+                // console.log("更新后的文字是" + newCounts);
+            });
+            //endregion
+
         }
     );
 

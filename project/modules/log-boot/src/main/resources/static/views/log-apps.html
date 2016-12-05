@@ -298,7 +298,7 @@
         var vAppNotes = $("#aAppNotes").val();
         var appItem = '{"appCode":"' + vAppCode + '","appDesc":"' + vAppDesc + '","appIp":"' + vAppIp + '","appName":"' + vAppName + '","appNotes":"' + vAppNotes + '","appPlatform":"' + vAppPlatform + '","laId": "' + vAppCode + '"}';
         $.ajax({
-            url: LOCAL_SERVER + "/lb/apps/add",
+            url: LOGBASE_HOST_ENDPOINT + "/logb/apps/add",
             type: "POST",
             contentType: "application/json; charset=utf-8",
             data: appItem,
@@ -324,7 +324,7 @@
      */
     function fetchAllApps() {
         $.ajax({
-            url: LOCAL_SERVER + "/lb/apps/all",
+            url: LOGBASE_HOST_ENDPOINT + "/logb/apps/all",
             type: "GET",
             async: true,
             dataType: "json",
@@ -398,7 +398,7 @@
             var vAppNotes = $("#eAppNotes").val();
             var appItem = '{"appCode":"' + vAppCode + '","appDesc":"' + vAppDesc + '","appIp":"' + vAppIp + '","appName":"' + vAppName + '","appNotes":"' + vAppNotes + '","appPlatform":"' + vAppPlatform + '","laId": "' + vAppCode + '"}';
             $.ajax({
-                url: LOCAL_SERVER + "/lb/apps/update",
+                url: LOGBASE_HOST_ENDPOINT + "/logb/apps/update",
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 data: appItem,
@@ -426,7 +426,7 @@
         //删除应用系统信息--点击事件
         $("#submitDeleteApp").click(function () {
             $.ajax({
-                url: LOCAL_SERVER + "/lb/apps/delete/id/" + rowid,
+                url: LOGBASE_HOST_ENDPOINT + "/logb/apps/delete/id/" + rowid,
                 type: "GET",
                 async: false,
                 dataType: "json",

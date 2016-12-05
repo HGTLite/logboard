@@ -17,7 +17,7 @@ function requestMsgOnce() {
         success: function (response) {
             console.log("请求成功--日志处理量 ");
             // console.log( response);
-            document.getElementById("newExpCounts").innerHTML = response.data.counts.toString();
+            document.getElementById("totalLogCounts").innerHTML = response.data.counts.toString();
         },
         error: function (response) {
             console.log("请求失败--日志处理量 " );
@@ -41,7 +41,7 @@ function requestMsgOnce() {
         success: function (response) {
             console.log("请求成功--待处理异常数量 ");
             // console.log( response);
-            document.getElementById("totalLogCounts").innerHTML = response.data.counts.toString();
+            document.getElementById("newExpCounts").innerHTML = response.data.counts.toString();
         },
         error: function (response) {
             console.log("请求失败--待处理异常数量 " );
