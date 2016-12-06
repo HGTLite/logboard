@@ -91,7 +91,7 @@ public class StreamingApp {
 
                 //region 日志处理量计数
                 System.out.println("=====原始日志是：" + s);
-                //====原始日志是：[INFO ]2016-12-05 13:31:38,236[                  com.hgt.HelloLoggerApp]    BasicLogger.java(180): {"appCode":"hello002","logType":"LOGIN","logMsg":"这是第 537 条消息！！！","logOptions":{"USER_ID":"user003","USER_IP":"61.237.32.236"}}
+                //====原始日志是：[INFO ]2016-12-05 13:31:38,236[                  com.hgt.HelloLoggerApp]    BasicLogger.java(180): {"appCode":"hello002","logType":"LOGIN","logMsg":" 这是第537 条消息！！！","logOptions":{"USER_ID":"user003","USER_IP":"61.237.32.236"}}
                 Map<String, String> params = new HashMap<>();
                 params.put("msgTag", "STREAMING_LOG_COUNTS");
                 params.put("msgBody", "1");
