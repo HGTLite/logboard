@@ -65,7 +65,7 @@
                     </button>
                 </div>
             </div>
-            <a class="display_inline" href="#search">Search</a>
+            <!--<a class="display_inline" href="#search">Search</a>-->
 
         </div>
 
@@ -88,15 +88,15 @@
     <!--/搜索头部-->
 
 
-    <!--弹出模态框-->
-    <div id="search">
-        <button type="button" class="close">×</button>
-        <form>
-            <!--<input type="search" value="" placeholder="type keyword(s) here"/>-->
-            <!--<button type="submit" class="btn btn-primary">Search</button>-->
-        </form>
-    </div>
-    <!--/弹出模态框-->
+    <!--&lt;!&ndash;弹出模态框&ndash;&gt;-->
+    <!--<div id="search">-->
+        <!--<button type="button" class="close">×</button>-->
+        <!--<form>-->
+            <!--&lt;!&ndash;<input type="search" value="" placeholder="type keyword(s) here"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button type="submit" class="btn btn-primary">Search</button>&ndash;&gt;-->
+        <!--</form>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;/弹出模态框&ndash;&gt;-->
 
     <!--最新日志列表-->
     <div id="logsList" class="">
@@ -186,19 +186,19 @@
             $('#table').bootstrapTable('scrollTo', 'bottom');
         });
 
-        ///弹出模态框控制
-        $('a[href="#search"]').on('click', function (event) {
-            event.preventDefault();
-            $('#search').addClass('open');
-            $('#search > form > input[type="search"]').focus();
-        });
-
-        $('#search, #search button.close').on('click keyup', function (event) {
-            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
-                $(this).removeClass('open');
-            }
-        });
-        ///===弹出模态框控制
+//        ///弹出模态框控制
+//        $('a[href="#search"]').on('click', function (event) {
+//            event.preventDefault();
+//            $('#search').addClass('open');
+//            $('#search > form > input[type="search"]').focus();
+//        });
+//
+//        $('#search, #search button.close').on('click keyup', function (event) {
+//            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+//                $(this).removeClass('open');
+//            }
+//        });
+//        ///===弹出模态框控制
 
     function fetchLatestLogs() {
 
