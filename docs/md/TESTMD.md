@@ -17,3 +17,5 @@
 |   nd16      | slave节点          |   192.168.100.15 |   192.168.99. 153   | CPU4+RAM8+DISK80   |  
 
 BulletChart | CumulativeLineChart | lineChart | LineChartZoom | LineWithFocusChart | LinePlusBarChart | DiscreteBarChart | HistoricalBarChart | TimeSeries | MultiBarChart | MultiBarChart2 | MultiBarHorizontalChart | MultiChart | DonutCharts | PieCharts | MonitoringCharts | ScatterChart | ScatterPlusLineChart | SparklinePlus | StackedAreaChart | parallelCoordinates | CandlestickChart | ohlcChart | sunburst | boxPlot | boxPlotCustomModel | forceDirected
+
+new push
