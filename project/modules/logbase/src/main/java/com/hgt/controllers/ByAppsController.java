@@ -29,6 +29,11 @@ public class ByAppsController {
     @Autowired
     StatsByAppMapper statsByAppMapper;
 
+    /**
+     * 输入时间起点查询1小时内，按应用统计的日志数
+     * @param strDate
+     * @return
+     */
     @RequestMapping(value = BASE_URL + "/pie/hour/{strDate}", method = RequestMethod.GET)
     public DataResult<List<AppsCodeCounts>> queryGeneralLogPieData(@PathVariable String strDate) {
         List<AppsCodeCounts> codeCountsList = new ArrayList<>();
@@ -51,7 +56,65 @@ public class ByAppsController {
 
         List<AppsCodeCounts> queryResults = statsByAppMapper.selectAllByTimePeriod(dateMap);
 
-        return new DataResult<>(queryResults);
+        //region 只显示前8个应用的日志百分比，其他应用作为一个整体显示
+        int resultSize = queryResults.size();
+
+        //设置显示的应用数
+        int primaryApp = 8;
+
+        if (resultSize > primaryApp) {
+
+            for (int n = 0; n < primaryApp; n++) {
+                codeCountsList.add(queryResults.get(n));
+            }
+
+            AppsCodeCounts other = new AppsCodeCounts();
+            other.setAppCode("其他系统");
+            int otherCounts = 0;
+            for (int i = primaryApp; i < resultSize; i++) {
+                otherCounts += Integer.parseInt(queryResults.get(i).getCounts());
+            }
+            other.setCounts(otherCounts + "");
+
+            codeCountsList.add(other);
+        } else {
+            codeCountsList = queryResults;
+        }
+        //endregion
+
+        return new DataResult<>(codeCountsList);
+
+    }
+
+
+    /**
+     * 输入时间起点查询24小时内，按小时统计的日志总数
+     * @param strDate
+     * @return
+     */
+    @RequestMapping(value = BASE_URL + "/pie/hour/{strDate}", method = RequestMethod.GET)
+    public DataResult<List<AppsCodeCounts>> queryGeneralLogTotal(@PathVariable String strDate){
+        List<AppsCodeCounts> codeCountsList = new ArrayList<>();
+        String dateInput = strDate;
+        // System.out.println(dateInput);
+        // TODO: 12/6/16 日期格式异常处理
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        HashMap<String, Object> dateMap = new HashMap<String, Object>();
+        String dateNow = simpleDateFormat.format(new Date());
+        String startTime = "";
+        if (dateInput == null || dateInput.trim().length() == 0) {
+            dateMap.put("endTime", dateNow);
+            startTime = DateHelper.operateDateByHour(dateNow, -1);
+        } else {
+            dateMap.put("endTime", strDate);
+            startTime = DateHelper.operateDateByHour(strDate, -1);
+        }
+        dateMap.put("startTime", startTime);
+
+        List<AppsCodeCounts> queryResults = statsByAppMapper.selectAllByTimePeriod(dateMap);
+
+        return new DataResult<>(codeCountsList);
 
     }
 
