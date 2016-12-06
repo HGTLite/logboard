@@ -65,6 +65,7 @@ public class StringConsumer {
     public void sendToSocketExpCounts(String strMsg) {
         //region 异常计数发送到socket
         String targetServerURL = SOCKET_HOST_ENDPOINT + "/send/log-exp-streaming";
+//        System.out.println("异常计数发送到socket成功 "+targetServerURL);
         Map params1 = new HashMap();
         params1.put("message", strMsg);
         HttpUtil.post(targetServerURL, params1, 3000, 3000, "UTF-8");

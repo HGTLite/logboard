@@ -297,6 +297,7 @@
         var vAppPlatform = $("#aAppPlatform").val();
         var vAppNotes = $("#aAppNotes").val();
         var appItem = '{"appCode":"' + vAppCode + '","appDesc":"' + vAppDesc + '","appIp":"' + vAppIp + '","appName":"' + vAppName + '","appNotes":"' + vAppNotes + '","appPlatform":"' + vAppPlatform + '","laId": "' + vAppCode + '"}';
+        console.log(appItem);
         $.ajax({
             url: LOGBASE_HOST_ENDPOINT + "/logb/apps/add",
             type: "POST",

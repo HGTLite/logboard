@@ -1,11 +1,17 @@
 package com.hgt.mapper;
 
+import com.hgt.domain.AppsCodeCounts;
 import com.hgt.entity.LogBeats;
 import com.hgt.entity.StatsByApp;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public interface StatsByAppMapper {
+
+
+    List<AppsCodeCounts> selectAllByTimePeriod(HashMap<String, Object> map);
 
     List<StatsByApp> selectAll();
 

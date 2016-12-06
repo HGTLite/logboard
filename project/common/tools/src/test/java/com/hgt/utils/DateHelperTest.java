@@ -1,6 +1,5 @@
 package com.hgt.utils;
 
-import com.hgt.utils.DateHelper;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -41,4 +40,11 @@ public class DateHelperTest {
     }
 
 
-} 
+    @Test
+    public void testOperateDateByHour() throws Exception {
+        String dataStr = DateHelper.operateDateByHour("2016-12-06 17:00:09",-1);
+        System.out.println(dataStr);
+    }
+
+
+}
