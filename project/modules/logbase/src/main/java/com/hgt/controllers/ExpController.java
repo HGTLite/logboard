@@ -4,6 +4,7 @@ import com.hgt.domain.AppsCodeCounts;
 import com.hgt.domain.DataResult;
 import com.hgt.domain.TimeCounts;
 import com.hgt.utils.DateHelper;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,11 +22,11 @@ import java.util.List;
  */
 public class ExpController {
 
-    private final String BASE_URL = "logb/by/exp";
+    private final String BASE_URL = "logb/exp";
 
-    @RequestMapping(value = BASE_URL + "/pie/hour/{strDate}", method = RequestMethod.GET)
-    public DataResult<List<TimeCounts>> queryExpCountsCurve(String strDate){
-        List<AppsCodeCounts> codeCountsList = new ArrayList<>();
+    @RequestMapping(value = BASE_URL + "/5min/{strDate}", method = RequestMethod.GET)
+    public DataResult<List<TimeCounts>> queryExpCountsCurve(@PathVariable String strDate) {
+        List<TimeCounts> codeCountsList = new ArrayList<>();
         String dateInput = strDate;
         // System.out.println(dateInput);
         // TODO: 12/6/16 日期格式异常处理
@@ -48,6 +49,4 @@ public class ExpController {
         return new DataResult<>(codeCountsList);
 
     }
-    }
-
 }
