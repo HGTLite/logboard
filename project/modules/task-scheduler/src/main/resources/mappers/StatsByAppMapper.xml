@@ -18,12 +18,7 @@
     <select id="selectAllByTimePeriod" resultType="com.hgt.domain.AppsCodeCounts" parameterType="java.util.HashMap">
         select APP_CODE as appCode,sum(LOG_COUNTS) as counts from STATS_BY_APP
         <where>
-            <!--<if test="startTime!=null and startTime!='' ">-->
-            <!--create_time>=#{startTime}-->
-            <!--</if>-->
-            <!--<if test="endTime!=null and endTime!=''">-->
-            <!--and create_time<=#{endTime}-->
-            <!--</if>-->
+
             <if test="startTime !=null and startTime !='' ">
                 <![CDATA[ and START_TIME  >=  #{startTime}  ]]>
             </if>

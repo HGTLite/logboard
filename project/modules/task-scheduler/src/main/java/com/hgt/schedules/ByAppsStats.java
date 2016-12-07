@@ -31,32 +31,32 @@ public class ByAppsStats {
     @Autowired
     StatsByApp5sMapper statsByApp5sMapper;
 
-    public void statsLogCountsByAppBy5s() {
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        HashMap<String, Object> dateMap = new HashMap<String, Object>();
-        String dateNow = simpleDateFormat.format(new Date());
-        String startTime = "";
-        dateMap.put("endTime", dateNow);
-        startTime = DateHelper.operateDatetimeByHour(dateNow, -48);
-        dateMap.put("startTime", startTime);
-        List<AppsCodeCounts> firstResult = statsByAppMapper.selectAllByTimePeriod(dateMap);
-
-        List<StatsByApp5s> list = new ArrayList<>();
-        Date insertTime = new Date();
-        String strInsertTime = simpleDateFormat.format(insertTime);
-
-        for (AppsCodeCounts item : firstResult) {
-            StatsByApp5s newItem = new StatsByApp5s();
-            newItem.setStatsRid(StatsIdBuilder.build(item.getAppCode(), strInsertTime));
-            newItem.setStartTime(insertTime);
-            newItem.setAppCode(item.getAppCode());
-            newItem.setLogCounts(Integer.parseInt(item.getCounts()));
-            list.add(newItem);
-            int result4Insert = statsByApp5sMapper.insert(newItem);
-        }
-
-
-    }
+//    public void statsLogCountsByAppBy5s() {
+//
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        HashMap<String, Object> dateMap = new HashMap<String, Object>();
+//        String dateNow = simpleDateFormat.format(new Date());
+//        String startTime = "";
+//        dateMap.put("endTime", dateNow);
+//        startTime = DateHelper.operateDatetimeByHour(dateNow, -48);
+//        dateMap.put("startTime", startTime);
+//        List<AppsCodeCounts> firstResult = statsByAppMapper.selectAllByTimePeriod(dateMap);
+//
+//        List<StatsByApp5s> list = new ArrayList<>();
+//        Date insertTime = new Date();
+//        String strInsertTime = simpleDateFormat.format(insertTime);
+//
+//        for (AppsCodeCounts item : firstResult) {
+//            StatsByApp5s newItem = new StatsByApp5s();
+//            newItem.setStatsRid(StatsIdBuilder.build(item.getAppCode(), strInsertTime));
+//            newItem.setStartTime(insertTime);
+//            newItem.setAppCode(item.getAppCode());
+//            newItem.setLogCounts(Integer.parseInt(item.getCounts()));
+//            list.add(newItem);
+//            int result4Insert = statsByApp5sMapper.insert(newItem);
+//        }
+//
+//
+//    }
 
 }

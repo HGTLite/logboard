@@ -46,10 +46,10 @@
         <!-- !!!! Table Configurations !!!! -->
 
 
-        <table tableName="exp_streaming_5s" enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false"/>
-        <table tableName="stats_by_app_5s" enableCountByExample="false" enableDeleteByExample="false"
+        <!--<table tableName="exp_streaming_5s" enableCountByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false"/>-->
+        <table tableName="msg_notify" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false"/>
 

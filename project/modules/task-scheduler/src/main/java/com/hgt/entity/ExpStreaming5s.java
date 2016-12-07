@@ -3,6 +3,7 @@ package com.hgt.entity;
 import java.util.Date;
 
 public class ExpStreaming5s {
+
     private String statsRid;
 
     private Date startTime;

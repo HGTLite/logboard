@@ -177,9 +177,6 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
-
-
-
         <!--Swagger end-->
 
         <dependency>
