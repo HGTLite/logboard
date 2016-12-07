@@ -115,7 +115,7 @@ function createLogsGeneralPie() {
 
     //**请求按应用按小时的日志分布数据
     // var dataToSend = "";
-    // var targetServerURL = LOGBASE_HOST_ENDPOINT + "/logb/schedules/1h/app/"
+    // var targetServerURL = LOGBASE_HOST_ENDPOINT + "/logb/stats/1h/app/"
     // $.ajax({
     //     url: targetServerURL,
     //     type: 'GET',

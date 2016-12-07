@@ -294,7 +294,7 @@ public class StreamingApp {
                         statsMap.put("statsRid", rid);
 
                         //入库
-                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/schedules/app/add";
+                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/app/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
                         CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);
                         //HttpUtil.postJson(postAddURL, postBody);
@@ -347,7 +347,7 @@ public class StreamingApp {
                         statsMap.put("statsRid", rid);
 
                         //入库
-                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/schedules/type/add";
+                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/type/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
                         CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);
                         //HttpUtil.postJson(postAddURL, postBody);
@@ -439,7 +439,7 @@ public class StreamingApp {
                         statsMap.put("logLevel", logLevel);
                         statsMap.put("startTime", datetime);
                         statsMap.put("statsRid", rid);
-                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/schedules/level/add";
+                        String postAddURL = STATS_HOST_ENDPOINT + "/logb/stats/level/add";
                         String postBody = MapJsonConverter.simpleMapToJsonStr(statsMap);
                         //HttpUtil.postJson(postAddURL, postBody);
                         CacheThreadHelper.newThreadPostByJson(postAddURL, postBody);

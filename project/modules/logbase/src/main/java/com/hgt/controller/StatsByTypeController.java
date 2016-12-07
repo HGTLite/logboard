@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 public class StatsByTypeController {
 
-    private final String BASE_URL = "logb/schedules/type";
+    private final String BASE_URL = "logb/stats/type";
 
     @Autowired
     StatsByTypeService statsByTypeService;

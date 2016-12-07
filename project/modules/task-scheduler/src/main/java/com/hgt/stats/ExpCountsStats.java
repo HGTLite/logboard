@@ -1,4 +1,4 @@
-package com.hgt.schedules;
+package com.hgt.stats;
 
 /**
  * README: 统计异常日志的定时任务

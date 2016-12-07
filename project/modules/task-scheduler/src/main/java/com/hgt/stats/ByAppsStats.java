@@ -1,4 +1,4 @@
-package com.hgt.schedules;
+package com.hgt.stats;
 
 import com.hgt.domain.AppsCodeCounts;
 import com.hgt.domain.SimpleStringBean;
@@ -10,6 +10,7 @@ import com.hgt.mapper.StatsByAppMapper;
 import com.hgt.tools.StatsIdBuilder;
 import com.hgt.utils.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

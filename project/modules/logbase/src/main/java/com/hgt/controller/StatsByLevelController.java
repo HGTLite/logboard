@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 public class StatsByLevelController {
 
-    private final String BASE_URL = "logb/schedules/level";
+    private final String BASE_URL = "logb/stats/level";
 
     @Autowired
     StatsByLevelService statsByLevelService;
