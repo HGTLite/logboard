@@ -102,6 +102,14 @@ function createLogsGeneralCurve() {
  */
 function createLogsGeneralPie() {
 
+    var dateNow = new Date();
+    var endTime = convertJsTimeToStr(dateNow);
+    var startTime = operateDatetimeByHour(endTime,-1);
+
+    document.getElementById("updatePieIndicator").innerHTML=startTime+"  -  "+endTime;
+
+    console.log("时间是 " + convertJsTimeToStr(new Date));
+
     //**请求按应用按小时的日志分布数据
     // var dataToSend = "";
     // var targetServerURL = LOGBASE_HOST_ENDPOINT + "/logb/stats/1h/app/"
@@ -221,7 +229,6 @@ function createLogsExpCurve() {
             .attr('class', name + ' group')
             .style('stroke', group.color)
     }
-
 
 
     function tick() {
