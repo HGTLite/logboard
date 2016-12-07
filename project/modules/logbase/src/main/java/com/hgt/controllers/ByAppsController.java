@@ -90,7 +90,7 @@ public class ByAppsController {
      * @param strDate
      * @return
      */
-    @RequestMapping(value = BASE_URL + "/pie/hour/{strDate}", method = RequestMethod.GET)
+    @RequestMapping(value = BASE_URL + "/curve/5min/{strDate}", method = RequestMethod.GET)
     public DataResult<List<AppsCodeCounts>> queryGeneralLogTotal(@PathVariable String strDate){
         List<AppsCodeCounts> codeCountsList = new ArrayList<>();
         String dateInput = strDate;
