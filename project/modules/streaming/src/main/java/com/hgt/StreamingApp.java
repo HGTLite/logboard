@@ -1,6 +1,10 @@
 package com.hgt;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import com.hgt.bean.DataResult;
+import com.hgt.bean.LogApps;
 import com.hgt.converter.MapJsonConverter;
 import com.hgt.es.common.ESAdminOperations;
 import com.hgt.es.config.ESConfig;
@@ -27,6 +31,8 @@ import scala.Tuple2;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.hgt.ip.URLBuilder.buildHttpHostEndpoint;
 
@@ -218,6 +224,44 @@ public class StreamingApp {
                         String[] flatLogs = s.split(",");
                         String appCode = flatLogs[7].split(":")[1].replace("\"", "");
                         System.out.println("=====统计的app是 " + appCode);
+
+                        //region 查询已有appCode,新则入库
+                        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+                        cachedThreadPool.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                String targetGetAllAppsURL = STATS_HOST_ENDPOINT + "/logb/apps/code/list";
+                                Map paramsMap = new HashMap();
+                                String existingAppCodes = HttpUtil.get(targetGetAllAppsURL, paramsMap, 2500, 2500, "UTF-8");
+                                ObjectMapper mapper = new ObjectMapper();
+                                DataResult result = null;
+                                try {
+                                    result = mapper.readValue(existingAppCodes, DataResult.class);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                List<String> appCodeList = (ArrayList) result.getData();
+                                if (!appCodeList.contains(appCode)) {
+                                    LogApps logApps = new LogApps();
+                                    logApps.setAppCode(appCode);
+                                    logApps.setAppName(appCode);
+                                    logApps.setLaId("appid" + appCode);
+                                    logApps.setAppNotes(flatLogs[0].split(":")[0].replace("\"", "") + flatLogs[0].split(":")[1].replace("\"", ""));
+
+                                    String targetPostNewURL = STATS_HOST_ENDPOINT + "logb/apps/add";
+                                    String postBody = "";
+                                    try {
+                                        postBody = mapper.writeValueAsString(logApps);
+                                    } catch (JsonProcessingException e) {
+                                        e.printStackTrace();
+                                    }
+                                    HttpUtil.postJson(targetPostNewURL, postBody);
+                                }
+                                appCodeList = null;
+                            }
+                        });
+                        //endregion 查询已有appCode,新则入库
+
                         return new Tuple2<>(appCode, 1);
                     }
                 })

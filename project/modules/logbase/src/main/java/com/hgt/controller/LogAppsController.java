@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +39,17 @@ public class LogAppsController {
     @RequestMapping(value = BASE_URL + "/id/{laId}", method = RequestMethod.GET)
     public DataResult<LogApps> findLogAppById(@PathVariable String laId) {
         return logAppsService.findLogAppById(laId);
+    }
+
+    @ApiOperation(value = "获取所有接入的应用名称）", notes = "已完成")
+    @RequestMapping(value = BASE_URL + "/code/list", method = RequestMethod.GET)
+    public DataResult<List<String>> findAllLogAppCodes() {
+        List<String> appCodeList = new ArrayList<>();
+        List<LogApps> appsList = logAppsService.findAllLogApps().getData();
+        for (int i = 0; i < appsList.size(); i++) {
+            appCodeList.add(appsList.get(i).getAppCode());
+        }
+        return new DataResult<>(appCodeList);
     }
 
     @ApiOperation(value = "获取所有接入的应用系统信息（不分页）", notes = "已完成")
@@ -66,8 +78,8 @@ public class LogAppsController {
     }
 
     @ApiOperation(value = "获取接入应用总数", notes = "已完成")
-    @RequestMapping(value = BASE_URL+"/counts",method = RequestMethod.GET)
-    public DataResult<SimpleStringBean> getTableCounts(){
+    @RequestMapping(value = BASE_URL + "/counts", method = RequestMethod.GET)
+    public DataResult<SimpleStringBean> getTableCounts() {
         return logAppsService.getTableCounts();
     }
 
@@ -95,8 +107,6 @@ public class LogAppsController {
     public DataResult<SimpleStringBean> updateLogApp(@RequestBody LogApps logApp) {
         return logAppsService.updateLogApp(logApp);
     }
-
-
 
 
 }

@@ -20,7 +20,7 @@ function requestMsgOnce() {
             document.getElementById("totalLogCounts").innerHTML = response.data.counts.toString();
         },
         error: function (response) {
-            console.log("请求失败--日志处理量 " );
+            console.log("请求失败--日志处理量 ");
             console.log(response)
 
         }
@@ -44,7 +44,7 @@ function requestMsgOnce() {
             document.getElementById("newExpCounts").innerHTML = response.data.counts.toString();
         },
         error: function (response) {
-            console.log("请求失败--待处理异常数量 " );
+            console.log("请求失败--待处理异常数量 ");
             console.log(response)
 
         }
@@ -68,15 +68,11 @@ function requestMsgOnce() {
             document.getElementById("totalAppsCounts").innerHTML = response.data.contents.toString();
         },
         error: function (response) {
-            console.log("请求失败--接入应用数 " + response);
-
+            console.log("请求失败--接入应用数 ");
+            console.log(response);
         }
     });
     //endregion 请求接入应用系统数
-
-
-
-
 
 
 }
