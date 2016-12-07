@@ -45,7 +45,7 @@ public class DateHelper {
      * @param delta
      * @return
      */
-    public static String operateDateByHour(String strBaseDate, int delta) {
+    public static String operateDatetimeByHour(String strBaseDate, int delta) {
         String resultStr = "";
         Date baseDate = new Date();
         Date postDate = new Date();

@@ -131,8 +131,8 @@ function createLogsGeneralPie() {
         {key: "Four", y: 7},
     ];
 
-    var height = 350;
-    var width = 350;
+    var height = 325;
+    var width = 325;
 
     nv.addGraph(function () {
         var chart1 = nv.models.pieChart()

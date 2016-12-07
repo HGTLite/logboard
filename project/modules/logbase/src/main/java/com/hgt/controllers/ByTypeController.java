@@ -48,10 +48,10 @@
 //        String startTime = "";
 //        if (dateInput == null || dateInput.trim().length() == 0) {
 //            dateMap.put("endTime", dateNow);
-//            startTime = DateHelper.operateDateByHour(dateNow, -1);
+//            startTime = DateHelper.operateDatetimeByHour(dateNow, -1);
 //        } else {
 //            dateMap.put("endTime", strDate);
-//            startTime = DateHelper.operateDateByHour(strDate, -1);
+//            startTime = DateHelper.operateDatetimeByHour(strDate, -1);
 //        }
 //        dateMap.put("startTime", startTime);
 //
@@ -106,10 +106,10 @@
 //        String startTime = "";
 //        if (dateInput == null || dateInput.trim().length() == 0) {
 //            dateMap.put("endTime", dateNow);
-//            startTime = DateHelper.operateDateByHour(dateNow, -1);
+//            startTime = DateHelper.operateDatetimeByHour(dateNow, -1);
 //        } else {
 //            dateMap.put("endTime", strDate);
-//            startTime = DateHelper.operateDateByHour(strDate, -1);
+//            startTime = DateHelper.operateDatetimeByHour(strDate, -1);
 //        }
 //        dateMap.put("startTime", startTime);
 //

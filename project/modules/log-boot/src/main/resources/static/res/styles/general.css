@@ -223,6 +223,15 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
     height: 48%;
 }
 
+
+._height_325 {
+    height: 325px;
+}
+
+._height_350 {
+    height: 350px;
+}
+
 ._height_480 {
     height: 480px;
 }
