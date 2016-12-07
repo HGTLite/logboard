@@ -42,6 +42,7 @@
         <module name="msg-producer" />
         <module name="msg-router" />
         <module name="notify" />
+        <module name="quartz-task" />
         <module name="streaming" />
         <module name="task-scheduler" />
         <module name="tools" />
@@ -68,6 +69,7 @@
       <module name="msg-producer" target="1.8" />
       <module name="msg-router" target="1.8" />
       <module name="project" target="1.8" />
+      <module name="quartz-task" target="1.8" />
       <module name="streaming" target="1.8" />
       <module name="task-scheduler" target="1.8" />
       <module name="tests" target="1.8" />

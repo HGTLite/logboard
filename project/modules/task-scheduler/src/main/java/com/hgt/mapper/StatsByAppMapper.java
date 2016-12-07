@@ -1,6 +1,7 @@
 package com.hgt.mapper;
 
 import com.hgt.domain.AppsCodeCounts;
+import com.hgt.domain.SimpleStringBean;
 import com.hgt.entity.StatsByApp;
 
 import java.util.HashMap;
@@ -10,7 +11,10 @@ public interface StatsByAppMapper {
 
 
     //与logbase相比，对查询结果顺序有改动
-    List<AppsCodeCounts> selectAllByTimePeriod(HashMap<String, Object> map);
+    List<AppsCodeCounts> selectAppCountsByTimePeriod(HashMap<String, Object> map);
+
+
+     SimpleStringBean selectTotalCountsByTimePeriod(HashMap<String, Object> map);
 
     List<StatsByApp> selectAll();
 

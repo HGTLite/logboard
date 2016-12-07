@@ -20,6 +20,7 @@
         <module>kafka-general-consumer</module>
         <module>hello-logger</module>
         <module>msg-producer</module>
+        <module>quartz-task</module>
     </modules>
 
     <properties>

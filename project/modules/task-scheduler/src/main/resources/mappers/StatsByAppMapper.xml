@@ -15,7 +15,7 @@
     select * from STATS_BY_APP
   </select>
 
-    <select id="selectAllByTimePeriod" resultType="com.hgt.domain.AppsCodeCounts" parameterType="java.util.HashMap">
+    <select id="selectAppCountsByTimePeriod" resultType="com.hgt.domain.AppsCodeCounts" parameterType="java.util.HashMap">
         select APP_CODE as appCode,sum(LOG_COUNTS) as counts from STATS_BY_APP
         <where>
 
@@ -30,6 +30,21 @@
         group by APP_CODE order by APP_CODE
 
     </select>
+
+    <select id="selectTotalCountsByTimePeriod" resultType="com.hgt.domain.SimpleStringBean">
+        select  sum(LOG_COUNTS) as contents from STATS_BY_APP
+
+        <where>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[ and START_TIME  >=  #{startTime}  ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' ">
+                <![CDATA[ and START_TIME <=  #{endTime}  ]]>
+            </if>
+        </where>
+
+    </select>
+
 
     <!--/=============================================================================================-->
 

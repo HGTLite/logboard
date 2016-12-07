@@ -24,6 +24,7 @@
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/msg-producer/msg-producer.iml" filepath="$PROJECT_DIR$/project/common/tests/msg-producer/msg-producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/msg-router/msg-router.iml" filepath="$PROJECT_DIR$/project/modules/msg-router/msg-router.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/project.iml" filepath="$PROJECT_DIR$/project/project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/common/tests/quartz-task/quartz-task.iml" filepath="$PROJECT_DIR$/project/common/tests/quartz-task/quartz-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/streaming/streaming.iml" filepath="$PROJECT_DIR$/project/modules/streaming/streaming.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/modules/task-scheduler/task-scheduler.iml" filepath="$PROJECT_DIR$/project/modules/task-scheduler/task-scheduler.iml" />
       <module fileurl="file://$PROJECT_DIR$/project/common/tests/tests.iml" filepath="$PROJECT_DIR$/project/common/tests/tests.iml" />
