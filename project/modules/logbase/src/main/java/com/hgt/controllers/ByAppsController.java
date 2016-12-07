@@ -30,7 +30,7 @@ public class ByAppsController {
     StatsByAppMapper statsByAppMapper;
 
     /**
-     * 输入时间起点查询1小时内，按应用统计的日志数
+     * 查询输入时间起点1小时内，按应用统计的日志数
      * @param strDate
      * @return
      */
