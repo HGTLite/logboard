@@ -21,6 +21,9 @@ function createLogsGeneralCurve() {
         }
     };
 
+    // console.log("制图的数据是");
+    // console.log(groups.current.data);
+
     var x = d3.time.scale()
         .domain([now - (limit - 2), now - duration])
         .range([0, width]);
@@ -102,17 +105,17 @@ function createLogsGeneralCurve() {
  */
 function createLogsGeneralPie() {
 
+    //region 设置统计时间
     var dateNow = new Date();
     var endTime = convertJsTimeToStr(dateNow);
     var startTime = operateDatetimeByHour(endTime,-1);
-
     document.getElementById("updatePieIndicator").innerHTML=startTime+"  -  "+endTime;
+    //endregion
 
-    console.log("时间是 " + convertJsTimeToStr(new Date));
 
     //**请求按应用按小时的日志分布数据
     // var dataToSend = "";
-    // var targetServerURL = LOGBASE_HOST_ENDPOINT + "/logb/stats/1h/app/"
+    // var targetServerURL = LOGBASE_HOST_ENDPOINT + "/logb/schedules/1h/app/"
     // $.ajax({
     //     url: targetServerURL,
     //     type: 'GET',
@@ -180,7 +183,7 @@ function createLogsExpCurve() {
         now = new Date(Date.now() - duration)
 
     var width = 1080,
-        height = 240;
+        height = 280;
 
     //**配置数据
     var groups = {

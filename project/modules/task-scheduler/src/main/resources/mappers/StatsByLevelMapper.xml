@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hgt.mapper.StatsByLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.hgt.entity.StatsByLevel" >
+    <id column="STATS_RID" property="statsRid" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="LOG_LEVEL" property="logLevel" jdbcType="VARCHAR" />
+    <result column="LOG_COUNTS" property="logCounts" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    STATS_RID, START_TIME, LOG_LEVEL, LOG_COUNTS
+  </sql>
+  <!--=============================================================================================-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from STATS_BY_LEVEL
+  </select>
+
+  <!--/=============================================================================================-->
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from STATS_BY_LEVEL
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from STATS_BY_LEVEL
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hgt.entity.StatsByLevel" >
+    insert into STATS_BY_LEVEL (STATS_RID, START_TIME, LOG_LEVEL, 
+      LOG_COUNTS)
+    values (#{statsRid,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{logLevel,jdbcType=VARCHAR}, 
+      #{logCounts,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hgt.entity.StatsByLevel" >
+    insert into STATS_BY_LEVEL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="statsRid != null" >
+        STATS_RID,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="logLevel != null" >
+        LOG_LEVEL,
+      </if>
+      <if test="logCounts != null" >
+        LOG_COUNTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="statsRid != null" >
+        #{statsRid,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logLevel != null" >
+        #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logCounts != null" >
+        #{logCounts,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.StatsByLevel" >
+    update STATS_BY_LEVEL
+    <set >
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logLevel != null" >
+        LOG_LEVEL = #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="logCounts != null" >
+        LOG_COUNTS = #{logCounts,jdbcType=INTEGER},
+      </if>
+    </set>
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hgt.entity.StatsByLevel" >
+    update STATS_BY_LEVEL
+    set START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      LOG_LEVEL = #{logLevel,jdbcType=VARCHAR},
+      LOG_COUNTS = #{logCounts,jdbcType=INTEGER}
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </update>
+</mapper>

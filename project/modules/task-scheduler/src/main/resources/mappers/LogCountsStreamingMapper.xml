@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hgt.mapper.LogCountsStreamingMapper">
+    <resultMap id="BaseResultMap" type="com.hgt.entity.LogCountsStreaming">
+        <id column="STATS_RID" property="statsRid" jdbcType="VARCHAR"/>
+        <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="COUNTS" property="counts" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    STATS_RID, START_TIME, COUNTS
+  </sql>
+    <!--=================================================================================================-->
+
+    <select id="selectAll" resultMap="BaseResultMap">
+    select * from LOG_COUNTS_STREAMING
+    </select>
+
+    <!--<update id="updateAddCount">-->
+    <!--update LOG_COUNTS_STREAMING-->
+    <!--set   COUNTS = COUNTS + #{intCount,jdbcType=Integer}-->
+    <!--where STATS_RID = #{strId,jdbcType=VARCHAR}-->
+    <!--</update>-->
+
+    <update id="updateAddCount" parameterType="java.lang.Integer">
+    update LOG_COUNTS_STREAMING
+    set   COUNTS = COUNTS + #{intCount}
+    where STATS_RID = "logCountStreaming"
+    </update>
+
+    <!--/=================================================================================================-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from LOG_COUNTS_STREAMING
+        where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from LOG_COUNTS_STREAMING
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hgt.entity.LogCountsStreaming">
+    insert into LOG_COUNTS_STREAMING (STATS_RID, START_TIME, COUNTS
+      )
+    values (#{statsRid,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{counts,jdbcType=BIGINT}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.hgt.entity.LogCountsStreaming">
+        insert into LOG_COUNTS_STREAMING
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="statsRid != null">
+                STATS_RID,
+            </if>
+            <if test="startTime != null">
+                START_TIME,
+            </if>
+            <if test="counts != null">
+                COUNTS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="statsRid != null">
+                #{statsRid,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="counts != null">
+                #{counts,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.LogCountsStreaming">
+        update LOG_COUNTS_STREAMING
+        <set>
+            <if test="startTime != null">
+                START_TIME = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="counts != null">
+                COUNTS = #{counts,jdbcType=BIGINT},
+            </if>
+        </set>
+        where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hgt.entity.LogCountsStreaming">
+    update LOG_COUNTS_STREAMING
+    set START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      COUNTS = #{counts,jdbcType=BIGINT}
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </update>
+</mapper>

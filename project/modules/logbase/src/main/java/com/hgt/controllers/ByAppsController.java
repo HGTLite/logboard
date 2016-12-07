@@ -86,7 +86,7 @@ public class ByAppsController {
 
 
     /**
-     * 输入时间起点查询24小时内，按小时统计的日志总数
+     * 输入时间起点查询5分钟内，按30s统计的日志总数
      * @param strDate
      * @return
      */

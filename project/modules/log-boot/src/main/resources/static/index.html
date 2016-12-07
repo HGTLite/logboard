@@ -88,7 +88,8 @@
         <div class="col-sm-4 ">
             <div style="margin-top: 18%">
                 <i class="fa fa-cubes fa-2x"></i>
-                <div id="totalAppsCounts" class="stats_count_number " onclick="window.open('views/log_apps.html')">12</div>
+                <div id="totalAppsCounts" class="stats_count_number " onclick="window.open('views/log_apps.html')">12
+                </div>
                 <div class="stats_count_desc">
                     <button class="btn bg_transparent _no_border" onclick="window.open('views/log-apps.html')"> 接入应用数
                     </button>
@@ -186,12 +187,12 @@
 
     <!--曲线图标题部分-->
     <div id="expLogsHeader" class="row blank_divider70 ">
-        <div class="col-sm-2 _text_align_center">
+        <div class="col-sm-4 _text_align_center">
         </div>
-        <div class="col-sm-3 _text_align_center">
+        <div class="col-sm-2 _text_align_center">
             <span class="h3">异常日志监控</span>
         </div>
-        <div class="col-sm-7 _text_align_center">
+        <div class="col-sm-6 _text_align_right">
             <span class="align_right ">
                 <a id="a01" href="javascript:void(0)" class="btn btn-info">近1小时</a>
                 <a id="a02" href="javascript:void(0)" class="btn text-muted ">24小时</a>
@@ -201,18 +202,16 @@
             </span>
         </div>
     </div>
+    <div class="blank_divider20"></div>
 
     <!--异常曲线-->
     <div id="expLogsCurve" class="row ">
         <div class="col-sm-1">
-
         </div>
         <div class="col-sm-10">
-            <div id="svgLogsExp">
-            </div>
+            <div id="svgLogsExp"></div>
         </div>
         <div class="col-sm-1">
-
         </div>
 
     </div>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hgt.mapper.LogBeatsMapper" >
+  <resultMap id="BaseResultMap" type="com.hgt.entity.LogBeats" >
+    <id column="BEAT_ID" property="beatId" jdbcType="VARCHAR" />
+    <result column="BEAT_TIME" property="beatTime" jdbcType="TIMESTAMP" />
+    <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+    <result column="BEAT_MSG" property="beatMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BEAT_ID, BEAT_TIME, APP_CODE, BEAT_MSG
+  </sql>
+  <!--=============================================================================================-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from LOG_BEATS
+  </select>
+
+  <!--/=============================================================================================-->
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LOG_BEATS
+    where BEAT_ID = #{beatId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LOG_BEATS
+    where BEAT_ID = #{beatId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hgt.entity.LogBeats" >
+    insert into LOG_BEATS (BEAT_ID, BEAT_TIME, APP_CODE, 
+      BEAT_MSG)
+    values (#{beatId,jdbcType=VARCHAR}, #{beatTime,jdbcType=TIMESTAMP}, #{appCode,jdbcType=VARCHAR}, 
+      #{beatMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hgt.entity.LogBeats" >
+    insert into LOG_BEATS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="beatId != null" >
+        BEAT_ID,
+      </if>
+      <if test="beatTime != null" >
+        BEAT_TIME,
+      </if>
+      <if test="appCode != null" >
+        APP_CODE,
+      </if>
+      <if test="beatMsg != null" >
+        BEAT_MSG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="beatId != null" >
+        #{beatId,jdbcType=VARCHAR},
+      </if>
+      <if test="beatTime != null" >
+        #{beatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appCode != null" >
+        #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="beatMsg != null" >
+        #{beatMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.LogBeats" >
+    update LOG_BEATS
+    <set >
+      <if test="beatTime != null" >
+        BEAT_TIME = #{beatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appCode != null" >
+        APP_CODE = #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="beatMsg != null" >
+        BEAT_MSG = #{beatMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BEAT_ID = #{beatId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hgt.entity.LogBeats" >
+    update LOG_BEATS
+    set BEAT_TIME = #{beatTime,jdbcType=TIMESTAMP},
+      APP_CODE = #{appCode,jdbcType=VARCHAR},
+      BEAT_MSG = #{beatMsg,jdbcType=VARCHAR}
+    where BEAT_ID = #{beatId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -131,8 +131,8 @@ function convertStrToJsTime(timeStr) {
 function operateDatetimeByHour(strBaseDate, delta) {
 
     var baseDate = convertStrToJsTime(strBaseDate);
-    console.log("转换后的baseDate：");
-    console.log(baseDate);
+    // console.log("转换后的baseDate：");
+    // console.log(baseDate);
     var postDate=new Date();
      postDate.setTime(baseDate.getTime() + delta * 60 * 60 * 1000);
     return convertJsTimeToStr(postDate);

@@ -20,7 +20,7 @@
         </commentGenerator>
 
         <!-- !!!! Database Configurations !!!! -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.99.253:3306/logbase"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.100.3:3306/logbase"
                         userId="root" password="admin"/>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -44,6 +44,7 @@
         </javaClientGenerator>
 
         <!-- !!!! Table Configurations !!!! -->
+
 
         <table tableName="exp_streaming_5s" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
