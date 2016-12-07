@@ -32,7 +32,7 @@
             </if>
         </where>
 
-        group by APP_CODE order by counts desc
+        group by APP_CODE order by APP_CODE
 
     </select>
 

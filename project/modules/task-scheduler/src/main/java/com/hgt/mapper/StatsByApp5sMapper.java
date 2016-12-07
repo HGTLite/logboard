@@ -3,6 +3,7 @@ package com.hgt.mapper;
 import com.hgt.entity.StatsByApp5s;
 
 public interface StatsByApp5sMapper {
+
     int deleteByPrimaryKey(String statsRid);
 
     int insert(StatsByApp5s record);
@@ -14,4 +15,5 @@ public interface StatsByApp5sMapper {
     int updateByPrimaryKeySelective(StatsByApp5s record);
 
     int updateByPrimaryKey(StatsByApp5s record);
+
 }

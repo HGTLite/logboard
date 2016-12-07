@@ -10,7 +10,6 @@ import java.util.Objects;
 
 public interface StatsByAppMapper {
 
-
     List<AppsCodeCounts> selectAllByTimePeriod(HashMap<String, Object> map);
 
     List<StatsByApp> selectAll();
