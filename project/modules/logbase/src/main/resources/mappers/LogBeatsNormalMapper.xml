@@ -10,6 +10,13 @@
   <sql id="Base_Column_List" >
     BEAT_ID, BEAT_TIME, APP_CODE, BEAT_MSG
   </sql>
+  <!--=============================================================================================-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from log_beats_normal
+  </select>
+
+  <!--/=============================================================================================-->
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

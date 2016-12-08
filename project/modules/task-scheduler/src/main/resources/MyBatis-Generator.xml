@@ -49,9 +49,9 @@
         <!--<table tableName="exp_streaming_5s" enableCountByExample="false" enableDeleteByExample="false"-->
         <!--enableSelectByExample="false"-->
         <!--enableUpdateByExample="false"/>-->
-        <table tableName="log_beats_normal" enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false"/>
+        <!--<table tableName="log_beats_normal" enableCountByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false"/>-->
 
         <table tableName="log_beats_lost" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"

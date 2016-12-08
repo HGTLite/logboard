@@ -2,7 +2,12 @@ package com.hgt.mapper;
 
 import com.hgt.entity.LogBeatsLost;
 
+import java.util.List;
+
 public interface LogBeatsLostMapper {
+
+    List<LogBeatsLost> selectAll();
+
     int deleteByPrimaryKey(String beatId);
 
     int insert(LogBeatsLost record);

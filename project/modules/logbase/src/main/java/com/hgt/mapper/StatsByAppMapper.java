@@ -1,7 +1,6 @@
 package com.hgt.mapper;
 
 import com.hgt.domain.AppsCodeCounts;
-import com.hgt.entity.LogBeats;
 import com.hgt.entity.StatsByApp;
 
 import java.util.HashMap;

@@ -2,7 +2,12 @@ package com.hgt.mapper;
 
 import com.hgt.entity.LogBeatsNormal;
 
+import java.util.List;
+
 public interface LogBeatsNormalMapper {
+
+    List<LogBeatsNormal> selectAll();
+
     int deleteByPrimaryKey(String beatId);
 
     int insert(LogBeatsNormal record);

@@ -4,9 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hgt.domain.DataResult;
 import com.hgt.domain.SimpleStringBean;
-import com.hgt.entity.LogBeats;
-import com.hgt.mapper.LogBeatsMapper;
-import com.hgt.service.LogBeatsService;
+import com.hgt.entity.LogBeatsLost;
+import com.hgt.mapper.LogBeatsLostMapper;
+import com.hgt.service.LogBeatsLostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -22,28 +22,28 @@ import java.util.List;
  * =============================================================================
  * CHANGELOG:
  */
-@Api(value = "心跳信息 val", description = "关于心跳信息操作的接口")
+@Api(value = "心跳丢失信息 val", description = "关于心跳丢失信息操作的接口")
 @RestController
-public class LogBeatsController {
+public class LogBeatsLostController {
 
-    private final String BASE_URL = "logb/beats";
-
-    @Autowired
-    LogBeatsService logBeatsService;
+    private final String BASE_URL = "logb/beats/lost";
 
     @Autowired
-    LogBeatsMapper logBeatsMapper;
+    LogBeatsLostService logBeatsLostService;
+
+    @Autowired
+    LogBeatsLostMapper logBeatsLostMapper;
 
     @ApiOperation(value = "根据行id获取单条信息", notes = "已完成")
     @RequestMapping(value = BASE_URL + "/rid/{strId}", method = RequestMethod.GET)
-    public DataResult<LogBeats> findById(@PathVariable String strId) {
-        return logBeatsService.findById(strId);
+    public DataResult<LogBeatsLost> findById(@PathVariable String strId) {
+        return logBeatsLostService.findById(strId);
     }
 
     @ApiOperation(value = "获取所有记录（不分页）", notes = "已完成")
     @RequestMapping(value = BASE_URL + "/all", method = RequestMethod.GET)
-    public DataResult<List<LogBeats>> findAll() {
-        return logBeatsService.findAll();
+    public DataResult<List<LogBeatsLost>> findAll() {
+        return logBeatsLostService.findAll();
     }
 
     @ApiOperation(value = "获取所有记录（分页）", notes = "已完成")
@@ -59,7 +59,7 @@ public class LogBeatsController {
         if (pageNum != null && pageSize != null) {
             PageHelper.startPage(pageNum, pageSize);
         }
-        List<LogBeats> list = logBeatsMapper.selectAll();
+        List<LogBeatsLost> list = logBeatsLostMapper.selectAll();
         PageInfo pageInfo = new PageInfo(list);
         return new DataResult<>(pageInfo);
     }
@@ -67,21 +67,21 @@ public class LogBeatsController {
     @ApiOperation(value = "根据行id删除单条信息", notes = "已完成")
     @RequestMapping(value = BASE_URL + "/delete/id/{strId}", method = RequestMethod.GET)
     public DataResult<SimpleStringBean> deleteById(@PathVariable String strId) {
-        return logBeatsService.deleteById(strId);
+        return logBeatsLostService.deleteById(strId);
     }
 
 
     @ApiOperation(value = "插入新记录", notes = "已完成")
     @RequestMapping(value = BASE_URL + "/add", method = RequestMethod.POST)
-    public DataResult<SimpleStringBean> add(@RequestBody LogBeats logBeats) {
-        return logBeatsService.add(logBeats);
+    public DataResult<SimpleStringBean> add(@RequestBody LogBeatsLost logBeatsLost) {
+        return logBeatsLostService.add(logBeatsLost);
     }
 
 
     @ApiOperation(value = "更新记录", notes = "已完成")
     @RequestMapping(value = BASE_URL + "/update", method = RequestMethod.POST)
-    public DataResult<SimpleStringBean> update(@RequestBody LogBeats logBeats) {
-        return logBeatsService.update(logBeats);
+    public DataResult<SimpleStringBean> update(@RequestBody LogBeatsLost logBeatsLost) {
+        return logBeatsLostService.update(logBeatsLost);
     }
 
 }

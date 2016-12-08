@@ -3,6 +3,7 @@ package com.hgt.entity;
 import java.util.Date;
 
 public class LogBeatsNormal {
+
     private String beatId;
 
     private Date beatTime;
