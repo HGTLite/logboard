@@ -41,6 +41,13 @@ public class LogAppsController {
         return logAppsService.findLogAppById(laId);
     }
 
+//    @ApiOperation(value = "根据appCode获取应用名", notes = "未完成")
+//    @RequestMapping(value = BASE_URL + "/id/{laId}", method = RequestMethod.GET)
+//    public DataResult<LogApps> findLogAppById(@PathVariable String laId) {
+//        return logAppsService.findLogAppById(laId);
+//    }
+
+
     @ApiOperation(value = "获取所有接入的应用名称）", notes = "已完成")
     @RequestMapping(value = BASE_URL + "/code/list", method = RequestMethod.GET)
     public DataResult<List<String>> findAllLogAppCodes() {

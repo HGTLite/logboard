@@ -18,7 +18,7 @@ public class TESTBasicController {
     private BasicLogger logger;
 
     public TESTBasicController() {
-        logger = new BasicLogger(TESTBasicController.class, "hello002");
+        logger = new BasicLogger(TESTBasicController.class, "hello001");
     }
 
     @RequestMapping("/")

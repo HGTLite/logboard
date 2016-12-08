@@ -9,8 +9,8 @@
         <result column="LOG_ID" property="logId" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    STATS_RID, NOTES, APP_CODE, LOG_TIME, LOG_ID
-  </sql>
+        STATS_RID, NOTES, APP_CODE, LOG_TIME, LOG_ID
+    </sql>
     <!--=============================================================================================-->
 
     <select id="selectAll" resultMap="BaseResultMap">
@@ -18,19 +18,16 @@
   </select>
 
     <select id="selectExpCountsByTimePeriod" resultType="com.hgt.domain.AppsCodeCounts" parameterType="java.util.HashMap">
-        select APP_CODE as appCode,sum(*) as counts from EXP_STREAMING
+        select APP_CODE as appCode, count(*) as counts from EXP_STREAMING
         <where>
-
-            <if test="startTime !=null   ">
+            <if test="startTime !=nul">
                 <![CDATA[ and LOG_TIME  >=  #{startTime}  ]]>
             </if>
-            <if test="endTime !=null   ">
-                <![CDATA[ and LOG_TIME <=  #{endTime}  ]]>
+            <if test="endTime !=null">
+                <![CDATA[ and LOG_TIME <  #{endTime}  ]]>
             </if>
         </where>
-
         group by APP_CODE order by APP_CODE
-
     </select>
 
     <select id="selectTotalCountsByTimePeriod" resultType="com.hgt.domain.SimpleStringBean">

@@ -50,8 +50,8 @@ public class ByTypeStats {
 
         dateMap.put("endTime", insertTime);
         //设置查询时间为最新5s
-        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
-        //startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
+//        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
+        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -10);
         dateMap.put("startTime", startTime);
 
         //region 统计5s内的某一类型日志总数，并入库
@@ -62,6 +62,7 @@ public class ByTypeStats {
             newItem.setStatsRid(StatsIdBuilder.build(item.getLogType(), strInsertTime));
             newItem.setStartTime(insertTime);
             newItem.setLogType(item.getLogType());
+
             newItem.setLogCounts(Integer.parseInt(item.getCounts()));
             int result4Insert = statsByType5sMapper.insert(newItem);
         }

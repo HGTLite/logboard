@@ -34,7 +34,6 @@ public class ByAppsController {
     @Autowired
     StatsByApp5sTotalMapper statsByApp5sTotalMapper;
 
-
     /**
      * 查询输入时间起点1小时内，按应用统计的日志数
      *

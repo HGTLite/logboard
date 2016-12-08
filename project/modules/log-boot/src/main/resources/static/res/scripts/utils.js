@@ -138,3 +138,17 @@ function operateDatetimeByHour(strBaseDate, delta) {
     return convertJsTimeToStr(postDate);
 
 }
+/**
+ * 判断对象为空的方法
+ * @param obj
+ * @returns {boolean}
+ */
+function isEmpty(obj)
+{
+    for (var name
+        in obj)
+    {
+        return false;
+    }
+    return true;
+};

@@ -29,18 +29,18 @@ public class HelloLoggerApp {
 
             @Override
             public void run() {
-                StandardLogger logger = new StandardLogger(HelloLoggerApp.class, "hello002");
+                StandardLogger logger = new StandardLogger(HelloLoggerApp.class, "hello001");
                 logger.logType(LogType.LOGIN).logLevel(LogLevels.DEBUG);
                 if (ii % 5 == 0) {
-                    logger.options(LogOptions.USER_ID, "user001").options(LogOptions.USER_IP, getRandomIp());
+                    logger.options(LogOptions.USER_ID, "user004").options(LogOptions.USER_IP, getRandomIp());
                     logger.e("delay 5 seconds 首次延迟5s执行 and excute every 4 seconds 每次间隔4s执行", new Exception());
                     ii++;
                 } else if (ii % 7 == 0) {
-                    logger.options(LogOptions.USER_ID, "user002").options(LogOptions.USER_IP, getRandomIp());
+                    logger.options(LogOptions.USER_ID, "user005").options(LogOptions.USER_IP, getRandomIp());
                     logger.w("这是第 " + ii + " 条消息！！！, 7的倍数");
                     ii++;
                 } else {
-                    logger.options(LogOptions.USER_ID, "user003").options(LogOptions.USER_IP, getRandomIp());
+                    logger.options(LogOptions.USER_ID, "user006").options(LogOptions.USER_IP, getRandomIp());
                     logger.i("这是第 " + ii + " 条消息！！！");
                     ii++;
                 }

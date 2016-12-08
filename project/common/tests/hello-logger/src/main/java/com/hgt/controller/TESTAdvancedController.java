@@ -21,7 +21,7 @@ public class TESTAdvancedController {
     private StandardLogger logger;
 
     public TESTAdvancedController() {
-        logger = new StandardLogger(TESTAdvancedController.class, "hello002");
+        logger = new StandardLogger(TESTAdvancedController.class, "hello001");
     }
 
     @RequestMapping("/v")

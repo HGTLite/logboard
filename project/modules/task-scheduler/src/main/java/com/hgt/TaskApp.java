@@ -1,10 +1,6 @@
 package com.hgt;
 
-
 import com.hgt.heartbeat.HeartBeatServer;
-import com.hgt.ip.URLBuilder;
-import com.hgt.msg.HttpUtil;
-import com.hgt.utils.CacheThreadHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +8,6 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.util.HashMap;
-import java.util.Map;
-
 
 @SpringBootApplication
 public class TaskApp {

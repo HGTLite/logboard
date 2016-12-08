@@ -9,6 +9,7 @@ package com.hgt.domain;
 public class AppsCodeCounts {
 
     String appCode;
+
     String counts;
 
     public String getAppCode() {

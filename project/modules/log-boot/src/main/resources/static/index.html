@@ -443,8 +443,8 @@
 <script type="text/javascript" src="res/scripts/js/nv.d3.js"></script>
 <script type="text/javascript" src="res/scripts/js/leaflet-1.0.0rc3.js"></script>
 <script type="text/javascript" src="res/scripts/url.js"></script>
-<script type="text/javascript" src="res/scripts/logscharts.js"></script>
 <script type="text/javascript" src="res/scripts/utils.js"></script>
+<script type="text/javascript" src="res/scripts/logscharts.js"></script>
 <script type="text/javascript" src="res/scripts/ipviews.js"></script>
 <script type="text/javascript" src="res/scripts/index_msg_socket.js"></script>
 <script type="text/javascript" src="res/scripts/index_msg_once.js"></script>
@@ -455,17 +455,6 @@
 
     (function () {
 
-        //绘制日志饼状图
-        createLogsGeneralPie();
-
-        //绘制实时日志概览曲线
-        createLogsGeneralCurve();
-        //绘制异常日志曲线
-        createLogsExpCurve();
-        //绘制日志分类聚簇图
-        createLogsStatsForces();
-        //绘制IP访客分布图
-        createIPGeoViews();
 
         //每次载入只更新一次的请求
         requestMsgOnce();
@@ -474,6 +463,19 @@
         waitingForSocketMsg();
 
     })();
+
+    //绘制日志饼状图
+    //        createLogsGeneralPie();
+
+    //绘制实时日志概览曲线
+    createLogsGeneralCurve();
+    //绘制异常日志曲线
+    createLogsExpCurve();
+    //绘制日志分类聚簇图
+    createLogsStatsForces();
+    //绘制IP访客分布图
+    createIPGeoViews();
+
 
 </script>
 </body>

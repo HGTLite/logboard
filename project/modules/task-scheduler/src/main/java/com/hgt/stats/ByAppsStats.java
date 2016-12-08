@@ -53,14 +53,14 @@ public class ByAppsStats {
         String startTime = "";
         dateMap.put("endTime", strInsertTime);
         //设置查询时间为最新5s
-        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
-//        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
+//        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
+        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
         dateMap.put("startTime", startTime);
 
 
         //region 按应用统计5s内的日志数，并入库
         List<AppsCodeCounts> firstResult = statsByAppMapper.selectAppCountsByTimePeriod(dateMap);
-//        System.out.println("成功得到 " + firstResult.size() + " 条结果");
+//        System.out.println("成功得到 " + firstResult.size() + " 条结果 ");
 
         for (AppsCodeCounts item : firstResult) {
             StatsByApp5s newItem = new StatsByApp5s();
@@ -78,7 +78,14 @@ public class ByAppsStats {
         StatsByApp5sTotal statsByApp5sTotal = new StatsByApp5sTotal();
         statsByApp5sTotal.setStatsRid(StatsIdBuilder.build("TOTAL", strInsertTime));
         statsByApp5sTotal.setStartTime(insertTime);
-        statsByApp5sTotal.setLogCounts(Integer.parseInt(thisTotalCount.getContents()));
+        //5s内的日志总数
+        int count;
+        if (thisTotalCount == null) {
+            count = 0;
+        } else {
+            count = Integer.parseInt(thisTotalCount.getContents());
+        }
+        statsByApp5sTotal.setLogCounts(count);
         int result4InsertTotal = statsByApp5sTotalMapper.insert(statsByApp5sTotal);
         //endregion 统计5s内的日志总数，并入库
 

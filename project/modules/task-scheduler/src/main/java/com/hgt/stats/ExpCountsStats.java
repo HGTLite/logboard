@@ -53,8 +53,8 @@ public class ExpCountsStats {
 
         dateMap.put("endTime", insertTime);
         //设置查询时间为最新5s
-        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
-        //startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
+//        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
+        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
         dateMap.put("startTime", startTime);
 
         //region 按应用统计5s内的异常数，并入库
@@ -77,7 +77,15 @@ public class ExpCountsStats {
         ExpStreaming5sTotal expStreaming5sTotal = new ExpStreaming5sTotal();
         expStreaming5sTotal.setStatsRid(StatsIdBuilder.build("TOTAL", strInsertTime));
         expStreaming5sTotal.setStartTime(insertTime);
-        expStreaming5sTotal.setLogCounts(Integer.parseInt(thisTotalCount.getContents()));
+        //5s内的日志总数
+        int count;
+        if (thisTotalCount == null) {
+            count = 0;
+        } else {
+            count = Integer.parseInt(thisTotalCount.getContents());
+        }
+        expStreaming5sTotal.setLogCounts(count);
+
         int result4InsertTotal = expStreaming5sTotalMapper.insert(expStreaming5sTotal);
         //endregion 统计5s内的异常日志总数，并入库
 
