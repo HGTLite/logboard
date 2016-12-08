@@ -24,7 +24,7 @@ public class JobsScheduler {
 
         JobDetail statsAppCountsJob = JobBuilder.newJob(StatsAppCountsJob.class).withIdentity("job1", "group1").build();
         JobDetail statsTypeCountsJob = JobBuilder.newJob(StatsTypeCountsJob.class).withIdentity("job1", "group2").build();
-        JobDetail statsExpJob = JobBuilder.newJob(StatsTypeCountsJob.class).withIdentity("job1", "group3").build();
+        JobDetail statsExpJob = JobBuilder.newJob(StatsExpCountsJob.class).withIdentity("job1", "group3").build();
 
         CronScheduleBuilder scheduleBuilder5s = CronScheduleBuilder.cronSchedule("0/5 * * * * ? *");
         CronScheduleBuilder scheduleBuilder10s = CronScheduleBuilder.cronSchedule("0/10 * * * * ? *");
@@ -33,9 +33,9 @@ public class JobsScheduler {
         CronTrigger statsTypeCountsTrigger = TriggerBuilder.newTrigger().withIdentity("trigger2", "group2").withSchedule(scheduleBuilder10s).build();
         CronTrigger statsExpTrigger = TriggerBuilder.newTrigger().withIdentity("trigger3", "group3").withSchedule(scheduleBuilder5s).build();
 
-//        scheduler.scheduleJob(statsAppCountsJob, statsAppCountsTrigger);
+        scheduler.scheduleJob(statsAppCountsJob, statsAppCountsTrigger);
         scheduler.scheduleJob(statsTypeCountsJob, statsTypeCountsTrigger);
-//        scheduler.scheduleJob(statsExpJob, statsExpTrigger);
+        scheduler.scheduleJob(statsExpJob, statsExpTrigger);
 
     }
 

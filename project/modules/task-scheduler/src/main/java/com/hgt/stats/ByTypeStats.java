@@ -56,7 +56,6 @@ public class ByTypeStats {
 
         //region 统计5s内的某一类型日志总数，并入库
         List<TypeCounts> firstResult  = statsByTypeMapper.selectTypeCountsByTimePeriod(dateMap);
-        List<StatsByType5s> list = new ArrayList<>();
 
         for (TypeCounts item : firstResult) {
             StatsByType5s newItem = new StatsByType5s();
@@ -64,7 +63,6 @@ public class ByTypeStats {
             newItem.setStartTime(insertTime);
             newItem.setLogType(item.getLogType());
             newItem.setLogCounts(Integer.parseInt(item.getCounts()));
-            list.add(newItem);
             int result4Insert = statsByType5sMapper.insert(newItem);
         }
         //endregion 统计5s内的某一类型日志总数，并入库

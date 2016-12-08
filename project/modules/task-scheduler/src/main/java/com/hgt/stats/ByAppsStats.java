@@ -61,7 +61,6 @@ public class ByAppsStats {
         //region 按应用统计5s内的日志数，并入库
         List<AppsCodeCounts> firstResult = statsByAppMapper.selectAppCountsByTimePeriod(dateMap);
 //        System.out.println("成功得到 " + firstResult.size() + " 条结果");
-        List<StatsByApp5s> list = new ArrayList<>();
 
         for (AppsCodeCounts item : firstResult) {
             StatsByApp5s newItem = new StatsByApp5s();
@@ -69,8 +68,8 @@ public class ByAppsStats {
             newItem.setStartTime(insertTime);
             newItem.setAppCode(item.getAppCode());
             newItem.setLogCounts(Integer.parseInt(item.getCounts()));
-            list.add(newItem);
             int result4Insert = statsByApp5sMapper.insert(newItem);
+            newItem = null;
         }
         //endregion 按应用统计5s内的日志数，并入库
 

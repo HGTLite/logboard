@@ -1,8 +1,12 @@
 package com.hgt.stats;
 
+import com.hgt.domain.AppsCodeCounts;
 import com.hgt.domain.SimpleStringBean;
+import com.hgt.entity.ExpStreaming5s;
 import com.hgt.entity.ExpStreaming5sTotal;
+import com.hgt.entity.StatsByApp5s;
 import com.hgt.entity.StatsByApp5sTotal;
+import com.hgt.mapper.ExpStreaming5sMapper;
 import com.hgt.mapper.ExpStreaming5sTotalMapper;
 import com.hgt.mapper.ExpStreamingMapper;
 import com.hgt.tools.StatsIdBuilder;
@@ -13,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * README: 统计异常日志的定时任务
@@ -29,6 +35,9 @@ public class ExpCountsStats {
 
     @Autowired
     ExpStreamingMapper expStreamingMapper;
+
+    @Autowired
+    ExpStreaming5sMapper expStreaming5sMapper;
 
     @Autowired
     ExpStreaming5sTotalMapper expStreaming5sTotalMapper;
@@ -47,6 +56,21 @@ public class ExpCountsStats {
         startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
         //startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
         dateMap.put("startTime", startTime);
+
+        //region 按应用统计5s内的异常数，并入库
+        List<AppsCodeCounts> firstResult = expStreamingMapper.selectExpCountsByTimePeriod(dateMap);
+//        System.out.println("成功得到 " + firstResult.size() + " 条结果");
+
+        for (AppsCodeCounts item : firstResult) {
+            ExpStreaming5s newItem = new ExpStreaming5s();
+            newItem.setStatsRid(StatsIdBuilder.build(item.getAppCode(), strInsertTime));
+            newItem.setStartTime(insertTime);
+            newItem.setAppCode(item.getAppCode());
+            newItem.setLogCounts(Integer.parseInt(item.getCounts()));
+            int result4Insert = expStreaming5sMapper.insert(newItem);
+        }
+        //endregion 按应用统计5s内的异常数，并入库
+
 
         //region 统计5s内的异常日志总数，并入库
         SimpleStringBean thisTotalCount = expStreamingMapper.selectTotalCountsByTimePeriod(dateMap);

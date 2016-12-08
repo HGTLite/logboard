@@ -36,4 +36,4 @@
 - steraming日志必有8项
       logLevel, logTime, codeClass, codeFile, lineNumber, appCode, logType, logMsg, logOptions
 
-    
+- 修改task—scheduler的统计时间为5s
