@@ -39,7 +39,7 @@
                 <![CDATA[ and START_TIME  >=  #{startTime}  ]]>
             </if>
             <if test="endTime !=null and endTime!='' ">
-                <![CDATA[ and START_TIME <=  #{endTime}  ]]>
+                <![CDATA[ and START_TIME <  #{endTime}  ]]>
             </if>
         </where>
 
