@@ -16,18 +16,26 @@ import org.springframework.stereotype.Service;
 public class JobsScheduler {
 
     @Autowired
-     SchedulerFactoryBean schedulerFactoryBean;
+    SchedulerFactoryBean schedulerFactoryBean;
 
     public void scheduleJob() throws SchedulerException {
 
-        Scheduler scheduler =schedulerFactoryBean.getScheduler();
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
 
-        JobDetail jobDetail = JobBuilder.newJob(StatsAppCounts5sJob.class).withIdentity("job1","group1").build();
-        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("0/5 * * * * ? *");
+        JobDetail statsAppCountsJob = JobBuilder.newJob(StatsAppCountsJob.class).withIdentity("job1", "group1").build();
+        JobDetail statsTypeCountsJob = JobBuilder.newJob(StatsTypeCountsJob.class).withIdentity("job1", "group2").build();
+        JobDetail statsExpJob = JobBuilder.newJob(StatsTypeCountsJob.class).withIdentity("job1", "group3").build();
 
-       CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1","group1").withSchedule(scheduleBuilder).build();
+        CronScheduleBuilder scheduleBuilder5s = CronScheduleBuilder.cronSchedule("0/5 * * * * ? *");
+        CronScheduleBuilder scheduleBuilder10s = CronScheduleBuilder.cronSchedule("0/10 * * * * ? *");
 
-        scheduler.scheduleJob(jobDetail,trigger);
+        CronTrigger statsAppCountsTrigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1").withSchedule(scheduleBuilder5s).build();
+        CronTrigger statsTypeCountsTrigger = TriggerBuilder.newTrigger().withIdentity("trigger2", "group2").withSchedule(scheduleBuilder10s).build();
+        CronTrigger statsExpTrigger = TriggerBuilder.newTrigger().withIdentity("trigger3", "group3").withSchedule(scheduleBuilder5s).build();
+
+//        scheduler.scheduleJob(statsAppCountsJob, statsAppCountsTrigger);
+        scheduler.scheduleJob(statsTypeCountsJob, statsTypeCountsTrigger);
+//        scheduler.scheduleJob(statsExpJob, statsExpTrigger);
 
     }
 

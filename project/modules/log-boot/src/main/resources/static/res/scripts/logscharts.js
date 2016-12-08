@@ -284,7 +284,7 @@ function createLogsStatsForces() {
 
     //**配置数据
     var n = 200; // total number of nodes
-    var m = 6; // number of distinct clusters
+    var m = 4; // number of distinct clusters
 
     var color = d3.scale.category10()
         .domain(d3.range(m));
@@ -294,8 +294,12 @@ function createLogsStatsForces() {
         .rangePoints([0, width], 1);
 
     var nodes = d3.range(n).map(function () {
+
         var i = Math.floor(Math.random() * m),
             v = (i + 1) / m * -Math.log(Math.random());
+        // console.log(i);
+        console.log(v);
+
         return {
             radius: Math.sqrt(v) * maxRadius,
             color: color(i),
@@ -303,6 +307,9 @@ function createLogsStatsForces() {
             cy: height / 2
         };
     });
+
+    console.log("节点数据")
+    console.log(nodes);
 
     var force = d3.layout.force()
         .nodes(nodes)

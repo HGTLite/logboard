@@ -15,6 +15,22 @@
     select * from STATS_BY_TYPE
   </select>
 
+    <select id="selectTypeCountsByTimePeriod" resultType="com.hgt.domain.TypeCounts" parameterType="java.util.HashMap">
+        select LOG_TYPE as logType,sum(LOG_COUNTS) as counts from STATS_BY_TYPE
+        <where>
+
+            <if test="startTime !=null  ">
+                <![CDATA[ and START_TIME  >=  #{startTime}  ]]>
+            </if>
+            <if test="endTime !=null   ">
+                <![CDATA[ and START_TIME <=  #{endTime}  ]]>
+            </if>
+        </where>
+
+        group by logType order by logType
+
+    </select>
+
     <!--/=============================================================================================-->
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">

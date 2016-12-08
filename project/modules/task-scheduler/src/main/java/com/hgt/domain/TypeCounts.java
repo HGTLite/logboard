@@ -2,22 +2,22 @@ package com.hgt.domain;
 
 /**
  * README:
- * Created by Yao on 12/6/16.
+ * Created by Yao on 12/8/16.
  * =============================================================================
  * CHANGELOG:
  */
-public class TimeCounts {
+public class TypeCounts {
 
-    String datetime;
+    String logType;
 
     String counts;
 
-    public String getDatetime() {
-        return datetime;
+    public String getLogType() {
+        return logType;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setLogType(String logType) {
+        this.logType = logType;
     }
 
     public String getCounts() {

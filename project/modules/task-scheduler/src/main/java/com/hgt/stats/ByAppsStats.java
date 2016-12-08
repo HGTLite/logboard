@@ -41,7 +41,7 @@ public class ByAppsStats {
     StatsByApp5sTotalMapper statsByApp5sTotalMapper;
 
     @RequestMapping(value = BASE_URL + "/counts/5s", method = RequestMethod.GET)
-    public void statsLogCountsByAppBy5s() {
+    public void statsAppLogCountsBy5s() {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         HashMap<String, Object> dateMap = new HashMap<String, Object>();
@@ -62,8 +62,6 @@ public class ByAppsStats {
         List<AppsCodeCounts> firstResult = statsByAppMapper.selectAppCountsByTimePeriod(dateMap);
 //        System.out.println("成功得到 " + firstResult.size() + " 条结果");
         List<StatsByApp5s> list = new ArrayList<>();
-//        Date insertTime = new Date();
-//        String strInsertTime = simpleDateFormat.format(insertTime);
 
         for (AppsCodeCounts item : firstResult) {
             StatsByApp5s newItem = new StatsByApp5s();

@@ -1,10 +1,14 @@
 package com.hgt.stats;
 
+import com.hgt.domain.AppsCodeCounts;
 import com.hgt.domain.SimpleStringBean;
+import com.hgt.domain.TypeCounts;
 import com.hgt.entity.ExpStreaming5sTotal;
-import com.hgt.entity.StatsByApp5sTotal;
+import com.hgt.entity.StatsByType5s;
+import com.hgt.entity.StatsByType5s;
 import com.hgt.mapper.ExpStreaming5sTotalMapper;
-import com.hgt.mapper.ExpStreamingMapper;
+import com.hgt.mapper.StatsByType5sMapper;
+import com.hgt.mapper.StatsByTypeMapper;
 import com.hgt.tools.StatsIdBuilder;
 import com.hgt.utils.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * README: 统计异常日志的定时任务
@@ -23,18 +29,18 @@ import java.util.HashMap;
  * CHANGELOG:
  */
 @RestController
-public class ExpCountsStats {
+public class ByTypeStats {
 
-    private final String BASE_URL = "logb/stats/exp";
-
-    @Autowired
-    ExpStreamingMapper expStreamingMapper;
+    private final String BASE_URL = "logb/stats/type";
 
     @Autowired
-    ExpStreaming5sTotalMapper expStreaming5sTotalMapper;
+    StatsByTypeMapper statsByTypeMapper;
 
-    @RequestMapping(value = BASE_URL + "/counts/5s", method = RequestMethod.GET)
-    public void statsExpCountsBy5s() {
+    @Autowired
+    StatsByType5sMapper statsByType5sMapper;
+
+    @RequestMapping(value = BASE_URL + "/counts/10s", method = RequestMethod.GET)
+    public void statsTypeCountsBy5s() {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         HashMap<String, Object> dateMap = new HashMap<String, Object>();
@@ -48,14 +54,20 @@ public class ExpCountsStats {
         //startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
         dateMap.put("startTime", startTime);
 
-        //region 统计5s内的异常日志总数，并入库
-        SimpleStringBean thisTotalCount = expStreamingMapper.selectTotalCountsByTimePeriod(dateMap);
-        ExpStreaming5sTotal expStreaming5sTotal = new ExpStreaming5sTotal();
-        expStreaming5sTotal.setStatsRid(StatsIdBuilder.build("TOTAL", strInsertTime));
-        expStreaming5sTotal.setStartTime(insertTime);
-        expStreaming5sTotal.setLogCounts(Integer.parseInt(thisTotalCount.getContents()));
-        int result4InsertTotal = expStreaming5sTotalMapper.insert(expStreaming5sTotal);
-        //endregion 统计5s内的异常日志总数，并入库
+        //region 统计5s内的某一类型日志总数，并入库
+        List<TypeCounts> firstResult  = statsByTypeMapper.selectTypeCountsByTimePeriod(dateMap);
+        List<StatsByType5s> list = new ArrayList<>();
+
+        for (TypeCounts item : firstResult) {
+            StatsByType5s newItem = new StatsByType5s();
+            newItem.setStatsRid(StatsIdBuilder.build(item.getLogType(), strInsertTime));
+            newItem.setStartTime(insertTime);
+            newItem.setLogType(item.getLogType());
+            newItem.setLogCounts(Integer.parseInt(item.getCounts()));
+            list.add(newItem);
+            int result4Insert = statsByType5sMapper.insert(newItem);
+        }
+        //endregion 统计5s内的某一类型日志总数，并入库
 
     }
 

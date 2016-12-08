@@ -19,10 +19,10 @@
         select APP_CODE as appCode,sum(LOG_COUNTS) as counts from STATS_BY_APP
         <where>
 
-            <if test="startTime !=null and startTime !='' ">
+            <if test="startTime !=null   ">
                 <![CDATA[ and START_TIME  >=  #{startTime}  ]]>
             </if>
-            <if test="endTime !=null and endTime!='' ">
+            <if test="endTime !=null   ">
                 <![CDATA[ and START_TIME <=  #{endTime}  ]]>
             </if>
         </where>

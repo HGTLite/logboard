@@ -47,9 +47,9 @@
 
 
         <!--<table tableName="exp_streaming_5s" enableCountByExample="false" enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false"/>-->
-        <table tableName="exp_streaming_5s_total" enableCountByExample="false" enableDeleteByExample="false"
+        <!--enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false"/>-->
+        <table tableName="stats_by_type_5s" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false"/>
 

@@ -16,19 +16,16 @@ import java.util.Map;
  * =============================================================================
  * CHANGELOG:
  */
-public class StatsAppCounts5sJob implements Job {
+public class StatsAppCountsJob implements Job {
 
     private static final String SCHEDULED_HOST = URLBuilder.buildHttpHostEndpoint("localhost", "8705");
 
     public void execute(JobExecutionContext context) {
 
-//        String targetURL1 = SCHEDULED_HOST + "/logb/stats/app/counts/5s";
-//        Map mapParams1 = new HashMap();
-//        CacheThreadHelper.newThreadGetByMap(targetURL1, mapParams1);
+        String targetURL1 = SCHEDULED_HOST + "/logb/stats/app/counts/5s";
+        Map mapParams1 = new HashMap();
+        CacheThreadHelper.newThreadGetByMap(targetURL1, mapParams1);
 
-        String targetURL2 = SCHEDULED_HOST + "/logb/stats/exp/counts/5s";
-        Map mapParams2 = new HashMap();
-        CacheThreadHelper.newThreadGetByMap(targetURL2, mapParams2);
 
     }
 
