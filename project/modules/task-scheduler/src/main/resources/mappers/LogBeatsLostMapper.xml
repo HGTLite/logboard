@@ -3,12 +3,12 @@
 <mapper namespace="com.hgt.mapper.LogBeatsLostMapper" >
   <resultMap id="BaseResultMap" type="com.hgt.entity.LogBeatsLost" >
     <id column="BEAT_ID" property="beatId" jdbcType="VARCHAR" />
-    <result column="BEAT_TIME" property="beatTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_TIME" property="lastTime" jdbcType="TIMESTAMP" />
     <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
-    <result column="BEAT_MSG" property="beatMsg" jdbcType="VARCHAR" />
+    <result column="LOST_INTERVAL" property="lostInterval" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    BEAT_ID, BEAT_TIME, APP_CODE, BEAT_MSG
+    BEAT_ID, LAST_TIME, APP_CODE, LOST_INTERVAL
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -21,10 +21,10 @@
     where BEAT_ID = #{beatId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.hgt.entity.LogBeatsLost" >
-    insert into log_beats_lost (BEAT_ID, BEAT_TIME, APP_CODE, 
-      BEAT_MSG)
-    values (#{beatId,jdbcType=VARCHAR}, #{beatTime,jdbcType=TIMESTAMP}, #{appCode,jdbcType=VARCHAR}, 
-      #{beatMsg,jdbcType=VARCHAR})
+    insert into log_beats_lost (BEAT_ID, LAST_TIME, APP_CODE, 
+      LOST_INTERVAL)
+    values (#{beatId,jdbcType=VARCHAR}, #{lastTime,jdbcType=TIMESTAMP}, #{appCode,jdbcType=VARCHAR}, 
+      #{lostInterval,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.hgt.entity.LogBeatsLost" >
     insert into log_beats_lost
@@ -32,51 +32,51 @@
       <if test="beatId != null" >
         BEAT_ID,
       </if>
-      <if test="beatTime != null" >
-        BEAT_TIME,
+      <if test="lastTime != null" >
+        LAST_TIME,
       </if>
       <if test="appCode != null" >
         APP_CODE,
       </if>
-      <if test="beatMsg != null" >
-        BEAT_MSG,
+      <if test="lostInterval != null" >
+        LOST_INTERVAL,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="beatId != null" >
         #{beatId,jdbcType=VARCHAR},
       </if>
-      <if test="beatTime != null" >
-        #{beatTime,jdbcType=TIMESTAMP},
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=TIMESTAMP},
       </if>
       <if test="appCode != null" >
         #{appCode,jdbcType=VARCHAR},
       </if>
-      <if test="beatMsg != null" >
-        #{beatMsg,jdbcType=VARCHAR},
+      <if test="lostInterval != null" >
+        #{lostInterval,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.LogBeatsLost" >
     update log_beats_lost
     <set >
-      <if test="beatTime != null" >
-        BEAT_TIME = #{beatTime,jdbcType=TIMESTAMP},
+      <if test="lastTime != null" >
+        LAST_TIME = #{lastTime,jdbcType=TIMESTAMP},
       </if>
       <if test="appCode != null" >
         APP_CODE = #{appCode,jdbcType=VARCHAR},
       </if>
-      <if test="beatMsg != null" >
-        BEAT_MSG = #{beatMsg,jdbcType=VARCHAR},
+      <if test="lostInterval != null" >
+        LOST_INTERVAL = #{lostInterval,jdbcType=BIGINT},
       </if>
     </set>
     where BEAT_ID = #{beatId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hgt.entity.LogBeatsLost" >
     update log_beats_lost
-    set BEAT_TIME = #{beatTime,jdbcType=TIMESTAMP},
+    set LAST_TIME = #{lastTime,jdbcType=TIMESTAMP},
       APP_CODE = #{appCode,jdbcType=VARCHAR},
-      BEAT_MSG = #{beatMsg,jdbcType=VARCHAR}
+      LOST_INTERVAL = #{lostInterval,jdbcType=BIGINT}
     where BEAT_ID = #{beatId,jdbcType=VARCHAR}
   </update>
 </mapper>

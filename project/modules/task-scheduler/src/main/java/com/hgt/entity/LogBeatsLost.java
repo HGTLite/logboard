@@ -5,11 +5,11 @@ import java.util.Date;
 public class LogBeatsLost {
     private String beatId;
 
-    private Date beatTime;
+    private Date lastTime;
 
     private String appCode;
 
-    private String beatMsg;
+    private Long lostInterval;
 
     public String getBeatId() {
         return beatId;
@@ -19,12 +19,12 @@ public class LogBeatsLost {
         this.beatId = beatId == null ? null : beatId.trim();
     }
 
-    public Date getBeatTime() {
-        return beatTime;
+    public Date getLastTime() {
+        return lastTime;
     }
 
-    public void setBeatTime(Date beatTime) {
-        this.beatTime = beatTime;
+    public void setLastTime(Date lastTime) {
+        this.lastTime = lastTime;
     }
 
     public String getAppCode() {
@@ -35,11 +35,11 @@ public class LogBeatsLost {
         this.appCode = appCode == null ? null : appCode.trim();
     }
 
-    public String getBeatMsg() {
-        return beatMsg;
+    public Long getLostInterval() {
+        return lostInterval;
     }
 
-    public void setBeatMsg(String beatMsg) {
-        this.beatMsg = beatMsg == null ? null : beatMsg.trim();
+    public void setLostInterval(Long lostInterval) {
+        this.lostInterval = lostInterval;
     }
 }
