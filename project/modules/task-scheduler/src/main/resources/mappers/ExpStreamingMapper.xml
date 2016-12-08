@@ -17,16 +17,19 @@
     select * from EXP_STREAMING
   </select>
 
+
+
     <select id="selectTotalCountsByTimePeriod" resultType="com.hgt.domain.SimpleStringBean">
         select count(*) as contents from EXP_STREAMING
         <where>
-            <if test="startTime !=null and startTime !='' ">
+            <if test="startTime !=null ">
                 <![CDATA[ and LOG_TIME  >=  #{startTime}  ]]>
             </if>
-            <if test="endTime !=null and endTime!='' ">
+            <if test="endTime !=null ">
                 <![CDATA[ and LOG_TIME <=  #{endTime}  ]]>
             </if>
         </where>
+
     </select>
 
     <!--/=============================================================================================-->

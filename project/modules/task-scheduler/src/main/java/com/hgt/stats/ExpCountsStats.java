@@ -35,20 +35,18 @@ public class ExpCountsStats {
 
     @RequestMapping(value = BASE_URL + "/counts/5s", method = RequestMethod.GET)
     public void statsexpCountsBy5s() {
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         HashMap<String, Object> dateMap = new HashMap<String, Object>();
-
         Date insertTime = new Date();
         String strInsertTime = simpleDateFormat.format(insertTime);
-//        String dateNow = simpleDateFormat.format(new Date());
         String startTime = "";
-        dateMap.put("endTime", insertTime);
 
+        dateMap.put("endTime", insertTime);
         //设置查询时间为最新5s
-        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
+        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
+        //startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
         dateMap.put("startTime", startTime);
-//        Date insertTime = new Date();
-//        String strInsertTime = simpleDateFormat.format(insertTime);
 
         //region 统计5s内的异常日志总数，并入库
         SimpleStringBean thisTotalCount = expStreamingMapper.selectTotalCountsByTimePeriod(dateMap);

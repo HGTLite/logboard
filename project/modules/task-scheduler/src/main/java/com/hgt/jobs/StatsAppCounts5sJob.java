@@ -22,9 +22,13 @@ public class StatsAppCounts5sJob implements Job {
 
     public void execute(JobExecutionContext context) {
 
-        String targetURL = SCHEDULED_HOST + "/logb/stats/exp/counts/5s";
-        Map mapParams = new HashMap();
-        CacheThreadHelper.newThreadGetByMap(targetURL, mapParams);
+//        String targetURL1 = SCHEDULED_HOST + "/logb/stats/app/counts/5s";
+//        Map mapParams1 = new HashMap();
+//        CacheThreadHelper.newThreadGetByMap(targetURL1, mapParams1);
+
+        String targetURL2 = SCHEDULED_HOST + "/logb/stats/exp/counts/5s";
+        Map mapParams2 = new HashMap();
+        CacheThreadHelper.newThreadGetByMap(targetURL2, mapParams2);
 
     }
 

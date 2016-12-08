@@ -29,7 +29,7 @@ import java.util.List;
 @RestController
 public class ByAppsStats {
 
-    private final String BASE_URL = "logb/stats/apps";
+    private final String BASE_URL = "logb/stats/app";
 
     @Autowired
     StatsByAppMapper statsByAppMapper;
@@ -53,7 +53,8 @@ public class ByAppsStats {
         String startTime = "";
         dateMap.put("endTime", strInsertTime);
         //设置查询时间为最新5s
-        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
+        startTime = DateHelper.operateDatetimeByHour(strInsertTime, -72);
+//        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
         dateMap.put("startTime", startTime);
 
 
