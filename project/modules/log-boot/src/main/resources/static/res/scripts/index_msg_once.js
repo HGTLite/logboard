@@ -21,7 +21,8 @@ function requestMsgOnce() {
         },
         error: function (response) {
             console.log("请求失败--日志处理量 ");
-            console.log(response)
+            console.log(response);
+            document.getElementById("totalLogCounts").innerHTML ="***";
 
         }
     });
@@ -45,7 +46,8 @@ function requestMsgOnce() {
         },
         error: function (response) {
             console.log("请求失败--待处理异常数量 ");
-            console.log(response)
+            console.log(response);
+            document.getElementById("newExpCounts").innerHTML ="***";
 
         }
     });
@@ -70,6 +72,7 @@ function requestMsgOnce() {
         error: function (response) {
             console.log("请求失败--接入应用数 ");
             console.log(response);
+            document.getElementById("totalAppsCounts").innerHTML ="***";
         }
     });
     //endregion 请求接入应用系统数

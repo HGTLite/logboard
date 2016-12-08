@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hgt.mapper.StatsByApp5sMapper">
+    <resultMap id="BaseResultMap" type="com.hgt.entity.StatsByApp5s">
+        <id column="STATS_RID" jdbcType="VARCHAR" property="statsRid"/>
+        <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="APP_CODE" jdbcType="VARCHAR" property="appCode"/>
+        <result column="LOG_COUNTS" jdbcType="INTEGER" property="logCounts"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    STATS_RID, START_TIME, APP_CODE, LOG_COUNTS
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stats_by_app_5s
+        where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from stats_by_app_5s
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hgt.entity.StatsByApp5s">
+    insert into stats_by_app_5s (STATS_RID, START_TIME, APP_CODE, 
+      LOG_COUNTS)
+    values (#{statsRid,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{appCode,jdbcType=VARCHAR}, 
+      #{logCounts,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hgt.entity.StatsByApp5s">
+        insert into stats_by_app_5s
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="statsRid != null">
+                STATS_RID,
+            </if>
+            <if test="startTime != null">
+                START_TIME,
+            </if>
+            <if test="appCode != null">
+                APP_CODE,
+            </if>
+            <if test="logCounts != null">
+                LOG_COUNTS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="statsRid != null">
+                #{statsRid,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="appCode != null">
+                #{appCode,jdbcType=VARCHAR},
+            </if>
+            <if test="logCounts != null">
+                #{logCounts,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hgt.entity.StatsByApp5s">
+        update stats_by_app_5s
+        <set>
+            <if test="startTime != null">
+                START_TIME = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="appCode != null">
+                APP_CODE = #{appCode,jdbcType=VARCHAR},
+            </if>
+            <if test="logCounts != null">
+                LOG_COUNTS = #{logCounts,jdbcType=INTEGER},
+            </if>
+        </set>
+        where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hgt.entity.StatsByApp5s">
+    update stats_by_app_5s
+    set START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      APP_CODE = #{appCode,jdbcType=VARCHAR},
+      LOG_COUNTS = #{logCounts,jdbcType=INTEGER}
+    where STATS_RID = #{statsRid,jdbcType=VARCHAR}
+  </update>
+
+
+</mapper>

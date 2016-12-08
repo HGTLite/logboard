@@ -298,7 +298,7 @@ function createLogsStatsForces() {
         var i = Math.floor(Math.random() * m),
             v = (i + 1) / m * -Math.log(Math.random());
         // console.log(i);
-        console.log(v);
+        // console.log(v);
 
         return {
             radius: Math.sqrt(v) * maxRadius,

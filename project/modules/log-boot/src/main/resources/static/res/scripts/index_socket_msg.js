@@ -26,9 +26,9 @@ function waitingForSocketMsg() {
                 document.getElementById("totalLogCounts").innerHTML = newCounts.toString();
                 // console.log("更新后的文字是" + newCounts);
             });
-            //endregion
+            //endregion 日志处理量更新
 
-            //region 日志处理量更新，订阅主题log-counts-streaming
+            //region 异常处理量更新，订阅主题log-exp-streaming
             var topicLogCounts = "/topic/log-exp-streaming";
             stompClient.subscribe(msgURLOrigin + topicLogCounts, function (data) {
                 var addCounts = parseInt(data.body);
@@ -37,7 +37,7 @@ function waitingForSocketMsg() {
                 document.getElementById("newExpCounts").innerHTML = newCounts.toString();
                 // console.log("更新后的文字是" + newCounts);
             });
-            //endregion
+            //endregion 异常处理量更新
 
         }
     );
