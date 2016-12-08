@@ -8,16 +8,16 @@ package com.hgt.domain;
  */
 public class TimeCounts {
 
-    String dateTIme;
+    String datetime;
 
     String counts;
 
-    public String getDateTIme() {
-        return dateTIme;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setDateTIme(String dateTIme) {
-        this.dateTIme = dateTIme;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
 
     public String getCounts() {

@@ -108,8 +108,8 @@ function createLogsGeneralPie() {
     //region 设置统计时间
     var dateNow = new Date();
     var endTime = convertJsTimeToStr(dateNow);
-    var startTime = operateDatetimeByHour(endTime,-1);
-    document.getElementById("updatePieIndicator").innerHTML=startTime+"  -  "+endTime;
+    var startTime = operateDatetimeByHour(endTime, -1);
+    document.getElementById("updatePieIndicator").innerHTML = startTime + "  -  " + endTime;
     //endregion
 
 
@@ -286,6 +286,9 @@ function createLogsStatsForces() {
     var n = 200; // total number of nodes
     var m = 4; // number of distinct clusters
 
+    var logTypes= new Array("LOGIN","GENERAL","TESTS");
+    renderDOMTypeNameDiv(logTypes);
+
     var color = d3.scale.category10()
         .domain(d3.range(m));
 
@@ -297,8 +300,6 @@ function createLogsStatsForces() {
 
         var i = Math.floor(Math.random() * m),
             v = (i + 1) / m * -Math.log(Math.random());
-        // console.log(i);
-        // console.log(v);
 
         return {
             radius: Math.sqrt(v) * maxRadius,
@@ -306,10 +307,11 @@ function createLogsStatsForces() {
             cx: x(i),
             cy: height / 2
         };
+
     });
 
-    console.log("节点数据")
-    console.log(nodes);
+    // console.log("节点数据");
+    // console.log(nodes);
 
     var force = d3.layout.force()
         .nodes(nodes)
@@ -363,6 +365,7 @@ function createLogsStatsForces() {
                 nx2 = d.x + r,
                 ny1 = d.y - r,
                 ny2 = d.y + r;
+
             quadtree.visit(function (quad, x1, y1, x2, y2) {
                 if (quad.point && (quad.point !== d)) {
                     var x = d.x - quad.point.x,
@@ -383,3 +386,15 @@ function createLogsStatsForces() {
     }
 }
 
+function renderDOMTypeNameDiv(typeNames) {
+
+    var types = typeNames;
+    var typeLength = typeNames.length;
+    var html = "";
+
+    for (var i = 0; i < typeLength; i++) {
+        html += "<div style=\"width:" + 100 / typeLength + "%\" class=\"_float_left _text_align_center text-muted\" >日志类型-" + types[i] + "</div>";
+    }
+    document.getElementById("typeNameDiv").innerHTML = html;
+
+}

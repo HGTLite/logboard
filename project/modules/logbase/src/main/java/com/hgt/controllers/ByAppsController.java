@@ -2,6 +2,10 @@ package com.hgt.controllers;
 
 import com.hgt.domain.DataResult;
 import com.hgt.domain.AppsCodeCounts;
+import com.hgt.domain.SimpleStringBean;
+import com.hgt.domain.TimeCounts;
+import com.hgt.entity.StatsByApp5sTotal;
+import com.hgt.mapper.StatsByApp5sTotalMapper;
 import com.hgt.mapper.StatsByAppMapper;
 import com.hgt.utils.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +31,13 @@ public class ByAppsController {
     @Autowired
     StatsByAppMapper statsByAppMapper;
 
+    @Autowired
+    StatsByApp5sTotalMapper statsByApp5sTotalMapper;
+
+
     /**
      * 查询输入时间起点1小时内，按应用统计的日志数
+     *
      * @param strDate
      * @return
      */
@@ -86,13 +95,14 @@ public class ByAppsController {
 
 
     /**
-     * 输入时间起点查询5分钟内，按30s统计的日志总数
+     * 输入时间起点查询5分钟内，按5s统计的日志总数
+     *
      * @param strDate
      * @return
      */
-    @RequestMapping(value = BASE_URL + "/curve/5min/{strDate}", method = RequestMethod.GET)
-    public DataResult<List<AppsCodeCounts>> queryGeneralLogTotal(@PathVariable String strDate){
-        List<AppsCodeCounts> codeCountsList = new ArrayList<>();
+    @RequestMapping(value = BASE_URL + "/curve/general/5min/{strDate}", method = RequestMethod.GET)
+    public DataResult<List<TimeCounts>> queryGeneralLogTotal(@PathVariable String strDate) {
+        List<TimeCounts> countList = new ArrayList<>();
         String dateInput = strDate;
         // System.out.println(dateInput);
         // TODO: 12/6/16 日期格式异常处理
@@ -103,16 +113,22 @@ public class ByAppsController {
         String startTime = "";
         if (dateInput == null || dateInput.trim().length() == 0) {
             dateMap.put("endTime", dateNow);
-            startTime = DateHelper.operateDatetimeByHour(dateNow, -1);
+            //设置查询的时间起点5分钟
+            startTime = DateHelper.operateDatetimeByHour(dateNow, -72);
+//            startTime = DateHelper.operateDatetimeBySecond(dateNow, -300);
         } else {
             dateMap.put("endTime", strDate);
-            startTime = DateHelper.operateDatetimeByHour(strDate, -1);
+            startTime = DateHelper.operateDatetimeBySecond(strDate, -300);
         }
         dateMap.put("startTime", startTime);
 
-        List<AppsCodeCounts> queryResults = statsByAppMapper.selectAllByTimePeriod(dateMap);
+        List<TimeCounts> queryResults = statsByApp5sTotalMapper.selectAllByTimePeriod(dateMap);
 
-        return new DataResult<>(codeCountsList);
+//        System.out.println("查询结果条数是："+queryResults.size()+", 检查是否是60条");
+
+        countList = queryResults;
+
+        return new DataResult<>(countList);
 
     }
 

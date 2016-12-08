@@ -1,8 +1,14 @@
 package com.hgt.mapper;
 
+import com.hgt.domain.TimeCounts;
 import com.hgt.entity.ExpStreaming5sTotal;
 
+import java.util.HashMap;
+import java.util.List;
+
 public interface ExpStreaming5sTotalMapper {
+
+    List<TimeCounts> selectAllByTimePeriod(HashMap<String, Object> map);
 
     int deleteByPrimaryKey(String statsRid);
 

@@ -1,8 +1,16 @@
 package com.hgt.mapper;
 
+import com.hgt.domain.AppsCodeCounts;
+import com.hgt.domain.SimpleStringBean;
+import com.hgt.domain.TimeCounts;
 import com.hgt.entity.StatsByApp5sTotal;
 
+import java.util.HashMap;
+import java.util.List;
+
 public interface StatsByApp5sTotalMapper {
+
+    List<TimeCounts> selectAllByTimePeriod(HashMap<String, Object> map);
 
     int deleteByPrimaryKey(String statsRid);
 

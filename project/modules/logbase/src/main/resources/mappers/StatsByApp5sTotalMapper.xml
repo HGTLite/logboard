@@ -9,6 +9,31 @@
   <sql id="Base_Column_List" >
     STATS_RID, START_TIME, LOG_COUNTS
   </sql>
+
+  <!--=============================================================================================-->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from stats_by_app_5s_total
+  </select>
+
+  <select id="selectAllByTimePeriod" resultType="com.hgt.domain.TimeCounts" parameterType="java.util.HashMap">
+    select START_TIME as datetime, LOG_COUNTS as counts from stats_by_app_5s_total
+    <where>
+
+      <if test="startTime !=null">
+        <![CDATA[ and START_TIME  >=  #{startTime}  ]]>
+      </if>
+      <if test="endTime !=null  ">
+        <![CDATA[ and START_TIME <  #{endTime}  ]]>
+      </if>
+    </where>
+
+     order by datetime desc
+
+  </select>
+
+  <!--/=============================================================================================-->
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

@@ -4,6 +4,8 @@ import com.hgt.entity.ExpStreaming5sTotal;
 
 public interface ExpStreaming5sTotalMapper {
 
+
+
     int deleteByPrimaryKey(String statsRid);
 
     int insert(ExpStreaming5sTotal record);
