@@ -63,4 +63,29 @@ public class DateHelper {
         return resultStr;
     }
 
+    /**
+     * 日期时间按秒加减
+     *
+     * @param strBaseDate
+     * @param delta
+     * @return
+     */
+    public static String operateDatetimeBySecond(String strBaseDate, int delta) {
+        String resultStr = "";
+        Date baseDate = new Date();
+        Date postDate = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            baseDate = simpleDateFormat.parse(strBaseDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        postDate = new Date(baseDate.getTime() + delta * 1000);
+
+        resultStr = simpleDateFormat.format(postDate);
+
+        return resultStr;
+    }
+
 }

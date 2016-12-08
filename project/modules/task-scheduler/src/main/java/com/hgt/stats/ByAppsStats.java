@@ -10,7 +10,6 @@ import com.hgt.mapper.StatsByAppMapper;
 import com.hgt.tools.StatsIdBuilder;
 import com.hgt.utils.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,10 +45,15 @@ public class ByAppsStats {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         HashMap<String, Object> dateMap = new HashMap<String, Object>();
-        String dateNow = simpleDateFormat.format(new Date());
+
+        Date insertTime = new Date();
+        String strInsertTime = simpleDateFormat.format(insertTime);
+
+//        String dateNow = simpleDateFormat.format(new Date());
         String startTime = "";
-        dateMap.put("endTime", dateNow);
-        startTime = DateHelper.operateDatetimeByHour(dateNow, -48);
+        dateMap.put("endTime", strInsertTime);
+        //设置查询时间为最新5s
+        startTime = DateHelper.operateDatetimeBySecond(strInsertTime, -5);
         dateMap.put("startTime", startTime);
 
 
@@ -57,8 +61,8 @@ public class ByAppsStats {
         List<AppsCodeCounts> firstResult = statsByAppMapper.selectAppCountsByTimePeriod(dateMap);
 //        System.out.println("成功得到 " + firstResult.size() + " 条结果");
         List<StatsByApp5s> list = new ArrayList<>();
-        Date insertTime = new Date();
-        String strInsertTime = simpleDateFormat.format(insertTime);
+//        Date insertTime = new Date();
+//        String strInsertTime = simpleDateFormat.format(insertTime);
 
         for (AppsCodeCounts item : firstResult) {
             StatsByApp5s newItem = new StatsByApp5s();
@@ -79,7 +83,6 @@ public class ByAppsStats {
         statsByApp5sTotal.setLogCounts(Integer.parseInt(thisTotalCount.getContents()));
         int result4InsertTotal = statsByApp5sTotalMapper.insert(statsByApp5sTotal);
         //endregion 统计5s内的日志总数，并入库
-
 
     }
 
