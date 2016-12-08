@@ -1,10 +1,14 @@
 package com.hgt.mapper;
 
+import com.hgt.domain.SimpleStringBean;
 import com.hgt.entity.ExpStreaming;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ExpStreamingMapper {
+
+    SimpleStringBean selectTotalCountsByTimePeriod(HashMap<String, Object> map);
 
     List<ExpStreaming> selectAll();
 

@@ -21,7 +21,8 @@ public class StatsAppCounts5sJob implements Job {
     private static final String SCHEDULED_HOST = URLBuilder.buildHttpHostEndpoint("localhost", "8705");
 
     public void execute(JobExecutionContext context) {
-        String targetURL = SCHEDULED_HOST + "/logb/stats/counts/5s";
+
+        String targetURL = SCHEDULED_HOST + "/logb/stats/exp/counts/5s";
         Map mapParams = new HashMap();
         CacheThreadHelper.newThreadGetByMap(targetURL, mapParams);
 

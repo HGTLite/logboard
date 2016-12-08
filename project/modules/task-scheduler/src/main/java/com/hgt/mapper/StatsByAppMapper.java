@@ -9,10 +9,8 @@ import java.util.List;
 
 public interface StatsByAppMapper {
 
-
     //与logbase相比，对查询结果顺序有改动
     List<AppsCodeCounts> selectAppCountsByTimePeriod(HashMap<String, Object> map);
-
 
      SimpleStringBean selectTotalCountsByTimePeriod(HashMap<String, Object> map);
 

@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 public class ByAppsStats {
 
-    private final String BASE_URL = "logb/stats";
+    private final String BASE_URL = "logb/stats/apps";
 
     @Autowired
     StatsByAppMapper statsByAppMapper;
