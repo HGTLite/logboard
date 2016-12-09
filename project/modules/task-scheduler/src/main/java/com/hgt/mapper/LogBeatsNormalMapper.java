@@ -3,6 +3,7 @@ package com.hgt.mapper;
 import com.hgt.entity.LogBeatsNormal;
 
 public interface LogBeatsNormalMapper {
+
     int deleteByPrimaryKey(String beatId);
 
     int insert(LogBeatsNormal record);

@@ -3,6 +3,7 @@ package com.hgt.entity;
 import java.util.Date;
 
 public class LogBeatsLost {
+
     private String beatId;
 
     private Date lastTime;
@@ -42,4 +43,5 @@ public class LogBeatsLost {
     public void setLostInterval(Long lostInterval) {
         this.lostInterval = lostInterval;
     }
+
 }

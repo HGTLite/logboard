@@ -48,7 +48,7 @@ public class ClientSender {
                         "}";
                 out.writeObject(beatJson);
                 out.flush();
-                System.out.println("已发送: " + beatJson);
+//                System.out.println("心跳已发送: " + beatJson);
                 Thread.sleep(3000);
             }
         } catch (Exception e) {

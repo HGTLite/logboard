@@ -58,8 +58,9 @@ public class HeartBeatServer extends Thread {
                     //ObjectInputStream():Creates an ObjectInputStream that reads from the specified InputStream.
                     ObjectInput in = new ObjectInputStream(client.getInputStream());
                     String gets = (String) in.readObject();
-                    // 输出心跳包中的信息
-                    System.out.println("接收到心跳" + gets);
+                    //System.out.println("心跳已接收" + gets);
+
+
 
                 }
             } catch (IOException | ClassNotFoundException e) {

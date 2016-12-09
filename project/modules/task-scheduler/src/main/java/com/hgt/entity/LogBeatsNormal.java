@@ -3,6 +3,7 @@ package com.hgt.entity;
 import java.util.Date;
 
 public class LogBeatsNormal {
+
     private String beatId;
 
     private Date beatTime;
@@ -42,4 +43,5 @@ public class LogBeatsNormal {
     public void setBeatMsg(String beatMsg) {
         this.beatMsg = beatMsg == null ? null : beatMsg.trim();
     }
+
 }

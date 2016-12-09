@@ -50,6 +50,7 @@ public class LoggerConfig {
         String beatingHost = p.getProperty("beating.host");
         String appid = p.getProperty("beating.appid");
         String msg = p.getProperty("beating.msg");
+        String interval = p.getProperty("beating.interval");
 
         if (beatingHost == null || beatingHost.length() == 0) {
             System.out.println("配置文件未配置心跳接收服务器ip，程序结束");
@@ -62,6 +63,9 @@ public class LoggerConfig {
 
         if (msg == null || msg.length() == 0) {
             msg = "default-group";
+        }
+        if (interval == null || interval.length() == 0) {
+            interval = "5";
         }
 
         configMap.put("host", beatingHost);

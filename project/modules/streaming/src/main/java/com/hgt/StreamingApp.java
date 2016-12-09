@@ -41,7 +41,7 @@ import static com.hgt.ip.URLBuilder.buildHttpHostEndpoint;
  */
 public class StreamingApp {
 
-    //    private static final String HOST_IP = "192.168.99.75";
+    //private static final String HOST_IP = "192.168.99.75";
     private static final String HOST_IP = "localhost";
     private static final String STATS_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP, "8702");
     private static final String MSG_ROUTER_HOST_ENDPOINT = buildHttpHostEndpoint(HOST_IP, "8703");
