@@ -17,7 +17,7 @@ public class TaskApp {
         SpringApplication.run(TaskApp.class, args);
         System.out.println("===TaskApp 启动完成===");
 
-        System.out.println("开始检测客户端是否在线...");
+        System.out.println("开始等待客户端发送心跳信息...");
         new HeartBeatServer().start();
     }
 

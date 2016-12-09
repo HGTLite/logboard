@@ -8,6 +8,7 @@ import java.net.Socket;
 
 /**
  * 服务端类
+ *
  * @author Administrator
  */
 public class HeartBeatServer extends Thread {
@@ -58,7 +59,8 @@ public class HeartBeatServer extends Thread {
                     ObjectInput in = new ObjectInputStream(client.getInputStream());
                     String gets = (String) in.readObject();
                     // 输出心跳包中的信息
-                    System.out.println(gets);
+                    System.out.println("接收到心跳" + gets);
+
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
